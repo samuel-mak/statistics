@@ -1,0 +1,30 @@
+- $\begin{array}{ccc}
+{\sigma}^{2} & 1\\
+1 & {\sigma}^{2}
+\end{array}$
+
+
+  - $X = \begin{bmatrix}
+1 & 2\\
+1 & 2\\
+1 & 2
+\end{bmatrix}$
+
+      - **Note**
+        + This is a matrix
+        1. This is the first point
+        2. This is the seccond point
+
+```{r }
+carData::Bfox
+
+
+hist_plot <- ggplot(data = carData::Bfox, aes(x = debt)) + geom_histogram()
+```
+
+```{r echo = F}
+hist_plot
+```
+
+# Chapter 2
+blalabla
