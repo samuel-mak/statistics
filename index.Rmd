@@ -1,14 +1,43 @@
 ---
-title: "A Minimal Book Example"
-author: "Jane Doe"
+title: "Statistics"
+author: "Samuel Mak"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::bs4_book
-url: https://bookdown.org/janedoe/bookdown-demo
 description: |
   This is a minimal example of using the bookdown package to write a book.
   The output format for this example is bookdown::bs4_book.
+  
+  
 ---
 
-# Down the rabbit-hole
+# The Linear Regression Model
+
+
+**The Linear Model**
+
+- **Description**
+    - A model that models/describes the relationship between variables with the linear function
+- **Mathematics** 
+    - $y = mx + c$
+    
+---    
+**Regression**
+
+- **Concept**
+    - The process of estimating the relationship between variables
+
+------   
+    
+**Linear Regression**
+
+- **Concept**
+  - The process of estimating the relationship between variables with a linear model by fitting a straight line to the data
+  
+---
+**Curvilinear Regression**
+
+  - **Concept**
+    - The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data
+
 

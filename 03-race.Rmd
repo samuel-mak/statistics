@@ -1,2 +1,14 @@
 # A caucus-race and a long tale
+
 This is chapter 3, and I will talk about robust methods in this chapter. Robust statistics is a huge topic and it really needs a whole library to contain all of the knowledge in this topic. 
+
+
+In this chapter, we will look at 
+
+- Guitars
+- Music
+- Statistics
+
+
+<p style="font-size:15px; color: black; text-align:left; line-height: 2; margin-left: -20; margin-right: -20;"> 
+</p>
