@@ -1,1 +1,2 @@
 # A caucus-race and a long tale
+This is chapter 3, and I will talk about robust methods in this chapter.
