@@ -1,3 +1,5 @@
+# A very statistical day
+
 - $\begin{array}{ccc}
 {\sigma}^{2} & 1\\
 1 & {\sigma}^{2}
@@ -16,6 +18,8 @@
         2. This is the seccond point
 
 ```{r }
+library(ggplot2)
+
 carData::Bfox
 
 
@@ -26,5 +30,4 @@ hist_plot <- ggplot(data = carData::Bfox, aes(x = debt)) + geom_histogram()
 hist_plot
 ```
 
-# Chapter 2
-blalabla
+
