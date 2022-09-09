@@ -1,5 +1,7 @@
 # A very statistical day
 
+Lets begin with some matrices
+
 - $\begin{array}{ccc}
 {\sigma}^{2} & 1\\
 1 & {\sigma}^{2}
