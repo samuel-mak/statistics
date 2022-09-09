@@ -1,8 +1,13 @@
---- 
-title: "YOUR TITLE HERE"
-author: "YOUR NAME HERE"
+---
+title: "A Minimal Book Example"
+author: "Jane Doe"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
+output: bookdown::bs4_book
+url: https://bookdown.org/janedoe/bookdown-demo
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The output format for this example is bookdown::bs4_book.
 ---
 
 # Down the rabbit-hole
