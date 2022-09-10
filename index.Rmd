@@ -77,6 +77,8 @@ output:
             - Error for observation *i*
             - Error - The absolute deviation/distance/difference between the observed value and the expected/predicted/fitted value for observation *i*
             - This quantifies the error in prediction at the observation level
+  - **Sample Model**
+    - $y_{i} = \hat{\beta}_{0} + \hat{\beta}_{1}x_{i,1} + e_{i}$
 - **Mathematics (Matrix)**
   - **Population Model**
     - $\begin{aligned}\mathbf{Y} &= \mathbf{X}\boldsymbol{\beta} + \mathbf{E} \\ \begin{bmatrix} y_{i} \\ y_{i} \\ y_{3} \\ \vdots \\ y_{n}\end{bmatrix} &= \begin{bmatrix} 1 & x_{1} \\ 1 & x_{2} \\ 1 & x_{3} \\ \vdots & \vdots \\ 1 & x_{n}\end{bmatrix} \begin{bmatrix} \beta_{0} \\ \beta_{1} \end{bmatrix} + \begin{bmatrix} \epsilon_{1} \\ \epsilon_{2} \\ \epsilon_{3} \\ \vdots \\ \epsilon_{n}\end{bmatrix}\end{aligned}$
@@ -94,11 +96,58 @@ output:
           - A column vector that contains the regression coefficient/weight for each of regression parameters
         - $\mathbf{E}$
           - A column vector that contains the error of each of the observations
+          
+          
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Methods of Estimation**</p>
+
+- Ordinary Least Squares (OLS)
+- Generalised Least Squares (GLS)
+- Maximum Likelihood (ML)
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Ordinary Least Squares**</p>
 
+- **Concept**
+  - Estimates the regression line by fitting a line that minimises the model sum of squared residuals (the sum of the squared difference/distance/deviation between each of the observed values and the corresponding predicted/fitted values)
+  - $\min{\sum_{i=1}^{n}{e^{2}_{i}}} = \min{\sum_{i=1}^{n}({y_{i} - \hat\beta_{0} - \hat\beta_{1}x_{i,1}}})^2$
+- **Mathematics**
+- **Derivation**
+  - Start off with the linear model with the outcome variable as a function of the weights
+    - $y_i = \hat\beta_0 + \hat\beta_{1}x_{i,1} + e_i$
+  - Make the residual as the subject (express the residual as a function of the weights)
+    - $e_i = y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1}$
+  - Square both sides
+    - $e_{i}^{2} = (y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})^2$
+  - Sum both sides 
+    - $\begin{aligned}\sum_{i=1}^{n}{e_{i}^{2}} &= \sum_{i=1}^{n}{(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})^2} \\ S(\beta_0,\beta_1) &= \sum_{i=1}^{n}{(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})^2}\end{aligned}$
+    - ![](image/ols_1.png){width=30%}
+  - Find the values of $\hat\beta_{0}$ and $\hat\beta_{1}$ that minimises $S(\hat\beta_{0}, \hat\beta_{1})$
+    - There is a point at which the sum of squared residuals is at the minimum 
+    - The $S(\hat\beta_{0}, \hat\beta_{1})$ function is a quadratic and it has a minimum that represents the minimal sum of squared residuals
+    - The coordinates of the minimum are the values of $\hat\beta_{0}$ and $\hat\beta_{1}$ that give you the least sum of squared residuals (or minimises $S(\hat\beta_{0}, \hat\beta_{1})$)
+    - Hence, find the values of the coordinate of the minimum of the quadratic function
+    - To find each of the values of the coordinate of the minimum of the function $S(\hat\beta_{0}, \hat\beta_{1})$, the partial derivatives of the function $S(\hat\beta_{0}, \hat\beta_{1})$ with respect to each of the $\hat\beta$s are set to 0 (because the minimum has a slope of 0)
+    - Expression for $\hat\beta_0$
+      - $\frac{\partial{S}}{\partial{\hat\beta_{0}}}=-2\sum_{i=1}^{n}{(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})}$
+    - Expression for $\hat\beta_1$
+      - $\frac{\partial{S}}{\partial{\hat\beta_{1}}}=-2\sum_{i=1}^{n}{x_{i,1}(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})}$
+    - Solve the above simultaneous equations
+    - Solving the above simultaneous equations would result in 
+      - $\hat\beta_{0} = \frac{\sum_{i=1}^{n}{x_{i,1}}\sum_{i=1}^{n}{y_{i}} - \sum_{i=1}^{n}{x_{i,1}}\sum_{i=1}^{n}{x_{i,1}y_{i}}}{n\sum_{i=1}^{n}{x_{i,1}^2}-(\sum_{i=1}^{n}{x_{i,1}})^2}$
+      - $\hat\beta_{1} = \frac{n\sum_{i=1}^{n}{x_{i,1}y_i} - \sum_{i=1}^{n}{x_{i,1}}\sum_{i=1}^{n}{y_{i}}}{n\sum_{i=1}^{n}{x_{i,1}^2}-(\sum_{i=1}^{n}{x_{i,1}})^2}$
+    - Solving the simultaneous equations would also result in 
+      - For $\hat\beta_{0}$
+        - $\hat\beta_{0} = \bar{y} - \hat\beta_{1}\bar{x}$
+      - For $\hat\beta_{1}$
+        - $\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})(y_{i} - \bar{y})}}{\sum_{i=n}^{n}{(x_{i,1} - \bar{x})^2}}$
+    $\sum_{i=1}^{n}{x_{i,1}}$
+        - $\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})y_{i}}}{\sum_{i=n}^{n}{(x_{i,1} - \bar{x})^2}}$
+    $\sum_{i=1}^{n}{x_{i,1}}$
+        - $\hat\beta_{1} = \frac{Cov(x,y)}{s_{x}^{2}}$
+        - $\hat\beta_{1} = \frac{S_{xx}}{S_{xx}}$
 
-
+    
 
 
 

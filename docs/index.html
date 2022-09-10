@@ -266,6 +266,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 </ul></li>
+<li><strong>Sample Model</strong>
+<ul>
+<li><span class="math inline">\(y_{i} = \hat{\beta}_{0} + \hat{\beta}_{1}x_{i,1} + e_{i}\)</span></li>
+</ul></li>
 </ul></li>
 <li><strong>Mathematics (Matrix)</strong>
 <ul>
@@ -302,6 +306,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>A column vector that contains the error of each of the observations</li>
 </ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Methods of Estimation</strong>
+</p>
+<ul>
+<li>Ordinary Least Squares (OLS)</li>
+<li>Generalised Least Squares (GLS)</li>
+<li>Maximum Likelihood (ML)</li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Ordinary Least Squares</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Estimates the regression line by fitting a line that minimises the model sum of squared residuals (the sum of the squared difference/distance/deviation between each of the observed values and the corresponding predicted/fitted values)</li>
+<li><span class="math inline">\(\min{\sum_{i=1}^{n}{e^{2}_{i}}} = \min{\sum_{i=1}^{n}({y_{i} - \hat\beta_{0} - \hat\beta_{1}x_{i,1}}})^2\)</span></li>
+</ul></li>
+<li><strong>Mathematics</strong></li>
+<li><strong>Derivation</strong>
+<ul>
+<li>Start off with the linear model with the outcome variable as a function of the weights
+<ul>
+<li><span class="math inline">\(y_i = \hat\beta_0 + \hat\beta_{1}x_{i,1} + e_i\)</span></li>
+</ul></li>
+<li>Make the residual as the subject (express the residual as a function of the weights)
+<ul>
+<li><span class="math inline">\(e_i = y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1}\)</span></li>
+</ul></li>
+<li>Square both sides
+<ul>
+<li><span class="math inline">\(e_{i}^{2} = (y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})^2\)</span></li>
+</ul></li>
+<li>Sum both sides
+<ul>
+<li><span class="math inline">\(\begin{aligned}\sum_{i=1}^{n}{e_{i}^{2}} &amp;= \sum_{i=1}^{n}{(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})^2} \\ S(\beta_0,\beta_1) &amp;= \sum_{i=1}^{n}{(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})^2}\end{aligned}\)</span></li>
+<li><img src="image/ols_1.png" style="width:30.0%" /></li>
+</ul></li>
+<li>Find the values of <span class="math inline">\(\hat\beta_{0}\)</span> and <span class="math inline">\(\hat\beta_{1}\)</span> that minimises <span class="math inline">\(S(\hat\beta_{0}, \hat\beta_{1})\)</span>
+<ul>
+<li>There is a point at which the sum of squared residuals is at the minimum</li>
+<li>The <span class="math inline">\(S(\hat\beta_{0}, \hat\beta_{1})\)</span> function is a quadratic and it has a minimum that represents the minimal sum of squared residuals</li>
+<li>The coordinates of the minimum are the values of <span class="math inline">\(\hat\beta_{0}\)</span> and <span class="math inline">\(\hat\beta_{1}\)</span> that give you the least sum of squared residuals (or minimises <span class="math inline">\(S(\hat\beta_{0}, \hat\beta_{1})\)</span>)</li>
+<li>Hence, find the values of the coordinate of the minimum of the quadratic function</li>
+<li>To find each of the values of the coordinate of the minimum of the function <span class="math inline">\(S(\hat\beta_{0}, \hat\beta_{1})\)</span>, the partial derivatives of the function <span class="math inline">\(S(\hat\beta_{0}, \hat\beta_{1})\)</span> with respect to each of the <span class="math inline">\(\hat\beta\)</span>s are set to 0 (because the minimum has a slope of 0)</li>
+<li>Expression for <span class="math inline">\(\hat\beta_0\)</span>
+<ul>
+<li><span class="math inline">\(\frac{\partial{S}}{\partial{\hat\beta_{0}}}=-2\sum_{i=1}^{n}{(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})}\)</span></li>
+</ul></li>
+<li>Expression for <span class="math inline">\(\hat\beta_1\)</span>
+<ul>
+<li><span class="math inline">\(\frac{\partial{S}}{\partial{\hat\beta_{1}}}=-2\sum_{i=1}^{n}{x_{i,1}(y_i - \hat\beta_{0} - \hat\beta_{1}x_{i,1})}\)</span></li>
+</ul></li>
+<li>Solve the above simultaneous equations</li>
+<li>Solving the above simultaneous equations would result in
+<ul>
+<li><span class="math inline">\(\hat\beta_{0} = \frac{\sum_{i=1}^{n}{x_{i,1}}\sum_{i=1}^{n}{y_{i}} - \sum_{i=1}^{n}{x_{i,1}}\sum_{i=1}^{n}{x_{i,1}y_{i}}}{n\sum_{i=1}^{n}{x_{i,1}^2}-(\sum_{i=1}^{n}{x_{i,1}})^2}\)</span></li>
+<li><span class="math inline">\(\hat\beta_{1} = \frac{n\sum_{i=1}^{n}{x_{i,1}y_i} - \sum_{i=1}^{n}{x_{i,1}}\sum_{i=1}^{n}{y_{i}}}{n\sum_{i=1}^{n}{x_{i,1}^2}-(\sum_{i=1}^{n}{x_{i,1}})^2}\)</span></li>
+</ul></li>
+<li>Solving the simultaneous equations would also result in
+<ul>
+<li>For <span class="math inline">\(\hat\beta_{0}\)</span>
+<ul>
+<li><span class="math inline">\(\hat\beta_{0} = \bar{y} - \hat\beta_{1}\bar{x}\)</span></li>
+</ul></li>
+<li>For <span class="math inline">\(\hat\beta_{1}\)</span>
+<ul>
+<li><span class="math inline">\(\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})(y_{i} - \bar{y})}}{\sum_{i=n}^{n}{(x_{i,1} - \bar{x})^2}}\)</span>
+<span class="math inline">\(\sum_{i=1}^{n}{x_{i,1}}\)</span></li>
+<li><span class="math inline">\(\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})y_{i}}}{\sum_{i=n}^{n}{(x_{i,1} - \bar{x})^2}}\)</span>
+<span class="math inline">\(\sum_{i=1}^{n}{x_{i,1}}\)</span></li>
+<li><span class="math inline">\(\hat\beta_{1} = \frac{Cov(x,y)}{s_{x}^{2}}\)</span></li>
+<li><span class="math inline">\(\hat\beta_{1} = \frac{S_{xx}}{S_{xx}}\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
