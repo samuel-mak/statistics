@@ -5,22 +5,19 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Statistics</title>
-  <meta name="description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The output format for this example is bookdown::bs4_book.</p>" />
+  <meta name="description" content="Statistics" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Statistics" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The output format for this example is bookdown::bs4_book.</p>" />
+  
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Statistics" />
   
-  <meta name="twitter:description" content="<p>This is a minimal example of using the bookdown package to write a book.
-The output format for this example is bookdown::bs4_book.</p>" />
+  
   
 
 <meta name="author" content="Samuel Mak" />
@@ -44,6 +41,7 @@ The output format for this example is bookdown::bs4_book.</p>" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
 
 
 
@@ -136,7 +134,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Statistics</a></li>
+<li><a >Section</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> The Linear Regression Model</a></li>
@@ -167,48 +165,148 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p style="margin-bottom: 0px;">
-<strong>The Linear Model</strong>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Mathematical model</strong>
 </p>
 <ul>
 <li><strong>Description</strong>
 <ul>
-<li>A model that models/describes the relationship between variables with the linear function</li>
+<li>A model that describes the relationship between variables with a mathematical function/expression</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Linear Model</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>A model that describes the relationship between variables with the linear function</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(y = mx + c + a\)</span></li>
+<li><span class="math inline">\(y = mx + c\)</span></li>
+</ul></li>
+<li><strong>Assumption of the linear model</strong>
+<ul>
+<li><strong>Linearity</strong> - The relationship between the variables of interest is linear or best described by a linear function</li>
+<li><strong>Additivity</strong> - The relationship between the variables of interest is best described as a linear combination</li>
 </ul></li>
 </ul>
-<p style="margin-bottom: 0px;">
+<p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Regression</strong>
 </p>
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>The process of estimating the relationship between variables</li>
+<li>The process of estimating the relationship between variables of interest</li>
 </ul></li>
 </ul>
-<p style="margin-bottom: 0px;">
+<p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Linear Regression</strong>
 </p>
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>The process of estimating the relationship between variables with a linear model by fitting a straight line to the data</li>
+<li>The process of estimating the relationship between variables of interest with a linear model (fitting a straight line to the data)</li>
 </ul></li>
 </ul>
-<p style="margin-bottom: 0px;">
+<p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Curvilinear Regression</strong>
 </p>
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data</li>
+<li>The process of estimating the relationship between variables of interest with a curvilinear model (fitting a curve to the data)</li>
 </ul></li>
 </ul>
-<p>The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data.</p>
-<p>The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data</p>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Simple Linear Regression</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Linear regression with one predictor</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>Population Model</strong>
+<ul>
+<li><span class="math inline">\(y_{i} = \beta_{0} + \beta_{1}X_{i,1} + \epsilon_{i}\)</span>
+<ul>
+<li><strong>Where</strong>
+<ul>
+<li><span class="math inline">\(y_{i}\)</span>
+<ul>
+<li>The value of observation <em>i</em></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{p}\)</span>
+<ul>
+<li>Regression coefficients/parameters</li>
+</ul></li>
+<li><span class="math inline">\(\beta_{0}\)</span>
+<ul>
+<li>The intercept</li>
+<li>The predicted value of the outcome when the value of predictor 1 (<span class="math inline">\(X_{1}\)</span>) is 0</li>
+</ul></li>
+<li><span class="math inline">\(\beta_{1}\)</span>
+<ul>
+<li>Regression coefficient/weight for predictor 1</li>
+<li>Represents the magnitude and direction of the relationship between predictor 1 and the outcome as the change in the value of the outcome variable for every unit change in the value of predictor 1 (it is the gradient/slope of the regression line)</li>
+</ul></li>
+<li><span class="math inline">\(X_{i,1}\)</span>
+<ul>
+<li>The value of predictor 1 for observation <em>i</em></li>
+</ul></li>
+<li><span class="math inline">\(\epsilon_{i}\)</span>
+<ul>
+<li>Error for observation <em>i</em></li>
+<li>Error - The absolute deviation/distance/difference between the observed value and the expected/predicted/fitted value for observation <em>i</em></li>
+<li>This quantifies the error in prediction at the observation level</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematics (Matrix)</strong>
+<ul>
+<li><strong>Population Model</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}\mathbf{Y} &amp;= \mathbf{X}\boldsymbol{\beta} + \mathbf{E} \\ \begin{bmatrix} y_{i} \\ y_{i} \\ y_{3} \\ \vdots \\ y_{n}\end{bmatrix} &amp;= \begin{bmatrix} 1 &amp; x_{1} \\ 1 &amp; x_{2} \\ 1 &amp; x_{3} \\ \vdots &amp; \vdots \\ 1 &amp; x_{n}\end{bmatrix} \begin{bmatrix} \beta_{0} \\ \beta_{1} \end{bmatrix} + \begin{bmatrix} \epsilon_{1} \\ \epsilon_{2} \\ \epsilon_{3} \\ \vdots \\ \epsilon_{n}\end{bmatrix}\end{aligned}\)</span>
+<ul>
+<li><strong>Where</strong>
+<ul>
+<li><span class="math inline">\(\mathbf{Y}\)</span>
+<ul>
+<li>A column vector that contains the values for the outcome variable for each of the observations</li>
+</ul></li>
+<li><span class="math inline">\(\mathbf{X}\)</span>
+<ul>
+<li>The model matrix/design matrix</li>
+<li>The model matrix contains
+<ul>
+<li>Column vector <span class="math inline">\(\mathbf{U}\)</span>
+<ul>
+<li>A column vector of 1s one for each observation. The column of 1s corresponds to <span class="math inline">\(\beta_{0}\)</span> in the <span class="math inline">\(\boldsymbol{\beta}\)</span> matrix, which means that the intercept is the same for every observation.</li>
+</ul></li>
+<li>Column vector of <em>x</em> values
+<ul>
+<li>A column vector that contains the values of predictor variable 1 for each of the observations</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(\boldsymbol{\beta}\)</span>
+<ul>
+<li>A column vector that contains the regression coefficient/weight for each of regression parameters</li>
+</ul></li>
+<li><span class="math inline">\(\mathbf{E}\)</span>
+<ul>
+<li>A column vector that contains the error of each of the observations</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 
 </div>
             </section>
@@ -221,6 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -243,7 +342,7 @@ gitbook.start({
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
-"theme": "white",
+"theme": "night",
 "family": "sans",
 "size": 2
 },
@@ -261,11 +360,12 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "fuse",
+"engine": "lunr",
 "options": null
 },
 "toc": {
-"collapse": "subsection"
+"collapse": "subsection",
+"scroll_highlight": true
 }
 });
 });

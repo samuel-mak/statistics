@@ -2,44 +2,133 @@
 title: "Statistics"
 author: "Samuel Mak"
 date: "`r Sys.Date()`"
+
 site: bookdown::bookdown_site
-output: bookdown::bs4_book
-description: |
-  This is a minimal example of using the bookdown package to write a book.
-  The output format for this example is bookdown::bs4_book.
+output: 
+  bookdown::html_book:
+    theme: darkly
+    highlight: monochrome
+
+
 ---
 
 # The Linear Regression Model
 
 
-<p style = "margin-bottom: 0px;">**The Linear Model**</p>
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Mathematical model**</p>
 
 - **Description**
-    - A model that models/describes the relationship between variables with the linear function
+    - A model that describes the relationship between variables with a mathematical function/expression
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Linear Model**</p>
+
+- **Description**
+    - A model that describes the relationship between variables with the linear function
 - **Mathematics** 
-    - $y = mx + c + a$
+    - $y = mx + c$
+- **Assumption of the linear model**
+    - **Linearity** - The relationship between the variables of interest is linear or best described by a linear function
+    - **Additivity** - The relationship between the variables of interest is best described as a linear combination
+    
     
  
-<p style = "margin-bottom: 0px;">**Regression**</p>
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Regression**</p>
 
 - **Concept**
-    - The process of estimating the relationship between variables
+    - The process of estimating the relationship between variables of interest
 
 
     
-<p style = "margin-bottom: 0px;">**Linear Regression**</p>
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Linear Regression**</p>
 
 - **Concept**
-  - The process of estimating the relationship between variables with a linear model by fitting a straight line to the data
+  - The process of estimating the relationship between variables of interest with a linear model (fitting a straight line to the data)
   
 
-<p style = "margin-bottom: 0px;">**Curvilinear Regression**</p>
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Curvilinear Regression**</p>
 
   - **Concept**
-    - The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data
-    
-The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data. 
+    - The process of estimating the relationship between variables of interest with a curvilinear model (fitting a curve to the data)
 
-The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data 
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Simple Linear Regression**</p>
+
+- **Concept** 
+  - Linear regression with one predictor 
+- **Mathematics**
+  - **Population Model**
+    - $y_{i} = \beta_{0} + \beta_{1}X_{i,1} + \epsilon_{i}$
+      - **Where**
+          - $y_{i}$
+            - The value of observation *i*
+          - $\beta_{p}$
+            - Regression coefficients/parameters
+          - $\beta_{0}$ 
+            - The intercept
+            - The predicted value of the outcome when the value of predictor 1 ($X_{1}$) is 0
+          - $\beta_{1}$
+            - Regression coefficient/weight for predictor 1
+            - Represents the magnitude and direction of the relationship between predictor 1 and the outcome as the change in the value of the outcome variable for every unit change in the value of predictor 1 (it is the gradient/slope of the regression line)
+          - $X_{i,1}$ 
+            - The value of predictor 1 for observation *i*
+          - $\epsilon_{i}$
+            - Error for observation *i*
+            - Error - The absolute deviation/distance/difference between the observed value and the expected/predicted/fitted value for observation *i*
+            - This quantifies the error in prediction at the observation level
+- **Mathematics (Matrix)**
+  - **Population Model**
+    - $\begin{aligned}\mathbf{Y} &= \mathbf{X}\boldsymbol{\beta} + \mathbf{E} \\ \begin{bmatrix} y_{i} \\ y_{i} \\ y_{3} \\ \vdots \\ y_{n}\end{bmatrix} &= \begin{bmatrix} 1 & x_{1} \\ 1 & x_{2} \\ 1 & x_{3} \\ \vdots & \vdots \\ 1 & x_{n}\end{bmatrix} \begin{bmatrix} \beta_{0} \\ \beta_{1} \end{bmatrix} + \begin{bmatrix} \epsilon_{1} \\ \epsilon_{2} \\ \epsilon_{3} \\ \vdots \\ \epsilon_{n}\end{bmatrix}\end{aligned}$
+      - **Where**
+        - $\mathbf{Y}$ 
+          - A column vector that contains the values for the outcome variable for each of the observations
+        - $\mathbf{X}$
+          - The model matrix/design matrix
+          - The model matrix contains 
+            - Column vector $\mathbf{U}$
+              - A column vector of 1s one for each observation. The column of 1s corresponds to $\beta_{0}$ in the $\boldsymbol{\beta}$ matrix, which means that the intercept is the same for every observation.
+            - Column vector of *x* values 
+              - A column vector that contains the values of predictor variable 1 for each of the observations
+        - $\boldsymbol{\beta}$
+          - A column vector that contains the regression coefficient/weight for each of regression parameters
+        - $\mathbf{E}$
+          - A column vector that contains the error of each of the observations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

@@ -1,7 +1,13 @@
 bookdown::gitbook:
-  css: style.css
   config:
+    search:
+      engine: lunr
     toc:
+      scroll_highlight: true
       before: |
-        <li><a href="./">Statistics</a></li>
-      
+        <li><a >Section</a></li>
+      after: |
+    fontsettings: 
+      theme: night
+  css: style.css
+  download: ["pdf", "epub", "mobi"]
