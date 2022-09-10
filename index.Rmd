@@ -112,6 +112,10 @@ output:
   - Estimates the regression line by fitting a line that minimises the model sum of squared residuals (the sum of the squared difference/distance/deviation between each of the observed values and the corresponding predicted/fitted values)
   - $\min{\sum_{i=1}^{n}{e^{2}_{i}}} = \min{\sum_{i=1}^{n}({y_{i} - \hat\beta_{0} - \hat\beta_{1}x_{i,1}}})^2$
 - **Mathematics**
+  - $\hat\beta_{0} = \bar{y} - \hat\beta_{1}\bar{x}$
+  - $\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})y_{i}}}{\sum_{i=n}^{n}{(x_{i,1} - \bar{x})^2}}$
+      - Note
+        - I think these two equations are rather boring, looking at how they are derived is much more interesting
 - **Derivation**
   - Start off with the linear model with the outcome variable as a function of the weights
     - $y_i = \hat\beta_0 + \hat\beta_{1}x_{i,1} + e_i$
@@ -141,13 +145,20 @@ output:
         - $\hat\beta_{0} = \bar{y} - \hat\beta_{1}\bar{x}$
       - For $\hat\beta_{1}$
         - $\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})(y_{i} - \bar{y})}}{\sum_{i=n}^{n}{(x_{i,1} - \bar{x})^2}}$
-    $\sum_{i=1}^{n}{x_{i,1}}$
         - $\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})y_{i}}}{\sum_{i=n}^{n}{(x_{i,1} - \bar{x})^2}}$
-    $\sum_{i=1}^{n}{x_{i,1}}$
         - $\hat\beta_{1} = \frac{Cov(x,y)}{s_{x}^{2}}$
         - $\hat\beta_{1} = \frac{S_{xx}}{S_{xx}}$
-
-    
+- **Mathematics (Matrix)**
+  - $\boldsymbol{\beta} = (\mathbf{X'X)^{-1}X'Y}$
+- **Derivation (Matrix)**
+  - $S(\boldsymbol{\hat\beta}) = ||\mathbf{u}||^2 = ||\mathbf{Y-\hat{Y}}||^2 = ||\mathbf{Y-X\boldsymbol{\beta}}||^2$
+  - *note* - Matrix derivation not complete
+  
+- Variance of $\beta$
+  - **Variance of $\beta_{0}$**
+    - **Mathematics** 
+      - $\sigma_{\hat\beta_{0}}^{2} = \frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}$
+      - $\text{SE}_{\hat\beta_{0}} = \sigma_{\hat\beta_{0}} = \sqrt{\frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}}$
 
 
 
