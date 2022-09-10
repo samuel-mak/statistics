@@ -37,14 +37,34 @@ p {
   font-family: Helvetica Neue; font-size: 15px; color: black; width: 100%; 
 }
 
-
-
-li {
-  font-family: Helvetica Neue; font-size: 15px; color: black; width: 100%; 
+pre code {
+  white-space: nowrap;
 }
 
 
 
+li {
+  font-family: Helvetica Neue; font-size: 15px; color: black; width: 100%;
+}
+
+li:first-child {
+    margin-top: 0px;
+}
+
+li.a {
+  list-style-type: square; margin-top: 100px;
+
+}
+
+ul.a {
+  list-style-type: square; margin-top: 100px;
+}
 
 
 
+textarea {
+    white-space: normal;
+    text-align: justify;
+    -moz-text-align-last: center; /* Firefox 12+ */
+    text-align-last: center;
+}

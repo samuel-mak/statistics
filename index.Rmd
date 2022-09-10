@@ -7,37 +7,39 @@ output: bookdown::bs4_book
 description: |
   This is a minimal example of using the bookdown package to write a book.
   The output format for this example is bookdown::bs4_book.
-  
-  
 ---
 
 # The Linear Regression Model
 
 
-**The Linear Model**
+<p style = "margin-bottom: 0px;">**The Linear Model**</p>
 
 - **Description**
     - A model that models/describes the relationship between variables with the linear function
 - **Mathematics** 
-    - $y = mx + c$
+    - $y = mx + c + a$
     
----    
-**Regression**
+ 
+<p style = "margin-bottom: 0px;">**Regression**</p>
 
 - **Concept**
     - The process of estimating the relationship between variables
 
-------   
+
     
-**Linear Regression**
+<p style = "margin-bottom: 0px;">**Linear Regression**</p>
 
 - **Concept**
   - The process of estimating the relationship between variables with a linear model by fitting a straight line to the data
   
----
-**Curvilinear Regression**
+
+<p style = "margin-bottom: 0px;">**Curvilinear Regression**</p>
 
   - **Concept**
     - The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data
+    
+The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data. 
+
+The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data The process of estimating the relationship between variables with curvilinear models by fitting a curve to the data 
 
 
