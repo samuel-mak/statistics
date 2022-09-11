@@ -1,7 +1,7 @@
 ---
 title: "Statistics"
 author: "Samuel Mak"
-date: "`r Sys.Date()`"
+date: "Last Updated: `r Sys.time()`"
 
 site: bookdown::bookdown_site
 output: 
@@ -22,6 +22,7 @@ output:
 
 
 
+
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Linear Model**</p>
 
 - **Description**
@@ -32,7 +33,11 @@ output:
     - **Linearity** - The relationship between the variables of interest is linear or best described by a linear function
     - **Additivity** - The relationship between the variables of interest is best described as a linear combination
     
-    
+
+```{r}
+format(Sys.time(), "%d-%b-%Y | %X")
+```
+
  
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Regression**</p>
 
@@ -153,26 +158,77 @@ output:
 - **Derivation (Matrix)**
   - $S(\boldsymbol{\hat\beta}) = ||\mathbf{u}||^2 = ||\mathbf{Y-\hat{Y}}||^2 = ||\mathbf{Y-X\boldsymbol{\beta}}||^2$
   - *note* - Matrix derivation not complete
-  
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Variance of $\beta$**</p>
+
 - Variance of $\beta$
   - **Variance of $\beta_{0}$**
     - **Mathematics** 
-      - $\sigma_{\hat\beta_{0}}^{2} = \frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}$
+      - $\text{Var}(\hat\beta_{0}) = \sigma_{\hat\beta_{0}}^{2} = \frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}$
       - $\text{SE}_{\hat\beta_{0}} = \sigma_{\hat\beta_{0}} = \sqrt{\frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}}$
+    - **Estimation from the sample**
+      - **Description**
+        - $\sigma^{2}$ is unknown
+        - Since $\sigma^{2}$ is the variance of the population model (the average model sum of squared errors), it is reasonable to use the variance of the sample model ($s^2$) as the estimator 
+        - It has been shown that $s^2$ is an unbiased estimator of $\sigma^{2}$
+      - **Mathematics**
+        - $\hat{\text{Var}(\hat\beta_{0})} = \hat\sigma_{\hat\beta_{0}}^{2} = \frac{s^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}$
+        - $\hat{\text{SE}}_{\hat\beta_{0}} = \hat\sigma_{\hat\beta_{0}} = \sqrt{\frac{s^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}}$
+  - **Variance of $\beta_{1}$**
+    - **Population**
+      - **Mathematics** 
+        - $\sigma_{\hat\beta_{1}^{2}} = \frac{n\sigma^{2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}- (\sum_{i=1}^{n}{x_{i,1}})^2}$
+        - $\text{Var}(\hat\beta_{1}) = \sigma_{\hat\beta_{1}^{2}} = \frac{n\sigma^{2}}{n\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}$
+        - $\text{Var}(\hat\beta_{1}) = \sigma_{\hat\beta_{1}}^{2} = \frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}$
+        - $\text{SE}_{\hat\beta_{1}} = \sigma_{\hat\beta_{1}} = \sqrt{\frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}}$
+    - **Estimation from the sample**
+      - **Mathematics**
+        - $\hat{\text{Var}(\hat\beta_{1})} = \hat\sigma_{\hat\beta_{1}}^{2} = \frac{s^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}$
+        - $\hat{\text{SE}}_{\hat\beta_{1}} = \hat\sigma_{\hat\beta_{1}} = \sqrt{\frac{s^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}}$
 
 
 
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Assumptions of the Linear Models**</p>
 
+- Linearity 
+- Additivity
+- Normality of the sampling distribution
+- Uncorrelated errors
+- Heteroscedasticity
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Linearity**</p>
 
+- **Concept**
+  - The relationship between each of the predictor variables and the outcome is linear (or best described as linear)
+  - This is the most important assumption of linear models because even if all other assumptions are met, the model is invalid because the description of the process you want to model is wrong 
+- **Treatment**
+  - Transformation
+  - Segmented regression
+  - Fit non-linear models 
+  
+ <p style = "margin-bottom: 0px; font-size: 20px; ">**Additivity**</p>
 
+- **Concept**
+  - The combined effect of multiple predictors in a multiple regression is best described as a linear combination of the predictors
+  - This, along with linearity, is the most important assumptions of linear models 
+- **Treatment**
+  - Transformation
+  - Segmented regression
+  - Fit non-linear models 
+   
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Uncorrelated Errors**</p>
 
-
-
-
+- **Concept**
+  - The errors in the population model are uncorrelated with each other
+  - In other words, there is no autocorrelation/serial correlation 
+  - The distribution of errors at given value of x is uncorrelated with the distribution of errors at another value of x
+  - It is important to note that the errors are not individual errors, they are theoretical distribution of errors given x, in other words, for each vale of x, there is a distribution of errors, and the observed residuals given x you have are sampled from the distribution of errors given the same x (see [this short description on CrossValidated]( https://stats.stackexchange.com/questions/103439/how-to-calculate-the-covariance-between-two-observations-of-the-same-variable))
+ 
+  
 
 
 

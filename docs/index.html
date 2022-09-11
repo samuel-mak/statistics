@@ -23,7 +23,6 @@
 <meta name="author" content="Samuel Mak" />
 
 
-<meta name="date" content="2022-09-10" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -162,7 +161,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>2022-09-10</em></p>
+<p class="date"><em>Last Updated: 2022-09-11 02:54:22</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -405,16 +404,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(S(\boldsymbol{\hat\beta}) = ||\mathbf{u}||^2 = ||\mathbf{Y-\hat{Y}}||^2 = ||\mathbf{Y-X\boldsymbol{\beta}}||^2\)</span></li>
 <li><em>note</em> - Matrix derivation not complete</li>
 </ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Variance of <span class="math inline">\(\beta\)</span></strong>
+</p>
+<ul>
 <li>Variance of <span class="math inline">\(\beta\)</span>
 <ul>
 <li><strong>Variance of <span class="math inline">\(\beta_{0}\)</span></strong>
 <ul>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\sigma_{\hat\beta_{0}}^{2} = \frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}\)</span></li>
+<li><span class="math inline">\(\text{Var}(\hat\beta_{0}) = \sigma_{\hat\beta_{0}}^{2} = \frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}\)</span></li>
 <li><span class="math inline">\(\text{SE}_{\hat\beta_{0}} = \sigma_{\hat\beta_{0}} = \sqrt{\frac{\sigma^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}}\)</span></li>
 </ul></li>
+<li><strong>Estimation from the sample</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li><span class="math inline">\(\sigma^{2}\)</span> is unknown</li>
+<li>Since <span class="math inline">\(\sigma^{2}\)</span> is the variance of the population model (the average model sum of squared errors), it is reasonable to use the variance of the sample model (<span class="math inline">\(s^2\)</span>) as the estimator</li>
+<li>It has been shown that <span class="math inline">\(s^2\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^{2}\)</span></li>
 </ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\hat{\text{Var}(\hat\beta_{0})} = \hat\sigma_{\hat\beta_{0}}^{2} = \frac{s^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}\)</span></li>
+<li><span class="math inline">\(\hat{\text{SE}}_{\hat\beta_{0}} = \hat\sigma_{\hat\beta_{0}} = \sqrt{\frac{s^{2}\sum_{i=1}^{n}{x_{i,1}^2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}-(\sum_{i=1}^{n}{x_{i,1}})^2}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Variance of <span class="math inline">\(\beta_{1}\)</span></strong>
+<ul>
+<li><strong>Population</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\sigma_{\hat\beta_{1}^{2}} = \frac{n\sigma^{2}}{n\sum_{i=1}^{n}{x^{2}_{i,1}}- (\sum_{i=1}^{n}{x_{i,1}})^2}\)</span></li>
+<li><span class="math inline">\(\text{Var}(\hat\beta_{1}) = \sigma_{\hat\beta_{1}^{2}} = \frac{n\sigma^{2}}{n\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}\)</span></li>
+<li><span class="math inline">\(\text{Var}(\hat\beta_{1}) = \sigma_{\hat\beta_{1}}^{2} = \frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}\)</span></li>
+<li><span class="math inline">\(\text{SE}_{\hat\beta_{1}} = \sigma_{\hat\beta_{1}} = \sqrt{\frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Estimation from the sample</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\hat{\text{Var}(\hat\beta_{1})} = \hat\sigma_{\hat\beta_{1}}^{2} = \frac{s^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}\)</span></li>
+<li><span class="math inline">\(\hat{\text{SE}}_{\hat\beta_{1}} = \hat\sigma_{\hat\beta_{1}} = \sqrt{\frac{s^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Assumptions of the Linear Models</strong>
+</p>
+<ul>
+<li>Linearity</li>
+<li>Additivity</li>
+<li>Normality of the sampling distribution</li>
+<li>Uncorrelated errors</li>
+<li>Heteroscedasticity</li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Linearity</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The relationship between each of the predictor variables and the outcome is linear (or best described as linear)</li>
+<li>This is the most important assumption of linear models because even if all other assumptions are met, the model is invalid because the description of the process you want to model is wrong</li>
+</ul></li>
+<li><strong>Treatment</strong>
+<ul>
+<li>Transformation</li>
+<li>Segmented regression</li>
+<li>Fit non-linear models</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Additivity</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The combined effect of multiple predictors in a multiple regression is best described as a linear combination of the predictors</li>
+<li>This, along with linearity, is the most important assumptions of linear models</li>
+</ul></li>
+<li><strong>Treatment</strong>
+<ul>
+<li>Transformation</li>
+<li>Segmented regression</li>
+<li>Fit non-linear models</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Uncorrelated Errors</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The errors in the population model are uncorrelated with each other</li>
+<li>In other words, there is no autocorrelation/serial correlation</li>
+<li>The distribution of errors at given value of x is uncorrelated with the distribution of errors at another value of x</li>
+<li>It is important to note that the errors are not individual errors, they are theoretical distribution of errors given x, in other words, for each vale of x, there is a distribution of errors, and the observed residuals given x you have are sampled from the distribution of errors given the same x (see <a href="https://stats.stackexchange.com/questions/103439/how-to-calculate-the-covariance-between-two-observations-of-the-same-variable">this short description on CrossValidated</a>)</li>
 </ul></li>
 </ul>
 
