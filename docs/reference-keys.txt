@@ -4,4 +4,4 @@ a-caucus-race-and-a-long-tale
 a-very-statistical-day
 derivations
 r-codes
-normality
+r_codes_normality

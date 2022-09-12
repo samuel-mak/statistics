@@ -430,7 +430,7 @@ knitr::include_graphics("image/qqplot1.png")
 [<img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/>](https://samuel-mak.github.io/statistics/r-codes.html#normality)
 
 
-
+[<img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/>](https://samuel-mak.github.io/statistics/r-codes.html#normality)
 
 
 https://samuel-mak.github.io/statistics/r-codes.html#normality
