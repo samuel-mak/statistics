@@ -101,7 +101,7 @@
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 12-Sep-2022 | 20:40:09</em></p>
+<p class="date"><em>Last Updated: 12-Sep-2022 | 22:04:40</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -625,6 +625,82 @@ model <- lm(formula = outcome ~ predictor, data = data) <br>
 plot(model, which = 1) 
 </code></pre>
 </details></li>
+</ul></li>
+</ul></li>
+<li><strong>Statistical Tests</strong>
+<ul>
+<li><strong>Statistical Tests</strong>
+<ul>
+<li>Levene’s test</li>
+<li>Brown-Forsythe test</li>
+<li>Hartley’s Fmax</li>
+</ul></li>
+<li><strong>Levene’s test</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Tests the null hypothesis that the variances in different groups are equal</li>
+<li>It is a one-way ANOVA with absolute deviation as the outcome variable and the groups/values of x as the predictor variable</li>
+<li>It tests whether the absolute deviation varies betwen groups/values of x</li>
+</ul></li>
+<li><strong>Levene’s tests</strong>
+<ul>
+<li><strong>Original Levene’s test</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\textit{W} = \frac{\sum_{i=1}^{n}{n_{g}(|\bar{d}|_{g} - |\bar{d}|_{G})^2}}{\sum_{i=1}^{n}{n_{g}(|{d}|_{i} - |\bar{d}|_{g})^2}} \times \frac{n-k}{k-1}\)</span>
+<ul>
+<li><strong><em>Where</em></strong></li>
+<li><span class="math inline">\(g\)</span> - Denotes group</li>
+<li><span class="math inline">\(G\)</span> - Denotes grand</li>
+<li><span class="math inline">\(d_i = y_i - \bar{y}_{g}\)</span> - A deviation means the difference between a score and mean of the group in which it belongs</li>
+<li><strong><em>Note</em></strong>
+<ul>
+<li>Levene’s test statistic is expressed as such but it can be interpreted as the F-statistic</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Brown-Forsythe test</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Similar to Levene’s test but uses the median in the absolute deviation instead (<span class="math inline">\(d_i = y_i - \tilde{y}_{g}\)</span>)</li>
+</ul></li>
+</ul></li>
+<li><strong>Levene’s test using trimmed mean</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Similar to Levene’s test but uses the trimmed mean instead of the mean</li>
+</ul></li>
+</ul></li>
+<li><strong>Comparing the tests</strong>
+<ul>
+<li>Trimmed mean performed best when the underlying data followed a Cauchy distribution and the median performed best when the data followed a chi-squared distribution with 4 degrees of freedom (sharply skewed distribution) (Brown &amp; Forsythe, 1974; extracted from <a href="https://en.wikipedia.org/wiki/Levene%27s_test">Wiki</a>)</li>
+</ul></li>
+<li><strong>Hartley’s Fmax (Pearson &amp; Harley, 1954)</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>It is the ratio of the variances between the group with the biggest variance and the group with the smallest variance</li>
+<li>It then conducts a null hypothesis significance test for the ratio</li>
+<li>The Fmax isn’t used very often, so it is harder to find a critical value table</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\textit{F}_{max} = \frac{\max{s_{g}^{2}}}{\min{s_{g}^{2}}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\max{s_{g}^{2}}\)</span> - The largest group variance among all the groups</li>
+<li><span class="math inline">\(\min{s_{g}^{2}}\)</span> - The smallest group variance among all the groups</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul></li>

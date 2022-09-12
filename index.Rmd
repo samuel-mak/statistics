@@ -397,7 +397,7 @@ variance (e.g. confidence intervals, test statistic, p-values etc.)
               - $\max{s_{g}^{2}}$ - The largest group variance among all the groups
               - $\min{s_{g}^{2}}$ - The smallest group variance among all the groups
 
-
+ 
 
 
 
