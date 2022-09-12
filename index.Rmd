@@ -287,6 +287,28 @@ library(tidyr)
   - Transformation
 
 
+
+
+
+
+
+```{r heteroscedasticity, include = F, echo = T}
+
+data <- iris %>% dplyr::mutate(outcome = Petal.Length, predictor = Sepal.Length)
+
+model <- lm(formula = outcome ~ predictor, data = data)
+
+plot(model, which = 1)
+
+png(file = "image/het_resid_vs_fitted.png", res = 100, width = 800, height = 500)
+plot(model, which = 1)
+dev.off()
+
+```
+
+
+
+
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Heteroscedasticity**</p>
 
 - **Description**
@@ -300,7 +322,7 @@ library(tidyr)
   - $\text{Var}(\epsilon_{i}) = \sigma^2$
 - **Mathematics (Matrix)**
   - $\boldsymbol\Phi = E(\epsilon\epsilon'|X) = \Sigma_{\epsilon\epsilon} = \begin{bmatrix} \sigma^{2} & \phi_{1,2} & \phi_{1,3} & \cdots & \phi_{1,j} \\ \phi_{2,1} & \sigma^{2} & \phi_{2,3} & \cdots & \phi_{2,j} \\ \phi_{3,1} & \phi_{3,2} & \sigma^{2} & \cdots & \phi_{3,j} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ \phi_{i,1} & \phi_{i,2} & \phi_{i,3} &\cdots & \sigma^{2} \end{bmatrix}$
-    ***Notes***
+    - ***Notes***
       - The variances in the diagonals are all $\sigma^2$
       - The covariances in the off-diagonals can vary (the covariances are not the condition here)
 - **Effects of Homoscedasticity**
@@ -309,7 +331,71 @@ library(tidyr)
 variance (e.g. confidence intervals, test statistic, p-values etc.)
   - Confidence intervals can be "extremely inaccurate" when ignoring heteroscedasticity (Wilcox, 2010)
   - But this assumption matters only if group sizes are unequal 
-
+- **Assessing Homo/Heteroscedasticity**
+  - **Description**
+    - The assumption applies to the population model, it is best to assess heteroscedasticity in the population through heteroscedasticity in the sample model
+  - **Ways to assess heteroscedasticity**
+    - Plots
+    - Statistical tests 
+  - **Plots**
+    - **Residual Plots**
+      - Residuals vs fitted plot
+    - **Residuals vs fitted plot**
+      - **Description**
+        - The residuals are plotted against the fitted values
+        - A plot that shows the vertical distribution of residuals in the y-axis for each of the fitted values in the x-axis
+        - Basically it is the scatter plot but detrended 
+        - It can be based on raw or standardised scores 
+      - **Visualisation**
+        - ![](image/het_resid_vs_fitted.png){width=50%}
+      - <details><summary>
+        <img src="image/r.svg" width = 5% style=" margin-top: 0px; margin-bottom: 0px; padding-top: 1px;"/>
+        </summary>
+        <pre style=" margin-top: 10px"><code>
+        ## Base R <br>
+        model <- lm(formula = outcome ~ predictor, data = data) <br>
+        &nbsp
+        plot(model, which = 1) 
+        </code></pre>
+        </details>
+  - **Statistical Tests**
+    - **Statistical Tests**
+      - Levene's test
+      - Brown-Forsythe test
+      - Hartley's Fmax
+    - **Levene's test**
+      - **Description**
+        - Tests the null hypothesis that the variances in different groups are equal
+        - It is a one-way ANOVA with absolute deviation as the outcome variable and the groups/values of x as the predictor variable 
+        - It tests whether the absolute deviation varies betwen groups/values of x
+      - **Levene's tests**
+        - **Original Levene's test**
+          - **Mathematics**
+            - $\textit{W} = \frac{\sum_{i=1}^{n}{n_{g}(|\bar{d}|_{g} - |\bar{d}|_{G})^2}}{\sum_{i=1}^{n}{n_{g}(|{d}|_{i} - |\bar{d}|_{g})^2}} \times \frac{n-k}{k-1}$
+              - ***Where***
+               - $g$ - Denotes group
+               - $G$ - Denotes grand
+               - $d_i = y_i - \bar{y}_{g}$ - A deviation means the difference between a score and mean of the group in which it belongs
+              - ***Note***
+                - Levene's test statistic is expressed as such but it can be interpreted as the F-statistic
+      - **Brown-Forsythe test**
+        - **Description**
+          - Similar to Levene's test but uses the median in the absolute deviation instead ($d_i = y_i - \tilde{y}_{g}$)
+      - **Levene's test using trimmed mean**
+        - **Description**
+          - Similar to Levene's test but uses the trimmed mean instead of the mean
+      - **Comparing the tests**
+        - Trimmed mean performed best when the underlying data followed a Cauchy distribution and the median performed best when the data followed a chi-squared distribution with 4 degrees of freedom (sharply skewed distribution) (Brown & Forsythe, 1974; extracted from [Wiki](https://en.wikipedia.org/wiki/Levene%27s_test))
+      - **Hartley's Fmax (Pearson & Harley, 1954)**
+        - **Description**
+          - It is the ratio of the variances between the group with the biggest variance and the group with the smallest variance
+          - It then conducts a null hypothesis significance test for the ratio 
+          - The Fmax isn't used very often, so it is harder to find a critical value table 
+        - **Mathematics**
+          - $\textit{F}_{max} = \frac{\max{s_{g}^{2}}}{\min{s_{g}^{2}}}$
+            - ***Where***
+              - $\max{s_{g}^{2}}$ - The largest group variance among all the groups
+              - $\min{s_{g}^{2}}$ - The smallest group variance among all the groups
 
 
 

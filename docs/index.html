@@ -101,7 +101,7 @@
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 12-Sep-2022 | 18:34:22</em></p>
+<p class="date"><em>Last Updated: 12-Sep-2022 | 20:40:09</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -557,7 +557,76 @@
 </ul></li>
 <li><strong>Visualisation</strong>
 <ul>
-<li><img src="image/heteroscedasticity_visusalisation.png" /></li>
+<li><img src="image/heteroscedasticity_visualisation.png" style="width:30.0%" /></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\text{Var}(\epsilon_{i}) = \sigma^2\)</span></li>
+</ul></li>
+<li><strong>Mathematics (Matrix)</strong>
+<ul>
+<li><span class="math inline">\(\boldsymbol\Phi = E(\epsilon\epsilon&#39;|X) = \Sigma_{\epsilon\epsilon} = \begin{bmatrix} \sigma^{2} &amp; \phi_{1,2} &amp; \phi_{1,3} &amp; \cdots &amp; \phi_{1,j} \\ \phi_{2,1} &amp; \sigma^{2} &amp; \phi_{2,3} &amp; \cdots &amp; \phi_{2,j} \\ \phi_{3,1} &amp; \phi_{3,2} &amp; \sigma^{2} &amp; \cdots &amp; \phi_{3,j} \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \phi_{i,1} &amp; \phi_{i,2} &amp; \phi_{i,3} &amp;\cdots &amp; \sigma^{2} \end{bmatrix}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>The variances in the diagonals are all <span class="math inline">\(\sigma^2\)</span></li>
+<li>The covariances in the off-diagonals can vary (the covariances are not the condition here)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Effects of Homoscedasticity</strong>
+<ul>
+<li><strong>Biased estimation of sampling variance</strong>
+<ul>
+<li>The mathematical expression for the estimate of the sampling variance assumes homoscedasticity (see derivation) (or rather, requires homoscedasticity to be unbiased). If there is heteroscedasticity, then the sampling variance estimated using the same standard mathematical expression will be biased, in that the estimated value is not the same as the true value, this in turn means that the parameter estimates are not optimal due to increased sampling variation and there are other estimators that will be mor efficient than OLS, the biased sampling variance estimate will affect the SE estimate, and will affect all statistical inferences using the sampling
+variance (e.g. confidence intervals, test statistic, p-values etc.)</li>
+</ul></li>
+<li>Confidence intervals can be “extremely inaccurate” when ignoring heteroscedasticity (Wilcox, 2010)</li>
+<li>But this assumption matters only if group sizes are unequal</li>
+</ul></li>
+<li><strong>Assessing Homo/Heteroscedasticity</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>The assumption applies to the population model, it is best to assess heteroscedasticity in the population through heteroscedasticity in the sample model</li>
+</ul></li>
+<li><strong>Ways to assess heteroscedasticity</strong>
+<ul>
+<li>Plots</li>
+<li>Statistical tests</li>
+</ul></li>
+<li><strong>Plots</strong>
+<ul>
+<li><strong>Residual Plots</strong>
+<ul>
+<li>Residuals vs fitted plot</li>
+</ul></li>
+<li><strong>Residuals vs fitted plot</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>The residuals are plotted against the fitted values</li>
+<li>A plot that shows the vertical distribution of residuals in the y-axis for each of the fitted values in the x-axis</li>
+<li>Basically it is the scatter plot but detrended</li>
+<li>It can be based on raw or standardised scores</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/het_resid_vs_fitted.png" style="width:50.0%" /></li>
+</ul></li>
+<li><details>
+<summary>
+<img src="image/r.svg" width = 5% style=" margin-top: 0px; margin-bottom: 0px; padding-top: 1px;"/>
+</summary>
+<pre style=" margin-top: 10px"><code>
+## Base R <br>
+model <- lm(formula = outcome ~ predictor, data = data) <br>
+&nbsp
+plot(model, which = 1) 
+</code></pre>
+</details></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">
