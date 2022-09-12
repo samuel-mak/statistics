@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 Derivations | Statistics</title>
-  <meta name="description" content="Chapter 5 Derivations | Statistics" />
+  <title>Chapter 6 R codes | Statistics</title>
+  <meta name="description" content="Chapter 6 R codes | Statistics" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 Derivations | Statistics" />
+  <meta property="og:title" content="Chapter 6 R codes | Statistics" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 Derivations | Statistics" />
+  <meta name="twitter:title" content="Chapter 6 R codes | Statistics" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="a-very-statistical-day.html"/>
-<link rel="next" href="r-codes.html"/>
+<link rel="prev" href="derivations.html"/>
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -98,17 +98,28 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="derivations" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> Derivations<a href="derivations.html#derivations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="r-codes" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> R codes<a href="r-codes.html#r-codes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="normality" class="section level3 hasAnchor" number="6.0.1">
+<h3><span class="header-section-number">6.0.1</span> Normality<a href="r-codes.html#normality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre style=" margin-top: 10px"><code> 
+ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
+ &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
+ &nbsp&nbsp labs(x = "Theoretical Quantile", y = "Observed Quantile") +<br>
+ &nbsp&nbsp theme_minimal()<br>
+          </code></pre>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="a-very-statistical-day.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-codes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="derivations.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -140,7 +151,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/samuel-mak/statistics/edit/master/05-derivations.Rmd",
+"link": "https://github.com/samuel-mak/statistics/edit/master/06-r_codes.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -148,7 +159,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/samuel-mak/statistics/blob/master/05-derivations.Rmd",
+"link": "https://github.com/samuel-mak/statistics/blob/master/06-r_codes.Rmd",
 "text": null
 },
 "download": null,

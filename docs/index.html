@@ -77,6 +77,10 @@
 <li class="chapter" data-level="3" data-path="a-caucus-race-and-a-long-tale.html"><a href="a-caucus-race-and-a-long-tale.html"><i class="fa fa-check"></i><b>3</b> A caucus-race and a long tale</a></li>
 <li class="chapter" data-level="4" data-path="a-very-statistical-day.html"><a href="a-very-statistical-day.html"><i class="fa fa-check"></i><b>4</b> A very statistical day</a></li>
 <li class="chapter" data-level="5" data-path="derivations.html"><a href="derivations.html"><i class="fa fa-check"></i><b>5</b> Derivations</a></li>
+<li class="chapter" data-level="6" data-path="r-codes.html"><a href="r-codes.html"><i class="fa fa-check"></i><b>6</b> R codes</a>
+<ul>
+<li class="chapter" data-level="6.0.1" data-path="r-codes.html"><a href="r-codes.html#normality"><i class="fa fa-check"></i><b>6.0.1</b> Normality</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -97,7 +101,7 @@
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 12-Sep-2022 | 02:51:58</em></p>
+<p class="date"><em>Last Updated: 12-Sep-2022 | 15:46:50</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -736,6 +740,15 @@
 <ul>
 <li>A plot with the quantile or z-score of each of the points of a particular distribution of interest against the quantile or z-score of each of the data points in the data (relative to the whole data)</li>
 </ul></li>
+<li><img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/><br>
+<pre style=" margin-top: 10px"><code> 
+ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
+ &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
+ &nbsp&nbsp labs(x = "Theoretical Quantile", y = "Observed Quantile") +<br>
+ &nbsp&nbsp theme_minimal()<br>
+  </code></pre></li>
 <li><strong>Q-Q plot for the normal distribution</strong>
 <ul>
 <li><strong>Concept</strong>
@@ -746,24 +759,16 @@
 <ul>
 <li><img src="image/qqplot1.png" style="width:30.0%" /></li>
 </ul></li>
-<li><img src="image/r.svg" width = 5% style=" margin-top: 10px; margin-bottom: -10px;"/>
-<ul>
-<li><pre style=" margin-top: 10px"><code> 
-ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
- &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
- &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
- &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
- &nbsp&nbsp labs(<br/>
- &nbsp&nbsp x = "Theoretical Quantile", <br>
- &nbsp&nbsp y = "Observed Quantile") +<br>
- &nbsp&nbsp theme_minimal()<br>
-</code></pre></li>
-</ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
+<p><a href="https://samuel-mak.github.io/statistics/r-codes.html#normality"><img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/></a></p>
+<p><a href="https://samuel-mak.github.io/statistics/r-codes.html#normality">
+<img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/>
+</a></p>
+<p><a href="https://samuel-mak.github.io/statistics/r-codes.html#normality" class="uri">https://samuel-mak.github.io/statistics/r-codes.html#normality</a></p>
 
 </div>
             </section>

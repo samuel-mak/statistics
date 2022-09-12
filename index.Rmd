@@ -416,33 +416,23 @@ knitr::include_graphics("image/qqplot1.png")
     - **Q-Q plot**
       - **Description**
         - A plot with the quantile or z-score of each of the points of a particular distribution of interest against the quantile or z-score of each of the data points in the data (relative to the whole data)
+        - <a href="https://samuel-mak.github.io/statistics/06-r_codes.html#r_codes_normality">
+         <img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/></a>
+     
       - **Q-Q plot for the normal distribution**
         - **Concept**
           - A plot with the quantile or z-score of each of the points of a normal distribution against the quantile or z-score of each of the data points in the data (relative to the whole data)
         - **Visualisation**
           - ![](image/qqplot1.png){width=30%}
-        - <img src="image/r.svg" width = 5% style=" margin-top: 10px; margin-bottom: -10px;"/>
-          - <pre style=" margin-top: 10px"><code> 
-ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
- &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
- &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
- &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
- &nbsp&nbsp labs(<br/>
- &nbsp&nbsp x = "Theoretical Quantile", <br>
- &nbsp&nbsp y = "Observed Quantile") +<br>
- &nbsp&nbsp theme_minimal()<br>
-          </code></pre>
+
+
+
+[<img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/>](https://samuel-mak.github.io/statistics/r-codes.html#normality)
 
 
 
 
 
-
-
-
-
-
-
-
+https://samuel-mak.github.io/statistics/r-codes.html#normality
 
 

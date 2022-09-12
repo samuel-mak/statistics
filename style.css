@@ -31,6 +31,10 @@ html, body {
   width: 100%;
 }
 
+/*html {
+  cursor: url('image/jk.svg'), auto;	
+}*/
+
 html, body, input[type="text"] {
     width: 100%;
 }
@@ -43,7 +47,7 @@ p {
 }
 
 pre code {
-  white-space: pre-wrap
+  white-space: pre-wrap;
 }
 
 
@@ -64,14 +68,12 @@ ul.a {
 
 
   
-code {padding: 0px; tab-size: 8;}
+code {padding: 0px; tab-size: 8; color: green;}
 
 
-pre{width: 80%; font-size: 15px; line-height: 8px; margin-top: 0px; display: block; overflow-x: auto; }
+pre{width: 80%; font-size: 12px; line-height: 8px; margin-top: 0px; display: block; overflow-x: auto; color: green;}
 
 
-pre[data-lang]::before { content: attr(data-lang);}
-
-
+code[data-lang]::before { content: attr(data-lang);}
 
 
