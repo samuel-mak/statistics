@@ -101,7 +101,7 @@
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 12-Sep-2022 | 15:55:17</em></p>
+<p class="date"><em>Last Updated: 12-Sep-2022 | 18:34:22</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -538,6 +538,27 @@
 <ul>
 <li><span class="math inline">\(y_i\)</span> also needs to be normally distributed, if y is not normally distributed, then the scores of y need to be transformed such that it’s sampling distribution is normal or approximately normal (I am still not sure about this part)</li>
 </ul></li>
+<li><strong>Treatment</strong>
+<ul>
+<li>Use robust/non-parametric methods</li>
+<li>Transformation</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Heteroscedasticity</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Aka - Homogeneity of variance or constant variance</li>
+<li>The variance of the distribution of errors given x is the identical between values of x in the population model</li>
+<li>The variance of the distribution of errors given x is a constant - It is a fixed value and does not vary across values of x in the population model</li>
+<li>Some sources say that the variance of errors given x does not depend on x (e.g. Rice, 2006; Field, 2023)</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/heteroscedasticity_visusalisation.png" /></li>
+</ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Autocorrelation</strong>
@@ -739,8 +760,18 @@
 <li><strong>Description</strong>
 <ul>
 <li>A plot with the quantile or z-score of each of the points of a particular distribution of interest against the quantile or z-score of each of the data points in the data (relative to the whole data)</li>
-<li><a href="https://samuel-mak.github.io/statistics/06-r_codes.html#r_codes_normality">
-<img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/></a></li>
+</ul></li>
+<li><strong>Detrending (Thode, 2002)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li><strong>Detrending</strong> - Transforming the plots such that the line showing the theoretical distributional values is horizontal and not diagonal</li>
+<li>The diagonal arrangement of Q-Q and P-P plots can lead to visual bias, detrending the plots can reduce visual bias
+<strong>Visualisation</strong>
+<ul>
+<li><img src="image/qqplot1.1.png" style="width:30.0%" /></li>
+</ul></li>
+</ul></li>
 </ul></li>
 <li><strong>Q-Q plot for the normal distribution</strong>
 <ul>
@@ -752,14 +783,60 @@
 <ul>
 <li><img src="image/qqplot1.png" style="width:30.0%" /></li>
 </ul></li>
+<li><details>
+<summary>
+<img src="image/r.svg" width = 3% style=" margin-top: 0px; margin-bottom: 0px; padding-top: 1px;"/>
+</summary>
+<pre style=" margin-top: 10px"><code>
+# Q-Q plot (general) <br>
+ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
+&nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6, detrend = FALSE) + <br>
+&nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898", detrend = FALSE) + <br>
+&nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3, detrend = FALSE) + <br>
+&nbsp&nbsp labs(x = "Theoretical Quantile", y = "Observed Quantile") +<br>
+&nbsp&nbsp theme_minimal()<br>
+&nbsp
+# Q-Q plot for Model residual <br>
+plot(model_object, which = 2)
+</code></pre>
+</details></li>
 </ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Statistical Tests</strong>
+<ul>
+<li><strong>Statistical Tests</strong>
+<ul>
+<li>Kolmogorov-Smirnov test</li>
+<li>Shapiro-Wilk test</li>
+</ul></li>
+<li><strong>Kolmogorov-Smirnov test</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Tests the null hypothesis that the scores are normally distributed</li>
+<li>It compares the scores to a normally distributed set of scores with the same mean and standard deviation</li>
+</ul></li>
+</ul></li>
+<li><strong>The problem with statistical tests</strong>
+<ul>
+<li><strong>Statistical significance does not necessarily mean practical importance</strong>
+<ul>
+<li>Statistical significance tells how real an effect is but does not tell the practical importance/size of the effect</li>
+</ul></li>
+<li><strong>It doesn’t work when you need it, but works when you don’t need it (that’s what she said)</strong>
+<ul>
+<li>The smaller the sample size, the lower the power of statistical tests, the less likely normality problems are detected by these statistical tests, however, this is when the assumption of normality is more of a concern</li>
+<li>The larger the sample size, the higher the power of statistical tests, the more likely normality problems are detected by these statistical tests, however, this is when the assumption of normality is less of a concern due to the CLT</li>
+</ul></li>
+<li><strong>Robust methods are the way to go</strong>
+<ul>
+<li>Violation of the normality assumption can be adjusted, hence, we don’t have to drill on statistical tests (comparing non-robust result with robust result as a sensitivity analysis may be a better option)</li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
-<p><a href="https://samuel-mak.github.io/statistics/r-codes.html#normality"><img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/></a></p>
-<p><a href="https://samuel-mak.github.io/statistics/r-codes.html#normality"><img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/></a></p>
-<p><a href="https://samuel-mak.github.io/statistics/r-codes.html#normality" class="uri">https://samuel-mak.github.io/statistics/r-codes.html#normality</a></p>
 
 </div>
             </section>

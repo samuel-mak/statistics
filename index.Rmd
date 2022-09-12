@@ -282,6 +282,72 @@ library(tidyr)
   - Hence, there is much less to worry about the non-normality of the sampling distribution if the sample size is "sufficiently" large
 - **Just some side notes**
   - $y_i$ also needs to be normally distributed, if y is not normally distributed, then the scores of y need to be transformed such that it's sampling distribution is normal or approximately normal (I am still not sure about this part)
+- **Treatment**
+  - Use robust/non-parametric methods 
+  - Transformation
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Heteroscedasticity**</p>
+
+- **Description**
+  - Aka - Homogeneity of variance or constant variance
+  - The variance of the distribution of errors given x is the identical between values of x in the population model
+  - The variance of the distribution of errors given x is a constant - It is a fixed value and does not vary across values of x in the population model
+  - Some sources say that the variance of errors given x does not depend on x (e.g. Rice, 2006; Field, 2023)
+- **Visualisation**
+  - ![](image/heteroscedasticity_visualisation.png){width=30%}
+- **Mathematics**
+  - $\text{Var}(\epsilon_{i}) = \sigma^2$
+- **Mathematics (Matrix)**
+  - $\boldsymbol\Phi = E(\epsilon\epsilon'|X) = \Sigma_{\epsilon\epsilon} = \begin{bmatrix} \sigma^{2} & \phi_{1,2} & \phi_{1,3} & \cdots & \phi_{1,j} \\ \phi_{2,1} & \sigma^{2} & \phi_{2,3} & \cdots & \phi_{2,j} \\ \phi_{3,1} & \phi_{3,2} & \sigma^{2} & \cdots & \phi_{3,j} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ \phi_{i,1} & \phi_{i,2} & \phi_{i,3} &\cdots & \sigma^{2} \end{bmatrix}$
+    ***Notes***
+      - The variances in the diagonals are all $\sigma^2$
+      - The covariances in the off-diagonals can vary (the covariances are not the condition here)
+- **Effects of Homoscedasticity**
+  - **Biased estimation of sampling variance**
+    - The mathematical expression for the estimate of the sampling variance assumes homoscedasticity (see derivation) (or rather, requires homoscedasticity to be unbiased). If there is heteroscedasticity, then the sampling variance estimated using the same standard mathematical expression will be biased, in that the estimated value is not the same as the true value, this in turn means that the parameter estimates are not optimal due to increased sampling variation and there are other estimators that will be mor efficient than OLS, the biased sampling variance estimate will affect the SE estimate, and will affect all statistical inferences using the sampling
+variance (e.g. confidence intervals, test statistic, p-values etc.)
+  - Confidence intervals can be "extremely inaccurate" when ignoring heteroscedasticity (Wilcox, 2010)
+  - But this assumption matters only if group sizes are unequal 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -368,7 +434,7 @@ library(tidyr)
       
 
       
-```{r qqplot1, include = F, echo = F}
+```{r qqplot, include = F, echo = F}
 library(tidyverse)
 
 qqplot1 <- ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + 
@@ -380,11 +446,20 @@ qqplot1 <- ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) +
     y = "Observed Quantile") +
   theme_minimal()
 
+qqplot1.1 <- ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + 
+  qqplotr::stat_qq_point(size = 1, alpha = 0.6, detrend = TRUE) + 
+  qqplotr::stat_qq_line(colour = "#008898", detrend = TRUE) + 
+  qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3, detrend = TRUE) + 
+  labs(
+    x = "Theoretical Quantile", 
+    y = "Observed Quantile") +
+  theme_minimal()
+
 png(file = "image/qqplot1.png", res = 100, width = 800, height = 500)
 qqplot1
+png(file = "image/qqplot1.1.png", res = 100, width = 800, height = 500)
+qqplot1.1
 dev.off()
-
-knitr::include_graphics("image/qqplot1.png")
 ```
 
 
@@ -416,23 +491,56 @@ knitr::include_graphics("image/qqplot1.png")
     - **Q-Q plot**
       - **Description**
         - A plot with the quantile or z-score of each of the points of a particular distribution of interest against the quantile or z-score of each of the data points in the data (relative to the whole data)
-        - <a href="https://samuel-mak.github.io/statistics/06-r_codes.html#r_codes_normality">
-         <img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/></a>
-     
+      - **Detrending (Thode, 2002)**
+        - **Concept**
+          - **Detrending** - Transforming the plots such that the line showing the theoretical distributional values is horizontal and not diagonal 
+          - The diagonal arrangement of Q-Q and P-P plots can lead to visual bias, detrending the plots can reduce visual bias 
+          **Visualisation**
+            - ![](image/qqplot1.1.png){width=30%}
       - **Q-Q plot for the normal distribution**
         - **Concept**
           - A plot with the quantile or z-score of each of the points of a normal distribution against the quantile or z-score of each of the data points in the data (relative to the whole data)
         - **Visualisation**
           - ![](image/qqplot1.png){width=30%}
+        - <details><summary>
+        <img src="image/r.svg" width = 3% style=" margin-top: 0px; margin-bottom: 0px; padding-top: 1px;"/>
+        </summary>
+        <pre style=" margin-top: 10px"><code>
+        # Q-Q plot (general) <br>
+        ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
+        &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6, detrend = FALSE) + <br>
+        &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898", detrend = FALSE) + <br>
+        &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3, detrend = FALSE) + <br>
+        &nbsp&nbsp labs(x = "Theoretical Quantile", y = "Observed Quantile") +<br>
+        &nbsp&nbsp theme_minimal()<br>
+        &nbsp
+        # Q-Q plot for Model residual <br>
+        plot(model_object, which = 2)
+        </code></pre>
+        </details>
+  
+- **Statistical Tests**
+  - **Statistical Tests**
+    - Kolmogorov-Smirnov test
+    - Shapiro-Wilk test
+  - **Kolmogorov-Smirnov test**
+    - **Description**
+      - Tests the null hypothesis that the scores are normally distributed
+      - It compares the scores to a normally distributed set of scores with the same mean and standard deviation
+  - **The problem with statistical tests**
+    - **Statistical significance does not necessarily mean practical importance**
+      - Statistical significance tells how real an effect is but does not tell the practical importance/size of the effect
+    - **It doesn't work when you need it, but works when you don't need it (that's what she said)**
+      - The smaller the sample size, the lower the power of statistical tests, the less likely normality problems are detected by these statistical tests, however, this is when the assumption of normality is more of a concern
+      - The larger the sample size, the higher the power of statistical tests, the more likely normality problems are detected by these statistical tests, however, this is when the assumption of normality is less of a concern due to the CLT
+    - **Robust methods are the way to go**
+      - Violation of the normality assumption can be adjusted, hence, we don't have to drill on statistical tests (comparing non-robust result with robust result as a sensitivity analysis may be a better option)
+      
+
+    
+    
 
 
 
-[<img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/>](https://samuel-mak.github.io/statistics/r-codes.html#normality)
-
-
-[<img src="image/r.svg" width = 3% style=" margin-top: 10px; margin-bottom: -5px;"/>](https://samuel-mak.github.io/statistics/r-codes.html#normality)
-
-
-https://samuel-mak.github.io/statistics/r-codes.html#normality
 
 

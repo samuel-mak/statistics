@@ -35,6 +35,8 @@ html, body {
   cursor: url('image/jk.svg'), auto;	
 }*/
 
+
+
 html, body, input[type="text"] {
     width: 100%;
 }
@@ -71,9 +73,31 @@ ul.a {
 code {padding: 0px; tab-size: 8; color: green;}
 
 
-pre{width: 80%; font-size: 12px; line-height: 8px; margin-top: 0px; display: block; overflow-x: auto; color: green;}
+pre{width: inherit; font-size: 12px; line-height: 8px; margin-top: 0px; display: block; overflow-x: auto; color: green;}
 
 
 code[data-lang]::before { content: attr(data-lang);}
 
 
+
+details {
+  user-select: text;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  color: inherit;
+  width: 80%;
+  display: block;
+}
+
+summary {
+  display: block;
+  cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+a:link{
+  color:#00CFA6;
+}
