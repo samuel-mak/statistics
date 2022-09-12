@@ -54,70 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -161,7 +97,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 2022-09-11 02:54:22</em></p>
+<p class="date"><em>Last Updated: 12-Sep-2022 | 02:51:58</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -508,6 +444,324 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>In other words, there is no autocorrelation/serial correlation</li>
 <li>The distribution of errors at given value of x is uncorrelated with the distribution of errors at another value of x</li>
 <li>It is important to note that the errors are not individual errors, they are theoretical distribution of errors given x, in other words, for each vale of x, there is a distribution of errors, and the observed residuals given x you have are sampled from the distribution of errors given the same x (see <a href="https://stats.stackexchange.com/questions/103439/how-to-calculate-the-covariance-between-two-observations-of-the-same-variable">this short description on CrossValidated</a>)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\text{Cov}(e_{i}, e_{j}) = 0\)</span></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\boldsymbol\Phi = \Sigma_{e_{i}e_{j}} = \sigma^{2}\mathbf{I} = \begin{bmatrix} \sigma_{1,1}^{2} &amp; 0 &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \sigma_{2,2}^{2} &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; 0 &amp; \sigma_{3,3}^{2} &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; 0 &amp; 0 &amp; \sigma_{i,j}^{2} \end{bmatrix}\)</span>
+<ul>
+<li><strong><em>Note</em></strong>
+<ul>
+<li>All the off-diagonals are 0s, indicating that all errors are uncorrelated with each other</li>
+<li>The variances are unconstrained, hence, they can vary</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Effects of correlated errors on OLS estimation</strong>
+<ul>
+<li><strong>Biased SE</strong>
+<ul>
+<li>The standard mathematical expression of the estimate of the variance of the sampling distribution (<span class="math inline">\(\frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}\)</span>) is a biased estimate of the true variance of the sampling distribution
+<ul>
+<li>If errors are positively correlated, the standard mathematical expression of the estimate of the variance of the sampling distribution (<span class="math inline">\(\frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}\)</span>) will underestimate the true value (a negative bias), this means that the true sampling variance and SE are larger than estimated, this means that OLS is less efficient/optimal than other estimators, this follows that all statisticl inferences involving the SE will be biased (e.g. underestimating the confidence intervals, overestimating the p-value in significance tests, higher Type I error etc.)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Assessing Autocorrelation</strong>
+<ul>
+<li>See the autcorrelation section</li>
+</ul></li>
+<li><strong>Treatment</strong>
+<ul>
+<li>Autocorrelation consistent standard errors</li>
+<li>Cluster robust standard errors</li>
+<li>Use other estimators</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Normality of the Sampling Distribution</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sampling distribution of the sample estimates is normally distributed</li>
+<li>A normally distributed sampling distribution is desirable because it can be modelled easily with the normal distribution curve and inferential statistics can be easily derived (which may be easier than if it has a non-normal distribution, e.g. Pearson’s r)</li>
+</ul></li>
+<li><strong>Effects of violation of the assumption</strong>
+<ul>
+<li>All the standard mathematical expressions and procedures for estimating the inferential statistics and uncertainty of the sample estimate are based on the assumption that the sampling distribution is normal or at least approximately normal. If the true sampling distribution is not normal, then all the inferential statistics and estimates of uncertainty of the sample estimate are incorrect</li>
+</ul></li>
+<li><strong>Assessing Normality of the sampling distribution</strong>
+<ul>
+<li>Distribution of model residuals
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Assess whether the model residuals are normally distributed</li>
+</ul></li>
+<li><strong>Explanation</strong>
+<ul>
+<li>In general, in a linear combination of variables, if the variables in the linear combination are random, independent, and normally distributed (their sampling distribution), then the linear combination itself is also normally distributed (the sampling distribution of the linear combination is normal)</li>
+<li>Each of the regression parameters can be expressed as a linear combination
+<ul>
+<li><span class="math inline">\(\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_i - \bar{x} )y_i}}{\sum_{i=1}^{n}{(x_i - \bar{x})^2}} = \sum_{i=1}^{n}{\frac{x_i - \bar{x}}{\sum_{i=1}^{n}{(x_i - \bar{x})^2}}y_i}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\frac{x_i - \bar{x}}{\sum_{i=1}^{n}{(x_i - \bar{x})^2}}\)</span> is treated as a constant and <span class="math inline">\(y_i\)</span> is treated a variable</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>Hence, for the linear combination (<span class="math inline">\(\hat\beta_1\)</span>) to be normally distributed, the random variable <span class="math inline">\(y_i\)</span> has to be independent and normally distributed</li>
+<li>Since independence and normality of the errors imply independence and normality of the random variable <span class="math inline">\(y_i\)</span>, normality of errors can be used to indicate that the linear combination (<span class="math inline">\(\hat\beta_1\)</span>) is normally distributed</li>
+<li>And since we don’t have the errors in hand, we use the model residuals</li>
+</ul></li>
+<li><strong>Assessing normality</strong>
+<ul>
+<li>See the ‘Assessing Normality’ section</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The Central Limit Theorem and the assumption of normality</strong>
+<ul>
+<li>The distribution of the residuals is not important if sample size is “sufficiently” large according to the Central Limit Theorem. (The CLT states that the sampling distribution is approximately normal if sample size is large and can be assumed to be normal if sample size is sufficiently large (n &gt; 30) regardless of the shape of the population distribution)</li>
+<li>Hence, there is much less to worry about the non-normality of the sampling distribution if the sample size is “sufficiently” large</li>
+</ul></li>
+<li><strong>Just some side notes</strong>
+<ul>
+<li><span class="math inline">\(y_i\)</span> also needs to be normally distributed, if y is not normally distributed, then the scores of y need to be transformed such that it’s sampling distribution is normal or approximately normal (I am still not sure about this part)</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Autocorrelation</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Aka serial correlation</li>
+<li>Errors given x are correlated with errors in other values of x</li>
+<li>Autocorrelation is often described with respect to time because autocorrelation usually occurs in time series data (correlated across time)</li>
+</ul></li>
+<li><strong>Reasons for autocorrelation</strong>
+<ul>
+<li><strong>Temporal autocorrelation</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Autocorrelation across time time</li>
+</ul></li>
+<li><strong>Examples</strong>
+<ul>
+<li>Repeated measures designs</li>
+<li>Time series</li>
+<li>Longitudinal designs</li>
+<li>Growth models</li>
+</ul></li>
+</ul></li>
+<li><strong>Spatial autocorrelation</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Autocorrelation due to space</li>
+</ul></li>
+<li><strong>Examples</strong>
+<ul>
+<li>Clustered data</li>
+</ul></li>
+</ul></li>
+<li><strong>Ignoring covariates</strong>
+<ul>
+<li>If a covariate is not included in the model, the errors will capture the effect of that covariate</li>
+<li>The error is not random - There are systematic process in the errors that are mistreated as random or ignored</li>
+</ul></li>
+<li><strong>Model misspecification</strong>
+<ul>
+<li>E.g. ignoring linearity</li>
+</ul></li>
+<li><strong>Measurement error in the independent variable</strong></li>
+</ul></li>
+<li><strong>Types of serial correlation</strong>
+<ul>
+<li>First-order serial correlation</li>
+</ul></li>
+<li><strong>First-order serial correlation</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>The correlation between errors at any one point of x (<span class="math inline">\(e_{x}\)</span>) and errors at the point of x that is 1 unit less (<span class="math inline">\(e_{x-1}\)</span>)</li>
+<li>Note that t is often used instead of x, but I am keeping things general here</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><strong>Positive first-order serial correlation</strong>
+<ul>
+<li><img src="image/positive_first_order_serial_correlation.png" /></li>
+</ul></li>
+<li><strong>Negative first-order serial correlation</strong>
+<ul>
+<li><img src="image/negative_first_order_serial_correlation.png" /></li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematical concept</strong>
+<ul>
+<li>Tests testing for first-order serial correlation usually assess whether errors given <span class="math inline">\(x\)</span> can be predicted by errors a unit of x that is 1 unit smaller (<span class="math inline">\(x - 1\)</span>)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(e_{t} = \rho{}e_{x-1} + u_x\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\rho{}\)</span> - First-order serial correlation coefficient</li>
+<li>The process for the error term is called the first-order autoregressive process (AR1)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Tests for first-order serial correlation</strong>
+<ul>
+<li>Durbin-Watson test</li>
+<li>Breusch-Godfrey test</li>
+</ul></li>
+<li><strong>Durbin-Watson test</strong>
+<ul>
+<li><strong>The Durbin-Watson statistic</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(d = \frac{\sum_{t=2}^{n}{(e_{t} - e_{t-1})^2}}{\sum_{t=1}^{n}{e_{t}^{2}}}\)</span></li>
+</ul></li>
+<li><strong>Interpretation</strong>
+<ul>
+<li><span class="math inline">\(0 ≤ d ≤ 4\)</span></li>
+<li><span class="math inline">\(d = 2\)</span> - No serial correlation</li>
+<li><span class="math inline">\(d &lt; 2\)</span> - Positive serial correlation (<span class="math inline">\(d &lt; 1\)</span> is interpreted as serious positive serial correlation and thus concerning)</li>
+<li><span class="math inline">\(d &gt; 2\)</span> - Negative serial correlation</li>
+</ul></li>
+</ul></li>
+<li><strong>Significance testing</strong>
+<ul>
+<li>Statistical significance of the Durbin-Watson statistic us often sort through assessing whether the observed Durbin-Watson statistic is inside or outside the critical boundary in the sampling distribution under the null hypothesis</li>
+<li>The critical boundary is a function of sample size and the number of variables</li>
+</ul></li>
+</ul></li>
+<li><strong>Breusch-Godfrey test (Breusch &amp; Godfrey, 1978)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Aka auxiliary regression (A regression for supplementary purposes)</li>
+<li>Tests the extent to which the errors given x can be predicted by the predictor in the model and the model error at a value of x that is 1 less, model error at a value of x that is 2 less, model error at a value of x that is 3 less, and so on (these are the lagged variables, and the number of lagged variables is defined by the researcher, but some people may include lagged variables until the errors in that auxiliary regression is no longer autocorrelated)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(e_{t} = \beta_{0} + \beta_{1}x_i + \beta_{2}e_{t-1} + \beta_{3}e_{t-2} + \beta_{4}e_{t-3} + \cdots + \beta_{p+1}e_{t-p} + u_i\)</span></li>
+</ul></li>
+<li><strong>Null Hypothesis Significance Test</strong>
+<ul>
+<li><strong>The Breusch-Godfrey test statistic</strong>
+<ul>
+<li><strong>Mathematics (wiki)</strong>
+<ul>
+<li><span class="math inline">\(nR^2\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of the Breusch-Godfrey test statistic</strong>
+<ul>
+<li><span class="math inline">\(nR^2 \sim{} \chi_{p}^{2}\)</span>
+<ul>
+<li><strong>Warning</strong>
+<ul>
+<li>A source (zed statistics) said it is <span class="math inline">\((n-p)R^2 \sim{} \chi_{p}^{2}\)</span></li>
+<li>But they are very similar, so I think it’s fine</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Hypotheses</strong>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> There is no autocorrelation</li>
+<li><span class="math inline">\(H_1:\)</span> There is autocorrelation in the lagged variables in the model</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Assessing Normality</strong>
+</p>
+<ul>
+<li><strong>Ways to assess normality</strong>
+<ul>
+<li>Plots</li>
+<li>Statistical Tests</li>
+</ul></li>
+<li><strong>Plots</strong>
+<ul>
+<li><strong>Types of plots</strong>
+<ul>
+<li>Frequency Distribution plot (e.g. histogram)</li>
+<li>Theoretical vs Observed distribution plots</li>
+</ul></li>
+<li><strong>Theoretical vs Observed Distribution plots</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>A plot with the distributional points of a particular distribution of interest and the distributional points of the data</li>
+<li>It visualises how well the distributional point of each of the data points fit their corresponding distributional point a particular distribution of interest (e.g. a normal distribution)</li>
+<li>The corresponding distributional point is the expected value that the observed score should have in a particular distribution of interest</li>
+</ul></li>
+<li><strong>Types</strong>
+<ul>
+<li>P-P plot</li>
+<li>Q-Q plot</li>
+</ul></li>
+<li><strong>P-P plot</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>A plot with the probability of each of the points of a particular distribution of interest against the probability of each of the data points in the data (relative to the whole data)</li>
+</ul></li>
+<li><strong>P-P plot for the normal distribution</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A plot with the probability of each of the points of a normal distribution against the probability of each of the data points in the data (relative to the whole data)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Q-Q plot</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>A plot with the quantile or z-score of each of the points of a particular distribution of interest against the quantile or z-score of each of the data points in the data (relative to the whole data)</li>
+</ul></li>
+<li><strong>Q-Q plot for the normal distribution</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A plot with the quantile or z-score of each of the points of a normal distribution against the quantile or z-score of each of the data points in the data (relative to the whole data)</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/qqplot1.png" style="width:30.0%" /></li>
+</ul></li>
+<li><img src="image/r.svg" width = 5% style=" margin-top: 10px; margin-bottom: -10px;"/>
+<ul>
+<li><pre style=" margin-top: 10px"><code> 
+ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
+ &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
+ &nbsp&nbsp labs(<br/>
+ &nbsp&nbsp x = "Theoretical Quantile", <br>
+ &nbsp&nbsp y = "Observed Quantile") +<br>
+ &nbsp&nbsp theme_minimal()<br>
+</code></pre></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 

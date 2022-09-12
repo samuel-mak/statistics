@@ -1,16 +1,28 @@
 ---
 title: "Statistics"
 author: "Samuel Mak"
-date: "Last Updated: `r Sys.time()`"
+date: "Last Updated: `r format(Sys.time(), '%d-%b-%Y | %X')`"
 
 site: bookdown::bookdown_site
 output: 
   bookdown::html_book:
     theme: darkly
     highlight: monochrome
+    code_folding: hide
 
 
 ---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+
+```
+
+```{r}
+library(tidyr)
+```
+
 
 # The Linear Regression Model
 
@@ -32,11 +44,6 @@ output:
 - **Assumption of the linear model**
     - **Linearity** - The relationship between the variables of interest is linear or best described by a linear function
     - **Additivity** - The relationship between the variables of interest is best described as a linear combination
-    
-
-```{r}
-format(Sys.time(), "%d-%b-%Y | %X")
-```
 
  
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Regression**</p>
@@ -227,13 +234,204 @@ format(Sys.time(), "%d-%b-%Y | %X")
   - In other words, there is no autocorrelation/serial correlation 
   - The distribution of errors at given value of x is uncorrelated with the distribution of errors at another value of x
   - It is important to note that the errors are not individual errors, they are theoretical distribution of errors given x, in other words, for each vale of x, there is a distribution of errors, and the observed residuals given x you have are sampled from the distribution of errors given the same x (see [this short description on CrossValidated]( https://stats.stackexchange.com/questions/103439/how-to-calculate-the-covariance-between-two-observations-of-the-same-variable))
+- **Mathematics**
+  - $\text{Cov}(e_{i}, e_{j}) = 0$
+- **Mathematics**
+  - $\boldsymbol\Phi = \Sigma_{e_{i}e_{j}} = \sigma^{2}\mathbf{I} = \begin{bmatrix} \sigma_{1,1}^{2} & 0 & 0 & \cdots & 0 \\ 0 & \sigma_{2,2}^{2} & 0 & \cdots & 0 \\ 0 & 0 & \sigma_{3,3}^{2} & \cdots & 0 \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ 0 & 0 & 0 & 0 & \sigma_{i,j}^{2} \end{bmatrix}$
+    - ***Note***
+      - All the off-diagonals are 0s, indicating that all errors are uncorrelated with each other 
+      - The variances are unconstrained, hence, they can vary 
+- **Effects of correlated errors on OLS estimation**
+    - **Biased SE**
+      - The standard mathematical expression of the estimate of the variance of the sampling distribution ($\frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}$) is a biased estimate of the true variance of the sampling distribution 
+        - If errors are positively correlated, the standard mathematical expression of the estimate of the variance of the sampling distribution ($\frac{\sigma^{2}}{\sum_{i=1}^{n}{(x_{i,1} - \bar{x})^2}}$) will underestimate the true value (a negative bias), this means that the true sampling variance and SE are larger than estimated, this means that OLS is less efficient/optimal than other estimators, this follows that all statisticl inferences involving the SE will be biased (e.g. underestimating the confidence intervals, overestimating the p-value in significance tests, higher Type I error etc.)
+- **Assessing Autocorrelation**
+  - See the autcorrelation section 
+- **Treatment**
+  - Autocorrelation consistent standard errors 
+  - Cluster robust standard errors 
+  - Use other estimators 
  
   
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Normality of the Sampling Distribution**</p>
+
+- **Concept**
+  - The sampling distribution of the sample estimates is normally distributed 
+  - A normally distributed sampling distribution is desirable because it can be modelled easily with the normal distribution curve and inferential statistics can be easily derived (which may be easier than if it has a non-normal distribution, e.g. Pearson's r)
+- **Effects of violation of the assumption**
+  - All the standard mathematical expressions and procedures for estimating the inferential statistics and uncertainty of the sample estimate are based on the assumption that the sampling distribution is normal or at least approximately normal. If the true sampling distribution is not normal, then all the inferential statistics and estimates of uncertainty of the sample estimate are incorrect
+- **Assessing Normality of the sampling distribution**
+  - Distribution of model residuals 
+    - **Description**
+      - Assess whether the model residuals are normally distributed
+    - **Explanation**
+      - In general, in a linear combination of variables, if the variables in the linear combination are random, independent, and normally distributed (their sampling distribution), then the linear combination itself is also normally distributed (the sampling distribution of the linear combination is normal)
+      - Each of the regression parameters can be expressed as a linear combination 
+        - $\hat\beta_{1} = \frac{\sum_{i=1}^{n}{(x_i - \bar{x} )y_i}}{\sum_{i=1}^{n}{(x_i - \bar{x})^2}} = \sum_{i=1}^{n}{\frac{x_i - \bar{x}}{\sum_{i=1}^{n}{(x_i - \bar{x})^2}}y_i}$
+          - ***Where***
+            - $\frac{x_i - \bar{x}}{\sum_{i=1}^{n}{(x_i - \bar{x})^2}}$ is treated as a constant and $y_i$ is treated a variable
+      - Hence, for the linear combination ($\hat\beta_1$) to be normally distributed, the random variable $y_i$ has to be independent and normally distributed
+      - Since independence and normality of the errors imply independence and normality of the random variable $y_i$, normality of errors can be used to indicate that the linear combination ($\hat\beta_1$) is normally distributed
+      - And since we don't have the errors in hand, we use the model residuals 
+    - **Assessing normality**
+      - See the 'Assessing Normality' section
+- **The Central Limit Theorem and the assumption of normality**
+  - The distribution of the residuals is not important if sample size is "sufficiently" large according to the Central Limit Theorem. (The CLT states that the sampling distribution is approximately normal if sample size is large and can be assumed to be normal if sample size is sufficiently large (n > 30) regardless of the shape of the population distribution)
+  - Hence, there is much less to worry about the non-normality of the sampling distribution if the sample size is "sufficiently" large
+- **Just some side notes**
+  - $y_i$ also needs to be normally distributed, if y is not normally distributed, then the scores of y need to be transformed such that it's sampling distribution is normal or approximately normal (I am still not sure about this part)
 
 
 
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Autocorrelation**</p>
+
+- **Description**
+  - Aka serial correlation
+  - Errors given x are correlated with errors in other values of x
+  - Autocorrelation is often described with respect to time because autocorrelation usually occurs in time series data (correlated across time)
+- **Reasons for autocorrelation**
+  - **Temporal autocorrelation**
+    - **Description**
+      - Autocorrelation across time time 
+    - **Examples**
+      - Repeated measures designs
+      - Time series 
+      - Longitudinal designs 
+      - Growth models 
+  - **Spatial autocorrelation**
+    - **Description** 
+      - Autocorrelation due to space 
+    - **Examples** 
+      - Clustered data 
+  - **Ignoring covariates**
+    - If a covariate is not included in the model, the errors will capture the effect of that covariate
+    - The error is not random - There are systematic process in the errors that are mistreated as random or ignored
+  - **Model misspecification** 
+    - E.g. ignoring linearity 
+  - **Measurement error in the independent variable**
+- **Types of serial correlation**
+  - First-order serial correlation
+- **First-order serial correlation**
+  - **Description**
+    - The correlation between errors at any one point of x ($e_{x}$) and errors at the point of x that is 1 unit less ($e_{x-1}$)
+    - Note that t is often used instead of x, but I am keeping things general here
+  - **Visualisation**
+    - **Positive first-order serial correlation**
+      - ![](image/positive_first_order_serial_correlation.png)
+    - **Negative first-order serial correlation**
+      - ![](image/negative_first_order_serial_correlation.png)
+  - **Mathematical concept**
+    - Tests testing for first-order serial correlation usually assess whether errors given $x$ can be predicted by errors a unit of x that is 1 unit smaller ($x - 1$)
+  - **Mathematics**
+    - $e_{t} = \rho{}e_{x-1} + u_x$
+      - ***Where***
+        - $\rho{}$ - First-order serial correlation coefficient 
+        - The process for the error term is called the first-order autoregressive process (AR1)
+  - **Tests for first-order serial correlation** 
+    - Durbin-Watson test
+    - Breusch-Godfrey test
+  - **Durbin-Watson test**
+    - **The Durbin-Watson statistic**
+      - **Mathematics**
+        - $d = \frac{\sum_{t=2}^{n}{(e_{t} - e_{t-1})^2}}{\sum_{t=1}^{n}{e_{t}^{2}}}$
+      - **Interpretation**
+        - $0 ≤ d ≤ 4$
+        - $d = 2$ - No serial correlation
+        - $d < 2$ - Positive serial correlation ($d < 1$ is interpreted as serious positive serial correlation and thus concerning)
+        - $d > 2$ - Negative serial correlation
+    - **Significance testing**
+      - Statistical significance of the Durbin-Watson statistic us often sort through assessing whether the observed Durbin-Watson statistic is inside or outside the critical boundary in the sampling distribution under the null hypothesis
+      - The critical boundary is a function of sample size and the number of variables
+  - **Breusch-Godfrey test (Breusch & Godfrey, 1978)**
+    - **Concept**
+      - Aka auxiliary regression (A regression for supplementary purposes)
+      - Tests the extent to which the errors given x can be predicted by the predictor in the model and the model error at a value of x that is 1 less, model error at a value of x that is 2 less, model error at a value of x that is 3 less, and so on (these are the lagged variables, and the number of lagged variables is defined by the researcher, but some people may include lagged variables until the errors in that auxiliary regression is no longer autocorrelated)
+    - **Mathematics**
+      - $e_{t} = \beta_{0} + \beta_{1}x_i + \beta_{2}e_{t-1} + \beta_{3}e_{t-2} + \beta_{4}e_{t-3} + \cdots + \beta_{p+1}e_{t-p} + u_i$
+    - **Null Hypothesis Significance Test**
+      - **The Breusch-Godfrey test statistic**
+        - **Mathematics (wiki)** 
+          - $nR^2$
+      - **Distribution of the Breusch-Godfrey test statistic**
+        - $nR^2 \sim{} \chi_{p}^{2}$
+          - **Warning**
+            - A source (zed statistics) said it is $(n-p)R^2 \sim{} \chi_{p}^{2}$
+            - But they are very similar, so I think it's fine
+      - **Hypotheses**
+        - $H_0:$ There is no autocorrelation
+        - $H_1:$ There is autocorrelation in the lagged variables in the model
+      
+
+      
+```{r qqplot1, include = F, echo = F}
+library(tidyverse)
+
+qqplot1 <- ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + 
+  qqplotr::stat_qq_point(size = 1, alpha = 0.6) + 
+  qqplotr::stat_qq_line(colour = "#008898") + 
+  qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + 
+  labs(
+    x = "Theoretical Quantile", 
+    y = "Observed Quantile") +
+  theme_minimal()
+
+png(file = "image/qqplot1.png", res = 100, width = 800, height = 500)
+qqplot1
+dev.off()
+
+knitr::include_graphics("image/qqplot1.png")
+```
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Assessing Normality**</p>
+
+- **Ways to assess normality**
+  - Plots
+  - Statistical Tests
+
+
+- **Plots**
+  - **Types of plots** 
+    - Frequency Distribution plot (e.g. histogram)
+    - Theoretical vs Observed distribution plots
+  - **Theoretical vs Observed Distribution plots** 
+    - **Description**
+      - A plot with the distributional points of a particular distribution of interest and the distributional points of the data 
+      - It visualises how well the distributional point of each of the data points fit their corresponding distributional point a particular distribution of interest (e.g. a normal distribution)
+      - The corresponding distributional point is the expected value that the observed score should have in a particular distribution of interest 
+    - **Types** 
+      - P-P plot
+      - Q-Q plot
+    - **P-P plot**
+      - **Description**
+        - A plot with the probability of each of the points of a particular distribution of interest against the probability of each of the data points in the data (relative to the whole data)
+      - **P-P plot for the normal distribution**
+        - **Concept**
+          - A plot with the probability of each of the points of a normal distribution against the probability of each of the data points in the data (relative to the whole data)
+    - **Q-Q plot**
+      - **Description**
+        - A plot with the quantile or z-score of each of the points of a particular distribution of interest against the quantile or z-score of each of the data points in the data (relative to the whole data)
+      - **Q-Q plot for the normal distribution**
+        - **Concept**
+          - A plot with the quantile or z-score of each of the points of a normal distribution against the quantile or z-score of each of the data points in the data (relative to the whole data)
+        - **Visualisation**
+          - ![](image/qqplot1.png){width=30%}
+        - <img src="image/r.svg" width = 5% style=" margin-top: 10px; margin-bottom: -10px;"/>
+          - <pre style=" margin-top: 10px"><code> 
+ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
+ &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
+ &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
+ &nbsp&nbsp labs(<br/>
+ &nbsp&nbsp x = "Theoretical Quantile", <br>
+ &nbsp&nbsp y = "Observed Quantile") +<br>
+ &nbsp&nbsp theme_minimal()<br>
+          </code></pre>
 
 
 

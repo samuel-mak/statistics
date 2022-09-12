@@ -63,4 +63,15 @@ ul.a {
 }
 
 
+  
+code {padding: 0px; tab-size: 8;}
+
+
+pre{width: 80%; font-size: 15px; line-height: 8px; margin-top: 0px; display: block; overflow-x: auto; }
+
+
+pre[data-lang]::before { content: attr(data-lang);}
+
+
+
 
