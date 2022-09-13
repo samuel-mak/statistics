@@ -101,7 +101,7 @@
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 12-Sep-2022 | 22:04:40</em></p>
+<p class="date"><em>Last Updated: 13-Sep-2022 | 02:48:19</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -635,16 +635,14 @@ plot(model, which = 1)
 <li>Brown-Forsythe test</li>
 <li>Hartley’s Fmax</li>
 </ul></li>
-<li><strong>Levene’s test</strong>
+<li><strong>Levene’s tests</strong>
 <ul>
 <li><strong>Description</strong>
 <ul>
 <li>Tests the null hypothesis that the variances in different groups are equal</li>
 <li>It is a one-way ANOVA with absolute deviation as the outcome variable and the groups/values of x as the predictor variable</li>
-<li>It tests whether the absolute deviation varies betwen groups/values of x</li>
+<li>It tests whether the absolute deviation varies between groups/values of x</li>
 </ul></li>
-<li><strong>Levene’s tests</strong>
-<ul>
 <li><strong>Original Levene’s test</strong>
 <ul>
 <li><strong>Mathematics</strong>
@@ -658,7 +656,6 @@ plot(model, which = 1)
 <li><strong><em>Note</em></strong>
 <ul>
 <li>Levene’s test statistic is expressed as such but it can be interpreted as the F-statistic</li>
-</ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -681,6 +678,7 @@ plot(model, which = 1)
 <ul>
 <li>Trimmed mean performed best when the underlying data followed a Cauchy distribution and the median performed best when the data followed a chi-squared distribution with 4 degrees of freedom (sharply skewed distribution) (Brown &amp; Forsythe, 1974; extracted from <a href="https://en.wikipedia.org/wiki/Levene%27s_test">Wiki</a>)</li>
 </ul></li>
+</ul></li>
 <li><strong>Hartley’s Fmax (Pearson &amp; Harley, 1954)</strong>
 <ul>
 <li><strong>Description</strong>
@@ -696,13 +694,150 @@ plot(model, which = 1)
 <li><strong><em>Where</em></strong>
 <ul>
 <li><span class="math inline">\(\max{s_{g}^{2}}\)</span> - The largest group variance among all the groups</li>
-<li><span class="math inline">\(\min{s_{g}^{2}}\)</span> - The smallest group variance among all the groups</li>
+<li><span class="math inline">\(\min{s_{g}^{2}}\)</span> - The smallest group variance among all the groups<br />
+</li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
+<li><strong>Cochrane’s C test</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>It tests whether the variance of a particular group is exceptionally larger than the rest of the group (it is an upper tail test)</li>
+<li>The test statistic is the ratio of the variane of a group of interest and the overall variance (of all of the groups)</li>
+<li>It then conducts a null hypothesis significance test on the ratio</li>
+<li>It is used to test for variance outlier</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\textit{C}_{g} = \frac{s_{g}^{2}}{\sum_{i=1}^{n}{s_{g}^{2}}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(s_{g}^{2}\)</span> - The variance of a particular group</li>
+<li><span class="math inline">\(\sum_{i=1}^{n}{s_{g}^{2}}\)</span> - The sum of all the variances (the total variance)</li>
 </ul></li>
 </ul></li>
+</ul></li>
+<li><strong>Null Hypothesis Significance Test</strong>
+<ul>
+<li><strong>Hypothesis</strong>
+<ul>
+<li><span class="math inline">\(\textit{H}_{0}:\)</span> All variances are equal</li>
+<li><span class="math inline">\(\textit{H}_{1}:\)</span> At least one group variance is significantly larger than the other variances</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Don’t use these tests</strong>
+<ul>
+<li><strong>Sample size</strong>
+<ul>
+<li>In large samples, even trivial heteroscedasticity can produce significant Levene’s result</li>
+<li>In small samples, Levene’s test has inadequate power to detect heteroscedasticity</li>
+</ul></li>
+<li><strong>Group size equality</strong>
+<ul>
+<li>Homoscedasticity tests work best when group sample sizes are equal (when heteroscedasticity does not matter as mentioned before) and does not work well when sample sizes are unequal (when heteroscedasticity matters)</li>
+</ul></li>
+<li><strong>Adjust for it instead…</strong>
+<ul>
+<li>There are robust methods for heteroscedasticity, hence, no need to drill on testing heteroscedasticity</li>
+</ul></li>
+<li>Read Zimmerman (2004) about the problems with heteroscedasticity tests…</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Remedies</strong>
+<ul>
+<li>Heteroscedasticity-Consistent Standard Errors</li>
+<li>Weighted Least Squares</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Heteroscedasticity-Consistent Standard Error</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Aka
+<ul>
+<li>Heteroscedasticity-Robust Standard Errors</li>
+<li>Robust Standard Errors</li>
+<li>Eicker-Huber-White standard errors</li>
+<li>Huber-White Standard Errors</li>
+<li>White Standard Errors</li>
+<li>Sandwich Estimator (because the matrix expression looks like a sandwich)</li>
+</ul></li>
+</ul></li>
+<li><strong>Versions</strong>
+<ul>
+<li>HC1</li>
+<li>HC2</li>
+<li>HC3</li>
+<li>HC4</li>
+</ul></li>
+<li><strong>HC0</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>The first version of the HC standard error</li>
+</ul></li>
+<li><strong>Mathematical desciption</strong>
+<ul>
+<li>In the mathematical expression of the estimate of the sampling variance of the beta parameters, the variance of errors given x is not treated as fixed/a constant, rather, it relaxes the assumption of homoscedasticity and treat the variance of errors given x are different at different values of x</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>Population Model</strong>
+<ul>
+<li><span class="math inline">\(\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=1}^{n}{(x_i - \bar{x})^2})^2} \times \sum_{i=1}^{n}{(x_i - \bar{x})^2 \textit{Var}(\epsilon_i|X)}\)</span></li>
+</ul></li>
+<li><strong>Sample Estimatte</strong>
+<ul>
+<li><span class="math inline">\(\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=1}^{n}{(x_i - \bar{x})^2})^2} \times \sum_{i=1}^{n}{(x_i - \bar{x})^2 e_{i}^{2}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(e_{i}^{2}\)</span> - Squared residual for observation i (it is basically the variance of residual given x, but we usually only have 1 observation given x)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematics (Matrix)</strong>
+<ul>
+<li><span class="math inline">\(\boldsymbol{\hat\beta_1} = (\mathbf{X&#39;X})^{-1}(\sum_{i=1}^{n}{e_{i}^{2}x&#39;_{i}x_{i}})(\mathbf{X&#39;X})^{-1}\)</span></li>
+</ul></li>
+<li><strong>Evaluation</strong>
+<ul>
+<li>Simulations show that it is better than the normal estimation when sample size is large but worse when sample size is small</li>
+</ul></li>
+</ul></li>
+<li><strong>Which version is the best?</strong>
+<ul>
+<li>HC3 is better than HC0 and HC2 (Long &amp; Ervin, 2000)</li>
+<li>HC4 appears to be more robust than HC3 when there are influential cases and non-normal errors (See Hayes and Cai, 2007 for a review)</li>
+</ul></li>
+<li><strong>Heteroscedastic-Autocorrelation-consistent variance estimation</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Variance estimation robust to heteroscedasticity and autocorrelation</li>
+<li>They are extensions of the HC standard error</li>
+</ul></li>
+<li><strong>Types</strong>
+<ul>
+<li>Newey and West (1987)</li>
+</ul></li>
+</ul></li>
+<li><strong>Cluster Robust Standard Errors</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Standard Errors estimation that accounts for heteroscedasticity and correlated errors</li>
+<li>Based on the concept that data points can be clustered in a certain way</li>
+</ul></li>
+<li><h2 id="mathematics" class="hasAnchor"><strong>Mathematics</strong><a href="index.html#mathematics" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
 </ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">

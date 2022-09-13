@@ -363,13 +363,12 @@ variance (e.g. confidence intervals, test statistic, p-values etc.)
       - Levene's test
       - Brown-Forsythe test
       - Hartley's Fmax
-    - **Levene's test**
+    - **Levene's tests**
       - **Description**
         - Tests the null hypothesis that the variances in different groups are equal
         - It is a one-way ANOVA with absolute deviation as the outcome variable and the groups/values of x as the predictor variable 
-        - It tests whether the absolute deviation varies betwen groups/values of x
-      - **Levene's tests**
-        - **Original Levene's test**
+        - It tests whether the absolute deviation varies between groups/values of x
+      - **Original Levene's test**
           - **Mathematics**
             - $\textit{W} = \frac{\sum_{i=1}^{n}{n_{g}(|\bar{d}|_{g} - |\bar{d}|_{G})^2}}{\sum_{i=1}^{n}{n_{g}(|{d}|_{i} - |\bar{d}|_{g})^2}} \times \frac{n-k}{k-1}$
               - ***Where***
@@ -386,27 +385,97 @@ variance (e.g. confidence intervals, test statistic, p-values etc.)
           - Similar to Levene's test but uses the trimmed mean instead of the mean
       - **Comparing the tests**
         - Trimmed mean performed best when the underlying data followed a Cauchy distribution and the median performed best when the data followed a chi-squared distribution with 4 degrees of freedom (sharply skewed distribution) (Brown & Forsythe, 1974; extracted from [Wiki](https://en.wikipedia.org/wiki/Levene%27s_test))
-      - **Hartley's Fmax (Pearson & Harley, 1954)**
-        - **Description**
-          - It is the ratio of the variances between the group with the biggest variance and the group with the smallest variance
-          - It then conducts a null hypothesis significance test for the ratio 
-          - The Fmax isn't used very often, so it is harder to find a critical value table 
-        - **Mathematics**
-          - $\textit{F}_{max} = \frac{\max{s_{g}^{2}}}{\min{s_{g}^{2}}}$
-            - ***Where***
-              - $\max{s_{g}^{2}}$ - The largest group variance among all the groups
-              - $\min{s_{g}^{2}}$ - The smallest group variance among all the groups
+    - **Hartley's Fmax (Pearson & Harley, 1954)**
+      - **Description**
+        - It is the ratio of the variances between the group with the biggest variance and the group with the smallest variance
+        - It then conducts a null hypothesis significance test for the ratio 
+        - The Fmax isn't used very often, so it is harder to find a critical value table 
+      - **Mathematics**
+        - $\textit{F}_{max} = \frac{\max{s_{g}^{2}}}{\min{s_{g}^{2}}}$
+          - ***Where***
+            - $\max{s_{g}^{2}}$ - The largest group variance among all the groups
+            - $\min{s_{g}^{2}}$ - The smallest group variance among all the groups      
+    - **Cochrane's C test**
+      - **Description**
+        - It tests whether the variance of a particular group is exceptionally larger than the rest of the group (it is an upper tail test)
+        - The test statistic is the ratio of the variane of a group of interest and the overall variance (of all of the groups)
+        - It then conducts a null hypothesis significance test on the ratio 
+        - It is used to test for variance outlier
+      - **Mathematics**
+        - $\textit{C}_{g} = \frac{s_{g}^{2}}{\sum_{i=1}^{n}{s_{g}^{2}}}$
+          - ***Where***
+            - $s_{g}^{2}$ - The variance of a particular group
+            - $\sum_{i=1}^{n}{s_{g}^{2}}$ - The sum of all the variances (the total variance)
+      - **Null Hypothesis Significance Test**
+        - **Hypothesis**
+          - $\textit{H}_{0}:$ All variances are equal
+          - $\textit{H}_{1}:$ At least one group variance is significantly larger than the other variances
+    - **Don't use these tests**
+      - **Sample size**
+        - In large samples, even trivial heteroscedasticity can produce significant Levene's result 
+        - In small samples, Levene's test has inadequate power to detect heteroscedasticity 
+      - **Group size equality**
+        - Homoscedasticity tests work best when group sample sizes are equal (when heteroscedasticity does not matter as mentioned before) and does not work well when sample sizes are unequal (when heteroscedasticity matters)
+      - **Adjust for it instead...**
+        - There are robust methods for heteroscedasticity, hence, no need to drill on testing heteroscedasticity
+      - Read Zimmerman (2004) about the problems with heteroscedasticity tests...
+- **Remedies** 
+  - Heteroscedasticity-Consistent Standard Errors
+  - Weighted Least Squares
 
- 
 
 
 
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Heteroscedasticity-Consistent Standard Error**</p>
 
-
-
-
+- **Description**
+  - Aka
+    - Heteroscedasticity-Robust Standard Errors 
+    - Robust Standard Errors 
+    - Eicker-Huber-White standard errors 
+    - Huber-White Standard Errors 
+    - White Standard Errors 
+    - Sandwich Estimator (because the matrix expression looks like a sandwich)
+- **Versions**
+  - HC1
+  - HC2
+  - HC3
+  - HC4
+- **HC0**
+    - **Description**
+      - The first version of the HC standard error
+    - **Mathematical desciption**
+      - In the mathematical expression of the estimate of the sampling variance of the beta parameters, the variance of errors given x is not treated as fixed/a constant, rather, it relaxes the assumption of homoscedasticity and treat the variance of errors given x are different at different values of x
+    - **Mathematics**
+      - **Population Model**
+        - $\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=1}^{n}{(x_i - \bar{x})^2})^2} \times \sum_{i=1}^{n}{(x_i - \bar{x})^2 \textit{Var}(\epsilon_i|X)}$
+      - **Sample Estimatte**
+        - $\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=1}^{n}{(x_i - \bar{x})^2})^2} \times \sum_{i=1}^{n}{(x_i - \bar{x})^2 e_{i}^{2}}$
+          - ***Where***
+            - $e_{i}^{2}$ - Squared residual for observation i (it is basically the variance of residual given x, but we usually only have 1 observation given x)
+    - **Mathematics (Matrix)**
+      - $\boldsymbol{\hat\beta_1} = (\mathbf{X'X})^{-1}(\sum_{i=1}^{n}{e_{i}^{2}x'_{i}x_{i}})(\mathbf{X'X})^{-1}$
+    - **Evaluation**
+      - Simulations show that it is better than the normal estimation when sample size is large but worse when sample size is small
+- **Which version is the best?**
+  - HC3 is better than HC0 and HC2 (Long & Ervin, 2000)
+  - HC4 appears to be more robust than HC3 when there are influential cases and non-normal errors (See Hayes and Cai, 2007 for a review)
+  
+- **Heteroscedastic-Autocorrelation-consistent variance estimation**
+  - **Description**
+    - Variance estimation robust to heteroscedasticity and autocorrelation 
+    - They are extensions of the HC standard error
+  - **Types**
+    - Newey and West (1987)
+  
+- **Cluster Robust Standard Errors**
+  - **Description**
+    - Standard Errors estimation that accounts for heteroscedasticity and correlated errors 
+    - Based on the concept that data points can be clustered in a certain way
+  - **Mathematics**
+    - 
 
 
 
