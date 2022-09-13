@@ -1,7 +1,7 @@
 the-linear-regression-model
 the-pool-of-tears
-a-caucus-race-and-a-long-tale
+hahaha
 a-very-statistical-day
-derivations
+derivation
 r-codes
 r_codes_normality

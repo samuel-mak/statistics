@@ -1,66 +1,7 @@
 # A very statistical day
 
 
-Lets begin with some matrices. Matrices are a good way to express a system of linear equations in a more compact form. It's benefits include helping the reader to manipulate a system of linear equations easily and spot insights easily. 
+Lets begin with some matrices. Matrices are a good way to express a system of linear equations in a more compact form. They may help the reader to manipulate a system of linear equations and spot insights easily.
 
-
-- $\begin{array}{ccc}
-{\sigma}^{2} & 1\\
-1 & {\sigma}^{2}
-\end{array}$
-
-$\small
-X = \begin{bmatrix}
-1 & 2\\
-1 & 2\\
-1 & 2
-\end{bmatrix} + 
-\begin{bmatrix}
-1 & 2\\
-1 & 2\\
-1 & 2
-\end{bmatrix} + 
-\begin{bmatrix}
-1 & 2\\
-1 & 2\\
-1 & 2
-\end{bmatrix} + 
-\begin{bmatrix}
-1 & 2\\
-1 & 2\\
-1 & 2
-\end{bmatrix} + 
-\begin{bmatrix}
-1 & 2\\
-1 & 2\\
-1 & 2
-\end{bmatrix} + 
-\begin{bmatrix}
-1 & 2\\
-1 & 2\\
-1 & 2
-\end{bmatrix}  + \begin{bmatrix}1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\\end{bmatrix} + \begin{bmatrix} 1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\1 & 2 & 3 & 4 & 5 \\\end{bmatrix}$
-
-- **Note**
-    - This is a matrix
-    - This is the first point
-        - This is the seccond point
-   
-        
-        
-$y = mx + c + d + e + f + g + h + i + j + k + l + m + n + o + p$
-
-```{r }
-library(ggplot2)
-
-carData::Bfox
-
-
-hist_plot <- ggplot(data = carData::Bfox, aes(x = debt)) + geom_histogram()
-```
-
-```{r echo = F}
-hist_plot
-```
 
 
