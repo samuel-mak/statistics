@@ -101,7 +101,7 @@
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 13-Sep-2022 | 18:38:51</em></p>
+<p class="date"><em>Last Updated: 13-Sep-2022 | 20:29:29</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -1205,12 +1205,102 @@ plot(model_object, which = 2)
 </ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Trimming</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Deleting scores from the extremes</li>
+<li>Robust methods tend to use trimming (e.g. trimmed mean, the median, M-estimators, etc.)</li>
+<li>Trimming can be baesd on percentage or standard deviation of the scores relative to the data</li>
+<li>Standard deviation-based trimming is a bad idea (Field, 2023)</li>
+</ul></li>
+<li><strong>Percentage-based trimming</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Deleting certain percentage of data points from each of the extremes before any statistic is calculated</li>
+</ul></li>
+<li><strong>10% trimming</strong>
+<ul>
+<li>Deleting 10% of the data points from each of the extremes</li>
+<li>If the sample size is 100, then 10 of the data points at the higher end (because 0% of 100 is 10) and 10 data points at the lower end will be deleted</li>
+</ul></li>
+<li><strong>The median is a trimmed mean</strong>
+<ul>
+<li>The median is the mean when all but the middle data point are trimmed</li>
+</ul></li>
+<li><strong>A trimmed statistic</strong>
+<ul>
+<li>A statistic that is calculated on the trimmed data (e.g. trimmed mean)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Winsorizing</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Arranging the data in ascending order and replacing values outside a threshold boundary (outside of which is considered extremes of the data) woth the value at the threshold boundary</li>
+</ul></li>
+<li><strong>Defining the threshold boundary </strong>
+<ul>
+<li><strong>Percentage-based threshold boundary</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>The threshold boundary is determined by a percentage of the data
+<strong>Example</strong></li>
+<li><strong>The data</strong>
+<ul>
+<li>9, 19, 22, 4, 8, 21, 9, 10, 0, 0, 1, 17, 4, 19, 13, 11, 0, 5, 3, 4</li>
+</ul></li>
+<li><strong>Arrange in ascending order</strong>
+<ul>
+<li>0, 0, 0, 1, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, 19, 19, 21, 22</li>
+</ul></li>
+<li><strong>Winsorize</strong>
+<ul>
+<li><strong>5% Winsorization</strong>
+<ul>
+<li>The bottom 5% and upper 5% of the data is replaced</li>
+<li>5% of a data with n = 20 is 1</li>
+<li>Hence, the bottom first data point is replaced with the value after it, and the upper first data point is replaced with the value before it</li>
+<li><mark>0</mark>, 0, 0, 1, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, 19, 19, 21, <mark>21</mark></li>
+</ul></li>
+<li><strong>10% Winsorization</strong>
+<ul>
+<li>The bottom 10% and upper 10% of the data is replaced</li>
+<li>10% of a data with n = 20 is 2</li>
+<li>Hence, the bottom 2 data points are replaced with the value after the second data point, the upper 2 data points are replaced with the value before the boundary</li>
+<li><mark>0, 0 </mark>, 0, 1, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, 19, 19, <mark>19, 19</mark></li>
+</ul></li>
+<li><strong>20% Winsorization</strong>
+<ul>
+<li>The data points in the bottom 20% and those in the upper 20% of the data is replaced<br />
+</li>
+<li>20% of the data of N = 20 is 4</li>
+<li>Hence the bottom 4 data points are replace with the value at the lower boundary, the upper 4 data poitns are replaced with the value at the upper boundaryy</li>
+<li><mark>3, 3, 3, 3 </mark>, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, <mark>17, 17, 17, 17</mark></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Standard-deviation based threshold boundary</strong>
+<ul>
+<li>The threshold boundary is determined by the standard deviation of the data</li>
+<li>The scores at the are replaced by the unstandardised score that has a standardised score at the boundary (not repeating the actual score at the boundary as in trimming)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Theil-Sen Estimator</strong>
 </p>
 <ul>
 <li><strong>Description</strong>
 <ul>
-<li>Robust regarding outliers ammong the predictor variables</li>
+<li>Robust regarding outliers among the predictor variables</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>

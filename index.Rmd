@@ -726,11 +726,73 @@ dev.off()
 
 
 
-
-<p style = "margin-bottom: 0px; font-size: 20px; ">**Theil-Sen Estimator**</p>
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Trimming**</p>
 
 - **Description**
-  - Robust regarding outliers ammong the predictor variables 
+  - Deleting scores from the extremes
+  - Robust methods tend to use trimming (e.g. trimmed mean, the median, M-estimators, etc.)
+  - Trimming can be baesd on percentage or standard deviation of the scores relative to the data 
+  - Standard deviation-based trimming is a bad idea (Field, 2023)
+- **Percentage-based trimming**
+  - **Description**
+    - Deleting certain percentage of data points from each of the extremes before any statistic is calculated
+  - **10% trimming** 
+    - Deleting 10% of the data points from each of the extremes
+    - If the sample size is 100, then 10 of the data points at the higher end (because 0% of 100 is 10) and 10 data points at the lower end will be deleted 
+  - **The median is a trimmed mean**
+    - The median is the mean when all but the middle data point are trimmed 
+  - **A trimmed statistic**
+    - A statistic that is calculated on the trimmed data (e.g. trimmed mean)
+    
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Winsorizing**</p>
+
+- **Description**
+  - Arranging the data in ascending order and replacing values outside a threshold boundary (outside of which is considered extremes of the data) woth the value at the threshold boundary
+- **Defining the threshold boundary **
+  - **Percentage-based threshold boundary**
+    - **Description**
+      - The threshold boundary is determined by a percentage of the data
+    **Example**
+      - **The data**
+        - 9, 19, 22, 4, 8, 21, 9, 10, 0, 0, 1, 17, 4, 19, 13, 11, 0, 5, 3, 4
+      - **Arrange in ascending order**
+        - 0, 0, 0, 1, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, 19, 19, 21, 22
+      - **Winsorize**   
+        - **5% Winsorization**
+          - The bottom 5% and upper 5% of the data is replaced 
+          - 5% of a data with n = 20 is 1
+          - Hence, the bottom first data point is replaced with the value after it, and the upper first data point is replaced with the value before it 
+          - <mark>0</mark>, 0, 0, 1, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, 19, 19, 21, <mark>21</mark>
+        - **10% Winsorization**
+          - The bottom 10% and upper 10% of the data is replaced 
+          - 10% of a data with n = 20 is 2
+          - Hence, the bottom 2 data points are replaced with the value after the second data point, the upper 2 data points are replaced with the value before the boundary
+          - <mark>0, 0 </mark>, 0, 1, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, 19, 19, <mark>19, 19</mark>
+        - **20% Winsorization**
+          - The data points in the bottom 20% and those in the upper 20% of the data is replaced  
+          - 20% of the data of N = 20 is 4
+          - Hence the bottom 4 data points are replace with the value at the lower boundary, the upper 4 data poitns are replaced with the value at the upper boundaryy
+          - <mark>3, 3, 3, 3 </mark>, 3, 3, 4, 4, 5, 8, 9, 9, 10, 11, 13, 17, <mark>17, 17, 17, 17</mark>
+  - **Standard-deviation based threshold boundary**
+    - The threshold boundary is determined by the standard deviation of the data
+    - The scores at the are replaced by the unstandardised score that has a standardised score at the boundary (not repeating the actual score at the boundary as in trimming)
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Theil-Sen Estimator**</p>
+
+
+- **Description**
+  - Robust regarding outliers among the predictor variables 
 - **Mathematics**
   - $\hat\beta_{p} = \tilde{\beta_{p,ij}}$ (need to double check)
 
