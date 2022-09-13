@@ -101,7 +101,7 @@
 <div id="header">
 <h1 class="title">Statistics</h1>
 <p class="author"><em>Samuel Mak</em></p>
-<p class="date"><em>Last Updated: 13-Sep-2022 | 13:38:33</em></p>
+<p class="date"><em>Last Updated: 13-Sep-2022 | 18:38:51</em></p>
 </div>
 <div id="the-linear-regression-model" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> The Linear Regression Model<a href="index.html#the-linear-regression-model" class="anchor-section" aria-label="Anchor link to header"></a></h1>
@@ -837,7 +837,45 @@ plot(model, which = 1)
 <li>Standard Errors estimation that accounts for heteroscedasticity and correlated errors</li>
 <li>Based on the concept that data points can be clustered in a certain way</li>
 </ul></li>
-<li><h2 id="mathematics" class="hasAnchor"><strong>Mathematics</strong><a href="index.html#mathematics" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{i=1}^{n}{\textit{Var}(\epsilon_{i}(x_{i} - \bar{x}))} + 2\sum_{j=1}^{n}{\sum_{i=1}^{n}{(x_{i} - \bar{x})(x_{j} - \bar{x})(\epsilon{}_{i}\epsilon{}_{j})}}\)</span></li>
+<li><span class="math inline">\(\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{j=1}^{n}{\sum_{i=1}^{n}{\textit{Cov}((x_{i} - \bar{x})\epsilon{}_{i}, (x_{j} - \bar{x})\epsilon{}_{j})}}\)</span></li>
+<li><span class="math inline">\(\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{j=1}^{n}{\sum_{i=1}^{n}{(x_{i} - \bar{x})(x_{j} - \bar{x})(\epsilon{}_{i}\epsilon{}_{j})}}\)</span></li>
+<li><span class="math inline">\(\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{j=1}^{n}{\sum_{i=1}^{n}{(x_{i} - \bar{x})(x_{j} - \bar{x})(\epsilon{}_{i}\epsilon{}_{j})}}1[A]\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(1[A]\)</span>
+<ul>
+<li><span class="math inline">\(A\)</span> is an event in which i and j are in the same cluster</li>
+<li><span class="math inline">\(1[A]\)</span> - A indicator function that indicates whether 2 errors belong to the same cluster</li>
+<li>The indicator function <span class="math inline">\(1[A]\)</span> equals 1 if event A happens (i and j are in the same cluster)</li>
+<li>The indicator function <span class="math inline">\(1[A]\)</span> equals 0 if event A does not happen (i ad j are not in the same cluster)</li>
+<li>This results in a block matrix where the diagonal blocks are the error variance-covariance submatrices and the off-diagonal blocks are all 0s (assuming that the clusters are uncorrelated with each other) - For this reason, it is robust for arbitrary within cluster error correlation but not between cluster error correlation</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematics (Matrix)</strong>
+<ul>
+<li><span class="math inline">\(\textbf{V} = (\textbf{X}&#39;\textbf{X})^{-1} \textbf{X}&#39;\boldsymbol\Phi \textbf{X}(\textbf{X}&#39;\textbf{X})^{-1}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\boldsymbol\Phi\)</span> - Error Variance-Covariance matrix</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>The Bootstrap (Efron &amp; Tibshirani, 1993)</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Estimates the properties of the sampling distribution empirically from the sample data</li>
 </ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">
@@ -1117,6 +1155,68 @@ plot(model_object, which = 2)
 </ul></li>
 </ul></li>
 </ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Robust Techniques</strong>
+</p>
+<ul>
+<li><strong>Robust Techniques</strong>
+<ul>
+<li>Trimming</li>
+<li>Winsorizing</li>
+<li>The Bootstrap</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Robust Estimators</strong>
+</p>
+<ul>
+<li><strong>Robust Estimators</strong>
+<ul>
+<li>M-estimators</li>
+<li>L-estimators</li>
+<li>S-estimators</li>
+<li>R-estimators</li>
+</ul></li>
+<li><strong>Extremum estimator (<span class="math inline">\(\hat\theta\)</span>)</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li><strong>Extremum Estimator</strong> - A class of estimators in which the parameters are estimated through maximisation or minimisation of a certain obective function that depends on the data</li>
+<li>The theory of extremum estimators was developed by Amemiya (1985)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>M-estimators</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li><strong>M-estimators</strong> - Extremum estimators for which the obejct function is a sample average</li>
+</ul></li>
+<li><strong>History</strong>
+<ul>
+<li>These are called M-estimators because Maximum likelihood is one of the first of these estimators, hence, Huber (1981, p. 43) called these estimators as M-estimators to denote that these are “maximum likelihood-type” estimators</li>
+</ul></li>
+<li><strong>Examples</strong>
+<ul>
+<li>Least squares - Because the estimator is defined as a minimum of the sum of the squared errors/residuals</li>
+<li>Maximum Likelihood- Because it maximises the likelihood function over the parameter space</li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Theil-Sen Estimator</strong>
+</p>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Robust regarding outliers ammong the predictor variables</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\hat\beta_{p} = \tilde{\beta_{p,ij}}\)</span> (need to double check)</li>
+</ul></li>
+</ul>
 
 </div>
             </section>
@@ -1168,7 +1268,7 @@ gitbook.start({
 "link": "https://github.com/samuel-mak/statistics/blob/master/index.Rmd",
 "text": null
 },
-"download": null,
+"download": ["bookdownproj.pdf", "bookdownproj.epub", "bookdownproj.mobi"],
 "search": {
 "engine": "lunr",
 "options": null

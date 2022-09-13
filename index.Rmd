@@ -475,36 +475,31 @@ variance (e.g. confidence intervals, test statistic, p-values etc.)
     - Standard Errors estimation that accounts for heteroscedasticity and correlated errors 
     - Based on the concept that data points can be clustered in a certain way
   - **Mathematics**
-    - 
+    - $\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{i=1}^{n}{\textit{Var}(\epsilon_{i}(x_{i} - \bar{x}))} + 2\sum_{j=1}^{n}{\sum_{i=1}^{n}{(x_{i} - \bar{x})(x_{j} - \bar{x})(\epsilon{}_{i}\epsilon{}_{j})}}$
+    - $\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{j=1}^{n}{\sum_{i=1}^{n}{\textit{Cov}((x_{i} - \bar{x})\epsilon{}_{i}, (x_{j} - \bar{x})\epsilon{}_{j})}}$
+    - $\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{j=1}^{n}{\sum_{i=1}^{n}{(x_{i} - \bar{x})(x_{j} - \bar{x})(\epsilon{}_{i}\epsilon{}_{j})}}$
+    - $\textit{Var}(\hat\beta_{1}) = \frac{1}{(\sum_{i=i}^{n}{(x_{i} - \bar{x})^2})^2} \times \sum_{j=1}^{n}{\sum_{i=1}^{n}{(x_{i} - \bar{x})(x_{j} - \bar{x})(\epsilon{}_{i}\epsilon{}_{j})}}1[A]$
+      - ***Where***
+        - $1[A]$
+          - $A$ is an event in which i and j are in the same cluster
+          - $1[A]$ - A indicator function that indicates whether 2 errors belong to the same cluster
+          - The indicator function $1[A]$ equals 1 if event A happens (i and j are in the same cluster)
+          - The indicator function $1[A]$ equals 0 if event A does not happen (i ad j are not in the same cluster)
+          - This results in a block matrix where the diagonal blocks are the error variance-covariance submatrices and the off-diagonal blocks are all 0s (assuming that the clusters are uncorrelated with each other) - For this reason, it is robust for arbitrary within cluster error correlation but not between cluster error correlation 
+  - **Mathematics (Matrix)**
+    - $\textbf{V}  = (\textbf{X}'\textbf{X})^{-1} \textbf{X}'\boldsymbol\Phi \textbf{X}(\textbf{X}'\textbf{X})^{-1}$
+      - ***Where***
+        - $\boldsymbol\Phi$ - Error Variance-Covariance matrix 
 
 
 
 
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**The Bootstrap (Efron & Tibshirani, 1993)**</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- **Description**
+  - Estimates the properties of the sampling distribution empirically from the sample data
 
 
 
@@ -623,8 +618,6 @@ dev.off()
 - **Ways to assess normality**
   - Plots
   - Statistical Tests
-
-
 - **Plots**
   - **Types of plots** 
     - Frequency Distribution plot (e.g. histogram)
@@ -695,6 +688,51 @@ dev.off()
     
     
 
+
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Robust Techniques**</p>
+
+- **Robust Techniques**
+  - Trimming
+  - Winsorizing 
+  - The Bootstrap
+  
+  
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Robust Estimators**</p>
+
+- **Robust Estimators**
+  - M-estimators 
+  - L-estimators 
+  - S-estimators 
+  - R-estimators 
+- **Extremum estimator ($\hat\theta$)**
+  - **Description**
+    - **Extremum Estimator** - A class of estimators in which the parameters are estimated through maximisation or minimisation of a certain obective function that depends on the data 
+    - The theory of extremum estimators was developed by Amemiya (1985)
+    
+    
+<p style = "margin-bottom: 0px; font-size: 20px; ">**M-estimators**</p>
+
+- **Description**
+  - **M-estimators** - Extremum estimators for which the obejct function is a sample average 
+- **History**
+  - These are called M-estimators because Maximum likelihood is one of the first of these estimators, hence, Huber (1981, p. 43) called these estimators as M-estimators to denote that these are "maximum likelihood-type" estimators
+- **Examples**
+  - Least squares - Because the estimator is defined as a minimum of the sum of the squared errors/residuals
+  - Maximum Likelihood- Because it maximises the likelihood function over the parameter space 
+
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Theil-Sen Estimator**</p>
+
+- **Description**
+  - Robust regarding outliers ammong the predictor variables 
+- **Mathematics**
+  - $\hat\beta_{p} = \tilde{\beta_{p,ij}}$ (need to double check)
 
 
 

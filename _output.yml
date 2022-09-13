@@ -2,6 +2,7 @@ bookdown::gitbook:
   config:
     search:
       engine: lunr
+    download: ["pdf", "epub", "mobi"]
     toc:
       scroll_highlight: true
       before: |
@@ -10,4 +11,4 @@ bookdown::gitbook:
     fontsettings: 
       theme: night
   css: style.css
-  download: ["pdf", "epub", "mobi"]
+  
