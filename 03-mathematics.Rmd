@@ -1,0 +1,45 @@
+# Mathematics
+
+
+
+## Functions 
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Functions**</p>
+
+- **Concept**
+  - **Function** - A mathematical expression that describes the way in which a variable(s) of interest vary/varies with another variable(s) of interest (in other words, it describes the relationship between variables)
+- **Some Useful Functions**
+  - **General Functions**
+    - Linear
+    - Exponential 
+    - Log and ln
+    - Quadratic
+    - Cubic
+    - Quartic
+    - Circle
+    - Reciprocal
+    - Monotonic
+  - **Trigonometric Functions**
+    - **Ordinary Trigonometric Functions**
+      - Sine
+      -  Cosine
+      - Tangent
+    - **Hyperbolic Functions**
+      - Hyperbolic Sine
+      - Hyperbolic Cosine
+      - Hyperbolic Tangent 
+  - **Probability/Distributional Functions (Probability and Cumulative)**
+    - **Probability Density Function**
+      - Normal Distribution
+      - Chi-squared Distribution
+      - Log-Normal Distribution
+      - Exponential Distribution
+      - F Distribution
+    - **Probability Mass Function**
+      - Binomial Distribution
+      - Poisson Distribution
+      - Bernoulli Distribution
+      - Rademacher Distribution
+
+
+

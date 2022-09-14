@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 R codes | Statistics</title>
-  <meta name="description" content="Chapter 6 R codes | Statistics" />
+  <title>Chapter 3 Mathematics | Statistics</title>
+  <meta name="description" content="Chapter 3 Mathematics | Statistics" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 R codes | Statistics" />
+  <meta property="og:title" content="Chapter 3 Mathematics | Statistics" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 R codes | Statistics" />
+  <meta name="twitter:title" content="Chapter 3 Mathematics | Statistics" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="derivation.html"/>
-
+<link rel="prev" href="the-pool-of-tears.html"/>
+<link rel="next" href="a-very-statistical-day.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -101,18 +101,67 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-codes" class="section level1 hasAnchor" number="6">
-<h1><span class="header-section-number">Chapter 6</span> R codes<a href="r-codes.html#r-codes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="r_codes_normality" class="section level3 hasAnchor" number="6.0.1">
-<h3><span class="header-section-number">6.0.1</span> Normality<a href="r-codes.html#r_codes_normality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<pre style=" margin-top: 10px"><code> 
-ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
- &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
- &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
- &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
- &nbsp&nbsp labs(x = "Theoretical Quantile", y = "Observed Quantile") +<br>
- &nbsp&nbsp theme_minimal()<br>
-          </code></pre>
+<div id="mathematics" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Mathematics<a href="mathematics.html#mathematics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="functions" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Functions<a href="mathematics.html#functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Functions</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li><strong>Function</strong> - A mathematical expression that describes the way in which a variable(s) of interest vary/varies with another variable(s) of interest (in other words, it describes the relationship between variables)</li>
+</ul></li>
+<li><strong>Some Useful Functions</strong>
+<ul>
+<li><strong>General Functions</strong>
+<ul>
+<li>Linear</li>
+<li>Exponential</li>
+<li>Log and ln</li>
+<li>Quadratic</li>
+<li>Cubic</li>
+<li>Quartic</li>
+<li>Circle</li>
+<li>Reciprocal</li>
+<li>Monotonic</li>
+</ul></li>
+<li><strong>Trigonometric Functions</strong>
+<ul>
+<li><strong>Ordinary Trigonometric Functions</strong>
+<ul>
+<li>Sine</li>
+<li>Cosine</li>
+<li>Tangent</li>
+</ul></li>
+<li><strong>Hyperbolic Functions</strong>
+<ul>
+<li>Hyperbolic Sine</li>
+<li>Hyperbolic Cosine</li>
+<li>Hyperbolic Tangent</li>
+</ul></li>
+</ul></li>
+<li><strong>Probability/Distributional Functions (Probability and Cumulative)</strong>
+<ul>
+<li><strong>Probability Density Function</strong>
+<ul>
+<li>Normal Distribution</li>
+<li>Chi-squared Distribution</li>
+<li>Log-Normal Distribution</li>
+<li>Exponential Distribution</li>
+<li>F Distribution</li>
+</ul></li>
+<li><strong>Probability Mass Function</strong>
+<ul>
+<li>Binomial Distribution</li>
+<li>Poisson Distribution</li>
+<li>Bernoulli Distribution</li>
+<li>Rademacher Distribution</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 
 </div>
 </div>
@@ -121,8 +170,8 @@ ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
           </div>
         </div>
       </div>
-<a href="derivation.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="the-pool-of-tears.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="a-very-statistical-day.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -154,7 +203,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/samuel-mak/statistics/edit/master/06-r_codes.Rmd",
+"link": "https://github.com/samuel-mak/statistics/edit/master/03-mathematics.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -162,7 +211,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/samuel-mak/statistics/blob/master/06-r_codes.Rmd",
+"link": "https://github.com/samuel-mak/statistics/blob/master/03-mathematics.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf", "bookdownproj.epub", "bookdownproj.mobi"],

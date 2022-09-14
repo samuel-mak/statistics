@@ -1,6 +1,7 @@
 the-linear-regression-model
 the-pool-of-tears
-hahaha
+mathematics
+functions
 a-very-statistical-day
 derivation
 r-codes
