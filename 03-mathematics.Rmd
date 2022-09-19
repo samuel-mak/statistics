@@ -2,17 +2,110 @@
 
 
 
+```{r quintic, include = F, echo = F}
+library(dplyr)
+library(ggplot2)
+
+png(file = "image/quintic.png", res = 100, width = 800, height = 500)
+ggplot(data = as.tibble(data.frame(x = seq(-10, 10, by = 0.01))) %>% dplyr::mutate(y = x^(5) - 5*x^(4) + 5*x^(3) + 5*x^(2) -6*x)) + geom_line(mapping = aes(x = x, y = y)) +
+  scale_y_continuous(limits = c(-5, 5)) +
+  scale_x_continuous(limits = c(-2, 4)) +
+  theme_void()
+
+dev.off()
+
+quintic_dat <- as.tibble(data.frame(x = seq(-10, 10, by = 0.001))) %>% dplyr::mutate(y = x^(5) - 5*x^(4) + 5*x^(3) + 5*x^(2) -6*x + 2)
+
+quintic_dat_cut <- quintic_dat %>% dplyr::filter(y > -6 & y < 8) %>% mutate(abs.y = abs(y))
+
+quintic_dat %>% filter(y == max(as.data.frame(ggplot_build(quintic_parts)$data[1])$y))
+
+min(as.data.frame(ggplot_build(quintic_parts)$data[1])$y)
+
+quintic_loc_max_x <- dplyr::filter(dplyr::filter(quintic_dat, x < 0), y == max(y))[1] %>% as.numeric()
+quintic_loc_max_x
+
+quintic_loc_max_y <- dplyr::filter(dplyr::filter(quintic_dat, x < 0), y == max(y))[2] %>% as.numeric()
+quintic_loc_max_y
+
+quintic_loc_min_x <- dplyr::filter(dplyr::filter(quintic_dat, 2 < x & x < 3), y == min(y))[1] %>% as.numeric()
+quintic_loc_min_x
+
+quintic_loc_min_y <- as.numeric(dplyr::filter(dplyr::filter(quintic_dat, 2 < x & x < 3), y == min(y)))[2]
+quintic_loc_min_y
+
+#Global Max
+quintic_glob_max_x <- dplyr::filter(dplyr::filter(quintic_dat, 2 < x & x < 3), y == min(y))[1] %>% as.numeric()
+quintic_loc_min_x
+
+quintic_glob_max_y <- dplyr::filter(dplyr::filter(quintic_dat, 2 < x & x < 3), y == min(y))[2] %>% as.numeric()
+quintic_loc_min_y
+
+
+
+as.numeric(filter(quintic_dat_cut, y == min(abs(y))[1]))
+filter(quintic_dat_cut, abs.y == min(abs.y))
+-5.993886
+
+polyroot(c(10, 30, -60, 20))
+
+
+quintic_parts.p1 <- ggplot(data = quintic_dat_cut) + geom_line(mapping = aes(x = x, y = y)) +
+  scale_y_continuous(limits = c(-8, 10), breaks = seq(-8, 10, 1), expand=c(0,0)) +
+  scale_x_continuous(limits = c(-3, 5), breaks = seq(-3, 5, 1), expand=c(0,0)) +
+  theme_linedraw() +
+  annotate(geom = "point", x = quintic_loc_max_x, y = quintic_loc_max_y, shape = 20, fill = "transparent", colour = "#D60000", size = 2.8, stroke = 0.8) +
+  annotate(geom = "text", x = quintic_loc_max_x, y = quintic_loc_max_y + 0.75, label = paste("Local Maxima"), size = 3, colour = "#D60000") +
+  annotate(geom = "point", x = quintic_loc_min_x, y = quintic_loc_min_y, shape = 20, fill = "transparent", colour = "#D60000", size = 2.8, stroke = 0.8) +
+  annotate(geom = "text", x = quintic_loc_min_x, y = quintic_loc_min_y - 0.75, label = paste("Local Minima"), size = 3, colour = "#D60000") +
+  annotate(geom = "segment", x = -3, y = 0, xend = 5, yend = 0, colour = "black", size = 0.3) +
+  annotate(geom = "segment", x = 0, y = -8, xend = 0, yend = 10, colour = "black", size = 0.3) +
+  annotate(geom = "point", x = 0, y = 2, shape = 20, fill = "transparent", colour = "#757575", size = 2.8, stroke = 0.8) +
+  annotate(geom = "text", x = 0.5, y = 2, label = paste("Intercept"), size = 3) + 
+  annotate(geom = "point", x = as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[3]), y = 0, shape = 20, fill = "transparent", colour = "#0D8A00", size = 2.8, stroke = 0.8) +
+  annotate(geom = "point", x = as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[4]), y = 0, shape = 20, fill = "transparent", colour = "#0D8A00", size = 2.8, stroke = 0.8) +
+  annotate(geom = "point", x = as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[5]), y = 0, shape = 20, fill = "transparent", colour = "#0D8A00", size = 2.8, stroke = 0.8) +
+  annotate(geom = "segment", xend = as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[3]), yend = 0, x = (as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[5]) + as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[3]))/2, y = -3, size = 0.25, colour = "#0D8A00") +
+  annotate(geom = "segment", xend = as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[4]), yend = 0, x = (as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[5]) + as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[3]))/2, y = -3, size = 0.25, colour = "#0D8A00") +
+  annotate(geom = "segment", xend = as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[5]), yend = 0, x = (as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[5]) + as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[3]))/2, y = -3, size = 0.25, colour = "#0D8A00") +
+  annotate(geom = "text", x = (as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[5]) + as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[3]))/2, y = -3.5, label = paste("Roots"), size = 3, colour = "#0D8A00") +
+  
+  annotate(geom = "point", x = as.numeric(polyroot(c(10, 30, -60, 20))[1]), y = 3.530931, shape = 20, fill = "transparent", colour = "#0023B3", size = 2.8, stroke = 0.8) +
+  annotate(geom = "text", x = (as.numeric(polyroot(c(10, 30, -60, 20))[3]) - as.numeric(polyroot(c(10, 30, -60, 20))[1]))/2, y = 5.5, label = paste("Points of Inflection"), size = 3, colour = "#0023B3") + 
+  annotate(geom = "point", x = as.numeric(polyroot(c(10, 30, -60, 20))[2]), y = 2, shape = 20, fill = "transparent", colour = "#0023B3", size = 2.8, stroke = 0.8) +
+  annotate(geom = "point", x = as.numeric(polyroot(c(10, 30, -60, 20))[3]), y = 0.4690689, shape = 20, fill = "transparent", colour = "#0023B3", size = 2.8, stroke = 0.8) +
+  annotate(geom = "segment", xend = as.numeric(polyroot(c(10, 30, -60, 20))[1]), yend = 3.530931, x = (as.numeric(polyroot(c(10, 30, -60, 20))[3]) - as.numeric(polyroot(c(10, 30, -60, 20))[1]))/2, y = 5, size = 0.25, colour = "#0023B3") +
+  annotate(geom = "segment", xend = as.numeric(polyroot(c(10, 30, -60, 20))[2]), yend = 2, x = (as.numeric(polyroot(c(10, 30, -60, 20))[3]) - as.numeric(polyroot(c(10, 30, -60, 20))[1]))/2, y = 5, size = 0.25, colour = "#0023B3") +
+  annotate(geom = "segment", xend = as.numeric(polyroot(c(10, 30, -60, 20))[3]), yend = 0.4690689, x = (as.numeric(polyroot(c(10, 30, -60, 20))[3]) - as.numeric(polyroot(c(10, 30, -60, 20))[1]))/2, y = 5, size = 0.25, colour = "#0023B3")
+  
+quintic_parts.p1
+as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[4])
+
+(as.numeric(polyroot(c(10, 30, -60, 20))[3]) - as.numeric(polyroot(c(10, 30, -60, 20))[1]))/2
+(as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[5]) - as.numeric(polyroot(c(2, -6, 5, 5, -5, 1))[3]))/3
+
+quintic_parts <- quintic_parts.p1 +
+  annotate(geom = "point", x = -1.218, y = min(as.data.frame(ggplot_build(quintic_parts.p1)$data[1])$y), shape = 20, fill = "transparent", colour = "#D60000", size = 2.8, stroke = 0.8) +
+  annotate(geom = "text", x = -1.218, y = min(as.data.frame(ggplot_build(quintic_parts.p1)$data[1])$y) - 0.75, label = paste("Global Minima"), size = 3, colour = "#D60000") + 
+  annotate(geom = "point", x = as.numeric(filter(quintic_dat_cut, y == max(y))[1]), y = max(as.data.frame(ggplot_build(quintic_parts.p1)$data[1])$y), shape = 20, fill = "transparent", colour = "#D60000", size = 2.8, stroke = 0.8) +
+  annotate(geom = "text", x = as.numeric(filter(quintic_dat_cut, y == max(y))[1])	, y = max(as.data.frame(ggplot_build(quintic_parts.p1)$data[1])$y) + 0.75, label = paste("Global Maxima"), size = 3, colour = "#D60000") 
+quintic_parts
+
+as.numeric(polyroot(c(10, 30, -60, 20))[3])^5 - (5*as.numeric(polyroot(c(10, 30, -60, 20))[3])^4)+(5*as.numeric(polyroot(c(10, 30, -60, 20))[3])^3) + (5*as.numeric(polyroot(c(10, 30, -60, 20))[3])^2) - (6*as.numeric(polyroot(c(10, 30, -60, 20))[3])) +2
+
+
+png(file = "image/quintic_parts.png", res = 100, width = 800, height = 500)
+quintic_parts
+dev.off()
+```  
+
+
 ## Functions 
 
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Functions**</p>
 
 - **Concept**
   - **Function** - A mathematical relational expression that maps each value of a set of inputs to a single output 
-- **Related concepts**
-  - **Domain of a function** - The set of possible inputs for a function 
-  - **Range of a function** - The set of possible outputs of a function 
-  - **Root of a function** - The values of x for which the output is 0 ($f(x) = 0$)
-  - **Inverse of a function** - A function that is a reversal of another function (it reverses the subject)
 - **The components of a function**
   - **Variables**
     - **Concept**
@@ -29,7 +122,42 @@
         - **In general sense**
           - The intercept defines the change on the y-axis from the x-axis in addition to the terms with variables in the function. In terms of graphical transformation, the intercept defines how the graph of the function is shifted on the y-axis from the x-axis 
         - **In terms of the intercept**
-          - The intercept defines the y value when x = 0 (or the value of $f(0)$). In terms of graphical transformation, the intercept defines the value of y in the coordinate of the graph that touches the y-axis 
+          - The intercept defines the y value when x = 0 (or the value of $f(0)$). In terms of graphical transformation, the intercept defines the value of y in the coordinate of the graph that touches the y-axis
+- **Related concepts**
+  - Domain of a function
+  - Range of a function
+  - Root(s) of a function
+  - Inverse of a function
+  - Extrema of a function
+- **Domain of a function** 
+  - The set of possible inputs for a function or the the set of possible values for the variables in the function
+- **Range of a function** 
+  - The set of possible outputs of a function
+- **Root of a function** 
+  - The values of x for which the output is 0 ($f(x) = 0$)
+  - Graphically, it is the x-coordinate of the point(s) of the graph of the function that intersect(s) with the x-axis 
+- **Intercept of a function**
+  - The values of y for which the input is 0 ($f(0)$)
+  - Graphically, it is the y-coordinate of the point of the graph of the function that intersects with the y-axis
+- **Inverse of a function** - A function that is a reversal of another function (it reverses the subject)
+- **Extrema of a function** 
+  - **Concept**
+    - The most extreme value of the output of a function (plural is extrema)
+  - **Types of Extremum**
+    - **Maximum vs Minimum**
+      - **Maximum** 
+        - The highest possible value of the output of a function 
+      - **Minimum** 
+        - The smallest possible value of the output of a function
+    - **Global vs Local**
+      - **Local extrema** 
+        - The extrema of the function within a certain range of the domain (the variables)
+      - **Global extrema** 
+        - The extrema of the function on the entire domain of the function 
+- **Visualsation**
+  - ![](image/quintic_parts.png){width=50%}
+    
+ 
 - <details><summary>**Some Useful Functions**</summary>
   - **General**
     - Exponential 
@@ -241,18 +369,7 @@ dev.off()
 - **The Quartic graph**
   - ![](image/quartic.png){width=30%}
   
-```{r quintic, include = F, echo = F}
-library(dplyr)
-library(ggplot2)
 
-png(file = "image/quintic.png", res = 100, width = 800, height = 500)
-ggplot(data = as.tibble(data.frame(x = seq(-10, 10, by = 0.01))) %>% dplyr::mutate(y = x^(5) - 5*x^(4) + 5*x^(3) + 5*x^(2) -6*x)) + geom_line(mapping = aes(x = x, y = y)) +
-  scale_y_continuous(limits = c(-5, 5)) +
-  scale_x_continuous(limits = c(-2, 4)) +
-  theme_void()
-dev.off()
-
-```  
   
   
 <p style = "margin-bottom: 0px; font-size: 20px; ">**The Quintic Function**</p>  
