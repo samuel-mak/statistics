@@ -1,7 +1,6 @@
 the-linear-regression-model
-the-pool-of-tears
+generalised-least-squares
 mathematics
 a-very-statistical-day
 derivation
-r-codes
-r_codes_normality
+multivariate-analysis

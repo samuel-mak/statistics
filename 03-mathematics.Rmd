@@ -140,7 +140,7 @@ dev.off()
 - **Concept**
   - A mathematical relational expression that has a one-to-one or many-to-one mapping (that maps one or more values of a set of inputs to a single output)
   - Mathematical relational expressions that have a one-to-many or many-to-many are not functions
-- **The components of a function**
+- **Components of a function**
   - **Variables**
     - **Concept**
       - Aka indeterminates
@@ -194,8 +194,9 @@ dev.off()
  
 - <details><summary>**Some Useful Functions**</summary>
   - **General**
-    - Exponential 
-    - Log and ln
+    - Exponential
+    - Log
+    - Sigmoid 
     - Reciprocal
   - **Polynomial Functions**
     - Linear
@@ -436,13 +437,69 @@ dev.off()
   - ![](image/quintic.png){width=30%}
   
   
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Finding the Intercept of the function**</p>
+  
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Finding the Root(s) of a function**</p>
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Finding the slope of the tangent line of a point of a function**</p>
+
+- **Methods**
+  - Drawing a triangle 
+  - Differentiation
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Finding the Extremum of a function**</p>
+
+
+
+
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Transforming functions**</p>
+  
+- 
+```{r}
+library(ggarchery)
+png(file = "image/vectors_triangle_law.png", res = 100, width = 800, height = 500)
+ggplot2::ggplot() + lims(x = c(0,20), y = c(0,20)) + 
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 15), breaks = seq(0, 20, 1)) + 
+  scale_x_continuous(expand = c(0, 0), limits = c(0, 15), breaks = seq(0, 20, 1)) +
+  annotate("segment", x = 0, xend = 20, y = 0, yend = 0) +
+  annotate("segment", x = 0, xend = 0, y = 0, yend = 20) +
+  geom_arrowsegment(aes(x = 2, xend = 10, y = 5, yend = 12), 
+                    arrow_positions = 0.55, 
+                    arrows = arrow(type = 'closed', length = unit(0.1, "inches"))) +
+  geom_arrowsegment(aes(x = 10, xend = 12, y = 12, yend = 8), 
+                    arrow_positions = 0.55, 
+                    arrows = arrow(type = 'closed', length = unit(0.1, "inches"))) +
+    geom_arrowsegment(aes(x = 2, xend = 12, y = 5, yend = 8), 
+                    arrow_positions = 0.55, 
+                    arrows = arrow(type = 'closed', length = unit(0.1, "inches"))) +
+  annotate(geom = "text", x = 1.5, y = 4.5, label = paste("A")) +
+  annotate(geom = "text", x = 10, y = 13, label = paste("B")) +
+  annotate(geom = "text", x = 12.5, y = 7.5, label = paste("C")) +
+  annotate(geom = "text", x = 6, y = 9.5, label = expression(~bold("a"))) +
+  annotate(geom = "text", x = 11.5, y = 10.5, label = expression(~bold("b"))) +
+  annotate(geom = "text", x = 7.25, y = 5.75, label = expression(~bold("c"))) +
+  theme_linedraw()
+dev.off()
+```
+
   
   
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Vectors**</p>
   
-  
-  
-  
-  
+- **Vectors**
+  - A vector has a magnitude and a direction
+  - A vector can be represented by a directed line segment in a Cartesian graph
+  - 
+- The triangle law for vector addition
+  - **Mathematics**
+    - $\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}$
+  - **Graph**
+    - ![](image/vectors_triangle_law.png){width=50%}
+    
   
   
   

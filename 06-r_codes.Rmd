@@ -1,11 +1,5 @@
-# R codes
+# Multivariate Analysis 
 
-### Normality{#r_codes_normality}
-<pre style=" margin-top: 10px"><code> 
-ggplot2::ggplot(data = iris, aes(sample = Sepal.Length)) + <br>
- &nbsp&nbsp qqplotr::stat_qq_point(size = 1, alpha = 0.6) + <br>
- &nbsp&nbsp qqplotr::stat_qq_line(colour = "#008898") + <br>
- &nbsp&nbsp qqplotr::stat_qq_band(fill = "#008898", alpha = 0.3) + <br>
- &nbsp&nbsp labs(x = "Theoretical Quantile", y = "Observed Quantile") +<br>
- &nbsp&nbsp theme_minimal()<br>
-          </code></pre>
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**MANOVA**</p>
+

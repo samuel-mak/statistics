@@ -1,2 +1,17 @@
-# The pool of tears
+# Generalised Least Squares 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Slope Estimation**</p>
+
+- **Description**
+- **Mathematics**
+- **Mathematics (Matrix)**
+  - $\hat{\mathbf{\beta}} = (\mathbf{X'V^{-1}X})^{-1}\mathbf{X'V^{-1}Y}$
+    ***Where***
+      - $(\mathbf{X'V^{-1}X})^{-1}$ - The sampling error variance-covariance 
+      
+      
+      
+      
+      
+
+      
