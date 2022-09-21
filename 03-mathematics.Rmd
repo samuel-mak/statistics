@@ -458,9 +458,11 @@ dev.off()
 
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Transforming functions**</p>
   
-- 
+
 ```{r}
+library(ggplot2)
 library(ggarchery)
+library(latex2exp)
 png(file = "image/vectors_triangle_law.png", res = 100, width = 800, height = 500)
 ggplot2::ggplot() + lims(x = c(0,20), y = c(0,20)) + 
   scale_y_continuous(expand = c(0, 0), limits = c(0, 15), breaks = seq(0, 20, 1)) + 
@@ -475,15 +477,56 @@ ggplot2::ggplot() + lims(x = c(0,20), y = c(0,20)) +
                     arrows = arrow(type = 'closed', length = unit(0.1, "inches"))) +
     geom_arrowsegment(aes(x = 2, xend = 12, y = 5, yend = 8), 
                     arrow_positions = 0.55, 
-                    arrows = arrow(type = 'closed', length = unit(0.1, "inches"))) +
+                    arrows = arrow(type = 'closed', length = unit(0.1, "inches")), arrow_fills = "red", colour = "red") +
   annotate(geom = "text", x = 1.5, y = 4.5, label = paste("A")) +
   annotate(geom = "text", x = 10, y = 13, label = paste("B")) +
   annotate(geom = "text", x = 12.5, y = 7.5, label = paste("C")) +
   annotate(geom = "text", x = 6, y = 9.5, label = expression(~bold("a"))) +
   annotate(geom = "text", x = 11.5, y = 10.5, label = expression(~bold("b"))) +
-  annotate(geom = "text", x = 7.25, y = 5.75, label = expression(~bold("c"))) +
+  annotate(geom = "text", x = 7.25, y = 5.75, label = expression(~bold("c")), colour = "red") +
+  annotate(geom = "text", x = 9, y = 4, label = expression(~bold(a)~"+"~bold(b)~"="~bold(c))) +
   theme_linedraw()
 dev.off()
+
+#Components of a vector 
+png(file = "image/vector_components.png", res = 100, width = 800, height = 500)
+ggplot2::ggplot()  +
+  scale_x_continuous(limits = c(0, 20), breaks = seq(0, 20, 1), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 8), breaks = seq(0, 10, 1), expand = c(0, 0)) +
+  geom_arrowsegment(aes(x = 5, y = 3, xend = 15, yend = 6), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches"))) +
+  geom_arrowsegment(aes(x = 5, y = 3, xend = 15, yend = 3), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches"))) +
+  geom_arrowsegment(aes(x = 5, y = 3, xend = 5, yend = 6), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches"))) +
+  annotate(geom = "text", x = 10.25, y = 5, label = expression(~bold(a))) +
+  annotate(geom = "text", x = 4.5, y = 4.5, label = expression(~bold(c[y]))) +
+  annotate(geom = "text", x = 10.25, y = 2.65, label = expression(~bold(c[x]))) +
+  annotate(geom = "text", x = 10.25, y = 2.65 -0.5, label = expression("vector"~bold(c[x])~"is the x component of vector"~bold(a)), size = 4) +
+  annotate(geom = "text", x = 5, y = 6.25, label = expression("vector"~bold(c[y])~"is the y component of vector"~bold(a)), size = 4, angle = 0) +
+  theme_linedraw()
+
+dev.off()
+
+#Polygon law
+ggplot2::ggplot()  +
+  scale_x_continuous(limits = c(0, 20), breaks = seq(0, 20, 1), expand = c(0, 0)) +
+  scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, 1), expand = c(0, 0)) +
+  geom_arrowsegment(aes(x = 3, y = 3, xend = 6, yend = 9), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches"))) +
+    geom_arrowsegment(aes(x = 6, y = 9, xend = 12, yend = 8), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches"))) +
+    geom_arrowsegment(aes(x = 12, y = 8, xend = 15, yend = 4), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches"))) +
+    geom_arrowsegment(aes(x = 3, y = 3, xend = 15, yend = 4), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches")), arrow_fills = "red", colour = "red") +
+    geom_arrowsegment(aes(x = 3, y = 3, xend = 12, yend = 8), arrow_positions = 0.55, arrows = arrow(type = "closed", length = unit(0.1, "inches")), arrow_fills = "#717171",  colour = "#717171") +
+  annotate(geom = "text", x = 4, y = 6.25, label = expression(~bold(a))) + 
+  annotate(geom = "text", x = 9.25, y = 9, label = expression(~bold(b))) +
+  annotate(geom = "text", x = 14, y = 6, label = expression(~bold(c))) +
+  annotate(geom = "text", x = 9.5, y = 3, label = expression(~bold(d))) +
+  annotate(geom = "text", x = 7.5, y = 6, label = expression(~bold(k))) +
+  annotate(geom = "text", x = 2.5, y = 2.5, label = paste("A")) +
+  annotate(geom = "text", x = 6, y = 9.5, label = paste("B")) +
+  annotate(geom = "text", x = 12.5, y = 8.5, label = paste("C")) +
+  annotate(geom = "text", x = 2.5, y = 2.5, label = paste("A")) +
+  annotate(geom = "text", x = 15.5, y = 3.5, label = paste("D")) +
+  theme_linedraw()
+  
+
 ```
 
   
@@ -491,17 +534,95 @@ dev.off()
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Vectors**</p>
   
 - **Vectors**
+  - A vector is a quantity that quantifies a movement (in other words, it is a mathematical representation of a movement)
   - A vector has a magnitude and a direction
-  - A vector can be represented by a directed line segment in a Cartesian graph
+  - A vector can be represented by a directed line segment
+- **Modulus of a vector** 
+  - **Concept**
+    - The magnitude of a vector 
+    - The modulus of vector $\mathbf{v}$ is usually denoted as $|\mathbf{v}|$
+    - The modulus of a vector is the length of that vector 
+  - **Finding the length/modulus of a vector**
+    - **Concept**
+      - The length of a vector with more than 1 dimension can be found by using Pythagoras' theorem 
+    - **Examples**
+      - **Finding the length of a 2d vector**
+        - Given that $\mathbf{v}= \begin{pmatrix} x \\ y \end{pmatrix}$
+        - $|\mathbf{v}| = \sqrt{x^{2} + y^{2}}$
+      - **Finding the length of a 3d vector**
+        - Given that $\mathbf{v}= \begin{pmatrix} x \\ y \\ z \end{pmatrix}$
+        - $|\mathbf{v}| = \sqrt{x^{2} + y^{2} + z^{2}}$
+- **Components of a vector** 
+  - **Concept**
+    - The vectors that are parallel to the coordinate axes when the vector is drawn on a Cartesian grid that make up the vector of interest 
+    - Components of a vector are linearly independent to each other 
+    - They are basically the $x$, $y$, and $z$ in the vector $\mathbf{v} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$
+  - **Visualisation**
+    - ![](image/vector_components.png){width=50%}
+- **Zero vector**
+  - **Concept**
+    - A vector that has zero magnitude and no direction
+    - Denoted as $\mathbf{0}$
+- **Unit vector**
+  - **Concept**
+    - A vector that has a magnitude of 1
+    - A unit vector is denoted by a hat on the vector (e.g. $\hat{\mathbf{v}}$)
+    
+    
+    
+**Resultant vector**
+  - A vector that summaries a set of vectors
+  - It is the vector that results from multiple vectors 
   - 
-- The triangle law for vector addition
+- **The triangle law for vector addition**
+  - **Concept**
+    - The resultant vector of 2 vectors is the vector that would form a triangle when it is linked up with the two vectors that have been successively put together 
   - **Mathematics**
     - $\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}$
+      - ***Where***
+        - $\overrightarrow{AC}$ - The resultant vector 
   - **Graph**
     - ![](image/vectors_triangle_law.png){width=50%}
     
+- **The polygon law of vector addition**
+  - **Concept**
+    - The resultant vector of 3 or more vectors is a vector that would form a closed polygon when it is linked up with the vectors that have been successively put together 
+    - You are basically applying the triangle law multiple times in succession 
+  - **Mathematics**
+    - $\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CD}= \overrightarrow{AD}$
+    
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Scalars**</p> 
   
+- **Scalar**
+  - **Concept**
+    - Any numbers that are used to multiply another thing (e.g. variables or vectors)
+    - It is called scalar because it is used to multiply or "scale' other things (e.g. variables or vectors)
+    - It can also refer to any quantities that only has a magnitude or can be fully described using a magnitude (e.g. speed, mass)
+    
+- **Unit vectors parallel to the coordinate axes**
+  - **Concept**
+    - Unit vectors that are parallel to the coordinate axes
+    - The vector $\mathbf{i} = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}$ is a unit vector that is parallel to the x-axis 
+    - The vector $\mathbf{j} = \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix}$ is a unit vector and is parallel to the y-axis
+    - The vector $\mathbf{k} = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}$ is a unit vector and is parallel to the z-axis 
+  - A vector $\mathbf{v} = \begin{pmatrix} x \\ y \end{pmatrix}$ dan be written as $x\mathbf{i} + y\mathbf{j}$
+
+- **Finding a unit vector parallel to a vector of interest**
+  - **Concept**
+    - A unit vector parallel to a vector of interest is the vector per the length of the vector 
+    - Basically, you are scaling that vector such that it has a length of 1 (this is done by standardising the original vector per unit)
+  - **Mathematics**
+    - A unit vector parallel to vector $\mathbf{v}$ is $\frac{\mathbf{v}}{\mathbf{|v|}}$
+  - **Example**
+    - Consider a 2D vector $\mathbf{v} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}$
+    - The unit vector parallel to vector $\mathbf{v}$ is $\frac{\mathbf{v}}{\mathbf{|v|}} = \frac{\begin{pmatrix} 4 \\ 3 \end{pmatrix}}{5} = \begin{pmatrix} \frac{4}{5} \\ \frac{3}{5} \end{pmatrix}$
   
+
+- **Other concepts**
+  - Two vectors are equal if have the same magnitude and direction
+  - One vector is the negative of another vector if they have the same magnitude but opposite direction
+  - One vector is a scalar multiple of another vector if they have the same direction but different magnitude (they are scaled versions of each other)
   
   
   
