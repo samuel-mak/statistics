@@ -615,6 +615,7 @@ dev.off()
     - A unit vector is denoted by a hat on the vector (e.g. $\hat{\mathbf{v}}$)
 - **Position vectors**
   - **Concept**
+    - Vectors that stem from the origin 
     - Vectors that represent the position of a point in relation to the  origin $O$
     - A vector that represent the position of a point $P$ in relation to the origin $O$ would be denoted as $\overrightarrow{OP}$
     
@@ -624,12 +625,12 @@ library(plotly)
 
 
 vectors_plotly <- plot_ly() %>% add_trace(data = data.frame(x = c(0, 15), y = c(0, 20), z = c(0, 15)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "transparent")) %>% 
-  add_trace(data = data.frame(x = c(5, 12), y = c(5, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#930000")) %>% 
-  add_trace(data = data.frame(x = c(5, 5), y = c(5, 10), z = c(8, 8)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#001093")) %>%
-  add_trace(data = data.frame(x = c(5, 12), y = c(10, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#000000")) %>%
-  add_trace(data = data.frame(x = c(12, 12), y = c(5, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#088800")) %>% 
-  add_trace(data = data.frame(x = c(12, 5), y = c(5, 5), z = c(8, 8)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#B8B200")) %>% 
-  add_trace(data = data.frame(x = c(5, 12), y = c(10, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'markers', marker = list(color = "#000000", size = 5))
+  add_trace(data = data.frame(x = c(5, 12), y = c(5, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#930000", width = 5)) %>% 
+  add_trace(data = data.frame(x = c(5, 5), y = c(5, 10), z = c(8, 8)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#0023FF",  width = 5)) %>%
+  add_trace(data = data.frame(x = c(5, 12), y = c(10, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#000000",  width = 5)) %>%
+  add_trace(data = data.frame(x = c(12, 12), y = c(5, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#088800",  width = 5)) %>% 
+  add_trace(data = data.frame(x = c(12, 5), y = c(5, 5), z = c(8, 8)), x = ~x, y = ~z, z = ~y, mode = 'lines', line = list(color = "#B8B200",  width = 5)) %>% 
+  add_trace(data = data.frame(x = c(5, 12), y = c(10, 5), z = c(8, 5)), x = ~x, y = ~z, z = ~y, mode = 'markers', marker = list(color = "#000000", size = 5)) %>% layout(showlegend = F)
 
 
   #add_trace(
@@ -660,14 +661,14 @@ vectors_plotly <- plot_ly() %>% add_trace(data = data.frame(x = c(0, 15), y = c(
 library(htmlwidgets)
 
 saveWidget(vectors_plotly, "vectors_plotly.html", selfcontained = F, libdir = "lib")
-zip("vectors_plotly.zip", c("vectors_plotly.html", "lib"))
 
-htmltools::tags$iframe(
-  src = "vectors_plotly.html", 
-  scrolling = "no", 
-  seamless = "seamless",
-  frameBorder = "0"
-)
+
+#htmltools::tags$iframe(
+  #src = "widgets/vectors_plotly.html", 
+  #scrolling = "no", 
+  #seamless = "seamless",
+  #frameBorder = "0"
+#)
 ```
 
     
@@ -731,13 +732,63 @@ htmltools::tags$iframe(
   - **Example**
     - Consider a 2D vector $\mathbf{v} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}$
     - The unit vector parallel to vector $\mathbf{v}$ is $\frac{\mathbf{v}}{\mathbf{|v|}} = \frac{\begin{pmatrix} 4 \\ 3 \end{pmatrix}}{5} = \begin{pmatrix} \frac{4}{5} \\ \frac{3}{5} \end{pmatrix}$
+    
+    
+- **Distance between 2 points**
+  - **Distance between 2 3-D points**
+    - **Mathematics** 
+      - $d_{1,2} = \sqrt{(x_{1}-x_{2})^{2}+(y_{1}-y_{2})^{2}+(z_{1}-z_{2})^{2}}$
+    - **Explanation**
+      - <iframe src="vectors_plotly.html" title="description" style="width:60em; height:25em; border: inherit; border-radius:10px;"></iframe>
+      - Imagine that we need to find the distance between the 2 black dots (or the black vector)
+      - To find the distance of the black vector, you need to first find the length of the blue and red vectors
+      - Finding the length of the blue vector
+        - Since the blue vector is parallel to the y-axis, the length of the blue vector can be found by the difference between the y-coordinates of the black dots 
+        - $length~of~blue~vector = y_{1} - y_{2}$
+      - Finding the length of the red vector 
+        - Since the red vector is not parallel to any of the axes, to find the length of the red vector, we need to first find the length of the yellow and green vectors so that the length of the red vector can be found by using the Pythagoras' theorem 
+        - Finding the length of the yellow vector 
+          - Since the yellow vector is parallel to the x-axis, it can be found by the difference between the x-coordinates of the black dots
+          - $length~of~yellow~vector = x_{1} - x_{2}$
+        - Finding the length of the green vector 
+          - Since the green vector is parallel to the z-axis, it can be found by the difference between the z-coordinates of the black dots
+          - $length~of~green~vector = z_{1} - z_{2}$
+        - Now that we know the length of the yellow and green vectors, we can apply the Pythagoras' theorem to find the length of the red vector
+          - $length~of~red~vector = \sqrt{(length~of~yellow~line)^2+(length~of~green~vector)^2}$
+          - $length~of~red~vector = \sqrt{(x_{1} - x_{2})^2+(z_{1} - z_{2})^2}$
+      - Now that we know the length of the red vector and the blue vector we found earlier, we can apply the Pythagoras' theorem to find the black vector
+        - $length~of~black~vector = \sqrt{(length~of~red~line)^2+(length~of~blue~vector)^2}$
+        - $length~of~black~vector = \sqrt{(\sqrt{(x_{1} - x_{2})^2+(z_{1} - z_{2})^2})^2+(y_{1} - y_{2})^2}$
+        - $length~of~black~vector = \sqrt{(x_{1} - x_{2})^2+(z_{1} - z_{2})^2+(y_{1} - y_{2})^2}$
+        - $length~of~black~vector = \sqrt{(x_{1} - x_{2})^2+(y_{1} - y_{2})^2+(z_{1} - z_{2})^2}$
    
 
 - **Other concepts**
   - Two vectors are equal if have the same magnitude and direction
   - One vector is the negative of another vector if they have the same magnitude but opposite direction
   - One vector is a scalar multiple of another vector if they have the same direction but different magnitude (they are scaled versions of each other)
-  - `r vectors_plotly`
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   

@@ -52,13 +52,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.10.0/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
 
 
 
@@ -649,7 +642,7 @@ Clifton Suspension Bridge (Positive quadratic)
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                 2</code></pre>
+##                21</code></pre>
 <pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
@@ -660,7 +653,7 @@ Clifton Suspension Bridge (Positive quadratic)
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                 2</code></pre>
+##                21</code></pre>
 <pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
@@ -671,20 +664,7 @@ Clifton Suspension Bridge (Positive quadratic)
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                 2</code></pre>
-<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
-<pre><code>## quartz_off_screen 
-##                 2</code></pre>
+##                21</code></pre>
 <pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
@@ -697,7 +677,20 @@ Clifton Suspension Bridge (Positive quadratic)
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                 2</code></pre>
+##                21</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
+<pre><code>## quartz_off_screen 
+##                21</code></pre>
 <p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Vectors</strong>
 </p>
@@ -770,6 +763,7 @@ Clifton Suspension Bridge (Positive quadratic)
 <ul>
 <li><strong>Concept</strong>
 <ul>
+<li>Vectors that stem from the origin</li>
 <li>Vectors that represent the position of a point in relation to the origin <span class="math inline">\(O\)</span></li>
 <li>A vector that represent the position of a point <span class="math inline">\(P\)</span> in relation to the origin <span class="math inline">\(O\)</span> would be denoted as <span class="math inline">\(\overrightarrow{OP}\)</span></li>
 </ul></li>
@@ -796,7 +790,6 @@ Clifton Suspension Bridge (Positive quadratic)
 ## No trace type specified:
 ##   Based on info supplied, a &#39;scatter3d&#39; trace seems appropriate.
 ##   Read more about this trace type -&gt; https://plotly.com/r/reference/#scatter3d</code></pre>
-<iframe src="vectors_plotly.html" scrolling="no" seamless="seamless" frameBorder="0"></iframe>
 <p><strong>Resultant vector</strong>
 - A vector that summaries a set of vectors
 - It is the vector that is the combined result of multiple vectors
@@ -893,12 +886,59 @@ Clifton Suspension Bridge (Positive quadratic)
 <li>The unit vector parallel to vector <span class="math inline">\(\mathbf{v}\)</span> is <span class="math inline">\(\frac{\mathbf{v}}{\mathbf{|v|}} = \frac{\begin{pmatrix} 4 \\ 3 \end{pmatrix}}{5} = \begin{pmatrix} \frac{4}{5} \\ \frac{3}{5} \end{pmatrix}\)</span></li>
 </ul></li>
 </ul></li>
+<li><strong>Distance between 2 points</strong>
+<ul>
+<li><strong>Distance between 2 3-D points</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(d_{1,2} = \sqrt{(x_{1}-x_{2})^{2}+(y_{1}-y_{2})^{2}+(z_{1}-z_{2})^{2}}\)</span></li>
+</ul></li>
+<li><strong>Explanation</strong>
+<ul>
+<li><iframe src="vectors_plotly.html" title="description" style="width:60em; height:25em; border: inherit; border-radius:10px;">
+</iframe></li>
+<li>Imagine that we need to find the distance between the 2 black dots (or the black vector)</li>
+<li>To find the distance of the black vector, you need to first find the length of the blue and red vectors</li>
+<li>Finding the length of the blue vector
+<ul>
+<li>Since the blue vector is parallel to the y-axis, the length of the blue vector can be found by the difference between the y-coordinates of the black dots</li>
+<li><span class="math inline">\(length~of~blue~vector = y_{1} - y_{2}\)</span></li>
+</ul></li>
+<li>Finding the length of the red vector
+<ul>
+<li>Since the red vector is not parallel to any of the axes, to find the length of the red vector, we need to first find the length of the yellow and green vectors so that the length of the red vector can be found by using the Pythagoras’ theorem</li>
+<li>Finding the length of the yellow vector
+<ul>
+<li>Since the yellow vector is parallel to the x-axis, it can be found by the difference between the x-coordinates of the black dots</li>
+<li><span class="math inline">\(length~of~yellow~vector = x_{1} - x_{2}\)</span></li>
+</ul></li>
+<li>Finding the length of the green vector
+<ul>
+<li>Since the green vector is parallel to the z-axis, it can be found by the difference between the z-coordinates of the black dots</li>
+<li><span class="math inline">\(length~of~green~vector = z_{1} - z_{2}\)</span></li>
+</ul></li>
+<li>Now that we know the length of the yellow and green vectors, we can apply the Pythagoras’ theorem to find the length of the red vector
+<ul>
+<li><span class="math inline">\(length~of~red~vector = \sqrt{(length~of~yellow~line)^2+(length~of~green~vector)^2}\)</span></li>
+<li><span class="math inline">\(length~of~red~vector = \sqrt{(x_{1} - x_{2})^2+(z_{1} - z_{2})^2}\)</span></li>
+</ul></li>
+</ul></li>
+<li>Now that we know the length of the red vector and the blue vector we found earlier, we can apply the Pythagoras’ theorem to find the black vector
+<ul>
+<li><span class="math inline">\(length~of~black~vector = \sqrt{(length~of~red~line)^2+(length~of~blue~vector)^2}\)</span></li>
+<li><span class="math inline">\(length~of~black~vector = \sqrt{(\sqrt{(x_{1} - x_{2})^2+(z_{1} - z_{2})^2})^2+(y_{1} - y_{2})^2}\)</span></li>
+<li><span class="math inline">\(length~of~black~vector = \sqrt{(x_{1} - x_{2})^2+(z_{1} - z_{2})^2+(y_{1} - y_{2})^2}\)</span></li>
+<li><span class="math inline">\(length~of~black~vector = \sqrt{(x_{1} - x_{2})^2+(y_{1} - y_{2})^2+(z_{1} - z_{2})^2}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li><strong>Other concepts</strong>
 <ul>
 <li>Two vectors are equal if have the same magnitude and direction</li>
 <li>One vector is the negative of another vector if they have the same magnitude but opposite direction</li>
 <li>One vector is a scalar multiple of another vector if they have the same direction but different magnitude (they are scaled versions of each other)</li>
-<li><div id="htmlwidget-22cd304565e40ac56be8" style="width:100%;height:400px;" class="plotly html-widget"></div> <script type="application/json" data-for="htmlwidget-22cd304565e40ac56be8">{"x":{"visdat":{"58625d79446":["function () ","plotlyVisDat"],"5866c479312":["function () ","data"],"5864f08ba47":["function () ","data"],"58645fdb3da":["function () ","data"],"586132ad11c":["function () ","data"],"58660068f18":["function () ","data"],"5864e9ca1e8":["function () ","data"],"586d49aeaa":["function () ","data"]},"cur_data":"586d49aeaa","attrs":{"5866c479312":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"mode":"lines","line":{"color":"transparent"},"inherit":true},"5864f08ba47":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"mode":"lines","line":{"color":"#930000"},"inherit":true},"58645fdb3da":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"mode":"lines","line":{"color":"#001093"},"inherit":true},"586132ad11c":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"mode":"lines","line":{"color":"#000000"},"inherit":true},"58660068f18":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"mode":"lines","line":{"color":"#088800"},"inherit":true},"5864e9ca1e8":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"mode":"lines","line":{"color":"#B8B200"},"inherit":true},"586d49aeaa":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"z":{},"mode":"markers","marker":{"color":"#000000","size":5},"inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"scene":{"xaxis":{"title":"x"},"yaxis":{"title":"z"},"zaxis":{"title":"y"}},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[0,15],"y":[0,15],"z":[0,20],"mode":"lines","line":{"color":"transparent"},"type":"scatter3d","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"frame":null},{"x":[5,12],"y":[8,5],"z":[5,5],"mode":"lines","line":{"color":"#930000"},"type":"scatter3d","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"frame":null},{"x":[5,5],"y":[8,8],"z":[5,10],"mode":"lines","line":{"color":"#001093"},"type":"scatter3d","marker":{"color":"rgba(44,160,44,1)","line":{"color":"rgba(44,160,44,1)"}},"error_y":{"color":"rgba(44,160,44,1)"},"error_x":{"color":"rgba(44,160,44,1)"},"frame":null},{"x":[5,12],"y":[8,5],"z":[10,5],"mode":"lines","line":{"color":"#000000"},"type":"scatter3d","marker":{"color":"rgba(214,39,40,1)","line":{"color":"rgba(214,39,40,1)"}},"error_y":{"color":"rgba(214,39,40,1)"},"error_x":{"color":"rgba(214,39,40,1)"},"frame":null},{"x":[12,12],"y":[8,5],"z":[5,5],"mode":"lines","line":{"color":"#088800"},"type":"scatter3d","marker":{"color":"rgba(148,103,189,1)","line":{"color":"rgba(148,103,189,1)"}},"error_y":{"color":"rgba(148,103,189,1)"},"error_x":{"color":"rgba(148,103,189,1)"},"frame":null},{"x":[12,5],"y":[8,8],"z":[5,5],"mode":"lines","line":{"color":"#B8B200"},"type":"scatter3d","marker":{"color":"rgba(140,86,75,1)","line":{"color":"rgba(140,86,75,1)"}},"error_y":{"color":"rgba(140,86,75,1)"},"error_x":{"color":"rgba(140,86,75,1)"},"frame":null},{"x":[5,12],"y":[8,5],"z":[10,5],"mode":"markers","marker":{"color":"#000000","size":5,"line":{"color":"rgba(227,119,194,1)"}},"type":"scatter3d","error_y":{"color":"rgba(227,119,194,1)"},"error_x":{"color":"rgba(227,119,194,1)"},"line":{"color":"rgba(227,119,194,1)"},"frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script></li>
 </ul></li>
 </ul>
 
