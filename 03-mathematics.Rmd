@@ -767,11 +767,27 @@ saveWidget(vectors_plotly, "vectors_plotly.html", selfcontained = F, libdir = "l
   - Two vectors are equal if have the same magnitude and direction
   - One vector is the negative of another vector if they have the same magnitude but opposite direction
   - One vector is a scalar multiple of another vector if they have the same direction but different magnitude (they are scaled versions of each other)
-  
+  - Collinear points are points that line on the same straight line 
   
 
-  
-  
+- **Dot product of 2 vectors**
+  - **Concept**
+    - The dot product basically quantifies the extent to which 2 vectors interact with each other (or how much each of the two vectors reinforce each other in their magnitude)
+    - When the vectors are orthogonal to each other, in other words, they don't interact with each other, then they have a dot product of $0$ (because when 2 vectors are orthogonal, $\theta = 90$, and $\cos{90} = 0$, therefore, the dot product is $0$ )
+    - When 2 vectors are parallel to each other, in other words, they full interact with each other, then they have a dot product of $|\mathbf{a}||\mathbf{b}|$
+  - **Mathematics**
+    - $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos{\theta}$
+  - **Alternative thinking**
+    - $|\mathbf{a}||\mathbf{b}|$ is the maximum possible amount of interaction between the 2 vectors
+    - $\cos{\theta}$ is like a quantity that quantifies how much the 2 vectors project to the same direction as each other. This quantity ranges from -1 to +1. +1 means that the 2 vectors are fully in the same direction. 
+      - When the 2 vectors are entirely in the same direction, then $\theta = 0$ and $\cos{90} = 1$
+      - When the 2 vectors are entirely in the opposite direction, then $\theta = 180$ and $\cos{180} = -1$
+      - When the 2 vectors are orthogonal to each other, then $\theta = 90$ and $\cos{90} = 0$ 
+    - $|\mathbf{a}||\mathbf{b}| \cos{\theta}$ is like scaling $|\mathbf{a}||\mathbf{b}|$ by the factor $\cos{\theta}$ such that the result reflects the amount of interaction between the 2 vectors
+      - When $\cos{90} = 1$, then you get the maximum possible amount of interaction 
+      - When $\cos{180} = -1$, then you get maximum possible amount of interaction 
+      - When $\cos{0} = 0$, then you 0 percent of that interaction 
+
   
   
   
