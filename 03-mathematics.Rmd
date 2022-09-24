@@ -787,6 +787,22 @@ saveWidget(vectors_plotly, "vectors_plotly.html", selfcontained = F, libdir = "l
       - When $\cos{90} = 1$, then you get the maximum possible amount of interaction 
       - When $\cos{180} = -1$, then you get maximum possible amount of interaction 
       - When $\cos{0} = 0$, then you 0 percent of that interaction 
+      
+      
+```{r}
+library(ggplot2)
+library(tidyverse)
+
+
+
+ggplot2::ggplot() + 
+  scale_x_continuous(limits = c(0, 16), breaks = seq(0, 22, 1)) +
+  scale_y_continuous(limits = c(0, 21), breaks = seq(0, 22, 1)) +
+  annotate(geom = "segment", x = 2, y = 4, xend = 6, yend = 20) +
+  annotate(geom = "segment", x = 2, y = 4, xend = 11, yend = 7) +
+  annotate(geom = "segment", x = 11, y = 7, xend = 55/17, yend = 152/17) +coord_fixed()
+```
+
 
   
   
