@@ -877,13 +877,13 @@ image_write(image_crop(image_read("image/dot_product.3.png"), "450x500+180"), pa
       
 
 
-```{r}
+```{r include = F, echo = F}
 tbdat <- read_csv("https://drmankin.github.io/disc_stats/cogstyles_clean.csv") %>% dplyr::mutate(common_factor = "sample", common_factor = as.factor(common_factor))
 tbdat.2 <- tbdat %>% dplyr::mutate(gen_cat = ifelse(gender_id >= 50, "f", "m"), gen_cat = as.factor(gen_cat)) %>% select(scsq_technical_spatial, scsq_imagery_ability,scsq_lang_words,  scsq_global_bias, scsq_systematising, scsq_organisation, cais_score, eq_score, loc_internal, loc_others, loc_chance, rat_score, tas_identifying,tas_describing, tas_ext_thinking , common_factor, gen_cat)
 
 ```
 
-```{r}
+```{r include = F, echo = F}
 ccc_data <- readxl::read_xlsx("./data/ccc_data.xlsx") %>% dplyr::mutate(sample = "sample", sample = as.factor(sample), Gender = as.factor(Gender)) %>% filter(Gender != 2)
 
 ggplot2::ggplot(data = ccc_data, mapping = aes(x = Gender, y = ExperimentDuration)) + geom_violin()
