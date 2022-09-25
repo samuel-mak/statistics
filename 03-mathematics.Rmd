@@ -769,7 +769,76 @@ saveWidget(vectors_plotly, "vectors_plotly.html", selfcontained = F, libdir = "l
   - One vector is a scalar multiple of another vector if they have the same direction but different magnitude (they are scaled versions of each other)
   - Collinear points are points that line on the same straight line 
   
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(magick)
+library(latex2exp)
 
+
+png(file = "image/dot_product.1.png", res = 100, width = 800, height = 500)
+ggplot2::ggplot() + 
+  scale_x_continuous(limits = c(0, 16), breaks = seq(0, 22, 1)) +
+  scale_y_continuous(limits = c(0, 20), breaks = seq(0, 22, 1)) +
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 6, yend = 20), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "black",  colour = "black", size = 0.6) + 
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 14, yend = 8), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "black",  colour = "black", size = 0.6) +
+  annotate(geom = "text", x = 3, y = 5, label = TeX("$\\theta{}$")) +
+  annotate(geom = "text", x = 3, y = 12, label= TeX("$\\textbf{a}$")) +
+  annotate(geom = "text", x = 8, y = 5, label= TeX("$\\textbf{b}$")) +
+  coord_fixed() + theme_minimal()
+dev.off()
+  
+png(file = "image/dot_product.2.png", res = 100, width = 800, height = 500)
+#The red vector is a vector that represents how much vector a is moving in the direction of vector b
+ggplot2::ggplot() + 
+  scale_x_continuous(limits = c(0, 16), breaks = seq(0, 22, 1)) +
+  scale_y_continuous(limits = c(0, 20), breaks = seq(0, 22, 1)) +
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 6, yend = 20), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "black",  colour = "black", size = 0.6) + 
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 14, yend = 8), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "black",  colour = "black", size = 0.6) +
+  annotate(geom = "segment", x = 6, y = 20, xend = 10.4, yend = 6.8, color = "black", size = 0.35, linetype = "dashed") +
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 10.4, yend = 6.8), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "red",  colour = "red", size = 0.35) +
+  annotate(geom = "text", x = 3, y = 5, label = TeX("$\\theta{}$")) +
+  annotate(geom = "text", x = 3, y = 12, label= TeX("$\\textbf{a}$")) +
+  annotate(geom = "text", x = 8, y = 5, label= TeX("$\\textbf{b}$")) +
+  annotate(geom = "text", x = 9, y = 7.5, label = TeX("90$^\\circ$")) +
+  annotate(geom = "text", x = 31/5, y = 6, label = expression(bold(a)[bold(b)]), color = "red") +
+  coord_fixed() + theme_minimal() 
+dev.off()
+#Using basic trigonometry, the red vector is |a|Cos theta 
+#If we multiply the red vector with b, then it is the interaction between a and b in the direction of b
+
+
+png(file = "image/dot_product.3.png", res = 100, width = 800, height = 500)
+#The blue vector is the vector that represents how much vector b is moving in the direction of vector a
+ggplot2::ggplot() + 
+  scale_x_continuous(limits = c(0, 16), breaks = seq(0, 22, 1)) +
+  scale_y_continuous(limits = c(0, 20), breaks = seq(0, 22, 1)) +
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 6, yend = 20), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "black",  colour = "black", size = 0.6) + 
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 14, yend = 8), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "black",  colour = "black", size = 0.6) +
+  annotate(geom = "segment", x = 14, y = 8, xend = 62/17, yend = 180/17, color = "black", size = 0.35, linetype = "dashed") +
+  geom_arrowsegment(aes(x = 2, y = 4, xend = 62/17, yend = 180/17), arrow_positions = 1, arrows = arrow(type = "closed", length = unit(0.12, "inches")),  arrow_fills = "blue",  colour = "blue", size = 0.35) +
+  annotate(geom = "text", x = 3, y = 5, label = TeX("$\\theta{}$")) +
+  annotate(geom = "text", x = 3, y = 12, label= TeX("$\\textbf{a}$")) +
+  annotate(geom = "text", x = 8, y = 5, label= TeX("$\\textbf{b}$")) +
+  annotate(geom = "text", x = 4.5, y = 9.25, label = TeX("90$^\\circ$")) +
+  annotate(geom = "text", x = 3.5, y = 124/17, label = expression(bold(b)[bold(a)]), color = "blue") +
+  coord_fixed() + theme_minimal() 
+dev.off()
+#Using basic trigonometry, the blue vector is |b|Cos
+#If we multiply the blue vector with a, then it is the interaction between a and b in the direction of b
+#|b|Cos x |a|
+
+#We see that their interaction with respect to either a or b is the same, this is duality 
+
+#But because of duality 
+
+
+
+
+image_write(image_crop(image_read("image/dot_product.1.png"), "450x500+180"), path = "image/dot_product_magick.1.png", format = "png")
+image_write(image_crop(image_read("image/dot_product.2.png"), "450x500+180"), path = "image/dot_product_magick.2.png", format = "png")
+image_write(image_crop(image_read("image/dot_product.3.png"), "450x500+180"), path = "image/dot_product_magick.3.png", format = "png")
+```
 - **Dot product of 2 vectors**
   - **Concept**
     - The dot product basically quantifies the extent to which 2 vectors interact with each other (or how much each of the two vectors reinforce each other in their magnitude)
@@ -777,6 +846,23 @@ saveWidget(vectors_plotly, "vectors_plotly.html", selfcontained = F, libdir = "l
     - When 2 vectors are parallel to each other, in other words, they full interact with each other, then they have a dot product of $|\mathbf{a}||\mathbf{b}|$
   - **Mathematics**
     - $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos{\theta}$
+  - **Explanation**
+    - Given 2 2-D vectors, vector $\mathbf{a}$ and vector $\mathbf{b}$
+      - ![](image/dot_product.1.png){width=50%}
+    - **The combined magnitude of** $\mathbf{a}$ **and** $\mathbf{b}$ **in the direction of** $\mathbf{b}$
+      - The magnitude of $\mathbf{a}$ in the direction of $\mathbf{b}$ ($\mathbf{a}_{\mathbf{b}}$) can be found using the ratio of $\cos{}$
+        - $\mathbf{a}_{\mathbf{b}} = |\mathbf{a}|\cos{\theta}$
+        - ![](image/dot_product.2.png){width=50%}
+      - The combined magnitude of $\mathbf{a}$ and $\mathbf{b}$ in the direction of $\mathbf{b}$ is the multiplicative effect between the magnitude of $\mathbf{a}$ in the direction of $\mathbf{b}$ (or $\mathbf{a}_{\mathbf{b}}$) and the magnitude of $\mathbf{b}$
+        - $\mathbf{a}\cdot\mathbf{b} = |\mathbf{a}|\cos{\theta} |\mathbf{b}|$
+    - **The combined magnitude of** $\mathbf{a}$ **and** $\mathbf{b}$ **in the direction of** $\mathbf{a}$
+      - The magnitude of $\mathbf{b}$ in the direction of $\mathbf{a}$ ($\mathbf{b}_{\mathbf{a}}$) can be found using the ratio of $\cos{}$
+        - ![](image/dot_product.3.png){width=50%}
+        - $\mathbf{b}_{\mathbf{a}} = |\mathbf{b}|\cos{\theta}$
+      - The combined magnitude of $\mathbf{a}$ and $\mathbf{b}$ in the direction of $\mathbf{a}$ is multiplicative effect between the magnitude of $\mathbf{a}$ in the direction of $\mathbf{a}$ (or $\mathbf{b}_{\mathbf{a}}$) and the magnitude of $\mathbf{a}$
+        - $\mathbf{a}\cdot\mathbf{b} = |\mathbf{b}|\cos{\theta}|\mathbf{a}|$
+    - **Duality**
+      - We can see that the combined magnitude of $\mathbf{a}$ and $\mathbf{b}$ in the direction of $\mathbf{b}$ is exactly the same as the combined magnitude of $\mathbf{a}$ and $\mathbf{b}$ in the direction of $\mathbf{a}$. Hence, the order does not matter ($\mathbf{a}\cdot\mathbf{b} = \mathbf{b}\cdot\mathbf{a}$)
   - **Alternative thinking**
     - $|\mathbf{a}||\mathbf{b}|$ is the maximum possible amount of interaction between the 2 vectors
     - $\cos{\theta}$ is like a quantity that quantifies how much the 2 vectors project to the same direction as each other. This quantity ranges from -1 to +1. +1 means that the 2 vectors are fully in the same direction. 
@@ -789,21 +875,32 @@ saveWidget(vectors_plotly, "vectors_plotly.html", selfcontained = F, libdir = "l
       - When $\cos{0} = 0$, then you 0 percent of that interaction 
       
       
+
+
 ```{r}
-library(ggplot2)
-library(tidyverse)
+tbdat <- read_csv("https://drmankin.github.io/disc_stats/cogstyles_clean.csv") %>% dplyr::mutate(common_factor = "sample", common_factor = as.factor(common_factor))
+tbdat.2 <- tbdat %>% dplyr::mutate(gen_cat = ifelse(gender_id >= 50, "f", "m"), gen_cat = as.factor(gen_cat)) %>% select(scsq_technical_spatial, scsq_imagery_ability,scsq_lang_words,  scsq_global_bias, scsq_systematising, scsq_organisation, cais_score, eq_score, loc_internal, loc_others, loc_chance, rat_score, tas_identifying,tas_describing, tas_ext_thinking , common_factor, gen_cat)
 
-
-
-ggplot2::ggplot() + 
-  scale_x_continuous(limits = c(0, 16), breaks = seq(0, 22, 1)) +
-  scale_y_continuous(limits = c(0, 21), breaks = seq(0, 22, 1)) +
-  annotate(geom = "segment", x = 2, y = 4, xend = 6, yend = 20) +
-  annotate(geom = "segment", x = 2, y = 4, xend = 11, yend = 7) +
-  annotate(geom = "segment", x = 11, y = 7, xend = 55/17, yend = 152/17) +coord_fixed()
 ```
 
+```{r}
+ccc_data <- readxl::read_xlsx("./data/ccc_data.xlsx") %>% dplyr::mutate(sample = "sample", sample = as.factor(sample), Gender = as.factor(Gender)) %>% filter(Gender != 2)
 
+ggplot2::ggplot(data = ccc_data, mapping = aes(x = Gender, y = ExperimentDuration)) + geom_violin()
+
+tbdat.2
+summarise(group_by(tbdat.2, gen_cat) , mean = mean(loc_chance))
+
+png(file = "image/loc_chance.png", res = 100, width = 800, height = 500)
+ggplot2::ggplot(data = tbdat.2, mapping = aes(x = gen_cat, y = loc_chance, fill = gen_cat)) + scale_fill_manual(values=c("#E500B8", "#008EE5")) + geom_violin(alpha = 0.39, color = "black") +  geom_boxplot(width=0.05, fill=c("#A90000", "#0014A9"), color = "black", alpha = 0.6) + scale_y_continuous(limits = c(5, 45), expand = c(0,0)) +scale_x_discrete(expand = c(0.5,0.5)) + geom_point(data = summarise(group_by(tbdat.2, gen_cat) , mean = mean(loc_chance)), aes(x = gen_cat, y = mean), size = 12, color = "black", fill = c("#8B0000", "#0014A9"), shape = 21, stroke = 1) + theme_minimal()
+dev.off()
+
+loc_chance_magick <- image_read("image/loc_chance.png")
+loc_chance_magick.2 <- image_crop(loc_chance_magick, "450x500+180")
+image_blur(loc_chance_magick, 10, 5)
+image_trim(loc_chance_magick)
+#stat_summary(fun.data = mean_sdl, colour = "red")
+```
   
   
   

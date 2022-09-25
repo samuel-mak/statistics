@@ -628,10 +628,10 @@ Clifton Suspension Bridge (Positive quadratic)
 <p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Transforming functions</strong>
 </p>
-<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
-## replace the existing scale.</code></pre>
-<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
-## replace the existing scale.</code></pre>
+<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will replace
+## the existing scale.</code></pre>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will replace
+## the existing scale.</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_segment).
 ## Removed 1 rows containing missing values (geom_segment).</code></pre>
 <pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
@@ -769,17 +769,6 @@ Clifton Suspension Bridge (Positive quadratic)
 </ul></li>
 </ul></li>
 </ul>
-<pre><code>## 
-## Attaching package: &#39;plotly&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:ggplot2&#39;:
-## 
-##     last_plot</code></pre>
-<pre><code>## The following object is masked from &#39;package:stats&#39;:
-## 
-##     filter</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphics&#39;:
-## 
-##     layout</code></pre>
 <pre><code>## No trace type specified:
 ##   Based on info supplied, a &#39;scatter3d&#39; trace seems appropriate.
 ##   Read more about this trace type -&gt; https://plotly.com/r/reference/#scatter3d
@@ -952,6 +941,37 @@ Clifton Suspension Bridge (Positive quadratic)
 <li>One vector is a scalar multiple of another vector if they have the same direction but different magnitude (they are scaled versions of each other)</li>
 <li>Collinear points are points that line on the same straight line</li>
 </ul></li>
+</ul>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;
+
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;expression&#39;</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<ul>
 <li><strong>Dot product of 2 vectors</strong>
 <ul>
 <li><strong>Concept</strong>
@@ -963,6 +983,41 @@ Clifton Suspension Bridge (Positive quadratic)
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos{\theta}\)</span></li>
+</ul></li>
+<li><strong>Explanation</strong>
+<ul>
+<li>Given 2 2-D vectors, vector <span class="math inline">\(\mathbf{a}\)</span> and vector <span class="math inline">\(\mathbf{b}\)</span>
+<ul>
+<li><img src="image/dot_product.1.png" style="width:50.0%" /></li>
+</ul></li>
+<li><strong>The combined magnitude of</strong> <span class="math inline">\(\mathbf{a}\)</span> <strong>and</strong> <span class="math inline">\(\mathbf{b}\)</span> <strong>in the direction of</strong> <span class="math inline">\(\mathbf{b}\)</span>
+<ul>
+<li>The magnitude of <span class="math inline">\(\mathbf{a}\)</span> in the direction of <span class="math inline">\(\mathbf{b}\)</span> (<span class="math inline">\(\mathbf{a}_{\mathbf{b}}\)</span>) can be found using the ratio of <span class="math inline">\(\cos{}\)</span>
+<ul>
+<li><span class="math inline">\(\mathbf{a}_{\mathbf{b}} = |\mathbf{a}|\cos{\theta}\)</span></li>
+<li><img src="image/dot_product.2.png" style="width:50.0%" /></li>
+</ul></li>
+<li>The combined magnitude of <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> in the direction of <span class="math inline">\(\mathbf{b}\)</span> is the multiplicative effect between the magnitude of <span class="math inline">\(\mathbf{a}\)</span> in the direction of <span class="math inline">\(\mathbf{b}\)</span> (or <span class="math inline">\(\mathbf{a}_{\mathbf{b}}\)</span>) and the magnitude of <span class="math inline">\(\mathbf{b}\)</span>
+<ul>
+<li><span class="math inline">\(\mathbf{a}\cdot\mathbf{b} = |\mathbf{a}|\cos{\theta} |\mathbf{b}|\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The combined magnitude of</strong> <span class="math inline">\(\mathbf{a}\)</span> <strong>and</strong> <span class="math inline">\(\mathbf{b}\)</span> <strong>in the direction of</strong> <span class="math inline">\(\mathbf{a}\)</span>
+<ul>
+<li>The magnitude of <span class="math inline">\(\mathbf{b}\)</span> in the direction of <span class="math inline">\(\mathbf{a}\)</span> (<span class="math inline">\(\mathbf{b}_{\mathbf{a}}\)</span>) can be found using the ratio of <span class="math inline">\(\cos{}\)</span>
+<ul>
+<li><img src="image/dot_product.3.png" style="width:50.0%" /></li>
+<li><span class="math inline">\(\mathbf{b}_{\mathbf{a}} = |\mathbf{b}|\cos{\theta}\)</span></li>
+</ul></li>
+<li>The combined magnitude of <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> in the direction of <span class="math inline">\(\mathbf{a}\)</span> is multiplicative effect between the magnitude of <span class="math inline">\(\mathbf{a}\)</span> in the direction of <span class="math inline">\(\mathbf{a}\)</span> (or <span class="math inline">\(\mathbf{b}_{\mathbf{a}}\)</span>) and the magnitude of <span class="math inline">\(\mathbf{a}\)</span>
+<ul>
+<li><span class="math inline">\(\mathbf{a}\cdot\mathbf{b} = |\mathbf{b}|\cos{\theta}|\mathbf{a}|\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Duality</strong>
+<ul>
+<li>We can see that the combined magnitude of <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> in the direction of <span class="math inline">\(\mathbf{b}\)</span> is exactly the same as the combined magnitude of <span class="math inline">\(\mathbf{a}\)</span> and <span class="math inline">\(\mathbf{b}\)</span> in the direction of <span class="math inline">\(\mathbf{a}\)</span>. Hence, the order does not matter (<span class="math inline">\(\mathbf{a}\cdot\mathbf{b} = \mathbf{b}\cdot\mathbf{a}\)</span>)</li>
+</ul></li>
 </ul></li>
 <li><strong>Alternative thinking</strong>
 <ul>
@@ -982,7 +1037,43 @@ Clifton Suspension Bridge (Positive quadratic)
 </ul></li>
 </ul></li>
 </ul>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre><code>## Rows: 218 Columns: 183
+## ── Column specification ────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr  (15): px, handedness, lang_convo, sample, rat_1, rat_2, rat_3, rat_4, rat_5, ra...
+## dbl (167): progress, duration, consent, age, gender_id, gender_strength, scsq_1, scs...
+## lgl   (1): finished
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-448-3.png" width="672" /></p>
+<pre><code>## # A tibble: 218 × 17
+##    scsq_techni…¹ scsq_…² scsq_…³ scsq_…⁴ scsq_…⁵ scsq_…⁶ cais_…⁷ eq_sc…⁸ loc_i…⁹ loc_o…˟
+##            &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+##  1          3.88    4.65    4.83    1.14    2.86    3.33    4.31       5      30      26
+##  2          2.12    3.88    4.83    2.86    3       3.17    4.88      34      38      22
+##  3          3.76    3.71    3       2.86    2.57    2.83    3.81      18      32      26
+##  4          3.59    4.53    4.5     2       3.57    2.83    5         35      31      32
+##  5          1.82    3.47    4       3       3.71    3.5     2.06      13      39      28
+##  6          3.71    3.94    2.67    2.29    1.43    3.67    4          4      28      29
+##  7          2.82    2.59    2.83    2.57    1.14    3.83    2.25      38      38      17
+##  8          3.59    4.06    4.83    2.57    5       4.67    4.56      20      35      41
+##  9          4.29    4       2.83    2.71    2.71    4.67    2.69      21      37      27
+## 10          3.29    3.71    4.67    3       3.14    2.83    3.56      28      34      22
+## # … with 208 more rows, 7 more variables: loc_chance &lt;dbl&gt;, rat_score &lt;dbl&gt;,
+## #   tas_identifying &lt;dbl&gt;, tas_describing &lt;dbl&gt;, tas_ext_thinking &lt;dbl&gt;,
+## #   common_factor &lt;fct&gt;, gen_cat &lt;fct&gt;, and abbreviated variable names
+## #   ¹​scsq_technical_spatial, ²​scsq_imagery_ability, ³​scsq_lang_words,
+## #   ⁴​scsq_global_bias, ⁵​scsq_systematising, ⁶​scsq_organisation, ⁷​cais_score, ⁸​eq_score,
+## #   ⁹​loc_internal, ˟​loc_others</code></pre>
+<pre><code>## # A tibble: 2 × 2
+##   gen_cat  mean
+##   &lt;fct&gt;   &lt;dbl&gt;
+## 1 f        27.1
+## 2 m        25.8</code></pre>
+<pre><code>## quartz_off_screen 
+##                 2</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-448-1.png" width="400" /><img src="bookdownproj_files/figure-html/unnamed-chunk-448-2.png" width="389" /></p>
 
 </div>
             </section>
