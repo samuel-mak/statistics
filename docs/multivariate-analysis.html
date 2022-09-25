@@ -100,6 +100,71 @@
 <p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>MANOVA</strong>
 </p>
+<ul>
+<li><strong>Multivariate analysis</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Any analyses involving more than one outcome variable</li>
+<li>The process of estimating the relationship between the linear combination of several outcome variables and one or more predictor variables</li>
+</ul></li>
+</ul></li>
+<li><strong>Strengths of Multivariate Analysis</strong>
+<ul>
+<li>A multivariate model allows the relationships between the set of predictor variables and multiple outcome variables to be tested in one test, which can maintain the Type I error rate (as opposed to testing the relationship between the same set of predictor variables and different outcome variables with separate models, which would inflate Type I error rate due to multiple testing)</li>
+<li>Takes into account the relationship between the outcome variables</li>
+<li>More power to detect whether groups differ along a combination of dimensions</li>
+<li>MANOVA has greater power than ANOVA to detect effects because it takes account of the correlations between the outcome variables (Huberty &amp; Morris, 1989)</li>
+</ul></li>
+<li><strong>Centroids</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A centre point in a multidimensional geometric space</li>
+</ul></li>
+<li><strong>Mean centroid</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A centre point that represents the mean on multiple dimensions</li>
+<li>A mean centroid is represented by a column vector</li>
+</ul></li>
+<li><strong>Mathematics (Matrix)</strong>
+<ul>
+<li><span class="math inline">\({\boldsymbol{\mu}} = \begin{pmatrix} \mu_{1} \\ \mu_{2} \\ \mu_{3} \\ \vdots \\ \mu_{d} \end{pmatrix}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(d\)</span> - The total number of outcome variables (variates)</li>
+</ul></li>
+<li></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Hotelling’s <span class="math inline">\(t^2\)</span> (Hotelling, 1931)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Multivariate version of the t-statistic</li>
+<li>A test statistic for the difference between 2 mean centroids (or multivariate means; means on multiple outcome variables)</li>
+<li>Tests whether 2 means differ on the linear combination of multiple outcome variables</li>
+</ul></li>
+<li><strong>Mathematics (Matrix)</strong>
+<ul>
+<li><span class="math inline">\(t^2 = \frac{n_{1}n_{2}}{n_{1}n_{2}}(\mathbf{Y_{1}-\mathbf{Y_2}})\mathbf{&#39;}(\mathbf{S})^{-1}(\mathbf{Y_{1}-\mathbf{Y_2}})\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\mathbf{S}\)</span> - Variance covariance matrix</li>
+<li><span class="math inline">\(\mathbf{Y_{1}}\)</span> - Mean centroid for group 1</li>
+<li><span class="math inline">\(\mathbf{Y_{2}}\)</span> - Mean centroid for group 2</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><h2 id="the-relationship-between-mahalanobis-d2-and-hotellings-t2" class="hasAnchor"><strong>The relationship between Mahalanobis <span class="math inline">\(D^2\)</span> and Hotelling’s <span class="math inline">\(t^2\)</span></strong><a href="multivariate-analysis.html#the-relationship-between-mahalanobis-d2-and-hotellings-t2" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+</ul></li>
+</ul>
 
 </div>
             </section>
@@ -140,7 +205,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/samuel-mak/statistics/edit/master/06-r_codes.Rmd",
+"link": "https://github.com/samuel-mak/statistics/edit/master/06-multivariate_analysis.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -148,7 +213,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/samuel-mak/statistics/blob/master/06-r_codes.Rmd",
+"link": "https://github.com/samuel-mak/statistics/blob/master/06-multivariate_analysis.Rmd",
 "text": null
 },
 "download": ["bookdownproj.pdf", "bookdownproj.epub", "bookdownproj.mobi"],

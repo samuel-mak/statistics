@@ -1,0 +1,116 @@
+# Multivariate Analysis 
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**MANOVA**</p>
+
+- **Multivariate analysis**
+  - **Concept**
+    - Any analyses involving more than one outcome variable 
+    - The process of estimating the relationship between the linear combination of several outcome variables and one or more predictor variables  
+
+- **Strengths of Multivariate Analysis**
+  - A multivariate model allows the relationships between the set of predictor variables and multiple outcome variables to be tested in one test, which can maintain the Type I error rate (as opposed to testing the relationship between the same set of predictor variables and different outcome variables with separate models, which would inflate Type I error rate due to multiple testing)
+  - Takes into account the relationship between the outcome variables 
+  - More power to detect whether groups differ along a combination of dimensions 
+  - MANOVA has greater power than ANOVA to detect effects because it takes account of the correlations between the outcome variables (Huberty & Morris, 1989)
+  
+  
+- **Centroids**
+  - **Concept**
+    - A centre point in a multidimensional geometric space 
+  - **Mean centroid**
+    - **Concept**
+      - A centre point that represents the mean on multiple dimensions
+      - A mean centroid is represented by a column vector 
+    - **Mathematics (Matrix)**
+      - ${\boldsymbol{\mu}} = \begin{pmatrix} \mu_{1} \\ \mu_{2} \\ \mu_{3} \\ \vdots \\ \mu_{d} \end{pmatrix}$
+        - ***Where***
+          - $d$ - The total number of outcome variables (variates)
+        - 
+  
+- **Hotelling's $t^2$ (Hotelling, 1931)**
+  - **Concept**
+    - Multivariate version of the t-statistic
+    - A test statistic for the difference between 2 mean centroids (or multivariate means; means on multiple outcome variables)
+    - Tests whether 2 means differ on the linear combination of multiple outcome variables 
+  - **Mathematics (Matrix)**
+    - $t^2 = \frac{n_{1}n_{2}}{n_{1}n_{2}}(\mathbf{Y_{1}-\mathbf{Y_2}})\mathbf{'}(\mathbf{S})^{-1}(\mathbf{Y_{1}-\mathbf{Y_2}})$
+      - ***Where***
+        - $\mathbf{S}$ - Variance covariance matrix 
+        - $\mathbf{Y_{1}}$ - Mean centroid for group 1
+        - $\mathbf{Y_{2}}$ - Mean centroid for group 2
+  - **The relationship between Mahalanobis $D^2$ and Hotelling's $t^2$**
+    - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

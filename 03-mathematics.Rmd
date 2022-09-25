@@ -844,20 +844,29 @@ image_write(image_crop(image_read("image/dot_product.3.png"), "450x500+180"), pa
     - The dot product basically quantifies the extent to which 2 vectors interact with each other (or how much each of the two vectors reinforce each other in their magnitude)
     - When the vectors are orthogonal to each other, in other words, they don't interact with each other, then they have a dot product of $0$ (because when 2 vectors are orthogonal, $\theta = 90$, and $\cos{90} = 0$, therefore, the dot product is $0$ )
     - When 2 vectors are parallel to each other, in other words, they full interact with each other, then they have a dot product of $|\mathbf{a}||\mathbf{b}|$
-  - **Mathematics**
-    - $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos{\theta}$
+  - **Mathematics** 
+    - **The usual form**
+      - $\mathbf{a} \cdot \mathbf{b} = |\mathbf{a}||\mathbf{b}|\cos{\theta}$
+    - **The component form**
+      - $\mathbf{a} \cdot \mathbf{b} = \sum_{i=1}^{d}{a_{d}b_{d}}$
+      - $\mathbf{a} \cdot \mathbf{b} = a_{1}b_{1} + a_{2}b_{2} + a_{3}b_{3} + \cdots + a_{d}b_{d}$
+        - ***Where***
+          - $a_{d}$ - The magnitude of vector $\mathbf{a}$ in the direction of the d axis
+          - $b_{d}$ - The magnitude of vector   $\mathbf{b}$ in the direction of the d axis
+          - $a_{d}b_{d}$ - The combined magnitude of vectors $\mathbf{a}$ and $\mathbf{b}$ in the direction of the d-axis
+          - $d$ - The total number of dimensions
   - **Explanation**
     - Given 2 2-D vectors, vector $\mathbf{a}$ and vector $\mathbf{b}$
-      - ![](image/dot_product.1.png){width=50%}
+      - ![](image/dot_product_magick.1.png){width=50%}
     - **The combined magnitude of** $\mathbf{a}$ **and** $\mathbf{b}$ **in the direction of** $\mathbf{b}$
       - The magnitude of $\mathbf{a}$ in the direction of $\mathbf{b}$ ($\mathbf{a}_{\mathbf{b}}$) can be found using the ratio of $\cos{}$
         - $\mathbf{a}_{\mathbf{b}} = |\mathbf{a}|\cos{\theta}$
-        - ![](image/dot_product.2.png){width=50%}
+        - ![](image/dot_product_magick.2.png){width=50%}
       - The combined magnitude of $\mathbf{a}$ and $\mathbf{b}$ in the direction of $\mathbf{b}$ is the multiplicative effect between the magnitude of $\mathbf{a}$ in the direction of $\mathbf{b}$ (or $\mathbf{a}_{\mathbf{b}}$) and the magnitude of $\mathbf{b}$
         - $\mathbf{a}\cdot\mathbf{b} = |\mathbf{a}|\cos{\theta} |\mathbf{b}|$
     - **The combined magnitude of** $\mathbf{a}$ **and** $\mathbf{b}$ **in the direction of** $\mathbf{a}$
       - The magnitude of $\mathbf{b}$ in the direction of $\mathbf{a}$ ($\mathbf{b}_{\mathbf{a}}$) can be found using the ratio of $\cos{}$
-        - ![](image/dot_product.3.png){width=50%}
+        - ![](image/dot_product_magick.3.png){width=50%}
         - $\mathbf{b}_{\mathbf{a}} = |\mathbf{b}|\cos{\theta}$
       - The combined magnitude of $\mathbf{a}$ and $\mathbf{b}$ in the direction of $\mathbf{a}$ is multiplicative effect between the magnitude of $\mathbf{a}$ in the direction of $\mathbf{a}$ (or $\mathbf{b}_{\mathbf{a}}$) and the magnitude of $\mathbf{a}$
         - $\mathbf{a}\cdot\mathbf{b} = |\mathbf{b}|\cos{\theta}|\mathbf{a}|$
@@ -873,8 +882,86 @@ image_write(image_crop(image_read("image/dot_product.3.png"), "450x500+180"), pa
       - When $\cos{90} = 1$, then you get the maximum possible amount of interaction 
       - When $\cos{180} = -1$, then you get maximum possible amount of interaction 
       - When $\cos{0} = 0$, then you 0 percent of that interaction 
+  - **Other tips**
+    - $\mathbf{a} \cdot (\mathbf{b} + \mathbf{c}) = \mathbf{a} \cdot\mathbf{b} + \mathbf{a} \cdot\mathbf{c}$
       
       
+```{r dot_product_gif}
+
+dot_product_magick.1 <- image_read("image/dot_product.1.png")
+dot_product_magick.3 <- image_read("image/dot_product.3.png")
+image_scale(c(dot_product_magick.1, dot_product_magick.3), "700")
+image_crop(image_animate(image_scale(c(dot_product_magick.1, dot_product_magick.3), "600"), 0.5), "450x500+180")
+image_write(image_crop(image_animate(image_scale(c(dot_product_magick.1, dot_product_magick.3, dot_product_magick.1), "600"), 2), "450x500+180"), "dot_product.gif")
+
+image_read("dot_product.gif")
+image_crop(image_read("image/dot_product.1.png"))
+image_animate(
+  image_scale(c(dot_product_magick.1, dot_product_magick.3), "400"),
+  fps = 5, 
+  loop = 5)
+```
+
+```{r michael_scott_gif}
+library(magick)
+michael_scott.1 <- image_read("image/michael_scott.1.png")
+michael_scott.2 <- image_read("image/michael_scott.2.png")
+image_scale(c(michael_scott.1, michael_scott.2), "500")
+image_animate(image_scale(c(michael_scott.1, michael_scott.2), "500"), fps = 2)
+image_write(image_animate(image_scale(c(michael_scott.1, michael_scott.2), "500"), fps = 2), "michael_scott.gif")
+image_read("michael_scott.gif")
+
+```
+
+
+
+
+
+
+```{r}
+library(gapminder)
+library(ggplot2)
+library(gganimate)
+
+gganimate.1 <- ggplot(gapminder, aes(gdpPercap, lifeExp, colour = country)) +
+  geom_point(alpha = 0.7, show.legend = FALSE) +
+  scale_colour_manual(values = country_colors) +
+  scale_size(range = c(2, 12)) +
+  scale_x_log10() +
+  facet_wrap(~continent) +
+  # Here comes the gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear')
+gganimate.1
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ```{r include = F, echo = F}

@@ -1,5 +1,0 @@
-# Multivariate Analysis 
-
-
-<p style = "margin-bottom: 0px; font-size: 20px; ">**MANOVA**</p>
-
