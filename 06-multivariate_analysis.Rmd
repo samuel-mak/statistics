@@ -194,7 +194,7 @@
     - **Mathematical description**
       - It is the ratio of the determinant of the Error SSCP matrix to the determinant of the Total SSCP matrix 
       - It represents the ratio of error variance to total variance (or the proportion of unexplained variance)
-      - Represents the ratio of the variance in all of the variates not explained by the model to the total variance in all of the variates 
+      - Represents the ratio of the variance in all of the outcome variables not explained by the model to the total variance in all of the outcome variables 
     - **Method 1**
       - **Description**
       - **Mathematics**
@@ -265,16 +265,58 @@
 - **Roy's largest Root**
   - **Concept**
     - Roy's largest root suggests only to consider the largest eigenvalue (which is this $\lambda_1$, because the first eigenvalue is the largest one) and ignore the rest (if there are multiple eigenvalues)
-    - You can interpret it in anyway you like, for example, you can convert this this eigenvalue to a ratio of variance explained to the total variance using this $\frac{\lambda_1}{1+\lambda_1}$, this point is that you only need to consider the largest eigenvalue and do whatever you want with it
+    - You can interpret it in anyway you like, for example, you can convert this this eigenvalue to a ratio of variance explained to the total variance using this $\frac{\lambda_1}{1+\lambda_1}$, the point is that you only need to consider the largest eigenvalue and do whatever you want with it
+    - This method tends to be advocated
+    - Because it has the largest ratio of variance explained to variance unexplained, it has the the most power
   - **Mathematics**
     - $\Theta = \lambda_1$
+  - **F-transformed Roy's largest Root**
+    - **Concept**
+      - Roy's largest root can be transformed to a statistic that has an $F$ distribution
+      - Roy's largest root is transformed to this statistic for NHST
+    - **Mathematics**
+      - $\Theta_F = \Theta \times \frac{N-b-1}{b}$
+    - **Distribution of $\Theta_F$**
+      - $\Theta_F \sim F \left( b, N - b - 1\right)$
+        - ***Where*** 
+          - $b = \max{\left( p, df_h\right)}$
+        - ***Notes***
+          - Rencher (2002) suggest that $df_e$ might be used instead of $N$
 
 
+- **Central vs noncentral distribution**
+  - **Central distribution** - Distributions that assume the null hypothesis is true
+  - **Noncentral distribution** - Distributions that assume the alterative hypothesis is true
 
 
-
-
-
+- **MANOVA effect sizes**
+  - **MANOVA effect sizes**
+    - Multivariate Eta-squared
+    - Multivariate Omega-squared 
+    - Tau-squared
+    - Xi-squared 
+    - Zeta-squared
+  - **Multivariate Eta-squared**  
+    - **Concept**
+      - The original Eta-squared generalized to multivariate contexts
+      - Represents the ratio of variance in the set of outcome variables explained by the model to the total variance in the set of outcome variables (proportion of variance explained) (Regardless of the number of constructs underlying the outcome variable)
+    - **Mathematics**
+      - **Huberty and Olejnik (2006)**
+        - $\eta^{2}_{Multivariate}= 1 - \Lambda$
+      - **[Cambridge](https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does)**
+        - $\eta^{2}_{Multivariate}= 1 - \Lambda^{\frac{1}{r}}$
+          - ***Where***
+            - $r = \min\left(k - 1, y\right)$
+              - ***Where***
+                - $k$ - The number of levels of the factor
+                - $y$ - The number of outcome variables 
+  - **Multivariate Eta-squared**  
+    - **Concept**
+      - The multivariate extension of the univariate Omega-squared
+      - Suggested by Tatsuoka (1970)
+      - Represents the ratio of variance in the set of outcome variables explained by the model to the total variance in the set of outcome variables (regardless of the number of constructs underlying the outcome variables)
+    - **Mathematics**
+      - $\omega^{2}_{multivariate} = 1 - \frac{N\Lambda}{\left( N - df_H - 1 \right) + \Lambda}$
 
 
 

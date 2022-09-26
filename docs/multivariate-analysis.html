@@ -451,7 +451,7 @@
 <ul>
 <li>It is the ratio of the determinant of the Error SSCP matrix to the determinant of the Total SSCP matrix</li>
 <li>It represents the ratio of error variance to total variance (or the proportion of unexplained variance)</li>
-<li>Represents the ratio of the variance in all of the variates not explained by the model to the total variance in all of the variates</li>
+<li>Represents the ratio of the variance in all of the outcome variables not explained by the model to the total variance in all of the outcome variables</li>
 </ul></li>
 <li><strong>Method 1</strong>
 <ul>
@@ -598,11 +598,100 @@
 <li><strong>Concept</strong>
 <ul>
 <li>Roy’s largest root suggests only to consider the largest eigenvalue (which is this <span class="math inline">\(\lambda_1\)</span>, because the first eigenvalue is the largest one) and ignore the rest (if there are multiple eigenvalues)</li>
-<li>You can interpret it in anyway you like, for example, you can convert this this eigenvalue to a ratio of variance explained to the total variance using this <span class="math inline">\(\frac{\lambda_1}{1+\lambda_1}\)</span>, this point is that you only need to consider the largest eigenvalue and do whatever you want with it</li>
+<li>You can interpret it in anyway you like, for example, you can convert this this eigenvalue to a ratio of variance explained to the total variance using this <span class="math inline">\(\frac{\lambda_1}{1+\lambda_1}\)</span>, the point is that you only need to consider the largest eigenvalue and do whatever you want with it</li>
+<li>This method tends to be advocated</li>
+<li>Because it has the largest ratio of variance explained to variance unexplained, it has the the most power</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(\Theta = \lambda_1\)</span></li>
+</ul></li>
+<li><strong>F-transformed Roy’s largest Root</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Roy’s largest root can be transformed to a statistic that has an <span class="math inline">\(F\)</span> distribution</li>
+<li>Roy’s largest root is transformed to this statistic for NHST</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\Theta_F = \Theta \times \frac{N-b-1}{b}\)</span></li>
+</ul></li>
+<li><strong>Distribution of <span class="math inline">\(\Theta_F\)</span></strong>
+<ul>
+<li><span class="math inline">\(\Theta_F \sim F \left( b, N - b - 1\right)\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(b = \max{\left( p, df_h\right)}\)</span></li>
+</ul></li>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>Rencher (2002) suggest that <span class="math inline">\(df_e\)</span> might be used instead of <span class="math inline">\(N\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Central vs noncentral distribution</strong>
+<ul>
+<li><strong>Central distribution</strong> - Distributions that assume the null hypothesis is true</li>
+<li><strong>Noncentral distribution</strong> - Distributions that assume the alterative hypothesis is true</li>
+</ul></li>
+<li><strong>MANOVA effect sizes</strong>
+<ul>
+<li><strong>MANOVA effect sizes</strong>
+<ul>
+<li>Multivariate Eta-squared</li>
+<li>Multivariate Omega-squared</li>
+<li>Tau-squared</li>
+<li>Xi-squared</li>
+<li>Zeta-squared</li>
+</ul></li>
+<li><strong>Multivariate Eta-squared</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The original Eta-squared generalized to multivariate contexts</li>
+<li>Represents the ratio of variance in the set of outcome variables explained by the model to the total variance in the set of outcome variables (proportion of variance explained) (Regardless of the number of constructs underlying the outcome variable)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>Huberty and Olejnik (2006)</strong>
+<ul>
+<li><span class="math inline">\(\eta^{2}_{Multivariate}= 1 - \Lambda\)</span></li>
+</ul></li>
+<li><strong><a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&amp;do=view&amp;target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does">Cambridge</a></strong>
+<ul>
+<li><span class="math inline">\(\eta^{2}_{Multivariate}= 1 - \Lambda^{\frac{1}{r}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(r = \min\left(k - 1, y\right)\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(k\)</span> - The number of levels of the factor</li>
+<li><span class="math inline">\(y\)</span> - The number of outcome variables</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Multivariate Eta-squared</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The multivariate extension of the univariate Omega-squared</li>
+<li>Suggested by Tatsuoka (1970)</li>
+<li>Represents the ratio of variance in the set of outcome variables explained by the model to the total variance in the set of outcome variables (regardless of the number of constructs underlying the outcome variables)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\omega^{2}_{multivariate} = 1 - \frac{N\Lambda}{\left( N - df_H - 1 \right) + \Lambda}\)</span></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
