@@ -40,16 +40,109 @@
         - $\mathbf{Y_{1}}$ - Mean centroid for group 1
         - $\mathbf{Y_{2}}$ - Mean centroid for group 2
   - **The relationship between Mahalanobis $D^2$ and Hotelling's $t^2$**
-    - 
+    - **Concept**
+      - The relationship between Mahalanobis $D^2$ and Hotelling's $t^2$ is like the relationship between Cohen's $d$ and Student's $t$
+    - **Mathematics**
+      - $t^2 = D^2 (\frac{n_{1}n_{2}}{n_{1}+n_{2}})$ 
+  - **Distribution of Hotelling's $t^2$**
+    - **Distribution of Hotelling's $t^2$ as itself**
+      - **Concept**
+        - Hotelling's $t^2$ has a Hotelling's T-squared distribution with degrees of freedom 1 of $p$ and degree of freedom 2 of $n_{1} + n_{2} - 2$
+      - **Mathematics**
+        - $t^2 \sim T^2(p, n_{1} + n_{2} - 2)$
+    - **Distribution of Hotelling's $t^2$ as $F$**
+      - **Concept**
+        - Hotelling's $T^2$ can be converted into an $F$ statistic that has an $F$ distribution with degrees of freedom 1 of $p$ and degrees of freedom 2 of $n_{1} + n_{2} - p -1$
+        - Hence, you can convert Hotelling's $T^2$ into an $F$ statistic and significance test with the $F$ distribution
+      - **Mathematics**
+        - $F = t^2\times\frac{v-p+1}{p(v)}$
+      - **Distribution of $F$**
+        - $F = t^2\times\frac{v-p+1}{p(v)} \sim F(p, n_{1} + n_{2} - p -1)$
+  - **NHST**
+    - **Hypotheses**
+      - $H_0: \mathbf{Y_1} = \mathbf{Y_2}$ - The 2 mean centroids are the same - The 2 mean centroids are from the same population
+      - $H_1: \mathbf{Y_1} ≠ \mathbf{Y_2}$ - The 2 mean centroids are not the same - The 2 mean centroids are from different populations
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Assumptions**</p>
 
+- **Assumptions of MANOVA**
+  - Uncorrelated errors 
+  - Random sampling 
+  - Multivariate normality 
+  - Homogeneity of Covariance 
+  - 
+  
+- **Homogeneity of Covariance**
+  - **Concept**
+    - The variance of each outcome variable and the covariance between any outcome variables is equal between all groups
+    - The variance-covariance matrices are identical between groups
+  - **Mathematics**
+    - $\Sigma_1 = \Sigma_2 = \Sigma_3 = \cdots = \Sigma_k$
+      - ***Where***
+        - $\Sigma_k$ - The variance Covariance matrix for group $k$
+        - $k$ - The total number of groups in the MANOVA
+  - **Effects of violation of this assumption**
+    - Only under this condition that the sampling distribution of $t^2\times\frac{v-p+1}{p(v)}$ has an $F$ distribution with degrees of freedom 1 of $p$ and degrees of freedom 2 of $n_{1} + n_{2} - p -1$
+  - **Testing for Homogeneity of Covariance**
+    - **Statistical Tests for Homogeneity of Covariance**
+      - Box M test
+    - **Box M test**
+      - **Concept**
+        - A test that test the null hypothesis that multiple covariance matrices are equal 
+      - **The Box M statistic**
+        - **Mathematics (Huberty & Olejnik, 2006, p.41)**   
+         - $M = v_{e}\ln{|\mathbf{S_e}| - \sum_{k=1}^{k}{v_{k}\ln{|\mathbf{S_k}|}}}$
+          - ***Where***
+            - $k$ - Number of groups
+            - $v_k$ - Degrees of freedom for group k (which is $n_k - 1$)
+            - $v_e$ - Error degrees of freedom (which is $\sum_{k=1}^{k}{v_k}$)
+            - $\mathbf{S_k}$ - Covariance matrix for group $k$
+            - $\mathbf{S_e}$ - Error covariance matrix (Which is $\frac{\mathbf{E}}{v_e}$)
+      - **Distribution of Box M**
+        - **Chi-squared transformed Box M**
+          - **Concept**
+            - Box M can be transformed to a statistic that has a Chi-Squared distribution with degrees of freedom of $\frac{(k-1)(p+1)p}{2}$ 
+          - **Transforming Box M**
+            - **Mathematics** 
+              - **For equal sample sizes**
+                - $M_{\chi} = M \times \left[ 1-\frac{2p^{2} + 3p -1}{6(p+1)(k-1)} \right]$
+              - **For unequal sample sizes**
+                - $M_{\chi} = M \times \left[ 1-\frac{2p^{2} + 3p -1}{6(p+1)(k-1)} \times \left( \sum_{k=1}^{k}{v_{k}^{-1} - v_{e}^{-1}} \right) \right]$
+          - **Distribution of $M_{\chi}$**
+            - $M_{\chi} \sim \chi^2\left(\frac{\left(k-1\right)(p+1)p}{2}\right)$
+        - **F-transformed Box M**
+          - **Concept**   
+            - Box M is transformed to a statistic that has an $F$ distribution
+            - Details can be found in Rencher (2002, p.255-259)
+          - **Assumptions**
+            - Uncorrelated errors 
+            - Multivariate normality 
 
-
-
-
-
-
+- **Robust multivariate test of difference**
+  - **Robust multivariate test of differences**
+    - Yao Test
+  - **Yao Test**
+    - **Concept**
+      - A robust Hotelling's $t^2$
+    - **The Yao statistic**
+      - **Mathematics**
+        - $T^{2}_{Yao} = (\mathbf{Y_{1}-\mathbf{Y_2}})\mathbf{'}\left(\frac{\mathbf{S_1}}{n_1}+\frac{\mathbf{S_2}}{n_2}\right)^{-1}(\mathbf{Y_{1}-\mathbf{Y_2}})$
+    - **Distribution of Yao statistic**
+      - **F-transformed Yao**
+        - **Concept**
+          - $T^{2}_{Yao}$ can be transformed to a statistic that has an F distribution with degrees of freedom 1 of $p$ and degrees of freedom of $f - p + 1$
+        - **Mathematics**
+          - $ T^{2}_{Yao, F} = T^{2}_{Yao} \times \frac{f-p+1}{pf}$
+            - ***Where***
+              - $f = \sum_{k=1}^{k}{\frac{1}{n_k - 1}\left(\frac{V_k}{T^{2}_{Yao}}\right)^2}$
+                - ***Where***
+                  - $V_k = (\mathbf{Y_{1}-\mathbf{Y_2}})\mathbf{'} \mathbf{W}^{-1} \mathbf{W}_k \mathbf{W}^{-1} (\mathbf{Y_{1}-\mathbf{Y_2}})$
+                    - ***Where***
+                      - $\mathbf{W}= \sum_{k=1}^{k}{\mathbf{W_{k}}}$
+                      - $\mathbf{W}_k = \frac{\mathbf{S}_k}{n_k}$
+        - **Distribution of $T^{2}_{Yao, F}$**
+          - $T^{2}_{Yao, F} \sim F \left( p, f-p+1\right)$
 
 
 

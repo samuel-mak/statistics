@@ -884,7 +884,7 @@ image_write(image_crop(image_read("image/dot_product.3.png"), "450x500+180"), pa
       - When $\cos{0} = 0$, then you 0 percent of that interaction 
   - **Other tips**
     - $\mathbf{a} \cdot (\mathbf{b} + \mathbf{c}) = \mathbf{a} \cdot\mathbf{b} + \mathbf{a} \cdot\mathbf{c}$
-      
+       
       
 ```{r dot_product_gif}
 

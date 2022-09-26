@@ -162,7 +162,218 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><h2 id="the-relationship-between-mahalanobis-d2-and-hotellings-t2" class="hasAnchor"><strong>The relationship between Mahalanobis <span class="math inline">\(D^2\)</span> and Hotelling’s <span class="math inline">\(t^2\)</span></strong><a href="multivariate-analysis.html#the-relationship-between-mahalanobis-d2-and-hotellings-t2" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+<li><strong>The relationship between Mahalanobis <span class="math inline">\(D^2\)</span> and Hotelling’s <span class="math inline">\(t^2\)</span></strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The relationship between Mahalanobis <span class="math inline">\(D^2\)</span> and Hotelling’s <span class="math inline">\(t^2\)</span> is like the relationship between Cohen’s <span class="math inline">\(d\)</span> and Student’s <span class="math inline">\(t\)</span></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(t^2 = D^2 (\frac{n_{1}n_{2}}{n_{1}+n_{2}})\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of Hotelling’s <span class="math inline">\(t^2\)</span></strong>
+<ul>
+<li><strong>Distribution of Hotelling’s <span class="math inline">\(t^2\)</span> as itself</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Hotelling’s <span class="math inline">\(t^2\)</span> has a Hotelling’s T-squared distribution with degrees of freedom 1 of <span class="math inline">\(p\)</span> and degree of freedom 2 of <span class="math inline">\(n_{1} + n_{2} - 2\)</span></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(t^2 \sim T^2(p, n_{1} + n_{2} - 2)\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of Hotelling’s <span class="math inline">\(t^2\)</span> as <span class="math inline">\(F\)</span></strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Hotelling’s <span class="math inline">\(T^2\)</span> can be converted into an <span class="math inline">\(F\)</span> statistic that has an <span class="math inline">\(F\)</span> distribution with degrees of freedom 1 of <span class="math inline">\(p\)</span> and degrees of freedom 2 of <span class="math inline">\(n_{1} + n_{2} - p -1\)</span></li>
+<li>Hence, you can convert Hotelling’s <span class="math inline">\(T^2\)</span> into an <span class="math inline">\(F\)</span> statistic and significance test with the <span class="math inline">\(F\)</span> distribution</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(F = t^2\times\frac{v-p+1}{p(v)}\)</span></li>
+</ul></li>
+<li><strong>Distribution of <span class="math inline">\(F\)</span></strong>
+<ul>
+<li><span class="math inline">\(F = t^2\times\frac{v-p+1}{p(v)} \sim F(p, n_{1} + n_{2} - p -1)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>NHST</strong>
+<ul>
+<li><strong>Hypotheses</strong>
+<ul>
+<li><span class="math inline">\(H_0: \mathbf{Y_1} = \mathbf{Y_2}\)</span> - The 2 mean centroids are the same - The 2 mean centroids are from the same population</li>
+<li><span class="math inline">\(H_1: \mathbf{Y_1} ≠ \mathbf{Y_2}\)</span> - The 2 mean centroids are not the same - The 2 mean centroids are from different populations</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Assumptions</strong>
+</p>
+<ul>
+<li><strong>Assumptions of MANOVA</strong>
+<ul>
+<li>Uncorrelated errors</li>
+<li>Random sampling</li>
+<li>Multivariate normality</li>
+<li>Homogeneity of Covariance</li>
+<li></li>
+</ul></li>
+<li><strong>Homogeneity of Covariance</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The variance of each outcome variable and the covariance between any outcome variables is equal between all groups</li>
+<li>The variance-covariance matrices are identical between groups</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\Sigma_1 = \Sigma_2 = \Sigma_3 = \cdots = \Sigma_k\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\Sigma_k\)</span> - The variance Covariance matrix for group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(k\)</span> - The total number of groups in the MANOVA</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Effects of violation of this assumption</strong>
+<ul>
+<li>Only under this condition that the sampling distribution of <span class="math inline">\(t^2\times\frac{v-p+1}{p(v)}\)</span> has an <span class="math inline">\(F\)</span> distribution with degrees of freedom 1 of <span class="math inline">\(p\)</span> and degrees of freedom 2 of <span class="math inline">\(n_{1} + n_{2} - p -1\)</span></li>
+</ul></li>
+<li><strong>Testing for Homogeneity of Covariance</strong>
+<ul>
+<li><strong>Statistical Tests for Homogeneity of Covariance</strong>
+<ul>
+<li>Box M test</li>
+</ul></li>
+<li><strong>Box M test</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A test that test the null hypothesis that multiple covariance matrices are equal</li>
+</ul></li>
+<li><strong>The Box M statistic</strong>
+<ul>
+<li><strong>Mathematics (Huberty &amp; Olejnik, 2006, p.41)</strong><br />
+</li>
+<li><span class="math inline">\(M = v_{e}\ln{|\mathbf{S_e}| - \sum_{k=1}^{k}{v_{k}\ln{|\mathbf{S_k}|}}}\)</span></li>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(k\)</span> - Number of groups</li>
+<li><span class="math inline">\(v_k\)</span> - Degrees of freedom for group k (which is <span class="math inline">\(n_k - 1\)</span>)</li>
+<li><span class="math inline">\(v_e\)</span> - Error degrees of freedom (which is <span class="math inline">\(\sum_{k=1}^{k}{v_k}\)</span>)</li>
+<li><span class="math inline">\(\mathbf{S_k}\)</span> - Covariance matrix for group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\mathbf{S_e}\)</span> - Error covariance matrix (Which is <span class="math inline">\(\frac{\mathbf{E}}{v_e}\)</span>)</li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of Box M</strong>
+<ul>
+<li><strong>Chi-squared transformed Box M</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Box M can be transformed to a statistic that has a Chi-Squared distribution with degrees of freedom of <span class="math inline">\(\frac{(k-1)(p+1)p}{2}\)</span></li>
+</ul></li>
+<li><strong>Transforming Box M</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>For equal sample sizes</strong>
+<ul>
+<li><span class="math inline">\(M_{\chi} = M \times \left[ 1-\frac{2p^{2} + 3p -1}{6(p+1)(k-1)} \right]\)</span></li>
+</ul></li>
+<li><strong>For unequal sample sizes</strong>
+<ul>
+<li><span class="math inline">\(M_{\chi} = M \times \left[ 1-\frac{2p^{2} + 3p -1}{6(p+1)(k-1)} \times \left( \sum_{k=1}^{k}{v_{k}^{-1} - v_{e}^{-1}} \right) \right]\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of <span class="math inline">\(M_{\chi}\)</span></strong>
+<ul>
+<li><span class="math inline">\(M_{\chi} \sim \chi^2\left(\frac{\left(k-1\right)(p+1)p}{2}\right)\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>F-transformed Box M</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Box M is transformed to a statistic that has an <span class="math inline">\(F\)</span> distribution</li>
+<li>Details can be found in Rencher (2002, p.255-259)</li>
+</ul></li>
+<li><strong>Assumptions</strong>
+<ul>
+<li>Uncorrelated errors</li>
+<li>Multivariate normality</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Robust multivariate test of difference</strong>
+<ul>
+<li><strong>Robust multivariate test of differences</strong>
+<ul>
+<li>Yao Test</li>
+</ul></li>
+<li><strong>Yao Test</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A robust Hotelling’s <span class="math inline">\(t^2\)</span></li>
+</ul></li>
+<li><strong>The Yao statistic</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(T^{2}_{Yao} = (\mathbf{Y_{1}-\mathbf{Y_2}})\mathbf{&#39;}\left(\frac{\mathbf{S_1}}{n_1}+\frac{\mathbf{S_2}}{n_2}\right)^{-1}(\mathbf{Y_{1}-\mathbf{Y_2}})\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of Yao statistic</strong>
+<ul>
+<li><strong>F-transformed Yao</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li><span class="math inline">\(T^{2}_{Yao}\)</span> can be transformed to a statistic that has an F distribution with degrees of freedom 1 of <span class="math inline">\(p\)</span> and degrees of freedom of <span class="math inline">\(f - p + 1\)</span></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li>$ T^{2}<em>{Yao, F} = T^{2}</em>{Yao} $
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(f = \sum_{k=1}^{k}{\frac{1}{n_k - 1}\left(\frac{V_k}{T^{2}_{Yao}}\right)^2}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(V_k = (\mathbf{Y_{1}-\mathbf{Y_2}})\mathbf{&#39;} \mathbf{W}^{-1} \mathbf{W}_k \mathbf{W}^{-1} (\mathbf{Y_{1}-\mathbf{Y_2}})\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\mathbf{W}= \sum_{k=1}^{k}{\mathbf{W_{k}}}\)</span></li>
+<li><span class="math inline">\(\mathbf{W}_k = \frac{\mathbf{S}_k}{n_k}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of <span class="math inline">\(T^{2}_{Yao, F}\)</span></strong>
+<ul>
+<li><span class="math inline">\(T^{2}_{Yao, F} \sim F \left( p, f-p+1\right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 
