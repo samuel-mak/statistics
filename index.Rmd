@@ -9,6 +9,7 @@ output:
     theme: darkly
     highlight: monochrome
     code_folding: hide
+    extra_dependencies: ['amsmath', 'upgreek']
 
 
 ---

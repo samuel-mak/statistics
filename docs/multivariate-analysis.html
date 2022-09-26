@@ -98,7 +98,7 @@
 <div id="multivariate-analysis" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Multivariate Analysis<a href="multivariate-analysis.html#multivariate-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p style="margin-bottom: 0px; font-size: 20px; ">
-<strong>MANOVA</strong>
+<strong>Multivariate Analysis</strong>
 </p>
 <ul>
 <li><strong>Multivariate analysis</strong>
@@ -373,6 +373,236 @@
 </ul></li>
 </ul></li>
 </ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Multivariate ANOVA</strong>
+</p>
+<ul>
+<li><strong>MANOVA</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li><strong>MANOVA</strong> - Multivariate Analysis of Variance</li>
+<li>The comparison of multiple group mean centroids</li>
+<li>The comparison of multiple group means on multiple outcome variables</li>
+</ul></li>
+<li><strong>Hypotheses</strong>
+<ul>
+<li><strong>Null Hypothesis</strong>
+<ul>
+<li>Multiple group mean centroids are identical (or are from the same population)</li>
+<li><span class="math inline">\(\begin{alignat*}{1} &amp;H_0: ~~~~~\boldsymbol{\mu}_{1}&amp; &amp;= ~~~~~\boldsymbol{\mu}_{2}&amp; &amp;= ~~~~~\boldsymbol{\mu}_{3}&amp; &amp;= \cdots&amp; &amp;= ~~~~~\boldsymbol{\mu}_{k}&amp; \\ &amp;H_0: \begin{pmatrix} \mu_{1, 1} \\ \mu_{2, 1} \\ \mu_{3, 1} \\ \vdots \\ \mu_{v, 1}\end{pmatrix}&amp; &amp;= \begin{pmatrix} \mu_{1, 2} \\ \mu_{2, 2} \\ \mu_{3, 2} \\ \vdots \\ \mu_{v, 2}\end{pmatrix}&amp; &amp;= \begin{pmatrix} \mu_{1, 3} \\ \mu_{2, 3} \\ \mu_{3, 3} \\ \vdots \\ \mu_{v, 3}\end{pmatrix}&amp; &amp;= \cdots&amp; &amp;= \begin{pmatrix} \mu_{1, k} \\ \mu_{2, k} \\ \mu_{3, k} \\ \vdots \\ \mu_{v, k}\end{pmatrix}&amp; \end{alignat*}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\mu_{v, k}\)</span> - Mean of group <span class="math inline">\(k\)</span> on outcome <span class="math inline">\(v\)</span></li>
+<li><span class="math inline">\(k\)</span> - Group</li>
+<li><span class="math inline">\(v\)</span> - Variate</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Multivariate F-ratio: The <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A matrix that represents the multivariate version of the F-ratio</li>
+<li>A matrix that represents the ratio of systematic variance in a set of outcome variables (the variance in the linear combination of multiple outcome variables explained by the model) to the unsystematic variance in the set of outcome variables (the variance in the linear combination of multiple outcome variables not explained by the model)</li>
+</ul></li>
+<li><strong>Eigenvectors of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix</strong>
+<ul>
+<li>Each of the Eigenvectors of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix represents each of the underlying variates and the Eigenvalue of each Eigenvector represents the effect of the associated variate in the form of F-ratio (ratio of variance explained to variance unexplained)</li>
+</ul></li>
+<li><strong>Mathematics (Matrix)</strong>
+<ul>
+<li><span class="math inline">\(\mathbf{HE}^{-1}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\mathbf{H}\)</span> - Hypothesis SSCP matrix</li>
+<li><span class="math inline">\(\mathbf{E}\)</span> - Error SSCP matrix</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Eigenvalues of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix</strong>
+<ul>
+<li>Each of the eigenvalues of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix represents the F-ratio of each of the underlying variates</li>
+</ul></li>
+</ul></li>
+<li><strong>Test statistic for MANOVA</strong>
+<ul>
+<li>Wilk Lambda</li>
+<li>Pillai-Bartlett trace</li>
+<li>Hotelling-Lawley trace</li>
+<li>Roy’s largest root</li>
+</ul></li>
+<li><strong>Wilks lambda (Wilks, 1932)</strong>
+<ul>
+<li><strong>Wilks lambda statistic</strong>
+<ul>
+<li><strong>Introduction</strong>
+<ul>
+<li>The oldest and perhaps the most commonly used criterion</li>
+</ul></li>
+<li><strong>Mathematical description</strong>
+<ul>
+<li>It is the ratio of the determinant of the Error SSCP matrix to the determinant of the Total SSCP matrix</li>
+<li>It represents the ratio of error variance to total variance (or the proportion of unexplained variance)</li>
+<li>Represents the ratio of the variance in all of the variates not explained by the model to the total variance in all of the variates</li>
+</ul></li>
+<li><strong>Method 1</strong>
+<ul>
+<li><strong>Description</strong></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \Lambda = \cfrac{|\mathbf{E}|}{|\mathbf{H} + \mathbf{E}|} = \cfrac{|\mathbf{E}|}{|\mathbf{T}|}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Method 2</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>The product of the ratio of variance unexplained to total variance for all variates</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \Lambda = \prod\limits_{v=1}^{v}{\frac{1}{1+\lambda_{v}}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(v\)</span> - Variate</li>
+<li><span class="math inline">\(\lambda_{v}\)</span> - Eigenvalue for variate <span class="math inline">\(v\)</span>
+<ul>
+<li><strong><em>Note</em></strong>
+<ul>
+<li><span class="math inline">\(\frac{1}{1+\lambda_{v}}\)</span> changes the ratio of variance explained to the variance unexplained for variate <span class="math inline">\(v\)</span> (<span class="math inline">\(\lambda_{v}\)</span>) to a ratio of variance unexplained to the total variance for variate <span class="math inline">\(v\)</span>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \frac{1}{1+\lambda_{v}} &amp;= \frac{1}{1+\frac{SS_{M,v}}{SS_{R,v}}} \\ &amp;= \frac{1}{\frac{SS_{R,v}}{SS_{R,v}}+\frac{SS_{M,v}}{SS_{R,v}}} \\ &amp;= \frac{SS_{R,v}}{SS_{R,v} + SS_{M,v}} \\ &amp;= \frac{SS_{R,v}}{SS_{T,v}} \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of Wilks lambda</strong>
+<ul>
+<li><strong>F-transformed Lambda</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>Wilks lambda is transformed to a test statistic that has an F distribution</li>
+</ul></li>
+<li><strong>F-transformed Lambda for two groups</strong>
+<ul>
+<li><span class="math inline">\(\Lambda_{F} = \cfrac{1-\Lambda}{\Lambda}\times \cfrac{v_{e} - p + 1}{p} \sim F\left( p, v_e - p + 1\right)\)</span></li>
+</ul></li>
+<li><strong>F-transformed Lambda for three groups</strong>
+<ul>
+<li><span class="math inline">\(\Lambda_{F} = \cfrac{1-\sqrt{\Lambda}}{\sqrt{\Lambda}} \times \cfrac{v_{e} - p + 1}{p} \sim F\left( 2p, 2v_e - 2p + 2\right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Pillai-Bartlett trace</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Aka Pillai’s trace</li>
+<li>Represents the ratio of variance in all the variates explained by the predictor variable to the total variance in all the variates <span class="math inline">\(\left( \frac{SS_M}{SS_T} \right)\)</span></li>
+<li>It is the sum of the ratio of variance explained to the total variance of each of the variates</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle V = \sum_{v=1}^{v}{\frac{\lambda_{v}}{1 + \lambda_v}}\)</span>
+<ul>
+<li><strong><em>Note</em></strong>
+<ul>
+<li><span class="math inline">\(\frac{\lambda_{v}}{1 + \lambda_v}\)</span>
+<ul>
+<li>The squared canonical correlation between the grouping variable and the <span class="math inline">\(v^{th}\)</span> linear discriminant function</li>
+<li>This transforms <span class="math inline">\(\lambda_v\)</span> to the ratio of variance explained to the total variance
+<ul>
+<li><span class="math inline">\(\begin{aligned} \frac{\lambda_{v}}{1 + \lambda_v} &amp;= \frac{\frac{SS_M}{SS_R}}{1 + \frac{SS_M}{SS_R}} \\ &amp;= \frac{\frac{SS_M}{SS_R}}{\frac{SS_R}{SS_R} + \frac{SS_M}{SS_R}} \\ &amp;= \frac{\frac{SS_M}{SS_R}}{\frac{SS_R + SS_M}{SS_R}} \\ &amp;= \frac{\frac{SS_M}{SS_R}}{\frac{SS_T}{SS_R}} \\ &amp;= \frac{SS_M}{SS_R} \times \frac{SS_R}{SS_T} \\ &amp;= \frac{SS_M}{SS_T} \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of Pillai’s trace</strong>
+<ul>
+<li><strong>F-transformed Pillai’s trace</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Pillai’s trace is transformed to a test statistic that has an <span class="math inline">\(F\)</span> distribution with degrees of freedom 1 of <span class="math inline">\(br\)</span> and degrees of freedom of <span class="math inline">\(r\left( df_e - p + r \right)\)</span></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle V_F = \frac{V}{r - V} \times \frac{v_e - p + r}{b}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(b = \max{\left( p, df_h \right)}\)</span></li>
+<li><span class="math inline">\(r = \min{\left( p, df_h \right)}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of F-transformed Pillai’s trace</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle V_F \sim F \left( br, r\left( df_e - p + r \right)\right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Hotelling-Lawley trace</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It represents the ratio of variance explained to the variance unexplained</li>
+<li>It is the sum of the eigenvalues for all the variates</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle T = \sum_{v=1}^{v}{\lambda_{v}}\)</span></li>
+</ul></li>
+<li><strong>F-transformed Hotelling-Lawley trace</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li><span class="math inline">\(T\)</span> is transformed to a statistic so that it has a central <span class="math inline">\(F\)</span> distribution</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li>$T_F = T $</li>
+</ul></li>
+<li><strong>Distribution of F-transformed Hotelling-Lawley trace</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle T_F \sim F \left( br, r(df_e - p -1) + 2 \right)\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(b = \max \left(p, df_h \right)\)</span></li>
+<li><span class="math inline">\(r = \min \left(p, df_h \right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Roy’s largest Root</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Roy’s largest root suggests only to consider the largest eigenvalue (which is this <span class="math inline">\(\lambda_1\)</span>, because the first eigenvalue is the largest one) and ignore the rest (if there are multiple eigenvalues)</li>
+<li>You can interpret it in anyway you like, for example, you can convert this this eigenvalue to a ratio of variance explained to the total variance using this <span class="math inline">\(\frac{\lambda_1}{1+\lambda_1}\)</span>, this point is that you only need to consider the largest eigenvalue and do whatever you want with it</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\Theta = \lambda_1\)</span></li>
 </ul></li>
 </ul></li>
 </ul>

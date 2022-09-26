@@ -1,7 +1,7 @@
 # Multivariate Analysis 
 
 
-<p style = "margin-bottom: 0px; font-size: 20px; ">**MANOVA**</p>
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Multivariate Analysis**</p>
 
 - **Multivariate analysis**
   - **Concept**
@@ -149,19 +149,125 @@
 
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Multivariate ANOVA**</p>
+
+- **MANOVA**
+  - **Concept**
+    - **MANOVA** - Multivariate Analysis of Variance
+    - The comparison of multiple group mean centroids 
+    - The comparison of multiple group means on multiple outcome variables 
+  - **Hypotheses**
+    - **Null Hypothesis**
+      - Multiple group mean centroids are identical (or are from the same population)
+      - $\begin{alignat*}{1} &H_0:  ~~~~~\boldsymbol{\mu}_{1}& &= ~~~~~\boldsymbol{\mu}_{2}& &= ~~~~~\boldsymbol{\mu}_{3}& &= \cdots& &= ~~~~~\boldsymbol{\mu}_{k}& \\ &H_0: \begin{pmatrix} \mu_{1, 1} \\ \mu_{2, 1} \\ \mu_{3, 1} \\ \vdots \\ \mu_{v, 1}\end{pmatrix}&  &= \begin{pmatrix} \mu_{1, 2} \\ \mu_{2, 2} \\ \mu_{3, 2} \\ \vdots \\ \mu_{v, 2}\end{pmatrix}& &= \begin{pmatrix} \mu_{1, 3} \\ \mu_{2, 3} \\ \mu_{3, 3} \\ \vdots \\ \mu_{v, 3}\end{pmatrix}& &= \cdots& &= \begin{pmatrix} \mu_{1, k} \\ \mu_{2, k} \\ \mu_{3, k} \\ \vdots \\ \mu_{v, k}\end{pmatrix}& \end{alignat*}$
+        - ***Where***
+          - $\mu_{v, k}$ - Mean of group $k$ on outcome $v$ 
+          - $k$ - Group 
+          - $v$ - Variate
+
+- **Multivariate F-ratio: The $\mathbf{HE}^{-1}$ matrix**
+  - **Concept**
+    - A matrix that represents the multivariate version of the F-ratio
+    - A matrix that represents the ratio of systematic variance in a set of outcome variables (the variance in the linear combination of multiple outcome variables explained by the model) to the unsystematic variance in the set of outcome variables (the variance in the linear combination of multiple outcome variables not explained by the model)
+  - **Eigenvectors of the $\mathbf{HE}^{-1}$ matrix**
+    - Each of the Eigenvectors of the $\mathbf{HE}^{-1}$ matrix represents each of the underlying variates and the Eigenvalue of each Eigenvector represents the effect of the associated variate in the form of F-ratio (ratio of variance explained to variance unexplained)
+  - **Mathematics (Matrix)**
+    - $\mathbf{HE}^{-1}$
+      - ***Where***
+        - $\mathbf{H}$ - Hypothesis SSCP matrix
+        - $\mathbf{E}$ - Error SSCP matrix 
+        
+  - **Eigenvalues of the $\mathbf{HE}^{-1}$ matrix**
+    - Each of the eigenvalues of the $\mathbf{HE}^{-1}$ matrix represents the F-ratio of each of the underlying variates 
 
 
+- **Test statistic for MANOVA**
+  - Wilk Lambda
+  - Pillai-Bartlett trace
+  - Hotelling-Lawley trace
+  - Roy's largest root 
+  
+- **Wilks lambda (Wilks, 1932)**
+  - **Wilks lambda statistic**
+    - **Introduction**
+      - The oldest and perhaps the most commonly used criterion 
+    - **Mathematical description**
+      - It is the ratio of the determinant of the Error SSCP matrix to the determinant of the Total SSCP matrix 
+      - It represents the ratio of error variance to total variance (or the proportion of unexplained variance)
+      - Represents the ratio of the variance in all of the variates not explained by the model to the total variance in all of the variates 
+    - **Method 1**
+      - **Description**
+      - **Mathematics**
+        - $\displaystyle \Lambda = \cfrac{|\mathbf{E}|}{|\mathbf{H} + \mathbf{E}|} = \cfrac{|\mathbf{E}|}{|\mathbf{T}|}$
+    - **Method 2**
+      - **Description**
+        - The product of the ratio of variance unexplained to total variance for all variates
+      - **Mathematics**
+        - $\displaystyle \Lambda = \prod\limits_{v=1}^{v}{\frac{1}{1+\lambda_{v}}}$ 
+          - ***Where***
+            - $v$ - Variate
+            - $\lambda_{v}$ - Eigenvalue for variate $v$
+              - ***Note***
+                - $\frac{1}{1+\lambda_{v}}$ changes the ratio of variance explained to the variance unexplained for variate $v$ ($\lambda_{v}$) to a ratio of variance unexplained to the total variance for variate $v$
+                  - $\begin{aligned} \frac{1}{1+\lambda_{v}} &= \frac{1}{1+\frac{SS_{M,v}}{SS_{R,v}}} \\ &= \frac{1}{\frac{SS_{R,v}}{SS_{R,v}}+\frac{SS_{M,v}}{SS_{R,v}}} \\ &= \frac{SS_{R,v}}{SS_{R,v} + SS_{M,v}} \\ &= \frac{SS_{R,v}}{SS_{T,v}} \end{aligned}$
+  - **Distribution of Wilks lambda**
+    - **F-transformed Lambda**
+      - **Description**
+        - Wilks lambda is transformed to a test statistic that has an F distribution
+      - **F-transformed Lambda for two groups**
+        - $\Lambda_{F} = \cfrac{1-\Lambda}{\Lambda}\times \cfrac{v_{e} - p + 1}{p} \sim F\left( p, v_e - p + 1\right)$
+      - **F-transformed Lambda for three groups**
+          - $\Lambda_{F} = \cfrac{1-\sqrt{\Lambda}}{\sqrt{\Lambda}} \times \cfrac{v_{e} - p + 1}{p} \sim F\left( 2p, 2v_e - 2p + 2\right)$
+          
 
+- **Pillai-Bartlett trace**
+  - **Concept** 
+    - Aka Pillai's trace
+    - Represents the ratio of variance in all the variates explained by the predictor variable to the total variance in all the variates $\left( \frac{SS_M}{SS_T} \right)$
+    - It is the sum of the ratio of variance explained to the total variance of each of the variates 
+  - **Mathematics**
+    - $\displaystyle V = \sum_{v=1}^{v}{\frac{\lambda_{v}}{1 + \lambda_v}}$
+      - ***Note***
+        - $\frac{\lambda_{v}}{1 + \lambda_v}$ 
+          - The squared canonical correlation between the grouping variable and the $v^{th}$ linear discriminant function 
+          - This transforms $\lambda_v$ to the ratio of variance explained to the total variance 
+            - $\begin{aligned} \frac{\lambda_{v}}{1 + \lambda_v} &= \frac{\frac{SS_M}{SS_R}}{1 + \frac{SS_M}{SS_R}} \\ &= \frac{\frac{SS_M}{SS_R}}{\frac{SS_R}{SS_R} + \frac{SS_M}{SS_R}} \\ &= \frac{\frac{SS_M}{SS_R}}{\frac{SS_R + SS_M}{SS_R}} \\ &= \frac{\frac{SS_M}{SS_R}}{\frac{SS_T}{SS_R}} \\ &= \frac{SS_M}{SS_R} \times \frac{SS_R}{SS_T} \\ &= \frac{SS_M}{SS_T} \end{aligned}$
+  - **Distribution of Pillai's trace**
+    - **F-transformed Pillai's trace**
+      - **Concept**
+        - Pillai's trace is transformed to a test statistic that has an $F$ distribution with degrees of freedom 1 of $br$ and degrees of freedom of $r\left( df_e - p + r \right)$
+      - **Mathematics**
+        - $\displaystyle V_F = \frac{V}{r - V} \times \frac{v_e - p + r}{b}$
+          - ***Where***
+            - $b = \max{\left( p, df_h \right)}$
+            - $r = \min{\left( p, df_h \right)}$
+      - **Distribution of F-transformed Pillai's trace**
+        - $\displaystyle V_F \sim F \left( br, r\left( df_e - p + r \right)\right)$
+        
+        
+- **Hotelling-Lawley trace**
+  - **Concept**
+    - It represents the ratio of variance explained to the variance unexplained 
+    - It is the sum of the eigenvalues for all the variates 
+  - **Mathematics**
+    - $\displaystyle T = \sum_{v=1}^{v}{\lambda_{v}}$
+  - **F-transformed Hotelling-Lawley trace**
+    - **Description**
+      - $T$ is transformed to a statistic so that it has a central $F$ distribution 
+    - **Mathematics**
+      - $\displaystyle T_F = T \times \left[ \frac{r\left( df_e - p - 1\right) + 2}{br^2 } \right] $
+    - **Distribution of F-transformed Hotelling-Lawley trace**
+      - $\displaystyle T_F \sim F \left( br, r(df_e - p -1) + 2 \right)$
+        - ***Where***
+          - $b = \max \left(p, df_h \right)$
+          - $r = \min \left(p, df_h \right)$
 
-
-
-
-
-
-
-
-
-
+- **Roy's largest Root**
+  - **Concept**
+    - Roy's largest root suggests only to consider the largest eigenvalue (which is this $\lambda_1$, because the first eigenvalue is the largest one) and ignore the rest (if there are multiple eigenvalues)
+    - You can interpret it in anyway you like, for example, you can convert this this eigenvalue to a ratio of variance explained to the total variance using this $\frac{\lambda_1}{1+\lambda_1}$, this point is that you only need to consider the largest eigenvalue and do whatever you want with it
+  - **Mathematics**
+    - $\Theta = \lambda_1$
 
 
 
