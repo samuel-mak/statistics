@@ -661,7 +661,8 @@
 <ul>
 <li><span class="math inline">\(\eta^{2}_{Multivariate}= 1 - \Lambda\)</span></li>
 </ul></li>
-<li><strong><a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&amp;do=view&amp;target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does">Cambridge</a></strong>
+<li><strong><a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&amp;do=view&amp;target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does">Cambridge</a></strong></li>
+<li><a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does" target="_blank">Cambridge</a>
 <ul>
 <li><span class="math inline">\(\eta^{2}_{Multivariate}= 1 - \Lambda^{\frac{1}{r}}\)</span>
 <ul>
@@ -692,6 +693,102 @@
 <ul>
 <li><span class="math inline">\(\omega^{2}_{multivariate} = 1 - \frac{N\Lambda}{\left( N - df_H - 1 \right) + \Lambda}\)</span></li>
 </ul></li>
+</ul></li>
+<li><strong>Tau-squared (Cramer &amp; Nicewander, 1979)</strong>
+<ul>
+<li><strong>Concept</strong></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>Method 1</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \tau^2 = 1 - \left( \prod \limits_{v=1}^{v}{1 - \frac{\lambda_v}{1+\lambda_v}} \right)^{\frac{1}{r}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(r = \min{\left(y, df_M \right)}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(y\)</span> - The number of outcome variables</li>
+<li><span class="math inline">\(df_M\)</span> - Model degrees of freedom</li>
+</ul></li>
+<li><strong><em>Note</em></strong>
+<ul>
+<li><span class="math inline">\(\left( \prod \limits_{v=1}^{v}{1 - \frac{\lambda_v}{1+\lambda_v}} \right)^{\frac{1}{r}}\)</span> - This is the geometric mean proportion of variation in all of the variates that is not explained by the model</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Xi squared</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>This is the mean squared canonical correlation (mean proportion of variance in all the variates that is explained by the model; the variance explained per variate; it takes into account the number of variates estimated)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\xi^2 = \frac{V}{s}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(s\)</span> - The number of variates estimated</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Adjustment for positive bias of variance-based effect size</strong>
+<ul>
+<li><strong>Serlin’s Adjustment (Serlin, 1982)</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li>$ ^2_{adj} = 1- ( 1 - ^2 )$</li>
+</ul></li>
+<li><strong>Evaluation</strong>
+<ul>
+<li>Kim and Olejnik (2005) provided simulation support for Serlin’s adjustment</li>
+<li>It can also be used with <span class="math inline">\(\tau^2\)</span> and <span class="math inline">\(\zeta^2\)</span> but they work best when there are only 2 levels and when <span class="math inline">\(df_M ≥ 2\)</span> if the sample is large</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Hotelling-Lawley Effect size (Zeta-squared)</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>This effect size measure is associated with the Hotelling-Lawley test statistic</li>
+<li>It takes into account the number of variates estimated, it represents the variance explained per variate (the average variance explained by each variate)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \zeta^2 = \frac{V}{s + V}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(s = \min \left( y, df_M\right)\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(y\)</span> - The number of variates estimated</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Canonical Correlation</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>The correlation between the linear combination of predictor variables and the linear combination of outcome variables</li>
+<li>In other words, it is the correlation between the set of predictor variables and <span class="math inline">\(v^{th}\)</span> variate</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(r_c = \sqrt{V}\)</span></li>
 </ul></li>
 </ul></li>
 </ul>

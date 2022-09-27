@@ -304,6 +304,7 @@
       - **Huberty and Olejnik (2006)**
         - $\eta^{2}_{Multivariate}= 1 - \Lambda$
       - **[Cambridge](https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does)**
+      - <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does" target="_blank">Cambridge</a>
         - $\eta^{2}_{Multivariate}= 1 - \Lambda^{\frac{1}{r}}$
           - ***Where***
             - $r = \min\left(k - 1, y\right)$
@@ -319,9 +320,54 @@
       - $\omega^{2}_{multivariate} = 1 - \frac{N\Lambda}{\left( N - df_H - 1 \right) + \Lambda}$
 
 
+  - **Tau-squared (Cramer & Nicewander, 1979)**  
+    - **Concept**
+    - **Mathematics**
+      - **Method 1**
+        - $\displaystyle \tau^2 = 1 - \left( \prod \limits_{v=1}^{v}{1 - \frac{\lambda_v}{1+\lambda_v}} \right)^{\frac{1}{r}}$
+          - ***Where***
+            - $r = \min{\left(y, df_M \right)}$
+              - ***Where***
+                - $y$ - The number of outcome variables 
+                - $df_M$ - Model degrees of freedom
+              - ***Note***
+                - $\left( \prod \limits_{v=1}^{v}{1 - \frac{\lambda_v}{1+\lambda_v}} \right)^{\frac{1}{r}}$ - This is the geometric mean proportion of variation in all of the variates that is not explained by the model
+                
+
+- **Xi squared**
+  - **Concept**
+    - This is the mean squared canonical correlation (mean proportion of variance in all the variates that is explained by the model; the variance explained per variate; it takes into account the number of variates estimated)
+  - **Mathematics**
+    - $\xi^2 = \frac{V}{s}$
+      - ***Where***
+        - $s$ - The number of variates estimated 
+  - **Adjustment for positive bias of variance-based effect size**
+    - **Serlin's Adjustment (Serlin, 1982)**  
+      - **Mathematics**
+        - $ \displaystyle \xi^2_{adj} = 1-\frac{N-1}{N-b-1} \times \left( 1 - \xi^2 \right)$
+      - **Evaluation**
+        - Kim and Olejnik (2005) provided simulation support for Serlin's adjustment 
+        - It can also be used with $\tau^2$ and $\zeta^2$ but they work best when there are only 2 levels and when $df_M ≥ 2$ if the sample is large 
 
 
+- **Hotelling-Lawley Effect size (Zeta-squared)**
+  - **Description**
+    - This effect size measure is associated with the Hotelling-Lawley test statistic
+    - It takes into account the number of variates estimated, it represents the variance explained per variate (the average variance explained by each variate)
+  - **Mathematics**
+    - $\displaystyle \zeta^2 = \frac{V}{s + V}$
+      - ***Where***
+        - $s = \min \left( y, df_M\right)$
+          - ***Where***
+            - $y$ - The number of variates estimated 
 
+- **Canonical Correlation**
+  - **Description**
+    - The correlation between the linear combination of predictor variables and the linear combination of outcome variables
+    - In other words, it is the correlation between the set of predictor variables and $v^{th}$ variate 
+  - **Mathematics**
+    - $r_c = \sqrt{V}$
+            
 
 
 
