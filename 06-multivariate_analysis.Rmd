@@ -303,8 +303,7 @@
     - **Mathematics**
       - **Huberty and Olejnik (2006)**
         - $\eta^{2}_{Multivariate}= 1 - \Lambda$
-      - **[Cambridge](https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does)**
-      - <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does" target="_blank">Cambridge</a>
+      - <a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does" target="_blank">**Cambridge**</a>
         - $\eta^{2}_{Multivariate}= 1 - \Lambda^{\frac{1}{r}}$
           - ***Where***
             - $r = \min\left(k - 1, y\right)$
@@ -368,19 +367,90 @@
   - **Mathematics**
     - $r_c = \sqrt{V}$
             
+ans$adj.r.squared <- 1 - (1 - ans$r.squared) * ((n - 
+            df.int)/rdf)
 
 
 
+- **Positive bias of proportion of variance explained**
+  - **Concept**
+    - The sample proportion of variance explained is a positively-based estimator of the population proportion of variance explained 
+    - There are methods for adjusting for this bias 
+  - **Moderators of this bias**
+    - The degree of positive bias increases as
+      - The number of levels of the predictor increases
+      - The number of outcome variables increases
+      - The group sample size decreases
+  - **Adjustments for $R^2$**
+    - **The Smith formula (Ezekiel, 1928)**
+      - **Mathematics**
+        - $\displaystyle R_{adj}^{2} = 1 - \left( 1 - R^2\right) \times \frac{n}{n-p}$
+          - ***Where***
+            - $p$ - The number of predictors 
+    - **The Wherry formula-1**
+      - **Mathematics**
+        - $\displaystyle R_{adj}^{2} = 1 - \left( 1 - R^2\right) \times \frac{n-1}{n-p-1}$
+    - **The Wherry formula-2**
+      - **Introduction**
+        - This is implemented by many statistical packages (e.g. SAS, SPSS, R)
+        - `lm()` uses this 
+      - **Mathematics**
+        - $\displaystyle R_{adj}^{2} = 1 - \left( 1 - R^2\right) \times \frac{n-1}{n-p}$
+    - **The Olkin and Pratt formula (Olkin & Pratt, 1958)**
+      - **Mathematics**
+        - $\displaystyle R_{adj}^{2} = 1 - \frac{\left( N-3 \right) ( 1-R^2 )}{N - p - 1} \times \left[ 1 + \frac{2 (1 - R^2)}{N - p + 1}\right]$
+    - **The Pratt formula**
+      - **Mathematics**
+        - $\displaystyle R^2 = 1 - \frac{(N - 3)(1 - R^2)}{N - p - 1} \times \left[ 1 + \frac{2 (1 - R^2)}{N - p - 2.3}\right]$
+    - **The Claudy formula-3**
+      - **Mathematics**
+        - $\displaystyle R_{adj}^{2} = 1 - \frac{(N - 4)(1 - R^2)}{N - p - 1} \times \left[ 1 + \frac{2 (1 - R^2)}{N - p + 1}\right]$
+  - **Which is the best??**
+    - Yin and Fan (2001) conducted a simulation study in which they compared the 6 methods, they found that when the $\frac{N}{p}$ is large, almost all of those 6 methods were unbiased, and the Pratt formula better than all the others especially when the $\frac{N}{p}$ ratio is small. So Pratt's method is probably the way to go, but most statistical packages don't use it... (Also see <a href="https://stats.stackexchange.com/questions/48703/what-is-the-adjusted-r-squared-formula-in-lm-in-r-and-how-should-it-be-interpret" target="_blank">Stackexchange</a>)
 
 
 
-
-
-
-
-
-
-
+- **Contrasts**
+  - **Concept**
+    - Contrasts are operationalised as a linear combination in which each term is the product of a group mean and its weight
+    - A specific contrast is defined by the specific weights set for each mean such that it compares a specific pair of means 
+  - **Mathematics**
+    - $\displaystyle \begin{aligned} \psi =& \sum_{k=1}^{k}{w_{k}\bar{x}_{k}} \\ \psi =& w_{1}\bar{x}_{1} + w_{2}\bar{x}_{2} + w_{3}\bar{x}_{3} + \cdots + w_{k}\bar{x}_{k} \end{aligned}$
+      - ***Where***
+        - $k$ - The number of levels of the categorical predictor 
+        - $w_k$ - Weight for the mean of group $k$
+        - $\bar{x}_k$ - The mean of group $k$
+      - ***Note***
+        - $\displaystyle \sum_{k = 1}^{k}{w_k} = 0$
+  - **Example**
+    - **A 3-group example**
+      - $\psi = w_{1}\bar{x}_{1} + w_{2}\bar{x}_{2} + w_{3}\bar{x}_{3}$
+      - **A comparison of group 1 and 3**
+        - $\psi = 1\bar{x}_{1} + 0\bar{x}_{2} - 1\bar{x}_{3}$
+      - **A comparison of group 2 and 1**
+        - $\psi = -1\bar{x}_{1} + 1\bar{x}_{2} + 0\bar{x}_{3}$
+  - **Sampling variance of a contrast**
+    - **Mathematics**
+      - $\displaystyle s_{\psi}^{2} = s_{e}^{2}\sum_{k=1}^{k}{\frac{w_k}{n_k}}$
+        - ***Where***
+          - $s_{e}^{2}$ - Error variance - The error variance is based on all $k$ groups in the study - This is the error variance across all the groups
+  - **Standard error of a contrast**
+    - **Mathematics**
+      - $\displaystyle s_{\psi} = \sqrt{s_{e}^{2}\sum_{k=1}^{k}{\frac{w_k}{n_k}}}$
+  - **Student's $t$ of a contrast**
+    - **Mathematics**
+      - $\displaystyle t = \frac{\psi}{s_{\psi}}$
+      
+      
+      
+- **Multivariate contrasts**
+  - **Concept**
+    - A comparison between any two group centroids 
+  - **Mathematics**
+    - $\boldsymbol{\psi} = \mathbf{y}_j - \mathbf{y}_k$
+      - ***Where***
+        - $\boldsymbol{\psi}$ - A column vector representing the difference between 2 group mean centroids
+  
 
 
 

@@ -661,8 +661,7 @@
 <ul>
 <li><span class="math inline">\(\eta^{2}_{Multivariate}= 1 - \Lambda\)</span></li>
 </ul></li>
-<li><strong><a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&amp;do=view&amp;target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does">Cambridge</a></strong></li>
-<li><a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does" target="_blank">Cambridge</a>
+<li><a href="https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=view&target=mvwl.doc#:~:text=Attachment%20%27mvwl.doc%27-,Download,-Current%20configuration%20does" target="_blank"><strong>Cambridge</strong></a>
 <ul>
 <li><span class="math inline">\(\eta^{2}_{Multivariate}= 1 - \Lambda^{\frac{1}{r}}\)</span>
 <ul>
@@ -789,6 +788,170 @@
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(r_c = \sqrt{V}\)</span></li>
+</ul></li>
+</ul></li>
+</ul>
+<p>ans<span class="math inline">\(adj.r.squared &lt;- 1 - (1 - ans\)</span>r.squared) * ((n -
+df.int)/rdf)</p>
+<ul>
+<li><strong>Positive bias of proportion of variance explained</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sample proportion of variance explained is a positively-based estimator of the population proportion of variance explained</li>
+<li>There are methods for adjusting for this bias</li>
+</ul></li>
+<li><strong>Moderators of this bias</strong>
+<ul>
+<li>The degree of positive bias increases as
+<ul>
+<li>The number of levels of the predictor increases</li>
+<li>The number of outcome variables increases</li>
+<li>The group sample size decreases</li>
+</ul></li>
+</ul></li>
+<li><strong>Adjustments for <span class="math inline">\(R^2\)</span></strong>
+<ul>
+<li><strong>The Smith formula (Ezekiel, 1928)</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle R_{adj}^{2} = 1 - \left( 1 - R^2\right) \times \frac{n}{n-p}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(p\)</span> - The number of predictors</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The Wherry formula-1</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle R_{adj}^{2} = 1 - \left( 1 - R^2\right) \times \frac{n-1}{n-p-1}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The Wherry formula-2</strong>
+<ul>
+<li><strong>Introduction</strong>
+<ul>
+<li>This is implemented by many statistical packages (e.g. SAS, SPSS, R)</li>
+<li><code>lm()</code> uses this</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle R_{adj}^{2} = 1 - \left( 1 - R^2\right) \times \frac{n-1}{n-p}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The Olkin and Pratt formula (Olkin &amp; Pratt, 1958)</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle R_{adj}^{2} = 1 - \frac{\left( N-3 \right) ( 1-R^2 )}{N - p - 1} \times \left[ 1 + \frac{2 (1 - R^2)}{N - p + 1}\right]\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The Pratt formula</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle R^2 = 1 - \frac{(N - 3)(1 - R^2)}{N - p - 1} \times \left[ 1 + \frac{2 (1 - R^2)}{N - p - 2.3}\right]\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The Claudy formula-3</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle R_{adj}^{2} = 1 - \frac{(N - 4)(1 - R^2)}{N - p - 1} \times \left[ 1 + \frac{2 (1 - R^2)}{N - p + 1}\right]\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Which is the best??</strong>
+<ul>
+<li>Yin and Fan (2001) conducted a simulation study in which they compared the 6 methods, they found that when the <span class="math inline">\(\frac{N}{p}\)</span> is large, almost all of those 6 methods were unbiased, and the Pratt formula better than all the others especially when the <span class="math inline">\(\frac{N}{p}\)</span> ratio is small. So Pratt’s method is probably the way to go, but most statistical packages don’t use it… (Also see <a href="https://stats.stackexchange.com/questions/48703/what-is-the-adjusted-r-squared-formula-in-lm-in-r-and-how-should-it-be-interpret" target="_blank">Stackexchange</a>)</li>
+</ul></li>
+</ul></li>
+<li><strong>Contrasts</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Contrasts are operationalised as a linear combination in which each term is the product of a group mean and its weight</li>
+<li>A specific contrast is defined by the specific weights set for each mean such that it compares a specific pair of means</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{aligned} \psi =&amp; \sum_{k=1}^{k}{w_{k}\bar{x}_{k}} \\ \psi =&amp; w_{1}\bar{x}_{1} + w_{2}\bar{x}_{2} + w_{3}\bar{x}_{3} + \cdots + w_{k}\bar{x}_{k} \end{aligned}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(k\)</span> - The number of levels of the categorical predictor</li>
+<li><span class="math inline">\(w_k\)</span> - Weight for the mean of group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\bar{x}_k\)</span> - The mean of group <span class="math inline">\(k\)</span></li>
+</ul></li>
+<li><strong><em>Note</em></strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \sum_{k = 1}^{k}{w_k} = 0\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Example</strong>
+<ul>
+<li><strong>A 3-group example</strong>
+<ul>
+<li><span class="math inline">\(\psi = w_{1}\bar{x}_{1} + w_{2}\bar{x}_{2} + w_{3}\bar{x}_{3}\)</span></li>
+<li><strong>A comparison of group 1 and 3</strong>
+<ul>
+<li><span class="math inline">\(\psi = 1\bar{x}_{1} + 0\bar{x}_{2} - 1\bar{x}_{3}\)</span></li>
+</ul></li>
+<li><strong>A comparison of group 2 and 1</strong>
+<ul>
+<li><span class="math inline">\(\psi = -1\bar{x}_{1} + 1\bar{x}_{2} + 0\bar{x}_{3}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Sampling variance of a contrast</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle s_{\psi}^{2} = s_{e}^{2}\sum_{k=1}^{k}{\frac{w_k}{n_k}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(s_{e}^{2}\)</span> - Error variance - The error variance is based on all <span class="math inline">\(k\)</span> groups in the study - This is the error variance across all the groups</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Standard error of a contrast</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle s_{\psi} = \sqrt{s_{e}^{2}\sum_{k=1}^{k}{\frac{w_k}{n_k}}}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Student’s <span class="math inline">\(t\)</span> of a contrast</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle t = \frac{\psi}{s_{\psi}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Multivariate contrasts</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A comparison between any two group centroids</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\boldsymbol{\psi} = \mathbf{y}_j - \mathbf{y}_k\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\boldsymbol{\psi}\)</span> - A column vector representing the difference between 2 group mean centroids</li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul></li>
 </ul>
