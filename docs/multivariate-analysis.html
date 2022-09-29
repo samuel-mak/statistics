@@ -425,6 +425,10 @@
 <li><span class="math inline">\(\mathbf{H}\)</span> - Hypothesis SSCP matrix</li>
 <li><span class="math inline">\(\mathbf{E}\)</span> - Error SSCP matrix</li>
 </ul></li>
+<li><strong><em>Note</em></strong>
+<ul>
+<li><span class="math inline">\(\textbf{H}\)</span> and <span class="math inline">\(\textbf{E}^{-1}\)</span> are both symmetric, hence, the order in which they are multiplied does not matter, which means that <span class="math inline">\(\mathbf{HE}^{-1} = \mathbf{E}^{-1}\mathbf{H}\)</span></li>
+</ul></li>
 </ul></li>
 </ul></li>
 <li><strong>Eigenvalues of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix</strong>
@@ -942,19 +946,291 @@ df.int)/rdf)</p>
 <li><strong>Concept</strong>
 <ul>
 <li>A comparison between any two group centroids</li>
+<li>A specific multivariate contrast is defined by the specific set of weights for the mean centroids</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\boldsymbol{\psi} = \mathbf{y}_j - \mathbf{y}_k\)</span>
+<li><span class="math inline">\(\begin{aligned}\displaystyle \boldsymbol{\psi} &amp;= \sum_{k=1}^{k}{w_{k}\mathbf{y}_{k}} \\ &amp;= w_{1}\mathbf{y}_{1} + w_{2}\mathbf{y}_{2} + w_{3}\mathbf{y}_{3} + \cdots + w_{k}\mathbf{y}_{k} \end{aligned}\)</span>
 <ul>
 <li><strong><em>Where</em></strong>
 <ul>
-<li><span class="math inline">\(\boldsymbol{\psi}\)</span> - A column vector representing the difference between 2 group mean centroids</li>
+<li><span class="math inline">\(\boldsymbol{\psi}\)</span> - A column vector representing a contrast</li>
+<li><span class="math inline">\(w_k\)</span> - A scalar or weight for group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\mathbf{y}_k\)</span> - Mean centroid of group <span class="math inline">\(k\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Test statistics for multivariate contrasts</strong>
+<ul>
+<li><strong>Hotelling’s <span class="math inline">\(T^2\)</span></strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle T^{2}_{\psi} = \boldsymbol{\psi}&#39; \left( \sum_{k = 1}^{k}{\textbf{S}_e \frac{w_{k}^{2}}{n_k} } \right)^{-1} \boldsymbol{\psi}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\textbf{S}_e\)</span> - Error variance-covariance matrix</li>
+<li><span class="math inline">\(w_k\)</span> - Weight of group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(n_k\)</span> - Sample size of group <span class="math inline">\(k\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Multivariate <span class="math inline">\(F\)</span></strong>
+<ul>
+<li><strong>The multivariate <span class="math inline">\(F\)</span></strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\mathbf{H_{\psi}}\mathbf{E}^{-1}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The multivariate F test statistic</strong>
+<ul>
+<li>Wilks lambda</li>
+<li>Pillai’s trace</li>
+<li>Roy’s largest root</li>
+<li>Hotelling-Lawley</li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>SSCP matrix for contrasts</strong>
+</p>
+<ul>
+<li><strong>Hypothesis SSCP for a contrast</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{aligned}\mathbf{H_{\psi}} &amp;= \frac{1}{\sum_{k=1}^{k}{\frac{w_{k}^{2}}{n_k}}} \left(\boldsymbol{\psi \psi&#39;} \right) \\ &amp;= \begin{bmatrix} SS_{\psi, y_{1}} &amp; CP_{\psi, y_{1}, y_{2}} &amp; CP_{\psi, y_{1}, y_{3}} &amp; \cdots &amp; CP_{\psi, y_{1}, y_{y}} \\ CP_{\psi, y_{2}, y_{1}} &amp; SS_{\psi, y_{2}, y_{2}} &amp; CP_{\psi, y_{2}, y_{3}} &amp; \cdots &amp; CP_{\psi, y_{2}, y_{y}} \\ CP_{\psi, y_{3}, y_{1}} &amp; SS_{\psi, y_{3}, y_{2}} &amp; SS_{\psi, y_{3}} &amp; \cdots &amp; CP_{\psi, y_{3}, y_{y}} \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ CP_{\psi, y_{y}y_{1}} &amp; CP_{\psi, y_{y}, y_{2}} &amp; CP_{\psi, y_{y}, y_{3}} &amp; \cdots &amp; SS_{\psi, y_{y}}\end{bmatrix} \end{aligned}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>When sample sizes are equal, it is simplified to
+<ul>
+<li><span class="math inline">\(\displaystyle \mathbf{H_{\psi}} = \frac{n}{\sum_{k=1}^{k}{w_{k}^{2}}} \left(\boldsymbol{\psi \psi&#39;} \right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Contrasts</strong>
+</p>
+<ul>
+<li><strong>Complex contrasts</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Comparing 2 sets of group means (not just 2 group means)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\psi_{ab} = w_{a}\left(\sum_{k=1}^{k_a}{\bar{x}_k} \right) - w_{b}\left(\sum_{k=1}^{k_b}{\bar{x}_k} \right)\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\psi_{ab}\)</span> - Contrast for set <span class="math inline">\(a\)</span> set <span class="math inline">\(b\)</span></li>
+<li><span class="math inline">\(w_a\)</span> - The weight for the <span class="math inline">\(a\)</span> set of group means</li>
+<li><span class="math inline">\(w_b\)</span> - The weight for the <span class="math inline">\(b\)</span> set of group means</li>
+<li><span class="math inline">\((\sum_{k=1}^{k_a}{\bar{x}_k} \right)\)</span> - The sum of means in the <span class="math inline">\(a\)</span> set</li>
+<li><span class="math inline">\((\sum_{k=1}^{k_b}{\bar{x}_k} \right)\)</span> - The sum of means in the <span class="math inline">\(b\)</span> set</li>
+</ul></li>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li><strong>Weights are summed to 0</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sum of the weights must be 0</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(w_{a} + w_{b} = 0\)</span></li>
+</ul></li>
+<li><strong>Ensuring weights sum to 0</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle w_a = \frac{k_b}{k}\)</span></li>
+<li><span class="math inline">\(\displaystyle w_b = \frac{k_a}{k}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(k_b\)</span> - The number of groups/levels in set <span class="math inline">\(b\)</span></li>
+<li><span class="math inline">\(k_a\)</span> - The number of groups/levels in set <span class="math inline">\(a\)</span></li>
+<li><span class="math inline">\(k\)</span> - The total number of groups/levels of the categorical predictor variable</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Example</strong>
+<ul>
+<li><strong>A 5-group example</strong>
+<ul>
+<li><strong>A complex contrast comparing group 1 and 2 with group 3, 4, and 5</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{aligned}\psi_{ab} &amp;= w_{a}\left(\bar{x}_{1} + \bar{x}_{2}\right) - w_{b}\left(\bar{x}_{3} + \bar{x}_{4} + \bar{x}_{5} \right) \\ &amp;= \frac{3}{5}\left(\bar{x}_{1} + \bar{x}_{2}\right) - \frac{2}{5}\left(\bar{x}_{3} + \bar{x}_{4} + \bar{x}_{5} \right) \\ &amp;= \frac{3}{5}\bar{x}_{1} + \frac{3}{5}\bar{x}_{2}- \frac{2}{5}\bar{x}_{3} - \frac{2}{5}\bar{x}_{4} - \frac{2}{5}\bar{x}_{5} \end{aligned}\)</span></li>
+<li></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Discriminant Function Analysis</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The process of finding a variate that can best separate groups (maximising the <span class="math inline">\(F\)</span> ratio for the groups) so that it can best discriminate between groups</li>
+<li>The groups are transformed in a way that their <span class="math inline">\(F\)</span> ratio are maximised</li>
+<li>The first variate is calculated by maximising the <span class="math inline">\(F\)</span> ratio, each of the subsequent variates is calculated after all preceding variates are partialled out. This means that the variates are orthogonal to each other</li>
+</ul></li>
+<li><strong>Variate</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A linear combination of outcome variables</li>
+<li>A variate is also called a linear discriminant function to reflect its goal of discriminating groups</li>
+<li>In a discriminant function analysis, different variates are identified and they are defined by the specific set of weights for the outcome variables (outcome variables are combined differently)</li>
+<li>Variates are latent variables (aka underlying dimensions/constructs of the outcome variables)</li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{aligned} V &amp;= \sum_{p=1}^{p}{\beta_{p}y_{p}} \\ &amp;= \beta_{1}y_{1} + \beta_{2}y_{2} + \beta_{3}y_{3} + \cdots + \beta_{p}y_{p}\end{aligned}\)</span>
+<ul>
+<li><h2 id="where" class="hasAnchor"><strong><em>Where</em></strong><a href="multivariate-analysis.html#where" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The eigenvectors and eigenvalues of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Each of the eigenvectors of the <span class="math inline">\(\mathbf{HE}^{-1}\)</span> matrix represents a variate and the components in an eigenvector are the set of weights for the outcome variables in the variate and the eigenvalue associated with the eigenvector represents the ratio of variance in the variate explained by the predictor variable(s) to the variance in that variate unexplained by the predictor variable(s)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{aligned}\lambda_v &amp;= \frac{SS_{M_{v}}}{SS_{R_{v}}} \\ &amp;= \frac{\sum_{k = 1}^{k}{n_k (\bar{x}_{k} - \bar{x}_{grand})}}{\sum_{n=1, k = 1}^{n, k}{(x_{i, k} - \bar{x}_{k})}} \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Example</strong>
+<ul>
+<li><span class="math inline">\(\lambda_1\)</span> is the ratio of the variance on LDF 1 explained by the predictor variable(s) to the variance on LDF 1 not explained by the predictor variable(s)</li>
+</ul></li>
+</ul></li>
+<li><strong>Factor loading</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Aka structure r’s</li>
+<li>The relationship between each component of a dimension/construct and the dimension/construct itself</li>
+</ul></li>
+</ul></li>
+<li><strong>Factor loading in discriminant analysis</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The relationship between each outcome variable in the variate and the variate itself (sometimes called the LDF-Variable correlations)</li>
+<li>That is how much each outcome variable in the variate contribute to the variate</li>
+</ul></li>
+<li><strong>Assessing factor loading</strong>
+<ul>
+<li><strong>Methods</strong>
+<ul>
+<li>Total group structure correlations</li>
+<li>Between-group structure correlation</li>
+<li>Within-group structure correlation</li>
+</ul></li>
+<li><strong>Which is the best one??</strong>
+<ul>
+<li>Huberty and Olejnik (2006) advocates within-group structure correlation as it takes into account the group differences of mean vectors (which is meaningful)</li>
+</ul></li>
+</ul></li>
+<li><strong>Interpreting variates</strong>
+<ul>
+<li><strong>Label of a variate</strong>
+<ul>
+<li>The label of a variate should be based on the outcome variables with higher factor loading because these outcome variables are strongly contributing to the variate</li>
+</ul></li>
+<li><strong>Dropping variates</strong>
+<ul>
+<li>You may choose to drop the variates that are less meaningful (e.g. those with low eigenvalues)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The LDF plot</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A plot in which each of the axes represents each of the LDFs/variates and the scores represent scores of the original data that are transformed into variate scores (by putting the original scores into the LDFs)</li>
+</ul></li>
+<li><strong>Types of LDF plot</strong>
+<ul>
+<li>The mean LDF plot</li>
+</ul></li>
+<li><strong>The mean LDF plot</strong>
+<ul>
+<li><strong>Description</strong>
+<ul>
+<li>An LDF plot which plots the group LDF mean centroids (the group mean centroid but transformed into variate score)</li>
+<li>It can be used to determine the number of LDFs to retain for interpretation</li>
+</ul></li>
+<li><strong>Constructing the mean LDF plot</strong>
+<ul>
+<li>For group g on variate v, put the original group means on the discriminant variables into the corresponding places in the vth linear discriminant function, the result of that is the mean for group g on variate v</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Dropping/retaining variates</strong>
+<ul>
+<li><strong>Methods for dropping/retaining variates</strong>
+<ul>
+<li>Proportion of variance based</li>
+</ul></li>
+</ul></li>
+</ul>
+<pre><code>## # A tibble: 344 × 8
+##    species island    bill_le…¹
+##    &lt;fct&gt;   &lt;fct&gt;         &lt;dbl&gt;
+##  1 Adelie  Torgersen      39.1
+##  2 Adelie  Torgersen      39.5
+##  3 Adelie  Torgersen      40.3
+##  4 Adelie  Torgersen      NA  
+##  5 Adelie  Torgersen      36.7
+##  6 Adelie  Torgersen      39.3
+##  7 Adelie  Torgersen      38.9
+##  8 Adelie  Torgersen      39.2
+##  9 Adelie  Torgersen      34.1
+## 10 Adelie  Torgersen      42  
+## # … with 334 more rows, 5
+## #   more variables:
+## #   bill_depth_mm &lt;dbl&gt;,
+## #   flipper_length_mm &lt;int&gt;,
+## #   body_mass_g &lt;int&gt;,
+## #   sex &lt;fct&gt;, year &lt;int&gt;,
+## #   and abbreviated …</code></pre>
+<pre><code>##            Df  Pillai
+## species     2 0.85357
+## Residuals 339        
+##           approx F num Df
+## species      126.2      4
+## Residuals                
+##           den Df    Pr(&gt;F)
+## species      678 &lt; 2.2e-16
+## Residuals                 
+##              
+## species   ***
+## Residuals    
+## ---
+## Signif. codes:  
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01
+##   &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 
 </div>
             </section>

@@ -176,6 +176,8 @@
       - ***Where***
         - $\mathbf{H}$ - Hypothesis SSCP matrix
         - $\mathbf{E}$ - Error SSCP matrix 
+      - ***Note***
+        - $\textbf{H}$ and $\textbf{E}^{-1}$ are both symmetric, hence, the order in which they are multiplied does not matter, which means that $\mathbf{HE}^{-1} = \mathbf{E}^{-1}\mathbf{H}$
         
   - **Eigenvalues of the $\mathbf{HE}^{-1}$ matrix**
     - Each of the eigenvalues of the $\mathbf{HE}^{-1}$ matrix represents the F-ratio of each of the underlying variates 
@@ -446,27 +448,148 @@ ans$adj.r.squared <- 1 - (1 - ans$r.squared) * ((n -
 - **Multivariate contrasts**
   - **Concept**
     - A comparison between any two group centroids 
+    - A specific multivariate contrast is defined by the specific set of weights for the mean centroids 
   - **Mathematics**
-    - $\boldsymbol{\psi} = \mathbf{y}_j - \mathbf{y}_k$
+    - $\begin{aligned}\displaystyle \boldsymbol{\psi} &= \sum_{k=1}^{k}{w_{k}\mathbf{y}_{k}} \\ &= w_{1}\mathbf{y}_{1} + w_{2}\mathbf{y}_{2} + w_{3}\mathbf{y}_{3} + \cdots + w_{k}\mathbf{y}_{k} \end{aligned}$
       - ***Where***
-        - $\boldsymbol{\psi}$ - A column vector representing the difference between 2 group mean centroids
+        - $\boldsymbol{\psi}$ - A column vector representing a contrast
+        - $w_k$ - A scalar or weight for group $k$
+        - $\mathbf{y}_k$ - Mean centroid of group $k$
+  - **Test statistics for multivariate contrasts**
+    - **Hotelling's $T^2$**
+      - **Mathematics**
+        - $\displaystyle T^{2}_{\psi} = \boldsymbol{\psi}' \left( \sum_{k = 1}^{k}{\textbf{S}_e \frac{w_{k}^{2}}{n_k} } \right)^{-1} \boldsymbol{\psi}$
+          - ***Where***
+            - $\textbf{S}_e$ - Error variance-covariance matrix
+            - $w_k$ - Weight of group $k$
+            - $n_k$ - Sample size of group $k$
+    - **Multivariate $F$**
+      - **The multivariate $F$**
+        - **Mathematics**
+          - $\mathbf{H_{\psi}}\mathbf{E}^{-1}$
+      - **The multivariate F test statistic**
+        - Wilks lambda
+        - Pillai's trace
+        - Roy's largest root
+        - Hotelling-Lawley
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**SSCP matrix for contrasts**</p>
+
+- **Hypothesis SSCP for a contrast**
+  - **Mathematics**
+    - $\displaystyle \begin{aligned}\mathbf{H_{\psi}} &= \frac{1}{\sum_{k=1}^{k}{\frac{w_{k}^{2}}{n_k}}} \left(\boldsymbol{\psi \psi'} \right) \\ &= \begin{bmatrix} SS_{\psi, y_{1}} & CP_{\psi, y_{1}, y_{2}} & CP_{\psi, y_{1}, y_{3}} & \cdots & CP_{\psi, y_{1}, y_{y}} \\ CP_{\psi, y_{2}, y_{1}} & SS_{\psi, y_{2}, y_{2}} & CP_{\psi, y_{2}, y_{3}} & \cdots & CP_{\psi, y_{2}, y_{y}} \\ CP_{\psi, y_{3}, y_{1}} & SS_{\psi, y_{3}, y_{2}} & SS_{\psi, y_{3}} & \cdots & CP_{\psi, y_{3}, y_{y}} \\ \vdots & \vdots & \vdots & \ddots & \vdots \\ CP_{\psi, y_{y}y_{1}} & CP_{\psi, y_{y}, y_{2}} & CP_{\psi, y_{y}, y_{3}} & \cdots & SS_{\psi, y_{y}}\end{bmatrix} \end{aligned}$
+      - ***Notes***
+        - When sample sizes are equal, it is simplified to 
+          - $\displaystyle \mathbf{H_{\psi}} = \frac{n}{\sum_{k=1}^{k}{w_{k}^{2}}} \left(\boldsymbol{\psi \psi'} \right)$
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Contrasts**</p>
+
+- **Complex contrasts**
+  - **Concept**
+    - Comparing 2 sets of group means (not just 2 group means)
+  - **Mathematics**
+    - $\psi_{ab} = w_{a}\left(\sum_{k=1}^{k_a}{\bar{x}_k} \right) - w_{b}\left(\sum_{k=1}^{k_b}{\bar{x}_k} \right)$
+      - ***Where***
+        - $\psi_{ab}$ - Contrast for set $a$ set $b$
+        - $w_a$ - The weight for the $a$ set of group means 
+        - $w_b$ - The weight for the $b$ set of group means
+        - $(\sum_{k=1}^{k_a}{\bar{x}_k} \right)$ - The sum of means in the $a$ set
+        - $(\sum_{k=1}^{k_b}{\bar{x}_k} \right)$ - The sum of means in the $b$ set
+      - ***Notes***
+        - **Weights are summed to 0**
+          - **Concept**
+            - The sum of the weights must be 0
+          - **Mathematics**
+            - $w_{a} + w_{b} = 0$
+          - **Ensuring weights sum to 0**
+            - $\displaystyle w_a = \frac{k_b}{k}$
+            - $\displaystyle w_b = \frac{k_a}{k}$
+              - ***Where***
+                - $k_b$ - The number of groups/levels in set $b$
+                - $k_a$ - The number of groups/levels in set $a$
+                - $k$ - The total number of groups/levels of the categorical predictor variable 
+  - **Example**
+    - **A 5-group example**
+      - **A complex contrast comparing group 1 and 2 with group 3, 4, and 5**
+        - $\displaystyle \begin{aligned}\psi_{ab} &= w_{a}\left(\bar{x}_{1} + \bar{x}_{2}\right) - w_{b}\left(\bar{x}_{3} + \bar{x}_{4} + \bar{x}_{5} \right) \\ &= \frac{3}{5}\left(\bar{x}_{1} + \bar{x}_{2}\right) - \frac{2}{5}\left(\bar{x}_{3} + \bar{x}_{4} + \bar{x}_{5} \right) \\ &= \frac{3}{5}\bar{x}_{1} + \frac{3}{5}\bar{x}_{2}- \frac{2}{5}\bar{x}_{3} - \frac{2}{5}\bar{x}_{4} - \frac{2}{5}\bar{x}_{5}  \end{aligned}$
+        - 
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Discriminant Function Analysis**</p>
+
+- **Concept**
+  - The process of finding a variate that can best separate groups (maximising the $F$ ratio for the groups) so that it can best discriminate between groups
+  - The groups are transformed in a way that their $F$ ratio are maximised 
+  - The first variate is calculated by maximising the $F$ ratio, each of the subsequent variates is calculated after all preceding variates are partialled out. This means that the variates are orthogonal to each other 
+- **Variate** 
+  - **Concept**
+    - A linear combination of outcome variables 
+    - A variate is also called a linear discriminant function to reflect its goal of discriminating groups
+    - In a discriminant function analysis, different variates are identified and they are defined by the specific set of weights for the outcome variables (outcome variables are combined differently)
+    - Variates are latent variables (aka underlying dimensions/constructs of the outcome variables)
+    - **Mathematics**
+      - $\displaystyle \begin{aligned} V &= \sum_{p=1}^{p}{\beta_{p}y_{p}} \\ &= \beta_{1}y_{1} + \beta_{2}y_{2} + \beta_{3}y_{3} + \cdots + \beta_{p}y_{p}\end{aligned}$
+        - ***Where*** 
+          - 
+- **The eigenvectors and eigenvalues of the $\mathbf{HE}^{-1}$ matrix**
+  - **Concept**
+    - Each of the eigenvectors of the $\mathbf{HE}^{-1}$ matrix represents a variate and the components in an eigenvector are the set of weights for the outcome variables in the variate and the eigenvalue associated with the eigenvector represents the ratio of variance in the variate explained by the predictor variable(s) to the variance in that variate unexplained by the predictor variable(s)
+  - **Mathematics**
+    - $\displaystyle \begin{aligned}\lambda_v &= \frac{SS_{M_{v}}}{SS_{R_{v}}} \\ &= \frac{\sum_{k = 1}^{k}{n_k (\bar{x}_{k} - \bar{x}_{grand})}}{\sum_{n=1, k = 1}^{n, k}{(x_{i, k} - \bar{x}_{k})}} \end{aligned}$
+  - **Example**
+    - $\lambda_1$ is the ratio of the variance on LDF 1 explained by the predictor variable(s) to the variance on LDF 1 not explained by the predictor variable(s)
+
   
+  
+- **Factor loading**
+  - **Concept**
+    - Aka structure r's
+    - The relationship between each component of a dimension/construct and the dimension/construct itself
+
+- **Factor loading in discriminant analysis**
+  - **Concept**
+    - The relationship between each outcome variable in the variate and the variate itself (sometimes called the LDF-Variable correlations)
+    - That is how much each outcome variable in the variate contribute to the variate 
+  - **Assessing factor loading**
+    - **Methods**
+      - Total group structure correlations
+      - Between-group structure correlation 
+      - Within-group structure correlation 
+    - **Which is the best one??**
+      - Huberty and Olejnik (2006) advocates within-group structure correlation as it takes into account the group differences of mean vectors (which is meaningful)
+  - **Interpreting variates**
+    - **Label of a variate**
+      - The label of a variate should be based on the outcome variables with higher factor loading because these outcome variables are strongly contributing to the variate
+    - **Dropping variates**
+      - You may choose to drop the variates that are less meaningful (e.g. those with low eigenvalues)
+      
+      
+- **The LDF plot**
+  - **Concept**
+    - A plot in which each of the axes represents each of the LDFs/variates and the scores represent scores of the original data that are transformed into variate scores (by putting the original scores into the LDFs)
+  - **Types of LDF plot**
+    - The mean LDF plot
+  - **The mean LDF plot**
+    - **Description**
+      - An LDF plot which plots the group LDF mean centroids (the group mean centroid but transformed into variate score)
+      - It can be used to determine the number of LDFs to retain for interpretation 
+    - **Constructing the mean LDF plot**
+      - For group g on variate v, put the original group means on the discriminant variables into the corresponding places in the vth linear discriminant function, the result of that is the mean for group g on variate v
+      
+
+
+- **Dropping/retaining variates**
+  - **Methods for dropping/retaining variates**
+    - Proportion of variance based
 
 
 
+```{r}
 
-
-
-
-
-
-
-
-
-
-
-
-
+penguins
+manova(cbind(body_mass_g, flipper_length_mm) ~ species, data = penguins) %>% summary()
+```
 
 
 
