@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 ANOVA | Statistics</title>
+  <meta name="description" content="Chapter 4 ANOVA | Statistics" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 ANOVA | Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 ANOVA | Statistics" />
+  
+  
+  
+
+<meta name="author" content="Samuel Mak" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mathematics.html"/>
+<link rel="next" href="derivation.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a >Section</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> The Linear Regression Model</a></li>
+<li class="chapter" data-level="2" data-path="generalised-least-squares.html"><a href="generalised-least-squares.html"><i class="fa fa-check"></i><b>2</b> Generalised Least Squares</a></li>
+<li class="chapter" data-level="3" data-path="mathematics.html"><a href="mathematics.html"><i class="fa fa-check"></i><b>3</b> Mathematics</a></li>
+<li class="chapter" data-level="4" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>4</b> ANOVA</a></li>
+<li class="chapter" data-level="5" data-path="derivation.html"><a href="derivation.html"><i class="fa fa-check"></i><b>5</b> Derivation</a></li>
+<li class="chapter" data-level="6" data-path="multivariate-analysis.html"><a href="multivariate-analysis.html"><i class="fa fa-check"></i><b>6</b> Multivariate Analysis</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="anova" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> ANOVA<a href="anova.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>The F statistic</strong>
+</p>
+<ul>
+<li><strong>The F statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The <span class="math inline">\(F\)</span> statistic is the ratio a random variable with a Chi-squared distribution to another random variable with a Chi-squared distribution</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(F = \frac{\frac{S_1}{df_1}}{\frac{S_2}{df_2}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(S_1\)</span> is an independent random variable with a Chi-squared distribution with degrees of freedom of <span class="math inline">\(df_1\)</span></li>
+<li><span class="math inline">\(S_2\)</span> is another independent random variable with a Chi-squared distribution with degrees of freedom of <span class="math inline">\(df_2\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The F-distribution: The distribution of the F statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The <span class="math inline">\(F\)</span> statistic has an <span class="math inline">\(F\)</span> distribution</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li>I am not including the PDF maths here</li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>ANOVA</strong>
+</p>
+<ul>
+<li><strong>Analysis of Variance (ANOVA)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The process of comparing the systematic variance to the unsystematic variance to make inference about the effect of a categorical predictor variable on a continuous outcome variable</li>
+</ul></li>
+</ul></li>
+<li><strong>The Statistical Model for the comparison of multiple means</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The value of observation <span class="math inline">\(i\)</span> on outcome variable <span class="math inline">\(y\)</span> is the grand mean plus the effect of the grouping variable it is in plus random error</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(y_{i,k} = \mu + \beta_{k} + \epsilon_{i, k}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(y_{i,k}\)</span> - The value of the outcome variable <span class="math inline">\(y\)</span> of observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\mu\)</span> - The grand mean of the outcome variable <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(\beta_{k}\)</span> - The effect of the group - The difference between the mean of group <span class="math inline">\(k\)</span> and the grand mean (<span class="math inline">\(\mu\)</span>)</li>
+<li><span class="math inline">\(\mu + \beta_{k}\)</span> - The expected value (predicted value) of observation <span class="math inline">\(y_{i,k}\)</span></li>
+<li><span class="math inline">\(\epsilon_{i,k}\)</span> - The random error of the model - The difference between the observed value (<span class="math inline">\(y_{i,k}\)</span>) and its expected/predicted value (<span class="math inline">\(\mu + \beta_{k}\)</span>)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Sum of Squared Deviations</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Aka Sum of Squares</li>
+<li>A measure of variation</li>
+<li>The Sum of Squared Deviation is the sum of all the squared deviations where a deviation is the difference between an observed value and its expected value</li>
+<li>It is the standardized version of the variance</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle SS = \sum_{i=1}^{n}{\left( y_i - E(y)\right)^2}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(y\)</span> is a variable</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The ANOVA model</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>ANOVA mathematically operationalise variation in the outcome variable as the Sum of Squares (SS)</li>
+<li>The total variation in the outcome variable is operationalised as the Total Sum of Squares</li>
+<li>ANOVA partitions the Total Sum of Squares (total variation) into 2 components:
+<ul>
+<li>The Model Sum of Squares</li>
+<li>The Error Sum of Squares</li>
+</ul></li>
+</ul></li>
+<li><strong>Total Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The Sum of Squares that represents the total amount of variation in the outcome variable</li>
+<li>It is the sum of all the squared deviations between each observed value and the grand mean</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{alignat*}{10} {SS_{T}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} \end{alignat*}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(k\)</span> represents group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(i\)</span> represents observation <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(y_{i,k}\)</span> - Observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\bar{y}\)</span> - The grand mean</li>
+</ul></li>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>Alternatively, it can be expressed simply as:
+<ul>
+<li><span class="math inline">\(\displaystyle \sum_{n=1}^{n}{(y_i - \bar{y})^2}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Total degrees of freedom</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}df_T &amp;= df_M + df_E \\ &amp;= df_T = k-1 \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Mean Total Sum of Squares (Total Variance)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Total Variance in the outcome variable</li>
+<li>The mean amount of variation in the outcome variable</li>
+<li>The average amount by squared deviation between each observation and the grand mean</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(MS_T = \frac{SS_T}{df_T}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Model Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Represents the amount of variation in the outcome variable that is explained by the model or attributable to the predictors in the model (systematic variation)</li>
+<li>It is the sum of all the squared deviations between the predicted value of each observation (which is the mean of the group to which the observation belongs) and the grand mean</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\({SS_{M}} = {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(n_k\)</span> - Group size</li>
+<li><span class="math inline">\(\bar{y}_k\)</span> - The mean of group <span class="math inline">\(k\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Model degrees of freedom</strong>
+<ul>
+<li><span class="math inline">\(df_M = N -1\)</span></li>
+</ul></li>
+<li><strong>Mean Model Sum of Squares (Model Variance)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Variance in the outcome variable explained by the model</li>
+<li>The mean amount of variation in the outcome variable explained by the model</li>
+<li>The average amount of squared deviation between the predicted value of each observation and the grand mean</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(MS_M = \frac{SS_M}{df_M}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Error Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It represents the amount of variation in the outcome variable that is not explained by the model or attributable to the predictors in the model and is assumed to be due to random error</li>
+<li>It is the sum of all the squared deviations between each observed value and the mean of the group to which it belongs</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\({SS_{E}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2}}\)</span></li>
+</ul></li>
+<li><strong>Degrees of freedom</strong>
+<ul>
+<li><span class="math inline">\(df_e = N-k\)</span></li>
+</ul></li>
+<li><strong>Mean Error Sum of Squares (Error Variance)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Variance in the outcome variable not explained by the model and is assumed to be due to random error</li>
+<li>The mean amount of variation in the outcome variable not explained by the model</li>
+<li>The average amount of squared deviation between the predicted value of each observation and its predicted value</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(MS_E = \frac{SS_E}{df_E}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The Model as a whole</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{alignat*}{10} {SS_{T}} &amp;= {SS_{M}} + {SS_{E}} \\ {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} &amp;= {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2} + {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2} }} \end{alignat*}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
+## replace the existing scale.
+## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
+## replace the existing scale.</code></pre>
+<pre><code>## [1] &quot;(I am Samuel Mak! I am 24!  )&quot;</code></pre>
+<pre><code>## [1] &quot;I am Samuel Mak! I am 24!(  ) &quot;</code></pre>
+<pre><code>## [1] &quot;I am Samuel Mak] ! I am 24 haha!  &quot;</code></pre>
+<pre><code>## [1] &quot;(I am Samuel Mak! I am 24!  )&quot;</code></pre>
+<pre><code>##    values     group
+## 1       2 Metallica
+## 2       6 Metallica
+## 3       5 Metallica
+## 4       1  matalecA
+## 5       2 metallica
+## 6       7    Gojira
+## 7       8    Gojira
+## 8       9    Gojira
+## 9       3   gojira 
+## 10      6   gorillA
+## 11      2   Sylosis
+## 12      5   Sylosis
+## 13      9   Sylosis
+## 14      2   Sylocis</code></pre>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mathematics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="derivation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/samuel-mak/statistics/edit/master/04-Linear_Regression.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/samuel-mak/statistics/blob/master/04-Linear_Regression.Rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf", "bookdownproj.epub", "bookdownproj.mobi"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

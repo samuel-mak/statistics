@@ -1,6 +1,6 @@
 the-linear-regression-model
 generalised-least-squares
 mathematics
-a-very-statistical-day
+anova
 derivation
 multivariate-analysis

@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="generalised-least-squares.html"/>
-<link rel="next" href="a-very-statistical-day.html"/>
+<link rel="next" href="anova.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -75,7 +75,7 @@
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> The Linear Regression Model</a></li>
 <li class="chapter" data-level="2" data-path="generalised-least-squares.html"><a href="generalised-least-squares.html"><i class="fa fa-check"></i><b>2</b> Generalised Least Squares</a></li>
 <li class="chapter" data-level="3" data-path="mathematics.html"><a href="mathematics.html"><i class="fa fa-check"></i><b>3</b> Mathematics</a></li>
-<li class="chapter" data-level="4" data-path="a-very-statistical-day.html"><a href="a-very-statistical-day.html"><i class="fa fa-check"></i><b>4</b> A very statistical day</a></li>
+<li class="chapter" data-level="4" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>4</b> ANOVA</a></li>
 <li class="chapter" data-level="5" data-path="derivation.html"><a href="derivation.html"><i class="fa fa-check"></i><b>5</b> Derivation</a></li>
 <li class="chapter" data-level="6" data-path="multivariate-analysis.html"><a href="multivariate-analysis.html"><i class="fa fa-check"></i><b>6</b> Multivariate Analysis</a></li>
 </ul>
@@ -628,129 +628,95 @@ Clifton Suspension Bridge (Positive quadratic)
 <p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Transforming functions</strong>
 </p>
-<pre><code>## Scale for &#39;y&#39; is already
-## present. Adding another
-## scale for &#39;y&#39;, which will
+<pre><code>## Scale for &#39;y&#39; is already present. Adding another scale for &#39;y&#39;, which will
 ## replace the existing scale.</code></pre>
-<pre><code>## Scale for &#39;x&#39; is already
-## present. Adding another
-## scale for &#39;x&#39;, which will
+<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
 ## replace the existing scale.</code></pre>
-<pre><code>## Warning: Removed 1 rows containing
-## missing values
-## (geom_segment).
-## Removed 1 rows containing
-## missing values
-## (geom_segment).</code></pre>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_segment).
+## Removed 1 rows containing missing values (geom_segment).</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
+##                 2</code></pre>
 <p style="margin-bottom: 0px; font-size: 20px; ">
 <strong>Vectors</strong>
 </p>
@@ -1002,61 +968,48 @@ Clifton Suspension Bridge (Positive quadratic)
 <li>Collinear points are points that line on the same straight line</li>
 </ul></li>
 </ul>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
-<pre><code>## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+##                 2</code></pre>
+<pre><code>## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;
 
-## Warning in is.na(x): is.na()
-## applied to non-(list or
-## vector) of type &#39;expression&#39;</code></pre>
+## Warning in is.na(x): is.na() applied to non-(list or vector) of type
+## &#39;expression&#39;</code></pre>
 <pre><code>## quartz_off_screen 
-##                14</code></pre>
+##                 2</code></pre>
 <ul>
 <li><strong>Dot product of 2 vectors</strong>
 <ul>
@@ -1154,7 +1107,7 @@ Clifton Suspension Bridge (Positive quadratic)
         </div>
       </div>
 <a href="generalised-least-squares.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-very-statistical-day.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="anova.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

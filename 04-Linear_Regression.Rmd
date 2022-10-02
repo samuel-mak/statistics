@@ -1,7 +1,317 @@
-# A very statistical day
-
-
-Lets begin with some matrices. Matrices are a good way to express a system of linear equations in a more compact form. They may help the reader to manipulate a system of linear equations and spot insights easily.
+# ANOVA
 
 
 
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**The F statistic**</p>
+
+- **The F statistic**
+  - **Concept**
+    - The $F$ statistic is the ratio a random variable with a Chi-squared distribution to another random variable with a Chi-squared distribution 
+  - **Mathematics**
+    - $F = \frac{\frac{S_1}{df_1}}{\frac{S_2}{df_2}}$
+      - ***Where***
+        - $S_1$ is an independent random variable with a Chi-squared distribution with degrees of freedom of $df_1$
+        - $S_2$ is another independent random variable with a Chi-squared distribution with degrees of freedom of $df_2$ 
+- **The F-distribution: The distribution of the F statistic**
+  - **Concept**
+    - The $F$ statistic has an $F$ distribution 
+  - **Mathematics**
+    - I am not including the PDF maths here 
+    
+    
+<p style = "margin-bottom: 0px; font-size: 20px; ">**ANOVA**</p>
+    
+- **Analysis of Variance (ANOVA)**
+  - **Concept**
+    - The process of comparing the systematic variance to the unsystematic variance to make inference about the effect of a categorical predictor variable on a continuous outcome variable 
+    
+- **The Statistical Model for the comparison of multiple means**
+  - **Concept**
+    - The value of observation $i$ on outcome variable $y$ is the grand mean plus the effect of the grouping variable it is in plus random error 
+  - **Mathematics**
+    - $y_{i,k} = \mu + \beta_{k} + \epsilon_{i, k}$
+      - ***Where***
+        - $y_{i,k}$ - The value of the outcome variable $y$ of observation $i$ in group $k$ 
+        - $\mu$ - The grand mean of the outcome variable $y$
+        - $\beta_{k}$ - The effect of the group - The difference between the mean of group $k$ and the grand mean ($\mu$) 
+        - $\mu + \beta_{k}$ - The expected value (predicted value) of observation $y_{i,k}$
+        - $\epsilon_{i,k}$ - The random error of the model - The difference between the observed value ($y_{i,k}$) and its expected/predicted value ($\mu + \beta_{k}$)
+       
+       
+- **Sum of Squared Deviations**
+  - **Concept**
+    - Aka Sum of Squares
+    - A measure of variation
+    - The Sum of Squared Deviation is the sum of all the squared deviations where a deviation is the difference between an observed value and its expected value
+    - It is the standardized version of the variance 
+  - **Mathematics**
+    - $\displaystyle SS = \sum_{i=1}^{n}{\left( y_i - E(y)\right)^2}$
+      - ***Where***
+        - $y$ is a variable
+ 
+- **The ANOVA model**
+  - **Concept**
+    - ANOVA mathematically operationalise variation in the outcome variable as the Sum of Squares (SS)
+    - The total variation in the outcome variable is operationalised as the Total Sum of Squares
+    - ANOVA partitions the Total Sum of Squares (total variation) into 2 components:
+      - The Model Sum of Squares
+      - The Error Sum of Squares
+  - **Total Sum of Squares**
+    - **Concept**
+      - The Sum of Squares that represents the total amount of variation in the outcome variable
+      - It is the sum of all the squared deviations between each observed value and the grand mean 
+    - **Mathematics**
+      - $\displaystyle \begin{alignat*}{10} {SS_{T}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} \end{alignat*}$
+        - ***Where***
+          - $k$ represents group $k$
+          - $i$ represents observation $i$
+          - $y_{i,k}$ - Observation $i$ in group $k$
+          - $\bar{y}$ - The grand mean
+        - ***Notes***
+          - Alternatively, it can be expressed simply as: 
+            - $\displaystyle \sum_{n=1}^{n}{(y_i - \bar{y})^2}$
+    - **Total degrees of freedom**
+      - $\begin{aligned}df_T &= df_M + df_E \\ &= df_T = k-1 \end{aligned}$
+    - **Mean Total Sum of Squares (Total Variance)**
+      - **Concept**
+        - Total Variance in the outcome variable 
+        - The mean amount of variation in the outcome variable 
+        - The average amount by squared deviation between each observation and the grand mean
+      - **Mathematics**
+        - $MS_T = \frac{SS_T}{df_T}$
+        
+  - **Model Sum of Squares**
+    - **Concept**
+      - Represents the amount of variation in the outcome variable that is explained by the model or attributable to the predictors in the model (systematic variation)
+      - It is the sum of all the squared deviations between the predicted value of each observation (which is the mean of the group to which the observation belongs) and the grand mean 
+    - **Mathematics**
+      - ${SS_{M}} = {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2}}$
+        - ***Where***
+          - $n_k$ - Group size
+          - $\bar{y}_k$ - The mean of group $k$
+    - **Model degrees of freedom**
+      - $df_M = N -1$
+    - **Mean Model Sum of Squares (Model Variance)**
+      - **Concept**
+        - Variance in the outcome variable explained by the model
+        - The mean amount of variation in the outcome variable explained by the model
+        - The average amount of squared deviation between the predicted value of each observation and the grand mean 
+      - **Mathematics**
+        - $MS_M = \frac{SS_M}{df_M}$
+  - **Error Sum of Squares**
+    - **Concept**
+      - It represents the amount of variation in the outcome variable that is not explained by the model or attributable to the predictors in the model and is assumed to be due to random error
+      - It is the sum of all the squared deviations between each observed value and the mean of the group to which it belongs
+    - **Mathematics**
+      - ${SS_{E}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2}}$
+    - **Degrees of freedom**
+      - $df_e = N-k$
+    - **Mean Error Sum of Squares (Error Variance)**
+      - **Concept**
+        - Variance in the outcome variable not explained by the model and is assumed to be due to random error 
+        - The mean amount of variation in the outcome variable not explained by the model 
+        - The average amount of squared deviation between the predicted value of each observation and its predicted value 
+      - **Mathematics**
+        - $MS_E = \frac{SS_E}{df_E}$
+  - **The Model as a whole**
+    - **Mathematics**
+      - $\displaystyle \begin{alignat*}{10} {SS_{T}} &= {SS_{M}} + {SS_{E}} \\ {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} &= {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2} +  {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2} }} \end{alignat*}$
+
+```{r base_r_challenge}
+library(forcats)
+library(ggplot2)
+anova_dat <- data.frame(y = c(15, 8, 11, 16, 9, 5, 10, 9, 6, 10, 7, 2, 6, 1), group = c(rep("A", 5), rep("B", 5), rep("C", 4))) %>% mutate(group = as.factor(group)) %>% mutate(group = fct_relevel(group, "A", "B", "C"))
+
+
+
+#A function that makes a One-Way ANOVA plot 
+gganova <- function(
+    formula = NULL, 
+    data = NULL,
+    geom_point = list(),
+    geom_segment.mean = list(),
+    geom_segment.resid = list(),
+    spacing = 2,
+    labels = c()){
+#Function starts
+if(spacing < 1) {stop("spacing cannot be smaller than 1 you fucking idiot!!!")}
+formula <- formula
+y <- gsub(" ", "", strsplit(formula, "[~]")[[1]][1], fixed = TRUE)
+factor <- gsub(" ", "", strsplit(formula, "[~]")[[1]][2], fixed = TRUE)
+dat <- data[, c(y,factor)]
+##Making the grouping variable as a factor 
+#dat[, which( colnames(dat)==factor)] <- as.factor(dat[, which( colnames(dat)==factor)])
+nlevels <- nlevels(dat[,2])
+#labelz <- labels
+#labels.2 <- c(labelz)
+#mean_dat.2 <- data.frame()
+dat.2 <- data.frame()
+bins.loop <- c() 
+plot <- ggplot2::ggplot()
+#counter <- 1 #THIS IS ONLY FOR CHECKING PURPOSES
+for(counter in 1:nlevels){
+#counter <- 2
+split_dat  <- rownames_to_column(data.frame(split(dat, dat[2])[counter]))[-1]
+
+
+names(split_dat)[1] <- y
+names(split_dat)[2] <- factor
+#mean_dat <- data.frame(factor_level = c(split_dat$group[1]) , group_mean = c(mean(t(split_dat[1]))))
+#mean_dat.2 <- rbind(mean_dat.2, mean_dat)
+split_dat <- transform(split_dat, predicted_value = mean(t(split_dat[1])))
+split_dat <- transform(
+  split_dat, 
+  geom_point.colour = ifelse(!is.null(geom_point$colour), ifelse(!is.na(geom_point$colour[counter]),geom_point$colour[counter],"black"), "black"), 
+  geom_point.fill = ifelse(!is.null(geom_point$fill), ifelse(!is.na(geom_point$fill[counter]),geom_point$fill[counter],"black"), "black"),
+  geom_point.shape = ifelse(!is.null(geom_point$shape), ifelse(!is.na(geom_point$shape[counter]),geom_point$shape[counter],4), 4),
+  geom_point.size = ifelse(!is.null(geom_point$size), ifelse(!is.na(geom_point$size[counter]),geom_point$size[counter],2), 2),
+  geom_point.alpha = ifelse(!is.null(geom_point$alpha), ifelse(!is.na(geom_point$alpha[counter]),geom_point$alpha[counter],1), 1),
+  
+  geom_segment.mean.colour = ifelse(!is.null(geom_segment.mean$colour), ifelse(!is.na(geom_segment.mean$colour[counter]),geom_segment.mean$colour[counter],"black"), "black"), 
+  geom_segment.mean.linetype = ifelse(!is.null(geom_segment.mean$linetype), ifelse(!is.na(geom_segment.mean$linetype[counter]),geom_segment.mean$linetype[counter],"solid"), "solid"),
+  geom_segment.mean.size = ifelse(!is.null(geom_segment.mean$size),  ifelse(!is.na(geom_segment.mean$size[counter]), geom_segment.mean$size[counter],1), 1),
+  geom_segment.mean.alpha = ifelse(!is.null(geom_segment.mean$alpha),  ifelse(!is.na(geom_segment.mean$alpha[counter]),geom_segment.mean$alpha[counter],1), 1),
+  
+  geom_segment.resid.colour = ifelse(!is.null(geom_segment.resid$colour),  ifelse(!is.na(geom_segment.resid$colour[counter]), geom_segment.resid$colour[counter], "black"), "black"), 
+  geom_segment.resid.linetype = ifelse(!is.null(geom_segment.resid$linetype),  ifelse(!is.na(geom_segment.resid$linetype[counter]), geom_segment.resid$linetype[counter], "dotted"), "dotted"),
+  geom_segment.resid.size = ifelse(!is.null(geom_segment.resid$size),  ifelse(!is.na(geom_segment.resid$size[counter]), geom_segment.resid$size[counter], 0.5), 0.5), 
+  geom_segment.resid.alpha = ifelse(!is.null(geom_segment.resid$alpha),  ifelse(!is.na(geom_segment.resid$alpha[counter]), geom_segment.resid$alpha[counter],1), 1),
+  
+  custom.label = ifelse(!is.null(labels), labels[counter], NA)
+  )
+split_dat[nrow(split_dat)+spacing,] <- NA ##Argument: Spacing
+split_dat <- transform(split_dat, level_number = counter)
+dat.2 <- rbind(dat.2, split_dat)
+
+dat.3 <- dat.2
+dat.3[-c(c(nrow(dat.3)-1):nrow(dat.3)),]
+dat.3$y[dat.3$level_number != counter] <- NA
+dat.3$predicted_value[dat.3$level_number != counter] <- NA
+dat.3$rowid <- seq.int(nrow(dat.3))
+
+bins.loop <- c(bins.loop, c(((tail(dat.3[dat.3$level_number == counter,]$rowid, n=1) - spacing) + head(dat.3[dat.3$level_number == counter,]$rowid, n=1))/2))
+bins <- c(bins.loop)
+
+plot <- plot + 
+  geom_point(
+    data = dat.3[dat.3$level_number == counter,], 
+    mapping = aes(x = rowid, y = y), 
+    colour = dat.3[dat.3$level_number == counter,][,"geom_point.colour"][1], 
+    fill = dat.3[dat.3$level_number == counter,][,"geom_point.fill"][1], 
+    shape = dat.3[dat.3$level_number == counter,][,"geom_point.shape"][1], 
+    size = dat.3[dat.3$level_number == counter,][,"geom_point.size"][1],
+    alpha = dat.3[dat.3$level_number == counter,][,"geom_point.alpha"][1]) + 
+  annotate(
+    geom = "segment", 
+    x = head(dat.3[dat.3$level_number == counter,]$rowid, n=1), 
+    xend = tail(dat.3[dat.3$level_number == counter,]$rowid, n=1) - spacing, 
+    y = mean(split_dat[,1], na.rm = T), 
+    yend = mean(split_dat[,1], na.rm = T), 
+    linetype = dat.3[dat.3$level_number == counter,][,"geom_segment.mean.linetype"][1], 
+    colour = dat.3[dat.3$level_number == counter,][,"geom_segment.mean.colour"][1], 
+    size = dat.3[dat.3$level_number == counter,][,"geom_segment.mean.size"][1],
+    alpha = dat.3[dat.3$level_number == counter,][,"geom_segment.mean.alpha"][1]) +
+  geom_segment(
+    data = dat.3[dat.3$level_number == counter,], 
+    mapping = aes(x = rowid, xend = rowid, y = y, yend = predicted_value), 
+    linetype = dat.3[dat.3$level_number == counter,][,"geom_segment.resid.linetype"][1], 
+    colour = dat.3[dat.3$level_number == counter,][,"geom_segment.resid.colour"][1], 
+    size = dat.3[dat.3$level_number == counter,][,"geom_segment.resid.size"][1],
+    alpha = dat.3[dat.3$level_number == counter,][,"geom_segment.resid.alpha"][1]) +
+  scale_x_continuous(
+    limits = c(-1, nrow(dat.2)),
+    breaks  = bins, 
+    labels = if(!is.na(dat.3[dat.3$level_number == counter,][,"custom.label"][1])){labels[1:counter]} else{levels(dat[,2])[1:counter]})
+
+}
+plot <- plot + annotate(x = 1, xend = nrow(dat.2)-spacing, y = mean(dat[,1], na.rm = TRUE), yend = mean(dat[,1], na.rm = TRUE), geom = "segment")
+return(plot)
+}
+
+gganova.plot <- gganova(formula = "y ~ group", data = anova_dat, 
+        geom_point = list(
+          colour = c("blue", "red", "dark green"), 
+          size = c(2, 2), 
+          shape = c(19, 19, 19),
+          alpha = c(0.5, 0.5, 0.5)),
+        geom_segment.resid = list(
+          colour = c("red", "red", "red"),
+          linetype = c("dotted", "dotted", "dotted"),
+          size = c(0.5, 0.5, 0.5),
+          alpha = c(0.8, 0.8, 0.8)),
+        geom_segment.mean = list(
+          colour = c("blue", "red", "dark green"),
+          linetype = c("solid", "solid", "solid"),
+          alpha = c(0.7, 0.7, 0.7)),
+        labels = c("Control", "Experimental 1", "Experimental 2")) + 
+  labs(x = "Group", y = "Outcome Variable") +
+  theme_void()
+
+
+
+
+
+
+```
+
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+
+```{r base_r_challenge2}
+string <- "I am Samuel Mak! I am 24!  "
+
+sub("(.{0})(.*)", "\\1(\\2)", string)
+
+sub("(.*!)(.{2})", "\\1(\\2) ", string)
+
+sub("(.*Mak)(.*[0-9])", "\\1] \\2 haha", string)
+
+
+sub("({1})(.*$)", "\\1(\\2)", string)
+
+sub_dat <- data.frame(values = c(2, 6, 5, 1, 2, 7, 8, 9, 3, 6, 2, 5, 9, 2), group = c(rep("Metallica", 3), "matalecA", "metallica", rep("Gojira", 3), "gojira ", "gorillA", rep("Sylosis", 3), "Sylocis"))
+
+sub_dat
+
+
+
+
+sub_dat[2] <- gsub("^Sy.*s$", "Sylosis", gsub(("^g.*a$|^g.*A$"), "Gojira", gsub(" ", "", gsub("^m.*a$|^m.*A$", "Metallica", sub_dat$group))))
+```
+
+    
+    
+    
+    
+    
