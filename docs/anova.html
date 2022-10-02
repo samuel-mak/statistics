@@ -183,13 +183,11 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>The ANOVA model</strong>
+<li><strong>Operationalising variability</strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>ANOVA mathematically operationalise variation in the outcome variable as the Sum of Squares (SS)</li>
-<li>The total variation in the outcome variable is operationalised as the Total Sum of Squares</li>
-<li>ANOVA partitions the Total Sum of Squares (total variation) into 2 components:
+<li>ANOVA partitions the Total Sum of Squares of the outcome variable into 2 components:
 <ul>
 <li>The Model Sum of Squares</li>
 <li>The Error Sum of Squares</li>
@@ -201,6 +199,10 @@
 <ul>
 <li>The Sum of Squares that represents the total amount of variation in the outcome variable</li>
 <li>It is the sum of all the squared deviations between each observed value and the grand mean</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li>!image<a href="image/anova_SST.png">“This graph shows the deviations”</a>[width=35%]</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
@@ -247,6 +249,10 @@
 <li>Represents the amount of variation in the outcome variable that is explained by the model or attributable to the predictors in the model (systematic variation)</li>
 <li>It is the sum of all the squared deviations between the predicted value of each observation (which is the mean of the group to which the observation belongs) and the grand mean</li>
 </ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/anova_SSM.png" /></li>
+</ul></li>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\({SS_{M}} = {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2}}\)</span>
@@ -283,6 +289,10 @@
 <li>It represents the amount of variation in the outcome variable that is not explained by the model or attributable to the predictors in the model and is assumed to be due to random error</li>
 <li>It is the sum of all the squared deviations between each observed value and the mean of the group to which it belongs</li>
 </ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/anova_SSR.png" /></li>
+</ul></li>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\({SS_{E}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2}}\)</span></li>
@@ -314,29 +324,6 @@
 </ul></li>
 </ul></li>
 </ul>
-<pre><code>## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
-## replace the existing scale.
-## Scale for &#39;x&#39; is already present. Adding another scale for &#39;x&#39;, which will
-## replace the existing scale.</code></pre>
-<pre><code>## [1] &quot;(I am Samuel Mak! I am 24!  )&quot;</code></pre>
-<pre><code>## [1] &quot;I am Samuel Mak! I am 24!(  ) &quot;</code></pre>
-<pre><code>## [1] &quot;I am Samuel Mak] ! I am 24 haha!  &quot;</code></pre>
-<pre><code>## [1] &quot;(I am Samuel Mak! I am 24!  )&quot;</code></pre>
-<pre><code>##    values     group
-## 1       2 Metallica
-## 2       6 Metallica
-## 3       5 Metallica
-## 4       1  matalecA
-## 5       2 metallica
-## 6       7    Gojira
-## 7       8    Gojira
-## 8       9    Gojira
-## 9       3   gojira 
-## 10      6   gorillA
-## 11      2   Sylosis
-## 12      5   Sylosis
-## 13      9   Sylosis
-## 14      2   Sylocis</code></pre>
 
 </div>
             </section>
