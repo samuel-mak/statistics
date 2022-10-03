@@ -1196,38 +1196,32 @@ df.int)/rdf)</p>
 </ul></li>
 </ul>
 <pre><code>## # A tibble: 344 × 8
-##    species island    bill_l…¹ bill_…²
-##    &lt;fct&gt;   &lt;fct&gt;        &lt;dbl&gt;   &lt;dbl&gt;
-##  1 Adelie  Torgersen     39.1    18.7
-##  2 Adelie  Torgersen     39.5    17.4
-##  3 Adelie  Torgersen     40.3    18  
-##  4 Adelie  Torgersen     NA      NA  
-##  5 Adelie  Torgersen     36.7    19.3
-##  6 Adelie  Torgersen     39.3    20.6
-##  7 Adelie  Torgersen     38.9    17.8
-##  8 Adelie  Torgersen     39.2    19.6
-##  9 Adelie  Torgersen     34.1    18.1
-## 10 Adelie  Torgersen     42      20.2
-## # … with 334 more rows, 4 more
-## #   variables:
-## #   flipper_length_mm &lt;int&gt;,
-## #   body_mass_g &lt;int&gt;, sex &lt;fct&gt;,
-## #   year &lt;int&gt;, and abbreviated
+##    species island  bill_…¹ bill_…² flipp…³ body_…⁴
+##    &lt;fct&gt;   &lt;fct&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;int&gt;   &lt;int&gt;
+##  1 Adelie  Torger…    39.1    18.7     181    3750
+##  2 Adelie  Torger…    39.5    17.4     186    3800
+##  3 Adelie  Torger…    40.3    18       195    3250
+##  4 Adelie  Torger…    NA      NA        NA      NA
+##  5 Adelie  Torger…    36.7    19.3     193    3450
+##  6 Adelie  Torger…    39.3    20.6     190    3650
+##  7 Adelie  Torger…    38.9    17.8     181    3625
+##  8 Adelie  Torger…    39.2    19.6     195    4675
+##  9 Adelie  Torger…    34.1    18.1     193    3475
+## 10 Adelie  Torger…    42      20.2     190    4250
+## # … with 334 more rows, 2 more variables:
+## #   sex &lt;fct&gt;, year &lt;int&gt;, and abbreviated
 ## #   variable names ¹​bill_length_mm,
-## #   ²​bill_depth_mm</code></pre>
-<pre><code>##            Df  Pillai approx F
-## species     2 0.85357    126.2
-## Residuals 339                 
-##           num Df den Df    Pr(&gt;F)
-## species        4    678 &lt; 2.2e-16
-## Residuals                        
-##              
-## species   ***
-## Residuals    
+## #   ²​bill_depth_mm, ³​flipper_length_mm,
+## #   ⁴​body_mass_g</code></pre>
+<pre><code>##            Df  Pillai approx F num Df den Df
+## species     2 0.85357    126.2      4    678
+## Residuals 339                               
+##              Pr(&gt;F)    
+## species   &lt; 2.2e-16 ***
+## Residuals              
 ## ---
 ## Signif. codes:  
-##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05
-##   &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 
 </div>
             </section>
