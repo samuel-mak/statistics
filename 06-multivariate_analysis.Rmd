@@ -585,11 +585,8 @@ ans$adj.r.squared <- 1 - (1 - ans$r.squared) * ((n -
 
 
 
-```{r}
 
-penguins
-manova(cbind(body_mass_g, flipper_length_mm) ~ species, data = penguins) %>% summary()
-```
+
 
 
 
