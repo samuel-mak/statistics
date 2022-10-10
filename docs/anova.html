@@ -121,28 +121,54 @@
 <ul>
 <li><strong><em>Where</em></strong>
 <ul>
-<li><span class="math inline">\(y_{i,k}\)</span> - The value of the outcome variable <span class="math inline">\(y\)</span> of observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(k\)</span></li>
-<li><span class="math inline">\(\mu\)</span> - The overall/grand mean of the outcome variable <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(y_{i,k}\)</span> - The value of the outcome variable <span class="math inline">\(y\)</span> of observation <span class="math inline">\(i\)</span> in population <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\mu\)</span> - The overall/grand mean of the outcome variable <span class="math inline">\(y\)</span> (the mean of the superpopulation)</li>
 <li><span class="math inline">\(\tau_{k}\)</span>
 <ul>
+<li>The deviation of population <span class="math inline">\(k\)</span> from the overall mean (<span class="math inline">\(\mu\)</span>)</li>
 <li>The nonrandom effect of the group</li>
-<li>The difference between the mean of group <span class="math inline">\(k\)</span> and the grand mean (<span class="math inline">\(\mu\)</span>)</li>
+<li>Group or sample <span class="math inline">\(k\)</span> is assumed to be sampled from this population <span class="math inline">\(k\)</span></li>
 <li>Since they are normalised, <span class="math inline">\(\sum_{k=1}^{k}{\tau_k} = 0\)</span></li>
 </ul></li>
-<li><span class="math inline">\(\mu + \beta_{k}\)</span> - The expected value (predicted value) of observation <span class="math inline">\(y_{i,k}\)</span></li>
+<li><span class="math inline">\(\mu + \tau_{k}\)</span>
+<ul>
+<li>The mean of population <span class="math inline">\(k\)</span></li>
+<li>The expected value of observation <span class="math inline">\(i\)</span> in population <span class="math inline">\(k\)</span> (<span class="math inline">\(y_{i,k}\)</span>)</li>
+</ul></li>
 <li><span class="math inline">\(\epsilon_{i,k}\)</span>
 <ul>
-<li>Random error</li>
-<li>The error term is the difference between an observed value (<span class="math inline">\(y_{i,k}\)</span>) and its expected value (<span class="math inline">\(\mu + \beta_{k}\)</span>) (or <span class="math inline">\(\epsilon_{i,k} = y_{i,k} - \mu - \tau_{k}\)</span>)</li>
+<li>The random error for observation <span class="math inline">\(i\)</span> in population <span class="math inline">\(k\)</span></li>
+<li>The difference between an observed value (<span class="math inline">\(y_{i,k}\)</span>) and its expected value (<span class="math inline">\(\mu + \tau_{k}\)</span>)</li>
 <li>Assuming that <span class="math inline">\(y_{ik}\)</span> is a random independent normal variable with <span class="math inline">\(E(y_{ik}) = 0\)</span> and <span class="math inline">\(Var(y_{ik}) = 0\)</span>, since the error term is the difference between <span class="math inline">\(y_{i,k}\)</span>, a normally distributed random variable with variance of <span class="math inline">\(\sigma^2\)</span>, and its mean, this follows that the errors are also a random independent normal variable with <span class="math inline">\(E(\epsilon_{ik}) = 0\)</span> (because subtracting each of the errors by its mean will normalize it to 0) and <span class="math inline">\(Var(\epsilon_{i,k}) = \sigma^2\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
+<li><strong>Hypothesis Testing for ANOVA</strong>
+<ul>
+<li><strong>Conceptual Hypotheses in ANOVA</strong>
+<ul>
+<li><strong>Null hypothesis</strong>
+<ul>
+<li><span class="math inline">\(H_0:\)</span> All populations are the same (are from the same superpopulation)</li>
+<li><span class="math inline">\(H_0: \mu_1 = \mu_2 = \cdots = \mu_k\)</span></li>
+</ul></li>
+<li><strong>Alternative hypothesis</strong>
+<ul>
+<li><span class="math inline">\(H_1:\)</span> The populations are different</li>
+<li><span class="math inline">\(H_0: \mu_1 ≠ \mu_2 ≠ \cdots ≠ \mu_k 0\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Operationalising the null hypothesis to be tested</strong>
+<ul>
+<li><strong>General Concept</strong>
+<ul>
+<li>The operationalisation of the ANOVA null hypothesis is based on the agreement/disaggreement between 2 estimators of the variance of the superpopulation (<span class="math inline">\(\sigma^@\)</span>) (or it’s called common variance)</li>
+</ul></li>
 <li><strong>Estimating the population variance <span class="math inline">\(\sigma^2\)</span></strong>
 <ul>
-<li><strong>Estimators of <span class="math inline">\(\sigma^2\)</span></strong>
+<li><strong>There are 2 estimators of <span class="math inline">\(\sigma^2\)</span></strong>
 <ul>
 <li><span class="math inline">\(MS_W\)</span></li>
 <li><span class="math inline">\(MS_B\)</span></li>
@@ -151,33 +177,40 @@
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li><span class="math inline">\(SS_W\)</span> and <span class="math inline">\(MS_W\)</span> are statistics derived from multiple independent random samples, hence, <span class="math inline">\(SS_W\)</span> and <span class="math inline">\(MS_W\)</span> are independent random variables</li>
-<li>The expectation of <span class="math inline">\(MS_W\)</span> is <span class="math inline">\(\sigma^2\)</span></li>
+<li><span class="math inline">\(SS_W\)</span>, and thus also <span class="math inline">\(MS_W\)</span>, are statistics derived from multiple independent random samples, hence, <span class="math inline">\(SS_W\)</span>, and also <span class="math inline">\(MS_W\)</span>, are independent random variables</li>
+<li>And the expectation of <span class="math inline">\(MS_W\)</span> is <span class="math inline">\(\sigma^2\)</span></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(E(MS_W) = \sigma^{2}\)</span></li>
+</ul></li>
+<li><strong>Implications for <span class="math inline">\(MS_W\)</span> as an estimator of <span class="math inline">\(\sigma^2\)</span></strong>
+<ul>
 <li>Hence, the observed <span class="math inline">\(MS_W\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span></li>
 </ul></li>
 </ul></li>
 <li><strong>The <span class="math inline">\(MS_B\)</span> estimator</strong>
 <ul>
-<li><strong>The distribution of <span class="math inline">\(MS_B\)</span></strong>
-<ul>
 <li><strong>Concept</strong>
 <ul>
 <li><span class="math inline">\(SS_B\)</span> and <span class="math inline">\(MS_B\)</span> are statistics derived from multiple independent random samples, hence, <span class="math inline">\(SS_B\)</span> and <span class="math inline">\(MS_B\)</span> are independent random variables</li>
-<li><span class="math inline">\(MS_B\)</span> is an independent random variable that has a Chi-squared distribution with a mean of <span class="math inline">\(\sigma^2 + (\frac{1}{k-1})\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span> and degrees if freedom of</li>
+<li><span class="math inline">\(MS_B\)</span> is an independent random variable that has a Chi-squared distribution with an expectation of <span class="math inline">\(\sigma^2 + (\frac{1}{k-1})\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span><br />
+</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\displaystyle E\left( MS_B \right) = \sigma^2 + \left(\frac{1}{k-1}\right)\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span></li>
+<li><span class="math inline">\(\displaystyle E\left( MS_B \right) = \sigma^2 + \left(\frac{1}{k-1}\right)\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span>
+<ul>
 <li><strong><em>Notes</em></strong>
 <ul>
 <li>See proof below</li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>Implication of <span class="math inline">\(MS_B\)</span> as an estimator</strong>
+<li><strong>Implication for <span class="math inline">\(MS_B\)</span> as an estimator of <span class="math inline">\(\sigma^2\)</span></strong>
 <ul>
-<li>Under the null hypothesis, that is when all <span class="math inline">\(\tau_ks = 0\)</span>, this quantity <span class="math inline">\(\left(\frac{1}{k-1}\right)\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span> is <span class="math inline">\(0\)</span>, therefore, the observed <span class="math inline">\(MS_B\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span></li>
-<li>If the null hypothesis is false, that is when at least one of the <span class="math inline">\(\tau_ks ≠ 0\)</span>, this quantity <span class="math inline">\(\left(\frac{1}{k-1}\right)\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span> will be larger than <span class="math inline">\(0\)</span>, hence, <span class="math inline">\(MS_B\)</span> is a positively biased estimator of <span class="math inline">\(\sigma^2\)</span> (it will tend to overestimate <span class="math inline">\(\sigma^2\)</span>)</li>
+<li>Under the null hypothesis, that is when all <span class="math inline">\(\tau_ks = 0\)</span>, this linear combination <span class="math inline">\(\left(\frac{1}{k-1}\right)\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span> is <span class="math inline">\(0\)</span>, therefore, <span class="math inline">\(\displaystyle E\left( MS_B \right) = \sigma^2 + 0\)</span>, which means that the observed <span class="math inline">\(MS_B\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span></li>
+<li>If the null hypothesis is false, that is when at least one of the <span class="math inline">\(\tau_ks ≠ 0\)</span>, the linear combination of <span class="math inline">\(\tau_ks\)</span> (<span class="math inline">\(\left(\frac{1}{k-1}\right)\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span>) will be larger than <span class="math inline">\(0\)</span>, hence, <span class="math inline">\(MS_B\)</span> is a positively biased estimator of <span class="math inline">\(\sigma^2\)</span> (it will tend to overestimate <span class="math inline">\(\sigma^2\)</span>)</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -185,9 +218,9 @@
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>The null hypothesis of ANOVA (<span class="math inline">\(H_0: \mu_1 = \mu_2 = \mu_3 = \cdots = \mu_k\)</span>) is tested by the extent of positive bias of the <span class="math inline">\(MS_B\)</span> estimator through comparing the <span class="math inline">\(MS_B\)</span> estimator to the <span class="math inline">\(MS_W\)</span> estimator as a ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span></li>
-<li>In other words, the ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span> is the test statistic for the null hypothesis</li>
-<li>This statistic is called the <span class="math inline">\(F\)</span> ratio (or <span class="math inline">\(F\)</span> statistic) after Fisher</li>
+<li>The conceptual null hypothesis of ANOVA (<span class="math inline">\(H_0: \mu_1 = \mu_2 = \mu_3 = \cdots = \mu_k\)</span>) is formally operationalised as <span class="math inline">\(H_0: \sum_{k=1}^{k}{\tau_k^2} = 0\)</span> and this is tested by comparing the <span class="math inline">\(MS_B\)</span> estimator to the <span class="math inline">\(MS_W\)</span> estimator as a ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span></li>
+<li>This ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span> is the test statistic for the null hypothesis of ANOVA and this test statistic is called the <span class="math inline">\(F\)</span> ratio (or <span class="math inline">\(F\)</span> statistic)<br />
+</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
@@ -195,15 +228,21 @@
 </ul></li>
 <li><strong>Interpretation</strong>
 <ul>
-<li>If there are no or little positive bias of <span class="math inline">\(MS_B\)</span>, the <span class="math inline">\(F\)</span> statistic is close to 1</li>
-<li>The greater the positive bias of <span class="math inline">\(MS_B\)</span>, the larger the <span class="math inline">\(F\)</span> statistic is above 1</li>
+<li>If the null hypothesis is true, that is <span class="math inline">\(\sum_{k=1}^{k}{\tau_k^2} = 0\)</span>, the expected value of <span class="math inline">\(E(MS_B)\)</span> is just the random variation in the superpopulation (<span class="math inline">\(E(MS_B) = \sigma^2\)</span>), and <span class="math inline">\(F = \frac{E(MS_B)}{E(MS_W)} = \frac{\sigma^2}{\sigma^2} = 1\)</span>. Using the sample <span class="math inline">\(MS_B\)</span> and <span class="math inline">\(MS_W\)</span> as estimators of <span class="math inline">\(E(MS_B)\)</span> and <span class="math inline">\(E(MS_B)\)</span> respectively would yield an <span class="math inline">\(F\)</span> statistic that is close to 1</li>
+<li>If the null hypothesis is false, that is when at least one of the <span class="math inline">\(\tau_ks &gt; 0\)</span> (<span class="math inline">\(\sum_{k=1}^{k}{\tau_k^2} &gt; 0\)</span>), in other words, when at least one of the populations is different, the expected value <span class="math inline">\(E(MS_B)\)</span> consists of both the random variation in the superpopulation and the overall variation induced by the groups (<span class="math inline">\(E(MS_B) = \sigma^2 + \left(\frac{1}{k-1} \right)\sum_{k=1}^{k}{n_k\tau_k^2}\)</span>), then <span class="math inline">\(F = \frac{E(MS_B)}{E(MS_W)} = \frac{\sigma^2 + \left(\frac{1}{k-1} \right)\sum_{k=1}^{k}{n_k\tau_k^2}}{\sigma^2}\)</span>, <em>where</em> <span class="math inline">\(\left(\frac{1}{k-1} \right)\sum_{k=1}^{k}{n_k\tau_k^2} &gt; 0\)</span>, the <span class="math inline">\(F\)</span> statistic will be larger than 1</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>NHST</strong>
+<ul>
+<li>The null hypothesis of ANOVA is thus tested by an Upper-Tail <span class="math inline">\(F\)</span> test</li>
+</ul></li>
 </ul></li>
 <li><strong>The distribution of the F-statistic</strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
 <li>Since <span class="math inline">\(MS_B\)</span> is <span class="math inline">\(SS_B\)</span> (a chi-squared-distributed independent random variable) divided by its degrees of freedom, and <span class="math inline">\(MS_W\)</span> is <span class="math inline">\(SS_W\)</span> (another chi-squared-distributed random variable) divided by its degrees of freedom, the ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span> has a Central <span class="math inline">\(F\)</span> distribution, that is an <span class="math inline">\(F\)</span> distribution with a degrees of freedom for the numerator of <span class="math inline">\(v_1 = k-1\)</span> and a degrees of freedom for the denominator of <span class="math inline">\(v_2 = N - k\)</span> for the denominator</li>
-</ul></li>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(F_{central} \sim F\left(k - 1, N - k \right)\)</span></li>
@@ -252,6 +291,176 @@
 <li>The F test for 2 samples is equivalent to the t test</li>
 </ul></li>
 </ul></li>
+</ul>
+<p><span class="math inline">\(H_0: \sum_{k=1}^{k}{\tau_k^2} = 0\)</span> (operationally)
+- <strong>Hypothesis Testing for ANOVA</strong></p>
+<ul>
+<li><strong>Total Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The Sum of Squares that represents the total amount of variation in the outcome variable</li>
+<li>It is the sum of all the squared deviations between each observed value and the grand mean</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/anova_SST.png" style="width:35.0%" /></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{alignat*}{10} {SS_{T}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} \end{alignat*}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(k\)</span> represents group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(i\)</span> represents observation <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(y_{i,k}\)</span> - Observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\bar{y}\)</span> - The grand mean</li>
+</ul></li>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>Alternatively, it can be expressed simply as:
+<ul>
+<li><span class="math inline">\(\displaystyle \sum_{n=1}^{n}{(y_i - \bar{y})^2}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Total degrees of freedom</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}df_T &amp;= df_M + df_E \\ df_T &amp;= N-1 \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Mean Total Sum of Squares (Total Variance)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Total Variance in the outcome variable</li>
+<li>The mean amount of variation in the outcome variable</li>
+<li>The average amount by squared deviation between each observation and the grand mean</li>
+<li>It is the standardised version of the Total Sum of Squares</li>
+<li>Because the Total Sum of Squares is the sum of all the squared deviations, it depends on the degrees of freedom. Finding the mean, specifically, dividing the Total Sum of Squares by the degrees of freedom will standardise the quantity</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(MS_T = \frac{SS_T}{df_T}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>ANOVA and variance partitioning</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>ANOVA partitions the Total Sum of Squares of the outcome variable into 2 components:
+<ul>
+<li>The Model Sum of Squares</li>
+<li>The Error Sum of Squares</li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{alignat*}{10} {SS_{T}} &amp;= {SS_{M}} + {SS_{E}} \\ {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} &amp;= {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2} + {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2} }} \end{alignat*}\)</span></li>
+</ul></li>
+<li><strong>Between/Model Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The amount of variation between groups/samples/populations</li>
+<li>In an experimental design, it represents the amount of variation in the outcome variable that is induced or explained by the model in the model (systematic variation)</li>
+<li>It is the sum of all the squared deviations between the predicted value of each observation (which is the mean of the group to which the observation belongs) and the grand mean</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/anova_SSM.png" style="width:35.0%" /></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\({SS_{B}} = {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(n_k\)</span> - Group size</li>
+<li><span class="math inline">\(\bar{y}_k\)</span> - The mean of group $k$0</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Model degrees of freedom</strong>
+<ul>
+<li><span class="math inline">\(df_B = k - 1\)</span></li>
+</ul></li>
+<li><strong>Mean Model Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Between-group/sample variance - The variance between groups
+<ul>
+<li>In a 2-group/sample design, it is the variance between 2 groups</li>
+</ul></li>
+<li>Variance in the outcome variable explained by the model</li>
+<li>The mean amount of variation in the outcome variable explained by the model</li>
+<li>The average amount of squared deviation between the predicted value of each observation and the grand mean</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(MS_M = \frac{SS_M}{df_M}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Error Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It represents the amount of variation in the outcome variable that is not explained by the model or attributable to the predictors in the model and is assumed to be due to random error</li>
+<li>It is the sum of all the squared deviations between each observed value and the mean of the group to which it belongs</li>
+</ul></li>
+<li><strong>Visualisation</strong>
+<ul>
+<li><img src="image/anova_SSR.png" style="width:35.0%" /></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\({SS_{E}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2}}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>Alternatively, it is the sum of the variance of each group times the degrees of freedom of that group (so you get the error sum of squares of that group)
+<ul>
+<li><span class="math inline">\(\sum_{k=1}^{k}{(n_k-1)s_{k}^{2}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Degrees of freedom</strong>
+<ul>
+<li><span class="math inline">\(df_e = N-k\)</span></li>
+</ul></li>
+<li><strong>Mean Error Sum of Squares (Variance Unexplained/Error Variance)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Variance in the outcome variable not explained by the model and is assumed to be due to random error</li>
+<li>The mean amount of variation in the outcome variable not explained by the model</li>
+<li>The average amount of squared deviation between the predicted value of each observation and its predicted value</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(MS_E = \frac{SS_E}{df_e}\)</span>
+<ul>
+<li>Alternatively, it is just the error variance
+<ul>
+<li><span class="math inline">\(\displaystyle MS_E = s^2 = \frac{1}{n-k}\sum_{k=1}^{k}{(n_k-1)s_{k}^{2}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The Model as a whole</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \begin{alignat*}{10} {SS_{T}} &amp;= {SS_{M}} + {SS_{E}} \\ {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} &amp;= {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2} + {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2} }} \end{alignat*}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
 <li><strong><span class="math inline">\(Proof of E(MS_B) = \sigma^2\)</span></strong>
 <ul>
 <li>$ MS_B = ( ) <em>{k=1}^{k}{n_k ({y}</em>{k} - {y} )^2}$
@@ -269,6 +478,10 @@ $</li>
 <li>Since <span class="math inline">\(\tau_k\)</span> and thus <span class="math inline">\(\bar{\tau}\)</span> are constants and <span class="math inline">\(E(\epsilon_{ik}) = E(\bar\epsilon_{i}) = E(\bar\epsilon) = 0\)</span></li>
 </ul></li>
 <li><span class="math inline">\(\displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_k - \bar{\epsilon})^2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_{k}^{2} - 2\bar{\epsilon}_{k}\bar{\epsilon} + \bar{\epsilon}^{2})}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k\bar{\epsilon}_{k}^{2} - 2n_k\bar{\epsilon}_{k}\bar{\epsilon} + n_k\bar{\epsilon}^{2}}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})} - 2N\bar{\epsilon}^{2} + N\bar{\epsilon}^{2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})} - N\bar{\epsilon}^{2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k E(\bar{\epsilon}_{k}^{2})} - NE(\bar{\epsilon}^{2})\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k \frac{\sigma^2}{n_k}} - N\frac{\sigma^2}{N}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{\sigma^2} - \sigma^2\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k{\sigma^2} - \sigma^2) \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k-1)\sigma^2 \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \sigma^2 \\ \displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span></li>
+<li>Since <span class="math inline">\(\bar{\tau} = 0\)</span>
+<ul>
+<li>$ E(MS_B) = ^2 + ( ) _{k=1}^{k}{n_k_k^2}$</li>
+</ul></li>
 </ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">
@@ -278,7 +491,53 @@ $</li>
 <li><strong>The T and F</strong>
 <ul>
 <li>The squared independent random variable with a t-distribution with <span class="math inline">\(v\)</span> degree of freedom has an F distribution with degrees of freedom 1 of 1 and degree of freedom 2 of <span class="math inline">\(v\)</span></li>
+<li><strong>My interpretation (Read with caution)</strong>
+<ul>
+<li>t and F are ratios of the variation due to the model to the natural random variation in the distribution</li>
+<li>t is the ratio of the variation due to the model in terms of difference in their expected values to the natural random variation in the distribution (the distribution being the sampling distribution; so they look at the expected values)</li>
+<li>F is the ratio of the variation due to the model in terms of individual scores to the natural random variation in the distribution (the distribution being the population distribution; so they look at individual scores rather than expected values)</li>
+</ul></li>
 <li><span class="math inline">\(t^2 = F\)</span></li>
+</ul></li>
+<li><strong>Variance of a linear combination of random variables</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle y &amp;= \sum_{i = 1}^{n}{a_ix_i} = a_1x_1 + a_2x_2 + a_3x_3 + \cdots + a_nx_n \\ \displaystyle \text{Var}(y) &amp;= \sum_{i=1}^{n}{a_i^2\text{Var}(x_i)} + 2\sum_{}^{}{\sum_{1≤i&lt;j≤n}^{}{\text{Cov}(a_i, a_j)}} \\ \displaystyle \text{Var}(y) &amp;= \text{Var}(x_i)\sum_{i=1}^{n}{a_i^2} + 2\sum_{}^{}{\sum_{1≤i&lt;j≤n}^{}{\text{Cov}(a_i, a_j)}} \end{aligned}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li>The double sum is over all pairs <span class="math inline">\((i,j)\)</span> with <span class="math inline">\(i &lt; j\)</span></li>
+</ul></li>
+<li><strong><em>Ref</em></strong>
+<ul>
+<li>Wackerly, Mendenhall and Scheaffer</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Applications of this fact</strong>
+<ul>
+<li><strong>Sampling variance/standard error</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sampling variance or standard error of a linear function/combination of random variables can be found using this fact</li>
+<li>Most statistics are a linear combination of random variables (e.g. sample mean, sample beta, etc.)</li>
+</ul></li>
+<li><strong>Using the fact to derive the sampling variance of the mean</strong>
+<ul>
+<li>Let <span class="math inline">\(\bar{y_i}\)</span> be a sample mean</li>
+<li>The sample mean is a linear function
+<ul>
+<li><span class="math inline">\(\bar{y_i} = \frac{x_1 + x_2 + x_3 + \cdots + x_n}{n} \\ \bar{y_i} = \frac{1}{n}x_1 + \frac{1}{n}x_2 + \frac{1}{n}x_3 + \cdots + \frac{1}{n}x_n \\ \bar{y}_i = \sum_{i = 1}^{n}{\frac{1}{n}x_i} \\ \displaystyle \text{Var}(\bar{y_i}) = \text{Var}(x_i)\sum_{i = 1}^{n}{\left(\frac{1}{n}\right)^2} + 2\sum_{}^{}{\sum_{1≤i&lt;j≤n}^{}{\text{Cov}(x_i, x_j)}}\)</span></li>
+</ul></li>
+<li>Assuming that <span class="math inline">\(x_i\)</span> are independent, which implies that <span class="math inline">\(\sum_{}^{}{\sum_{1≤i&lt;j≤n}^{}{\text{Cov}(x_i, x_j)}} = 0\)</span>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{Var}(\bar{y_i}) = \text{Var}(x_i)\sum_{i = 1}^{n}{\left(\frac{1}{n}\right)^2} \\ \displaystyle \text{Var}(\bar{y_i}) = \text{Var}(x_i)n{\left(\frac{1}{n}\right)^2} \\ \displaystyle \text{Var}(\bar{y_i}) = \text{Var}(x_i)\frac{1}{n} \\ \displaystyle \text{Var}(\bar{y_i}) = \frac{\sigma^2}{n} \\ \displaystyle \text{sd}(\bar{y_i}) = \sqrt{\frac{\sigma^2}{n}} = \frac{\sigma}{\sqrt{n}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">
@@ -348,169 +607,57 @@ $</li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>Operationalising variability</strong>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>ANOVA as a Linear Model</strong>
+</p>
 <ul>
-<li><strong>Concept</strong>
+<li><strong>Introduction</strong>
 <ul>
-<li>ANOVA partitions the Total Sum of Squares of the outcome variable into 2 components:
-<ul>
-<li>The Model Sum of Squares</li>
-<li>The Error Sum of Squares</li>
+<li>ANOVA can be implemented in a Linear Model</li>
 </ul></li>
-</ul></li>
-<li><strong>Total Sum of Squares</strong>
+<li><strong>The Linear Model for 2-group ANOVA</strong>
 <ul>
-<li><strong>Concept</strong>
-<ul>
-<li>The Sum of Squares that represents the total amount of variation in the outcome variable</li>
-<li>It is the sum of all the squared deviations between each observed value and the grand mean</li>
-</ul></li>
-<li><strong>Visualisation</strong>
-<ul>
-<li><img src="image/anova_SST.png" style="width:35.0%" /></li>
-</ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\displaystyle \begin{alignat*}{10} {SS_{T}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} \end{alignat*}\)</span>
+<li><span class="math inline">\(y_{ik} = \beta_{0} + \beta_{k}x_k + \epsilon_{ik}\)</span>
 <ul>
 <li><strong><em>Where</em></strong>
 <ul>
-<li><span class="math inline">\(k\)</span> represents group <span class="math inline">\(k\)</span></li>
-<li><span class="math inline">\(i\)</span> represents observation <span class="math inline">\(i\)</span></li>
-<li><span class="math inline">\(y_{i,k}\)</span> - Observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(k\)</span></li>
-<li><span class="math inline">\(\bar{y}\)</span> - The grand mean</li>
-</ul></li>
-<li><strong><em>Notes</em></strong>
+<li><span class="math inline">\(y_{ik}\)</span>
 <ul>
-<li>Alternatively, it can be expressed simply as:
+<li>+Observation <span class="math inline">\(i\)</span> in group/sample <span class="math inline">\(k\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{0}\)</span>
 <ul>
-<li><span class="math inline">\(\displaystyle \sum_{n=1}^{n}{(y_i - \bar{y})^2}\)</span></li>
+<li>The overall/grand mean</li>
+<li>This is equivalent to <span class="math inline">\(\mu\)</span></li>
 </ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Total degrees of freedom</strong>
+<li><span class="math inline">\(\beta_{1}x_1\)</span>
 <ul>
-<li><span class="math inline">\(\begin{aligned}df_T &amp;= df_M + df_E \\ df_T &amp;= N-1 \end{aligned}\)</span></li>
+<li>The effect of level <span class="math inline">\(k\)</span> of the categorical predictor variable relative to the overall/grand mean
+This is equivalent to <span class="math inline">\(\tau_k\)</span></li>
 </ul></li>
-<li><strong>Mean Total Sum of Squares (Total Variance)</strong>
+<li><span class="math inline">\(x_k\)</span>
 <ul>
-<li><strong>Concept</strong>
-<ul>
-<li>Total Variance in the outcome variable</li>
-<li>The mean amount of variation in the outcome variable</li>
-<li>The average amount by squared deviation between each observation and the grand mean</li>
-<li>It is the standardised version of the Total Sum of Squares
-<ul>
-<li>Because the Total Sum of Squares is the sum of all the squared deviations, it depends on the degrees of freedom. Finding the mean, specifically, dividing the Total Sum of Squares by the degrees of freedom will standardise the quantity</li>
+<li>A dummy or indicator variable</li>
+<li><span class="math inline">\(x_k = \begin{cases} 1 ~~~ \text{if the observation is from the group} ~ k \\ 0 ~~~ \text{if the observation is not from the group}~k \end{cases}\)</span></li>
 </ul></li>
+<li><span class="math inline">\(\beta_{0} + \beta_{k}x_k\)</span>
+<ul>
+<li>The predicted/expected mean of group <span class="math inline">\(k\)</span></li>
+<li>This is equivalent to <span class="math inline">\(\mu_k\)</span></li>
 </ul></li>
-<li><strong>Mathematics</strong>
+<li><span class="math inline">\(\epsilon_{ik}\)</span>
 <ul>
-<li><span class="math inline">\(MS_T = \frac{SS_T}{df_T}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Model Sum of Squares</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>Represents the amount of variation in the outcome variable that is explained by the model or attributable to the predictors in the model (systematic variation)</li>
-<li>It is the sum of all the squared deviations between the predicted value of each observation (which is the mean of the group to which the observation belongs) and the grand mean</li>
-</ul></li>
-<li><strong>Visualisation</strong>
-<ul>
-<li><img src="image/anova_SSM.png" style="width:35.0%" /></li>
-</ul></li>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\({SS_{M}} = {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2}}\)</span>
-<ul>
-<li><strong><em>Where</em></strong>
-<ul>
-<li><span class="math inline">\(n_k\)</span> - Group size</li>
-<li><span class="math inline">\(\bar{y}_k\)</span> - The mean of group $k$0</li>
+<li>The random error of observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(k\)</span></li>
+<li>Error is a random independent normal variable with <span class="math inline">\(E(\epsilon_{ik}) = 0\)</span> and <span class="math inline">\(Var(\epsilon_{ik}) = \sigma^2\)</span></li>
 </ul></li>
 </ul></li>
-</ul></li>
-<li><strong>Model degrees of freedom</strong>
-<ul>
-<li><span class="math inline">\(df_M = k -1\)</span></li>
-</ul></li>
-<li><strong>Mean Model Sum of Squares (Variance Explained)</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>Variance in the outcome variable explained by the model</li>
-<li>The mean amount of variation in the outcome variable explained by the model</li>
-<li>The average amount of squared deviation between the predicted value of each observation and the grand mean</li>
-</ul></li>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(MS_M = \frac{SS_M}{df_M}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Error Sum of Squares</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>It represents the amount of variation in the outcome variable that is not explained by the model or attributable to the predictors in the model and is assumed to be due to random error</li>
-<li>It is the sum of all the squared deviations between each observed value and the mean of the group to which it belongs</li>
-</ul></li>
-<li><strong>Visualisation</strong>
-<ul>
-<li><img src="image/anova_SSR.png" style="width:35.0%" /></li>
-</ul></li>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\({SS_{E}} = {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2}}\)</span>
-<ul>
-<li><strong><em>Notes</em></strong>
-<ul>
-<li>Alternatively, it is the sum of the variance of each group times the degrees of freedom of that group (so you get the error sum of squares of that group)
-<ul>
-<li><span class="math inline">\(\sum_{k=1}^{k}{(n_k-1)s_{k}^{2}}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Degrees of freedom</strong>
-<ul>
-<li><span class="math inline">\(df_e = N-k\)</span></li>
-</ul></li>
-<li><strong>Mean Error Sum of Squares (Variance Unexplained/Error Variance)</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>Variance in the outcome variable not explained by the model and is assumed to be due to random error</li>
-<li>The mean amount of variation in the outcome variable not explained by the model</li>
-<li>The average amount of squared deviation between the predicted value of each observation and its predicted value</li>
-</ul></li>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(MS_E = \frac{SS_E}{df_e}\)</span>
-<ul>
-<li>Alternatively, it is just the error variance
-<ul>
-<li><span class="math inline">\(\displaystyle MS_E = s^2 = \frac{1}{n-k}\sum_{k=1}^{k}{(n_k-1)s_{k}^{2}}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>The Model as a whole</strong>
-<ul>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(\displaystyle \begin{alignat*}{10} {SS_{T}} &amp;= {SS_{M}} + {SS_{E}} \\ {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y})^2}}} &amp;= {\sum_{k = 1}^{k}{n_k(\bar{y}_k - \bar{y})^2} + {\sum_{k=1}^{k}{\sum_{i=1}^{n_k}{(y_{i,k} - \bar{y}_k})^2} }} \end{alignat*}\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
-<p style="margin-bottom: 0px; font-size: 20px; ">
-<strong>ANOVA</strong>
-</p>
 
 </div>
             </section>
