@@ -532,21 +532,6 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
    
           
           
-          
-
-        
-          
-          
-          
-          
-          
-       
-          
-
-
-
-  
-  
 - **$Proof of E(MS_B) = \sigma^2$**
   - $ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left(\bar{y}_{k} - \bar{y} \right)^2}$
     - Since:
@@ -558,6 +543,7 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
   - Since $\bar{\tau} = 0$
     - $ \displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k\tau_k^2}$
   
+     
     
     
     
