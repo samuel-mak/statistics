@@ -52,6 +52,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -461,27 +463,31 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong><span class="math inline">\(Proof of E(MS_B) = \sigma^2\)</span></strong>
+<li><strong>Proof of <span class="math inline">\(E(MS_B) = \sigma^2\)</span></strong>
 <ul>
-<li>$ MS_B = ( ) <em>{k=1}^{k}{n_k ({y}</em>{k} - {y} )^2}$
+<li><span class="math inline">\(\displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left(\bar{y}_{k} - \bar{y} \right)^2}\)</span>
 <ul>
 <li>Since:
 <ul>
 <li><span class="math inline">\(\begin{aligned} \displaystyle \bar{y}_{k} &amp;= \frac{1}{n_k}\sum_{i = 1}^{n_k}{y_{ik}} \\ \displaystyle &amp;= \frac{1}{n_k}\sum_{i = 1}^{n_k}{\left( \mu + \tau_k + \epsilon_{ik} \right)} \\ \displaystyle &amp;= \mu + \tau_k + \frac{1}{n_k}\sum_{i = 1}^{n_k}{\epsilon_{ik}} \\ \displaystyle &amp;= \mu + \tau_k + \bar{\epsilon}_k \end{aligned}\)</span></li>
-<li>$
-<span class="math display">\[\begin{aligned} \displaystyle \bar{y} &amp;= \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{y_{ik}}} \\ \displaystyle &amp;=  \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\left( \mu + \tau_k + \epsilon_{ik} \right)}} \\ \displaystyle &amp;=  \mu + \frac{1}{N}\sum_{k = 1}^{k}{n_k \tau_k} + \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\epsilon_{ik}}} \\ \displaystyle &amp;= \mu + \bar{\tau} + \bar{\epsilon} \end{aligned}\]</span>
-$</li>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \bar{y} &amp;= \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{y_{ik}}} \\ \displaystyle &amp;= \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\left( \mu + \tau_k + \epsilon_{ik} \right)}} \\ \displaystyle &amp;= \mu + \frac{1}{N}\sum_{k = 1}^{k}{n_k \tau_k} + \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\epsilon_{ik}}} \\ \displaystyle &amp;= \mu + \bar{\tau} + \bar{\epsilon} \end{aligned}\)</span></li>
 </ul></li>
 </ul></li>
-<li>$ MS_B = ( ) <em>{k=1}^{k}{n_k ({y}</em>{k} - {y} )^2} \ MS_B = ( ) <em>{k=1}^{k}{n_k ^2} \ MS_B = ( ) </em>{k=1}^{k}{n_k ^2} \ MS_B = ( ) <em>{k=1}^{k}{n_k } \ MS_B = ( ) </em>{k=1}^{k}{ } \ MS_B = ( ) _{k=1}<sup>{k}{n_k(<em>k - {})^2} + ( )</em>{k=1}</sup>{k}{2n_k(_k - {})({}<em>k} - {}) + ( )</em>{k=1}^{k}{n_k({}_k - {})^2} \ E(MS_B) = ( ) E+ ( ) E+ ( ) E$
+<li><span class="math inline">\(\displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left(\bar{y}_{k} - \bar{y} \right)^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\mu + \tau_k + \bar{\epsilon}_k) - (\mu + \bar{\tau} + \bar{\epsilon}) \right]^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\tau_k - \bar{\tau}) + (\bar{\epsilon}_k - \bar{\epsilon}) \right]^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\tau_k - \bar{\tau})^2 + 2(\tau_k - \bar{\tau})(\bar{\epsilon}_k - \bar{\epsilon}) + (\bar{\epsilon}_k - \bar{\epsilon})^2 \right]} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{ \left[n_k(\tau_k - \bar{\tau})^2 + 2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k - \bar{\epsilon}) + n_k(\bar{\epsilon}_k - \bar{\epsilon})^2 \right]} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right)\sum_{k=1}^{k}{2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k} - \bar{\epsilon}) + \left( \frac{1}{k - 1}\right)\sum_{k=1}^{k}{n_k(\bar{\epsilon}_k - \bar{\epsilon})^2} \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) E\left[\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\right] + \left( \frac{1}{k - 1}\right) E\left[\sum_{k=1}^{k}{2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k} - \bar{\epsilon})\right] + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_k - \bar{\epsilon})^2}\right]\)</span>
 <ul>
-<li>Since <span class="math inline">\(\tau_k\)</span> and thus <span class="math inline">\(\bar{\tau}\)</span> are constants and <span class="math inline">\(E(\epsilon_{ik}) = E(\bar\epsilon_{i}) = E(\bar\epsilon) = 0\)</span></li>
-</ul></li>
-<li><span class="math inline">\(\displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_k - \bar{\epsilon})^2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_{k}^{2} - 2\bar{\epsilon}_{k}\bar{\epsilon} + \bar{\epsilon}^{2})}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k\bar{\epsilon}_{k}^{2} - 2n_k\bar{\epsilon}_{k}\bar{\epsilon} + n_k\bar{\epsilon}^{2}}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})} - 2N\bar{\epsilon}^{2} + N\bar{\epsilon}^{2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})} - N\bar{\epsilon}^{2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k E(\bar{\epsilon}_{k}^{2})} - NE(\bar{\epsilon}^{2})\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k \frac{\sigma^2}{n_k}} - N\frac{\sigma^2}{N}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{\sigma^2} - \sigma^2\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k{\sigma^2} - \sigma^2) \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k-1)\sigma^2 \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \sigma^2 \\ \displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span></li>
-<li>Since <span class="math inline">\(\bar{\tau} = 0\)</span>
+<li>Since:
 <ul>
-<li>$ E(MS_B) = ^2 + ( ) _{k=1}^{k}{n_k_k^2}$</li>
+<li><span class="math inline">\(\tau_k\)</span> and thus <span class="math inline">\(\bar{\tau}\)</span> are constants and <span class="math inline">\(E(\epsilon_{ik}) = E(\bar\epsilon_{i}) = E(\bar\epsilon) = 0\)</span></li>
 </ul></li>
+</ul></li>
+<li><span class="math inline">\(\displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_k - \bar{\epsilon})^2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_{k}^{2} - 2\bar{\epsilon}_{k}\bar{\epsilon} + \bar{\epsilon}^{2})}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k\bar{\epsilon}_{k}^{2} - 2n_k\bar{\epsilon}_{k}\bar{\epsilon} + n_k\bar{\epsilon}^{2}}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})} - 2N\bar{\epsilon}^{2} + N\bar{\epsilon}^{2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})} - N\bar{\epsilon}^{2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k E(\bar{\epsilon}_{k}^{2})} - NE(\bar{\epsilon}^{2})\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k \frac{\sigma^2}{n_k}} - N\frac{\sigma^2}{N}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{\sigma^2} - \sigma^2\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k{\sigma^2} - \sigma^2) \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k-1)\sigma^2 \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \sigma^2 \\ \displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\)</span>
+<ul>
+<li>Since:
+<ul>
+<li><span class="math inline">\(\bar{\tau} = 0\)</span></li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(\displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k\tau_k^2}\)</span></li>
 </ul></li>
 </ul>
 <p style="margin-bottom: 0px; font-size: 20px; ">
@@ -573,20 +579,6 @@ $</li>
 <li>I am not including the PDF maths here</li>
 </ul></li>
 </ul></li>
-<li><strong>Null hypothesis</strong>
-<ul>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(H_0: \tau_1 = \tau_2 = \tau_3 = \cdots = \tau_k = 0\)</span> (<span class="math inline">\(\bar{\tau} = 0\)</span>)</li>
-</ul></li>
-</ul></li>
-<li><strong>The Central <span class="math inline">\(F\)</span> Distribution</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>The Central F is the ratio of 2 independent chi-squared random variables divided by their degrees of freedom</li>
-</ul></li>
-</ul></li>
 <li><strong>Sum of Squared Deviations</strong>
 <ul>
 <li><strong>Concept</strong>
@@ -612,11 +604,11 @@ $</li>
 <strong>ANOVA as a Linear Model</strong>
 </p>
 <ul>
-<li><strong>Introduction</strong>
+<li><p><strong>Introduction</strong></p>
 <ul>
 <li>ANOVA can be implemented in a Linear Model</li>
 </ul></li>
-<li><strong>The Linear Model for 2-group ANOVA</strong>
+<li><p><strong>2-sample ANOVA as a Linear Model</strong></p>
 <ul>
 <li><strong>Mathematics</strong>
 <ul>
@@ -626,34 +618,393 @@ $</li>
 <ul>
 <li><span class="math inline">\(y_{ik}\)</span>
 <ul>
-<li>+Observation <span class="math inline">\(i\)</span> in group/sample <span class="math inline">\(k\)</span></li>
+<li>Observation <span class="math inline">\(i\)</span> in group/sample <span class="math inline">\(k\)</span></li>
 </ul></li>
 <li><span class="math inline">\(\beta_{0}\)</span>
 <ul>
-<li>The overall/grand mean</li>
-<li>This is equivalent to <span class="math inline">\(\mu\)</span></li>
+<li>The reference group/sample - The group/sample against which each of the other samples are compared</li>
+<li>If there is a control group, it would make the most sense if the control group is used as the reference group</li>
 </ul></li>
-<li><span class="math inline">\(\beta_{1}x_1\)</span>
+<li><span class="math inline">\(\beta_{k}\)</span>
 <ul>
-<li>The effect of level <span class="math inline">\(k\)</span> of the categorical predictor variable relative to the overall/grand mean
-This is equivalent to <span class="math inline">\(\tau_k\)</span></li>
+<li>The difference between the mean of sample/group <span class="math inline">\(k\)</span> and <span class="math inline">\(\beta_0\)</span></li>
+<li><span class="math inline">\(\beta_k = \mu_k - \mu_0\)</span></li>
+<li>Represents the effect of level <span class="math inline">\(k\)</span> of the categorical predictor variable relative to the reference group</li>
 </ul></li>
 <li><span class="math inline">\(x_k\)</span>
 <ul>
-<li>A dummy or indicator variable</li>
+<li>A dummy or indicator variable for <span class="math inline">\(\beta_k\)</span></li>
 <li><span class="math inline">\(x_k = \begin{cases} 1 ~~~ \text{if the observation is from the group} ~ k \\ 0 ~~~ \text{if the observation is not from the group}~k \end{cases}\)</span></li>
 </ul></li>
 <li><span class="math inline">\(\beta_{0} + \beta_{k}x_k\)</span>
 <ul>
-<li>The predicted/expected mean of group <span class="math inline">\(k\)</span></li>
+<li>The expected value of group <span class="math inline">\(k\)</span></li>
 <li>This is equivalent to <span class="math inline">\(\mu_k\)</span></li>
 </ul></li>
 <li><span class="math inline">\(\epsilon_{ik}\)</span>
 <ul>
 <li>The random error of observation <span class="math inline">\(i\)</span> in group <span class="math inline">\(k\)</span></li>
-<li>Error is a random independent normal variable with <span class="math inline">\(E(\epsilon_{ik}) = 0\)</span> and <span class="math inline">\(Var(\epsilon_{ik}) = \sigma^2\)</span></li>
+<li><span class="math inline">\(\epsilon_{ik}\)</span> is a random independent normal variable with <span class="math inline">\(E(\epsilon_{ik}) = 0\)</span> and <span class="math inline">\(Var(\epsilon_{ik}) = \sigma^2\)</span></li>
 </ul></li>
 </ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>NHST</strong></p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>To test the null hypothesis that the <span class="math inline">\(\beta_1 = \mu_1 - \mu_0 = 0\)</span></li>
+<li>For this 2-sample test, you can use a t-statistic or an F statistic</li>
+</ul></li>
+<li><strong>Hypotheses</strong>
+<ul>
+<li><strong>Null hypothesis</strong>
+<ul>
+<li>Beta 1 is 0</li>
+<li><span class="math inline">\(H_0: \beta_1 = 0\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>t test</strong>
+<ul>
+<li><strong>The t statistic</strong>
+<ul>
+<li><span class="math inline">\(t = \frac{\hat\mu_1 - \hat\mu_0}{\text{sd}(\hat\mu_1 - \hat\mu_0)} = \frac{\hat\beta_1}{\text{sd}(\hat\beta)}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\text{sd}(\hat\beta)\)</span> is the standard error of the <span class="math inline">\(\hat\beta_1\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>F test</strong>
+<ul>
+<li><strong>The F-statistic</strong>
+<ul>
+<li><span class="math inline">\(F = \frac{MS_B}{MS_E}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Bootstrap</strong></p>
+<ul>
+<li>For robust confidence intervals and p-values</li>
+</ul></li>
+<li><p><strong>Non-parametric F</strong></p>
+<ul>
+<li>Kruskal-Wallis test</li>
+</ul></li>
+<li><p><strong>Robust F</strong></p>
+<ul>
+<li>Welch’s F</li>
+</ul></li>
+<li><p><strong>3-sample ANOVA as a Linear Model</strong></p></li>
+<li><p><strong>Mann-Whitney test</strong></p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Aka Wilcoxon rank sum test</li>
+<li>Non-parametric test for difference between 2 independent samples</li>
+<li>Observations from both samples are grouped together and ranked in ascending order</li>
+<li>The test statistic the rank sum (sum of the ranks) of one of the samples (this statistic is called R)</li>
+<li>Statistical significance is assessed by finding the probability of the observed statistic in the probability distribution of the R test statistic under the null hypothesis</li>
+</ul></li>
+<li><strong>Procedure</strong>
+<ul>
+<li>Group all observations from both samples together and rank the observations in ascending order</li>
+<li>Calculate the sample R statistic (the R statistic is the sum of the ranks of those observations in either one of the 2 groups)</li>
+<li>Find the probability distribution of R under the null hypothesis</li>
+<li>Find or estimate the probability of the observed R in the probability distribution of R under the null hypothesis</li>
+</ul></li>
+<li><strong>Finding the probability distribution of R under the null hypothesis</strong>
+<ul>
+<li>Find all possible combination of ranks (the number of combination of ranks should be <span class="math inline">\(n\choose r\)</span> where n is the total number of ranks and r is the number of ranks in the group of interest)</li>
+<li>Under the null hypothesis, each of all possible combination of ranks have an equal chance, hence, each of all possible combination occurs only once</li>
+<li>Find the R of each of all possible combinations of ranks</li>
+<li>The distribution of the set of Rs found is the distribution of R under the null hypothesis</li>
+</ul></li>
+<li><strong>Example</strong>
+<ul>
+<li>The raw data:
+<ul>
+<li><table class="table table-condensed" style="font-size: 12px; font-family: inherit; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:right;">
+y
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+Control
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+Control
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+Experimental
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+Experimental
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+3
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li>Group all observations from both samples together and rank the observations in ascending order
+<ul>
+<li><table class="table table-condensed" style="font-size: 12px; font-family: inherit; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Rank Combinations
+</th>
+<th style="text-align:right;">
+W
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+1, 2
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+1, 3
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+1, 4
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+2, 3
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+2, 4
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+3, 4
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+7
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li>Calculate the sample W statistic
+<ul>
+<li>The W statistic is the sum of the ranks of those observations in either one of the 2 groups</li>
+<li>Here, the Control group is chosen. The W statistic is 7 (<span class="math inline">\(W = 7\)</span>)</li>
+</ul></li>
+<li>Find all possible rank combinations for either one of groups and calculate the W statistic for each of the rank combinations</li>
+<li>Find the probability distribution of W under the null hypothesis
+<ul>
+<li>Find all possible rank combinations for either one of the groups</li>
+<li>Find the probability distribution of the rank combinations under the null hypothesis
+<ul>
+<li>Under the null hypothesis, each of the rank combination has an equal chance. Hence, each of the rank combination occur only once.</li>
+</ul></li>
+<li>Calculate the W statistic for each of the rank combinations.
+<ul>
+<li><table class="table table-condensed" style="font-size: 12px; font-family: inherit; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;">
+Rank Combinations
+</th>
+<th style="text-align:right;">
+W
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+1, 2
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+1, 3
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+1, 4
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+2, 3
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+2, 4
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;background-color: #36394A !important;border: 1px solid #36394A;">
+3, 4
+</td>
+<td style="text-align:right;background-color: #36394A !important;border: 1px solid #36394A;">
+7
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+<li>The probability distribution of the resultant set of W statistics is the probability distribution of W under the null hypothesis
+<ul>
+<li><table class="table table-condensed" style="font-size: 12px; font-family: inherit; width: auto !important; ">
+<thead>
+<tr>
+<th style="text-align:left;border-bottom: 1px solid inherit; border-top: 0px solid black;color: inherit !important;">
+W
+</th>
+<th style="text-align:left;border-bottom: 1px solid inherit; border-top: 0px solid black;color: inherit !important;">
+3
+</th>
+<th style="text-align:left;border-bottom: 1px solid inherit; border-top: 0px solid black;color: inherit !important;">
+4
+</th>
+<th style="text-align:left;border-bottom: 1px solid inherit; border-top: 0px solid black;color: inherit !important;">
+5
+</th>
+<th style="text-align:left;border-bottom: 1px solid inherit; border-top: 0px solid black;color: inherit !important;">
+6
+</th>
+<th style="text-align:left;border-bottom: 1px solid inherit; border-top: 0px solid black;color: inherit !important;">
+7
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;border-bottom: 5px solid #36394A;color: inherit !important;background-color: #36394A !important;">
+Freq
+</td>
+<td style="text-align:left;border-bottom: 5px solid #36394A;color: inherit !important;background-color: #36394A !important;">
+1
+</td>
+<td style="text-align:left;border-bottom: 5px solid #36394A;color: inherit !important;background-color: #36394A !important;">
+1
+</td>
+<td style="text-align:left;border-bottom: 5px solid #36394A;color: inherit !important;background-color: #36394A !important;">
+2
+</td>
+<td style="text-align:left;border-bottom: 5px solid #36394A;color: inherit !important;background-color: #36394A !important;">
+1
+</td>
+<td style="text-align:left;border-bottom: 5px solid #36394A;color: inherit !important;background-color: #36394A !important;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;border-top: 0px solid transparent;color: inherit !important;background-color: #36394A !important;">
+prob
+</td>
+<td style="text-align:left;border-top: 0px solid transparent;color: inherit !important;background-color: #36394A !important;">
+0.167
+</td>
+<td style="text-align:left;border-top: 0px solid transparent;color: inherit !important;background-color: #36394A !important;">
+0.167
+</td>
+<td style="text-align:left;border-top: 0px solid transparent;color: inherit !important;background-color: #36394A !important;">
+0.333
+</td>
+<td style="text-align:left;border-top: 0px solid transparent;color: inherit !important;background-color: #36394A !important;">
+0.167
+</td>
+<td style="text-align:left;border-top: 0px solid transparent;color: inherit !important;background-color: #36394A !important;">
+0.167
+</td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul></li>
+<li>Find the probability of the observed W statistic in the probability distribution under the null hypothesis
+<ul>
+<li>As mentioned, <span class="math inline">\(W = 7\)</span></li>
+<li><span class="math inline">\(P(W = 7) = 0.167\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Critical regions</strong>
+<ul>
+<li>The critical regions can be found in published tables</li>
+<li>If the probability of the observed W statistic falls outside the critical boundary, then it is statistically significant</li>
+</ul></li>
+<li><strong>Ties</strong>
+<ul>
+<li>If there are ties in the data, then the ranks for the ties will be the same and it will be the mean of the supposed ranks of the ties</li>
+<li><strong>Example</strong>
+<ul>
+<li>If the data is 10.5, 11.2, 15.7, 15.7, 15.7, 15.7, 16.2, 18.5</li>
+<li>The ranks would be 1, 2, 3, 4.5, 4.5, 4.5, 4.5, 8, 9</li>
 </ul></li>
 </ul></li>
 </ul></li>

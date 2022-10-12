@@ -532,16 +532,18 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
    
           
           
-- **$Proof of E(MS_B) = \sigma^2$**
-  - $ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left(\bar{y}_{k} - \bar{y} \right)^2}$
+- **Proof of $E(MS_B) = \sigma^2$**
+  - $\displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left(\bar{y}_{k} - \bar{y} \right)^2}$
     - Since:
       - $\begin{aligned} \displaystyle \bar{y}_{k} &= \frac{1}{n_k}\sum_{i = 1}^{n_k}{y_{ik}} \\ \displaystyle &= \frac{1}{n_k}\sum_{i = 1}^{n_k}{\left( \mu + \tau_k + \epsilon_{ik} \right)} \\ \displaystyle &=  \mu + \tau_k + \frac{1}{n_k}\sum_{i = 1}^{n_k}{\epsilon_{ik}} \\ \displaystyle &= \mu + \tau_k + \bar{\epsilon}_k  \end{aligned}$
-      - $\begin{aligned} \displaystyle \bar{y} &= \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{y_{ik}}} \\ \displaystyle &=  \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\left( \mu + \tau_k + \epsilon_{ik} \right)}} \\ \displaystyle &=  \mu + \frac{1}{N}\sum_{k = 1}^{k}{n_k \tau_k} + \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\epsilon_{ik}}} \\ \displaystyle &= \mu + \bar{\tau} + \bar{\epsilon} \end{aligned}   $
-  - $ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left(\bar{y}_{k} - \bar{y} \right)^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\mu + \tau_k + \bar{\epsilon}_k)  - (\mu + \bar{\tau} + \bar{\epsilon}) \right]^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\tau_k - \bar{\tau}) + (\bar{\epsilon}_k   - \bar{\epsilon}) \right]^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\tau_k - \bar{\tau})^2 + 2(\tau_k - \bar{\tau})(\bar{\epsilon}_k   - \bar{\epsilon})   + (\bar{\epsilon}_k   - \bar{\epsilon})^2 \right]} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{ \left[n_k(\tau_k - \bar{\tau})^2 + 2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k   - \bar{\epsilon})   + n_k(\bar{\epsilon}_k   - \bar{\epsilon})^2 \right]} \\   \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right)\sum_{k=1}^{k}{2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k}   - \bar{\epsilon})   + \left( \frac{1}{k - 1}\right)\sum_{k=1}^{k}{n_k(\bar{\epsilon}_k   - \bar{\epsilon})^2}   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) E\left[\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\right] + \left( \frac{1}{k - 1}\right) E\left[\sum_{k=1}^{k}{2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k}   - \bar{\epsilon})\right]   + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_k   - \bar{\epsilon})^2}\right]$
-    - Since $\tau_k$ and thus $\bar{\tau}$ are constants and $E(\epsilon_{ik}) = E(\bar\epsilon_{i}) = E(\bar\epsilon) = 0$
+      - $\begin{aligned} \displaystyle \bar{y} &= \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{y_{ik}}} \\ \displaystyle &=  \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\left( \mu + \tau_k + \epsilon_{ik} \right)}} \\ \displaystyle &=  \mu + \frac{1}{N}\sum_{k = 1}^{k}{n_k \tau_k} + \frac{1}{N}\sum_{k = 1}^{k}{\sum_{i = 1}^{n_k}{\epsilon_{ik}}} \\ \displaystyle &= \mu + \bar{\tau} + \bar{\epsilon} \end{aligned}$
+  - $\displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left(\bar{y}_{k} - \bar{y} \right)^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\mu + \tau_k + \bar{\epsilon}_k)  - (\mu + \bar{\tau} + \bar{\epsilon}) \right]^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\tau_k - \bar{\tau}) + (\bar{\epsilon}_k   - \bar{\epsilon}) \right]^2} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k \left[(\tau_k - \bar{\tau})^2 + 2(\tau_k - \bar{\tau})(\bar{\epsilon}_k   - \bar{\epsilon})   + (\bar{\epsilon}_k   - \bar{\epsilon})^2 \right]} \\ \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{ \left[n_k(\tau_k - \bar{\tau})^2 + 2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k   - \bar{\epsilon})   + n_k(\bar{\epsilon}_k   - \bar{\epsilon})^2 \right]} \\   \displaystyle MS_B = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right)\sum_{k=1}^{k}{2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k}   - \bar{\epsilon})   + \left( \frac{1}{k - 1}\right)\sum_{k=1}^{k}{n_k(\bar{\epsilon}_k   - \bar{\epsilon})^2}   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) E\left[\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}\right] + \left( \frac{1}{k - 1}\right) E\left[\sum_{k=1}^{k}{2n_k(\tau_k - \bar{\tau})(\bar{\epsilon}_k}   - \bar{\epsilon})\right]   + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_k   - \bar{\epsilon})^2}\right]$
+    - Since:
+      - $\tau_k$ and thus $\bar{\tau}$ are constants and $E(\epsilon_{ik}) = E(\bar\epsilon_{i}) = E(\bar\epsilon) = 0$
   - $\displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_k   - \bar{\epsilon})^2}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k(\bar{\epsilon}_{k}^{2}  - 2\bar{\epsilon}_{k}\bar{\epsilon} + \bar{\epsilon}^{2})}\right] \\ \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{n_k\bar{\epsilon}_{k}^{2}  - 2n_k\bar{\epsilon}_{k}\bar{\epsilon} + n_k\bar{\epsilon}^{2}}\right]   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})}  - 2N\bar{\epsilon}^{2} + N\bar{\epsilon}^{2}\right]   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) E\left[ \sum_{k=1}^{k}{(n_k\bar{\epsilon}_{k}^{2})}  - N\bar{\epsilon}^{2}\right]   \\    \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k E(\bar{\epsilon}_{k}^{2})}  - NE(\bar{\epsilon}^{2})\right]   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{n_k \frac{\sigma^2}{n_k}}  - N\frac{\sigma^2}{N}\right]   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) \left[\sum_{k=1}^{k}{\sigma^2}  - \sigma^2\right]   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k{\sigma^2}  - \sigma^2)   \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \left( \frac{1}{k - 1}\right) (k-1)\sigma^2    \\   \displaystyle E(MS_B) = \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2} + \sigma^2   \\   \displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}$
-  - Since $\bar{\tau} = 0$
-    - $ \displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k\tau_k^2}$
+    - Since:
+      - $\bar{\tau} = 0$
+  - $\displaystyle E(MS_B) = \sigma^2 + \left( \frac{1}{k - 1}\right) \sum_{k=1}^{k}{n_k\tau_k^2}$
   
      
     
@@ -597,14 +599,6 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
 
 
 
-
-- **Null hypothesis**
-  - **Mathematics**
-    - $H_0: \tau_1 = \tau_2 = \tau_3 = \cdots = \tau_k = 0$ ($\bar{\tau} = 0$)
-- **The Central $F$ Distribution**
-  - **Concept**
-    - The Central F is the ratio of 2 independent chi-squared random variables divided by their degrees of freedom 
-      
       
 - **Sum of Squared Deviations**
   - **Concept**
@@ -626,78 +620,159 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
 
 - **Introduction**
   - ANOVA can be implemented in a Linear Model
-- **The Linear Model for 2-group ANOVA**
+  
+- **2-sample ANOVA as a Linear Model**
   - **Mathematics**
     - $y_{ik} = \beta_{0} + \beta_{k}x_k + \epsilon_{ik}$
         - ***Where***
           - $y_{ik}$ 
-            - +Observation $i$ in group/sample $k$
+            - Observation $i$ in group/sample $k$
           - $\beta_{0}$ 
-            - The overall/grand mean
-            - This is equivalent to $\mu$
-          - $\beta_{1}x_1$
-            - The effect of level $k$ of the categorical predictor variable relative to the overall/grand mean
-              This is equivalent to $\tau_k$
+            - The reference group/sample - The group/sample against which each of the other samples are compared 
+            - If there is a control group, it would make the most sense if the control group is used as the reference group
+          - $\beta_{k}$
+            - The difference between the mean of sample/group $k$ and $\beta_0$
+            - $\beta_k = \mu_k - \mu_0$
+            - Represents the effect of level $k$ of the categorical predictor variable relative to the reference group
           - $x_k$ 
-            - A dummy or indicator variable 
+            - A dummy or indicator variable for $\beta_k$
             - $x_k = \begin{cases} 1 ~~~ \text{if the observation is from the group} ~ k \\ 0 ~~~ \text{if the observation is not from the group}~k \end{cases}$
           - $\beta_{0} + \beta_{k}x_k$ 
-            - The predicted/expected mean of group $k$
+            - The expected value of group $k$
             - This is equivalent to $\mu_k$
           - $\epsilon_{ik}$ 
             - The random error of observation $i$ in group $k$
-            - Error is a random independent normal variable with $E(\epsilon_{ik}) = 0$ and $Var(\epsilon_{ik}) = \sigma^2$
-  
+            - $\epsilon_{ik}$ is a random independent normal variable with $E(\epsilon_{ik}) = 0$ and $Var(\epsilon_{ik}) = \sigma^2$
+- **NHST**
+  - **Concept**
+    - To test the null hypothesis that the $\beta_1 = \mu_1 - \mu_0 = 0$
+    - For this 2-sample test, you can use a t-statistic or an F statistic 
+  - **Hypotheses**
+    - **Null hypothesis**
+      - Beta 1 is 0
+      - $H_0: \beta_1 = 0$
+  - **t test**
+    - **The t statistic**
+      - $t = \frac{\hat\mu_1 - \hat\mu_0}{\text{sd}(\hat\mu_1 - \hat\mu_0)} = \frac{\hat\beta_1}{\text{sd}(\hat\beta)}$
+        - ***Where***
+          - $\text{sd}(\hat\beta)$ is the standard error of the $\hat\beta_1$
+  - **F test**
+    - **The F-statistic**
+      - $F = \frac{MS_B}{MS_E}$
+      
+      
+- **Bootstrap**
+  - For robust confidence intervals and p-values 
+
+- **Non-parametric F**
+  - Kruskal-Wallis test
+
+- **Robust F**
+  - Welch's F
 
 
+- **3-sample ANOVA as a Linear Model**
+
+```{r wilcoxon, include = F, echo = F}
+library(kableExtra)
+library(data.table)
+library(ggplot2)
+library(tidyverse)
+
+mann_whitney_dat.p1 <- data.frame(group = c(rep("Control", 2), rep("Experimental", 2)), y = c(6, 4, 1, 3))
+mann_whitney_dat.p1[, "group"] <- as.factor(mann_whitney_dat.p1[, "group"])
+mann_whitney_dat <- transform(mann_whitney_dat.p1, rank = rank(mann_whitney_dat.p1$y))  %>% mutate(group = forcats::fct_relevel(group, "Experimental", "Control"))
+mann_whitney_dat 
+
+mann_whitney_null_dat <- data.frame(
+  rank_combination = c(
+    "1, 2", 
+    "1, 3", 
+    "1, 4",
+    "2, 3", 
+    "2, 4", 
+    "3, 4"), 
+  W = c(3, 4, 5, 5, 6, 7))
+
+#Raw data table 
+wilcoxon_raw_dat <- mann_whitney_dat.p1 %>% kable(format = "html") %>%  kable_styling(full_width = F, position = "left", font_size = 12, html_font = "inherit", bootstrap_options = "condensed") %>% row_spec(row = c(1:4), background = "#36394A", extra_css = "border: 1px solid #36394A;") 
+
+mann_whitney_dat %>% kable(format = "html") %>%  kable_styling(full_width = F, position = "left", font_size = 12, html_font = "inherit", bootstrap_options = "condensed") %>% row_spec(row = c(1:4), background = "#36394A", extra_css = "border: 1px solid #36394A;") 
+
+mann_whitney_dat_ranked <- wilcoxon_null <- mann_whitney_null_dat %>% kable(format = "html", col.names = c("Rank Combinations", "W")) %>%  kable_styling(full_width = F, position = "left", font_size = 12, html_font = "inherit", bootstrap_options = "condensed") %>% row_spec(row = c(1:nrow(mann_whitney_null_dat)), background = "#36394A", extra_css = "border: 1px solid #36394A;") 
+wilcoxon_null
+
+#wilcoxon table
+prob_table.p1 <- data.frame(table(mann_whitney_null_dat$W))
 
 
+colnames(prob_table.p1)[which(names(prob_table.p1) == "Var1")] <- "W"
+prob_table.p1[, "W"] <- as.character(prob_table.p1[, "W"])
+prob_table.p1[, "W"] <- as.numeric(prob_table.p1[, "W"])
+
+prob_table.p2 <- prob_table.p1 %>% transform(., prob = Freq/sum(Freq)) %>% t() %>% as.data.frame() %>% rownames_to_column(var = "~")
+names(prob_table.p2) <- prob_table.p2[1,]
+prob_table.p2 <- prob_table.p2[-1,]
+
+prob_table.p3 <- rbind(prob_table.p2[0,], mutate(prob_table.p2[1,], across(2:ncol(prob_table.p2), ~ sprintf("%.0f", .))), mutate(prob_table.p2[2,], across(2:ncol(prob_table.p2), ~ sprintf("%.3f", .))))
 
 
+wilcoxon_kable <- prob_table.p3 %>% tibble() %>% kable(format = "html") %>% kable_styling(full_width = F, position = "left", font_size = 12, html_font = "inherit", bootstrap_options = "condensed") %>% row_spec(row = 0, extra_css = "border-bottom: 1px solid inherit; border-top: 0px solid black;") %>% row_spec(row = 2, extra_css = "border-top: 0px solid transparent;") %>% row_spec(row = 1, extra_css = "border-bottom: 5px solid #36394A;") %>% row_spec(row = c(0:2), color = "inherit") %>% row_spec(row = c(1:2), background = "#36394A")
+wilcoxon_kable
 
 
+``` 
 
 
+- **Mann-Whitney test**
+  - **Concept**
+    - Aka Wilcoxon rank sum test 
+    - Non-parametric test for difference between 2 independent samples 
+    - Observations from both samples are grouped together and ranked in ascending order
+    - The test statistic the rank sum (sum of the ranks) of one of the samples (this statistic is called R)
+    - Statistical significance is assessed by finding the probability of the observed statistic in the probability distribution of the R test statistic under the null hypothesis 
+  - **Procedure**
+    - Group all observations from both samples together and rank the observations in ascending order 
+    - Calculate the sample R statistic (the R statistic is the sum of the ranks of those observations in either one of the 2 groups)
+    - Find the probability distribution of R under the null hypothesis 
+    - Find or estimate the probability of the observed R in the probability distribution of R under the null hypothesis 
+  - **Finding the probability distribution of R under the null hypothesis**
+    - Find all possible combination of ranks (the number of combination of ranks should be $n\choose r$ where n is the total number of ranks and r is the number of ranks in the group of interest)
+    - Under the null hypothesis, each of all possible combination of ranks have an equal chance, hence, each of all possible combination occurs only once
+    - Find the R of each of all possible combinations of ranks 
+    - The distribution of the set of Rs found is the distribution of R under the null hypothesis
+  - **Example**
+    - The raw data:
+      - `r wilcoxon_raw_dat`
+    - Group all observations from both samples together and rank the observations in ascending order
+      - `r mann_whitney_dat_ranked`
+    - Calculate the sample W statistic
+      - The W statistic is the sum of the ranks of those observations in either one of the 2 groups
+      - Here, the Control group is chosen. The W statistic is 7 ($W = 7$)
+    - Find all possible rank combinations for either one of groups and calculate the W statistic for each of the rank combinations
+    - Find the probability distribution of W under the null hypothesis
+      - Find all possible rank combinations for either one of the groups
+      - Find the probability distribution of the rank combinations under the null hypothesis
+        - Under the null hypothesis, each of the rank combination has an equal chance. Hence, each of the rank combination occur only once. 
+      - Calculate the W statistic for each of the rank combinations.
+        - `r wilcoxon_null`
+      - The probability distribution of the resultant set of W statistics is the probability distribution of W under the null hypothesis 
+        - `r wilcoxon_kable`
+    - Find the probability of the observed W statistic in the probability distribution under the null hypothesis 
+      - As mentioned, $W = 7$ 
+      - $P(W = 7) = 0.167$
+  - **Critical regions**
+    - The critical regions can be found in published tables 
+    - If the probability of the observed W statistic falls outside the critical boundary, then it is statistically significant
+  - **Ties**
+    - If there are ties in the data, then the ranks for the ties will be the same and it will be the mean of the supposed ranks of the ties 
+    - **Example**
+      - If the data is 10.5, 11.2, 15.7, 15.7, 15.7, 15.7, 16.2, 18.5
+      - The ranks would be 1, 2, 3, 4.5, 4.5, 4.5, 4.5, 8, 9
 
 
-
-
-
-
-
-
-
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
+       
+        
 
 ```{r base_r_challenge2, include = F, echo = F}
 string <- "I am Samuel Mak! I am 24!  "
@@ -713,6 +788,19 @@ sub("({1})(.*$)", "\\1(\\2)", string)
 
 sub_dat <- data.frame(values = c(2, 6, 5, 1, 2, 7, 8, 9, 3, 6, 2, 5, 9, 2), group = c(rep("Metallica", 3), "matalecA", "metallica", rep("Gojira", 3), "gojira ", "gorillA", rep("Sylosis", 3), "Sylocis"))
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 sub_dat
 
 
@@ -721,6 +809,256 @@ sub_dat
 sub_dat[2] <- gsub("^Sy.*s$", "Sylosis", gsub(("^g.*a$|^g.*A$"), "Gojira", gsub(" ", "", gsub("^m.*a$|^m.*A$", "Metallica", sub_dat$group))))
 ```
 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
