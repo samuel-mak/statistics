@@ -604,11 +604,11 @@
 <strong>ANOVA as a Linear Model</strong>
 </p>
 <ul>
-<li><p><strong>Introduction</strong></p>
+<li><strong>Introduction</strong>
 <ul>
 <li>ANOVA can be implemented in a Linear Model</li>
 </ul></li>
-<li><p><strong>2-sample ANOVA as a Linear Model</strong></p>
+<li><strong>2-sample ANOVA as a Linear Model</strong>
 <ul>
 <li><strong>Mathematics</strong>
 <ul>
@@ -650,7 +650,7 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><p><strong>NHST</strong></p>
+<li><strong>NHST</strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
@@ -686,20 +686,101 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><p><strong>Bootstrap</strong></p>
+<li><strong>3-sample ANOVA as a Linear Model</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(y_{ik} = \beta_{0} + \beta_{1}x_1 + \beta_{2}x_2 + \epsilon_{ik}\)</span>
+<ul>
+<li><strong>Where</strong>
+<ul>
+<li><span class="math inline">\(\beta_{0}\)</span>
+<ul>
+<li><span class="math inline">\(\beta_{0} = \mu_{reference}\)</span></li>
+<li>The mean of the reference group</li>
+<li>If there is a control group, the reference group is usually the control group</li>
+<li>This represents the expected value of the outcome variable when the predictor variable is 0</li>
+</ul></li>
+<li><span class="math inline">\(\beta_{1}\)</span>
+<ul>
+<li><span class="math inline">\(\beta_{1} = \mu_{1} - \mu_{0}\)</span></li>
+<li>Dummy variable 1</li>
+<li>Dummy variable for category 1</li>
+<li>A dummy variable that represents the effect of category 1 compared to the reference group as the difference between the mean of sample 1 and the mean of sample 0 (the reference group)</li>
+</ul></li>
+<li><span class="math inline">\(x_{1}\)</span>
+<ul>
+<li>Weight or indicator function for dummy variable 1</li>
+<li><span class="math inline">\(x_{1} = \begin{cases} 1 ~~~ \text{if the observation is from sample 1} \\ 0 ~~~ \text{if the observation is not from sample 1} \end{cases}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{2}\)</span>
+<ul>
+<li><span class="math inline">\(\beta_{2} = \mu_{2} - \mu_{0}\)</span></li>
+<li>Dummy variable 2</li>
+<li>Dummy variable for category 2</li>
+<li>A dummy variable that represents the effect of category 2 compared to the reference group as the difference between the mean of sample 2 and the mean of sample 0 (the reference group)</li>
+</ul></li>
+<li><span class="math inline">\(x_{2}\)</span>
+<ul>
+<li>Weight or indicator function for dummy variable 2</li>
+<li><span class="math inline">\(x_{2} = \begin{cases} 1 ~~~ \text{if the observation is from sample 1} \\ 0 ~~~ \text{if the observation is not from sample 1} \end{cases}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Coding</strong>
+<ul>
+<li><strong>Types of coding</strong>
+<ul>
+<li>Dummy coding</li>
+<li>Simple coding</li>
+<li>Deviation Coding</li>
+<li>Orthogonal Polynomial Coding</li>
+<li>Helmert Coding</li>
+<li>Reverse Helmert Coding</li>
+<li>Forward Difference Coding</li>
+<li>Backward Difference Coding</li>
+</ul></li>
+<li><strong>Dummy Coding</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Compares each level to the intercept where the intercept is the mean of the reference group</li>
+</ul></li>
+</ul></li>
+<li><strong>Simple Coding</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Compares each level to the intercept where the intercept is the grand mean</li>
+</ul></li>
+</ul></li>
+<li><strong>Deviation coding</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Compares each level to the grand mean</li>
+</ul></li>
+</ul></li>
+<li><strong>Resources</strong>
+<ul>
+<li><a href="https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA Statistical Methods and Data Analytics</a></li>
+</ul></li>
+</ul></li>
+<li><strong>Bootstrap</strong>
 <ul>
 <li>For robust confidence intervals and p-values</li>
 </ul></li>
-<li><p><strong>Non-parametric F</strong></p>
+<li><strong>Non-parametric F</strong>
 <ul>
 <li>Kruskal-Wallis test</li>
 </ul></li>
-<li><p><strong>Robust F</strong></p>
+<li><strong>Robust F</strong>
 <ul>
 <li>Welch’s F</li>
 </ul></li>
-<li><p><strong>3-sample ANOVA as a Linear Model</strong></p></li>
-<li><p><strong>Mann-Whitney test</strong></p>
+<li><strong>Mann-Whitney test</strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
@@ -1008,6 +1089,547 @@ prob
 </ul></li>
 </ul></li>
 </ul></li>
+<li><strong>Kruskal Wallis test</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A nonparametric test of difference between several samples (One-way ANOVA)</li>
+<li>A generalisation of the Wilcoxon test</li>
+<li>Based on ranked scores</li>
+<li>Scores are grouped together and then transformed into ranked scores, the ranked scores are analysed</li>
+<li>The null hypothesis is tested by the <span class="math inline">\(K\)</span> statistic (a chi-squared transformed ranked version of the <span class="math inline">\(SS_B\)</span>; see below)</li>
+<li>It involves assessing the probability of having a <span class="math inline">\(K\)</span> statistic equal to or more extreme than the observed <span class="math inline">\(K\)</span> statistic in the distribution of <span class="math inline">\(K\)</span> under the null hypothesis (that the samples are from the same population - That there are no differences between samples) (because the statistic is standardised, the K statistic basically assess how much bigger the observed SSB is compared to the SSB in under the null, because the SSB statistic is converted to a standardised Chi-squared statistic, it compares how much bigger the standardised version of the SSB is compare to 1, because the sd (or se) of the chi-squared distribution is 1, this is the natural variation measured as sd in the null chi-squared distribution, the K statistic tells you how many times the observed SSB (or estimate of the variance of the population) is larger than the variance of the null distribution, again the variance is measured as sd)</li>
+<li>It involves enumerating the null distribution of <span class="math inline">\(SS_B\)</span> for all possible combinations of <span class="math inline">\(k\)</span> and <span class="math inline">\(n_k\)</span></li>
+</ul></li>
+<li><strong>The Kruskal Wallis <span class="math inline">\(SS_B\)</span></strong>
+<ul>
+<li>Let <span class="math inline">\(R_{ik}\)</span> be the rank of <span class="math inline">\(y_{ik}\)</span></li>
+<li><span class="math inline">\(SS_B = \sum_{k=1}^{k}{n_k\left(\bar{R}_{k} - \bar{R}\right)^2}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\bar{R}_{k}\)</span>
+<ul>
+<li>The mean of the ranked scores of sample <span class="math inline">\(k\)</span></li>
+<li><span class="math inline">\(\displaystyle \bar{R}_{k} = \frac{1}{n_k}\sum_{i = 1}^{n_k}{R_{ik}}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\bar{R}\)</span>
+<ul>
+<li>The overall mean of the ranked scores</li>
+<li><span class="math inline">\(\displaystyle \bar{R} = \frac{1}{N}\sum_{k=1}^{k}{\sum_{i = 1}^{n_k}{R_{ik}}} = \frac{N+1}{2}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The Kruskal Wallis statistic (<span class="math inline">\(K\)</span>)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The <span class="math inline">\(SS_B\)</span> statistic converted to a standardised ch-square score</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle K = \frac{12}{N(N+1)}SS_B\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Null Distribution of the Kruskal Wallis statistic</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(K \sim \chi^2\left( k-1 \right)\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Kruskal Wallis test in R</strong>
+<ul>
+<li><details>
+<summary>
+<img src="image/r.svg" width = 3% style=" margin-top: 0px; margin-bottom: 0px; padding-top: 1px;"/>
+</summary>
+<pre style=" margin-top: 10px"><code>
+  # Kruskal Wallis test <br>
+  kruskal.test(outcome_variable ~ predictor_variable, data = data) <br>
+  </code></pre>
+</details></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Factorial ANOVA</strong>
+</p>
+<ul>
+<li><strong>Two-way ANOVA</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A continuous categorical variable predicted by 2 categorical variables</li>
+</ul></li>
+<li><strong>The statistical model of 2-way ANOVA</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(y_{ijk} = \mu + \alpha_{j} + \beta{k} + \delta_{jk} + \epsilon_{ijk}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(y_{ijk}\)</span>
+<ul>
+<li>Observation <span class="math inline">\(i\)</span> in level <span class="math inline">\(j\)</span> of one factor and level <span class="math inline">\(k\)</span> of another factor</li>
+</ul></li>
+<li><span class="math inline">\(\mu\)</span>
+<ul>
+<li>The overall/grand mean</li>
+</ul></li>
+<li><span class="math inline">\(\alpha_{j}\)</span>
+<ul>
+<li>The effect of level <span class="math inline">\(j\)</span> factor 1</li>
+<li>The difference between the mean of sample <span class="math inline">\(j\)</span> of factor 1 and the overall mean</li>
+<li><span class="math inline">\(\alpha_{j} = \mu{}_{j\cdot{}} - \mu_0\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta{k}\)</span>
+<ul>
+<li>The effect of level <span class="math inline">\(k\)</span> of factor 2</li>
+<li>The difference between the mean of sample <span class="math inline">\(k\)</span> of factor 2 and the overall mean</li>
+<li><span class="math inline">\(\beta{k} = \mu{}_{\cdot{}k} - \mu_0\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\delta_{jk}\)</span>
+<ul>
+<li>The interaction effect</li>
+<li>Here the interaction effect is the effect of level <span class="math inline">\(k\)</span> of factor 1 on level <span class="math inline">\(j\)</span> of factor 2</li>
+<li><span class="math inline">\(\delta_{jk} = (\mu_{jk} - \mu{}_{j\boldsymbol{\cdot}}) - (\mu_{\boldsymbol{\cdot}k} - \mu_0)\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\mu_{jk}\)</span> - The mean of sample in level <span class="math inline">\(j\)</span> of factor 1 and level <span class="math inline">\(k\)</span> of factor 2</li>
+<li><span class="math inline">\(\mu{}_{j\boldsymbol{\cdot}}\)</span> - The mean of the sample in level <span class="math inline">\(j\)</span> of factor 1 regardless of the level of factor 2</li>
+<li><span class="math inline">\(\mu_{\boldsymbol{\cdot}k}\)</span> - The mean of level <span class="math inline">\(k\)</span> of factor 2 regardless of the level of factor 1</li>
+<li><span class="math inline">\(\mu_0\)</span> - Overall mean</li>
+<li><span class="math inline">\((\mu_{jk} - \mu{}_{j\boldsymbol{\cdot}})\)</span>
+<ul>
+<li>The difference between the mean of a specific sample (here it is the sample at level <span class="math inline">\(j\)</span> of factor 1 and level <span class="math inline">\(k\)</span> of factor 2) and the overall mean for sample at level <span class="math inline">\(j\)</span> of factor 1 (overall in the sense that it is regardless of the level of factor 2)</li>
+<li>The effect of level <span class="math inline">\(k\)</span> of factor 2 on level <span class="math inline">\(j\)</span> of factor 1</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Two-Way ANOVA partitioning variances</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Total Sum of Squares
+<ul>
+<li>Between-Group Sum of Squares
+<ul>
+<li>Between-Group Sum of Squares for Factor 1</li>
+<li>Between-Group Sum of Squares for Factor 2</li>
+<li>Between-Group Sum of Squares for the interaction between Factor 1 and Factor 2</li>
+</ul></li>
+<li>The Error Sum of Squares</li>
+</ul></li>
+</ul></li>
+<li><strong>Total Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sum of squared deviation between each observation and the overall/grand mean</li>
+<li>This represents the total variation in the outcome variable</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle SS_T &amp;= SS_B + SS_W \\ \displaystyle SS_T &amp;= \left( SS_A + SS_B + SS_{A\times B} \right) + SS_W \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Operationalsing variability</strong>
+<ul>
+<li><strong>The Model Sum of Squares</strong>
+<ul>
+<li><strong>Components of the Model Sum of Squares</strong>
+<ul>
+<li>Sum of Squares for Factor A</li>
+<li>Sum of Squares for Factor B</li>
+<li>Sum of Squares for the Interaction between Factor A and B</li>
+</ul></li>
+<li><strong>Sum of Squares for Factor A (<span class="math inline">\(SS_A\)</span>)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sum of squared deviation between the predicted value of observation <span class="math inline">\(i\)</span> in level <span class="math inline">\(j\)</span> of Factor A regardless of the level of Factor B and the overall/grand mean</li>
+<li>It represents the main effect of Factor A (the effect of Factor A regardless of levels of the other factor) in the form of variation in the outcome variable that is attributable to Factor A</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle SS_A = \sum_{j = 1}^{J}{n_{j \boldsymbol{\cdot}} \left( \bar{y}_{j\boldsymbol{\cdot}} - \bar{y} \right)^2}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(n_{j \boldsymbol{\cdot}}\)</span> - Number of observations in level <span class="math inline">\(j\)</span> of Factor A regardless of the level of Factor B</li>
+<li><span class="math inline">\(\bar{y}_{j\boldsymbol{\cdot}}\)</span> - The mean of sample in the level <span class="math inline">\(j\)</span> of Factor regardless of the level of Factor B - The predicted value for observation <span class="math inline">\(i\)</span> in level <span class="math inline">\(j\)</span> of Factor A regardless of the level of Factor B</li>
+<li><span class="math inline">\(\bar{y}\)</span> - Overall/grand mean</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Degrees of freedom</strong>
+<ul>
+<li><span class="math inline">\(df_A = J - 1\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(J\)</span> - The total number of levels in Factor A</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mean Factor A Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Variance in the outcome variable that is attributable to Factor A</li>
+<li>The mean/average amount of squared deviation in the outcome variable that is attributable to Factor A (the average in terms of between levels)</li>
+<li>Represents the main effect of Factor A in the form of variance in the outcome variable induced by Factor A</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle MS_{A} = \frac{SS_A}{df_A}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Sum of Squares for Factor B (<span class="math inline">\(SS_B\)</span>)</strong>
+<ul>
+<li><strong>Concept</strong></li>
+<li>The sum of squared deviation between the predicted value for observation <span class="math inline">\(i\)</span> in level <span class="math inline">\(k\)</span> of Factor B regardless of the level in Factor A and the overall mean</li>
+<li>It represents the main effect of Factor B (the effect of Factor B regardless of levels of the other Factor) in the form of variation in the outcome variable that is attributable to Factor B</li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle SS_B = \sum_{k = 1}^{K}{n_{\boldsymbol{\cdot}k} \left( \bar{y}_{\boldsymbol{\cdot}k} - \bar{y} \right)^2}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(n_{\boldsymbol{\cdot}k}\)</span> - The number of observations in level <span class="math inline">\(k\)</span> of Factor B regardless of the level of Factor A</li>
+<li><span class="math inline">\(\bar{y}_{\boldsymbol{\cdot}k}\)</span> - The mean of level <span class="math inline">\(k\)</span> of Factor B regardless of the level of Factor A - The predicted value for observation <span class="math inline">\(i\)</span> in level <span class="math inline">\(k\)</span> of Factor B regardless of the level of Factor A</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Degree of Freedom</strong>
+<ul>
+<li><span class="math inline">\(df_B = K - 1\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(K\)</span> - The number of levels in Factor B</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mean Factor B Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Variance in the outcome variable that is attributable to Factor A</li>
+<li>The mean/average amount of squared deviation in the outcome variable that is attributable to Factor B (the average in terms of between levels)</li>
+<li>It represents the main effect of Factor B in the form of variance in the outcome variable induced by Factor A</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle MS = \frac{SS_B}{df_B}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Sum of Squares for the Interaction between Factor A and Factor B (<span class="math inline">\(SS_{A\times B}\)</span>)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It represents the interaction/combined effect of Factor A and B (intereffect?) in the form of variation in the outcome variable that is attributable to the interaction of Factor A and B
+Factor A and B)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle SS_{A \times B} = \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{ij}\left[ (\bar{y}_{\boldsymbol{\cdot}k} - \bar{y}) - (\bar{y}_{jk} - \bar{y}_{j\boldsymbol{\cdot}}) \right]^2 }}\)</span>
+<ul>
+<li><strong>Where</strong>
+<ul>
+<li><span class="math inline">\(n_{jk}\)</span> - The number of observations in level <span class="math inline">\(j\)</span> of Factor A and level <span class="math inline">\(k\)</span> of Factor B</li>
+<li><span class="math inline">\((\bar{y}_{jk} - \bar{y}_{j\boldsymbol{\cdot}})\)</span>
+<ul>
+<li>The difference between the mean of the sample in level <span class="math inline">\(j\)</span> of Factor A and level <span class="math inline">\(k\)</span> of Factor B and the grand mean of level <span class="math inline">\(j\)</span></li>
+<li>The effect of level <span class="math inline">\(k\)</span> of Factor B on level <span class="math inline">\(j\)</span> of Factor A</li>
+</ul></li>
+<li><span class="math inline">\((\bar{y}_{\boldsymbol{\cdot}k} - \bar{y})\)</span>
+<ul>
+<li>The difference between the grand mean of level <span class="math inline">\(k\)</span> of Factor A and the overall mean</li>
+<li>This represents the main effect of level <span class="math inline">\(k\)</span> of Factor A</li>
+</ul></li>
+<li>$({y}<em>{k} - {y}) - ({y}</em>{jk} - {y}_{j}) $
+<ul>
+<li>The interaction effect</li>
+<li>The effect of Factor A on the effect of Factor B</li>
+<li>The effect of level <span class="math inline">\(j\)</span> of Factor A on the effect of Factor B<br />
+</li>
+<li>The effect of level <span class="math inline">\(k\)</span> of Factor B on the effect of Factor A</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Degrees of Freedom</strong>
+<ul>
+<li><span class="math inline">\(df_{A\times B} = (J-1)(K-1)\)</span></li>
+</ul></li>
+<li><strong>Mean Interaction Sum of Squares</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Variance in the outcome variable that is attributable to the interaction between Factor A and B</li>
+<li>The mean amount of squared deviation in the outcome variable that is attributable to the interaction between Factor A and B</li>
+<li>The average amount of squared deviation in the outcome variable that is attributable to the interaction between Factor A and B per each of the <span class="math inline">\(J\times K\)</span> samples</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(MS_{AB} = \frac{SS_{A \times B}}{df_{A\times B}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Estimating the common variance</strong>
+<ul>
+<li><strong>Estimators of the population variance</strong>
+<ul>
+<li><span class="math inline">\(MS_W\)</span></li>
+<li><span class="math inline">\(MS_A\)</span></li>
+<li><span class="math inline">\(MS_B\)</span></li>
+<li><span class="math inline">\(MS_{AB}\)</span></li>
+</ul></li>
+<li><strong>The <span class="math inline">\(MS_W\)</span> estimator</strong>
+<ul>
+<li>See One-Way ANOVA</li>
+</ul></li>
+<li><strong>The <span class="math inline">\(MS_A\)</span> estimator</strong>
+<ul>
+<li><strong>Concept</strong></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle E(MS_A) = \sigma^2 + \frac{1}{J-1}K\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}}\)</span></li>
+</ul></li>
+<li><strong>Implication of <span class="math inline">\(MS_A\)</span> as an estimator of the population variance</strong>
+<ul>
+<li>Under the null hypothesis, that is when all <span class="math inline">\(\alpha{}_{j}s = 0\)</span>, the linear combination <span class="math inline">\(\frac{1}{J-1}K\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}} = 0\)</span>, therefore, <span class="math inline">\(\displaystyle E(MS_A) = \sigma^2\)</span>, the observed <span class="math inline">\(MS_A\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span></li>
+<li>However, if the null hypothesis is false, that is when at least one of the <span class="math inline">\(\alpha{}_{j}s≠ 0\)</span>, the linear combination <span class="math inline">\(\frac{1}{J-1}K\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}} &gt; 0\)</span>, hence, <span class="math inline">\(MS_A\)</span> is a positively biased estimator of <span class="math inline">\(\sigma^2\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The <span class="math inline">\(MS_B\)</span> estimator</strong>
+<ul>
+<li><h2 id="concept" class="hasAnchor"><strong>Concept</strong><a href="anova.html#concept" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle E(MS_B) = \sigma^2 + \frac{1}{K-1}J\sum_{k = 1}^{K}{n_k\beta_{k}^{2}}\)</span></li>
+</ul></li>
+<li><strong>Implication of <span class="math inline">\(MS_B\)</span> as an estimator of the population variance</strong>
+<ul>
+<li>Under the null hypothesis, that is when all <span class="math inline">\(\beta{}_{k}s = 0\)</span>, the linear combination <span class="math inline">\(\frac{1}{K-1}J\sum_{k = 1}^{K}{n_k\beta_{k}^{2}} = 0\)</span>, therefore, $ E(MS_A) = ^2$, the observed <span class="math inline">\(MS_B\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span></li>
+<li>However, if the null hypothesis is false, that is when at least one of the <span class="math inline">\(\beta{}_{k}s≠ 0\)</span>, the linear combination <span class="math inline">\(\frac{1}{K-1}J\sum_{k = 1}^{K}{n_k\beta_{k}^{2}} &gt; 0\)</span>, hence, <span class="math inline">\(MS_B\)</span> is a positively biased estimator of <span class="math inline">\(\sigma^2\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The <span class="math inline">\(MS_{AB}\)</span> estimator</strong>
+<ul>
+<li><h2 id="concept-1" class="hasAnchor"><strong>Concept</strong><a href="anova.html#concept-1" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle E(MS_{AB}) = \sigma^2 + \frac{1}{(J-1)(K-1)}\sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta{}_{jk}^{2}}}\)</span></li>
+</ul></li>
+<li><strong>Implication of <span class="math inline">\(MS_B\)</span> as an estimator of the population variance</strong>
+<ul>
+<li>Under the null hypothesis, that is when all <span class="math inline">\(\delta{}_{jk}s = 0\)</span>, the linear combination <span class="math inline">\(\frac{1}{(J-1)(K-1)}\sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta{}_{jk}^{2}}} = 0\)</span>, therefore, $ E(MS_{AB}) = ^2$, the observed <span class="math inline">\(MS_{AB}\)</span> is an unbiased estimator of <span class="math inline">\(\sigma^2\)</span></li>
+<li>However, if the null hypothesis is false, that is when at least one of the <span class="math inline">\(\delta{}_{jk}s ≠ 0\)</span>, the linear combination <span class="math inline">\(\frac{1}{(J-1)(K-1)}\sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta{}_{jk}^{2}}} &gt; 0\)</span>, hence, <span class="math inline">\(MS_B\)</span> is a positively biased estimator of <span class="math inline">\(\sigma^2\)</span><br />
+</li>
+<li></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Effects in a Two-Way ANOVA</strong>
+<ul>
+<li>Main Effect of Factor A</li>
+<li>Main Effect of Factor B</li>
+<li>Interaction effect of Factor A and B</li>
+</ul></li>
+<li><strong>Main Effect of Factor A</strong>
+<ul>
+<li><strong>General concept</strong>
+<ul>
+<li>The effect of Factor A on the outcome variable regardless of the levels of other categorical predictors in the model</li>
+</ul></li>
+<li><strong>Conceptual Hypotheses</strong>
+<ul>
+<li><strong>Null Hypothesis</strong>
+<ul>
+<li>Populations at different levels of Factor A have the same mean (the samples are from the same population)</li>
+<li>Factor A, regardless of the levels of other categorical predictors), has no effect on the outcome variable</li>
+<li>There are no differences in the outcome variable across levels of Factor A regardless of the level of all other categorical predictors in the model</li>
+<li><span class="math inline">\(H_{0,A}: \mu_{1\boldsymbol{\cdot}} = \mu_{2\boldsymbol{\cdot}} = \cdots = \mu_{J\boldsymbol{\cdot}}\)</span></li>
+</ul></li>
+<li><strong>Alternative Hypothesis</strong>
+<ul>
+<li>Populations at different levels of Factor A have different means (the samples are from different populations)</li>
+<li>Factor A, regardless of the levels of the other categorical predictors in the model), has an effect on the outcome variable regardless of the levels of other categorical predictors in the model</li>
+<li>There are differences in the outcome variable across levels of Factor A (regardless of the level of all other categorical predictors in the model)</li>
+<li><span class="math inline">\(H_{1,A}: \mu_{1\boldsymbol{\cdot}} ≠ \mu_{2\boldsymbol{\cdot}} ≠ \cdots ≠ \mu_{J\boldsymbol{\cdot}}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Operationalising the null hypothesis</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It is based on the agreement/disagreement between the <span class="math inline">\(MS_{A}\)</span> estimator and the <span class="math inline">\(MS_{W}\)</span> estimator of the population variance (<span class="math inline">\(\sigma^2\)</span>)</li>
+</ul></li>
+<li><strong>The Test statistic: The F-ratio</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The first conceptual null hypothesis is formally operationalised as <span class="math inline">\(\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}} = 0\)</span></li>
+<li>The null hypothesis is tested by a test statistic that compares the <span class="math inline">\(MS_A\)</span> estimator with the unbiased <span class="math inline">\(MS_W\)</span> estimator as the <span class="math inline">\(F\)</span> ratio of <span class="math inline">\(MS_A\)</span> to <span class="math inline">\(MS_W\)</span></li>
+<li>A standardised F-score</li>
+<li>How much larger is the <span class="math inline">\(MS_A\)</span> estimate compared to <span class="math inline">\(MS_W\)</span></li>
+<li>How big is the positive bias?</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle F_A = \frac{MS_A}{MS_W}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Null Hypothesis Significance Testing</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>To assess the probability of an F-statistic as extreme as or more extreme than the observed F-statistic in the distribution of the central F-statistic (the distribution of the F-statistic under the null hypothesis)</li>
+</ul></li>
+<li><strong>The Central F-distribution</strong>
+<ul>
+<li><span class="math inline">\(F \sim F\left(J-1 , N-JK \right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Main Effect of Factor B</strong>
+<ul>
+<li><strong>Hypotheses</strong>
+<ul>
+<li><strong>Null Hypothesis</strong>
+<ul>
+<li>Populations for different levels of Factor B have the same mean (the samples are from the same population)</li>
+<li>Factor B has no effect on the outcome variable regardless of the levels of all other categorical predictors in the model</li>
+<li>There are no systematic or real differences in the outcome variable across levels of Factor B regardless of the level of all other categorical predictors in the model</li>
+<li><span class="math inline">\(H_{1,B}: \mu_{\boldsymbol{\cdot}1} = \mu_{\boldsymbol{\cdot}2} = \cdots = \mu_{\boldsymbol{\cdot}K}\)</span></li>
+</ul></li>
+<li><strong>Alternative Hypothesis</strong>
+<ul>
+<li>Populations for different levels of Factor B have different means (the samples are from different populations)</li>
+<li>Factor B has an effect on the outcome variable regardless of the levels of all other categorical predictors in the model</li>
+<li>There are systematic or real differences in the outcome variable across levels of Factor B regardless of the levels of all other categorical predictors in the model</li>
+<li><span class="math inline">\(H_{1,B}: \mu_{\boldsymbol{\cdot}1} ≠ \mu_{\boldsymbol{\cdot}2} ≠ \cdots≠ \mu_{\boldsymbol{\cdot}K}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Operationalising the null hypothesis</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It is based on the agreement/disagreement between the <span class="math inline">\(MS_{B}\)</span> estimator and the <span class="math inline">\(MS_{W}\)</span> estimator of the population variance (<span class="math inline">\(\sigma^2\)</span>)</li>
+</ul></li>
+<li><strong>The Test statistic: The F-ratio</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The first conceptual null hypothesis is formally operationalised as <span class="math inline">\(\sum_{k = 1}^{K}{n_k\beta_{k}^{2}} = 0\)</span></li>
+<li>The null hypothesis is tested by a test statistic that compares the <span class="math inline">\(MS_B\)</span> estimator with the unbiased <span class="math inline">\(MS_W\)</span> estimator as the <span class="math inline">\(F\)</span> ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span></li>
+<li>A standardised F-score</li>
+<li>How much larger is the <span class="math inline">\(MS_B\)</span> estimate compared to <span class="math inline">\(MS_W\)</span></li>
+<li>How big is the positive bias?</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle F_B = \frac{MS_B}{MS_W}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Null Hypothesis Significance Testing</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>To assess the probability of an F-statistic as extreme as or more extreme than the observed F-statistic in the distribution of the central F-statistic (the distribution of the F-statistic under the null hypothesis)</li>
+</ul></li>
+<li><strong>The Central Distribution of <span class="math inline">\(F_B\)</span></strong>
+<ul>
+<li><span class="math inline">\(F_B \sim F\left(K-1 , N-JK \right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Interaction effect of Factor A and B</strong>
+<ul>
+<li><strong>General Concept</strong>
+<ul>
+<li>The effect of one Factor on the other Factor</li>
+<li>The effect of Factor A on Factor B, or equivalently, the effect of Factor B on Factor A</li>
+<li>The combined effect of Factor A and B</li>
+<li>It is something like the dot product of 2 vectors</li>
+</ul></li>
+<li><strong>Hypotheses</strong>
+<ul>
+<li><strong>Null Hypothesis</strong>
+<ul>
+<li>There is no interaction effect between Factor A and B - The effect of Factor A is the same across levels of Factor B, or equivalently, the effect of Factor B is the same across levels of Factor A</li>
+<li>The additive main effect of particular levels of Factor A is the same across all levels of Factor B</li>
+<li><span class="math inline">\(\begin{bmatrix} \alpha_1 = \alpha_{1,1} = \alpha_{1, 2} = \cdots = \alpha_{1, k} \\ \alpha_2 = \alpha_{2,1} = \alpha_{2, 2} = \cdots = \alpha_{2, k} \\ \vdots \\ \alpha_j = \alpha_{j,1} = \alpha_{j, 2} = \cdots = \alpha_{j, k} \end{bmatrix} \\ \begin{bmatrix} \beta_1 = \beta_{1,1} = \beta_{2, 1} = \cdots = \beta_{3, 1} \\ \beta_2 = \beta_{1,2} = \beta_{2, 2} = \cdots = \beta_{3, 2} \\ \vdots \\ \beta_k = \beta_{1,k} = \beta_{2, k} = \cdots = \beta_{j, k} \end{bmatrix}\)</span></li>
+</ul></li>
+<li><strong>Alternative Hypothesis</strong>
+<ul>
+<li>There is interaction effect between Factor A and B - The effect of Factor A is different in different levels of Factor B, or equivalently, the effect of Factor A is different in different levels of Factor A</li>
+<li>The additive main effect of particular levels of Factor A is different in different levels of Factor B</li>
+<li><span class="math inline">\(\begin{bmatrix} \alpha_1 ≠ \alpha_{1,1} ≠ \alpha_{1, 2} ≠ \cdots ≠ \alpha_{1, k} \\ \alpha_2 ≠ \alpha_{2,1} ≠ \alpha_{2, 2} ≠ \cdots ≠ \alpha_{2, k} \\ \vdots \\ \alpha_j ≠ \alpha_{j,1} ≠ \alpha_{j, 2} ≠ \cdots ≠ \alpha_{j, k} \end{bmatrix} \\ \begin{bmatrix} \beta_1 ≠ \beta_{1,1} ≠ \beta_{2, 1} ≠ \cdots ≠ \beta_{3, 1} \\ \beta_2 ≠ \beta_{1,2} ≠ \beta_{2, 2} ≠ \cdots ≠ \beta_{3, 2} \\ \vdots \\ \beta_k ≠ \beta_{1,k} ≠ \beta_{2, k} ≠ \cdots ≠ \beta_{j, k} \end{bmatrix}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Operationalising the null hypothesis</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It is based on the agreement/disagreement between the <span class="math inline">\(MS_{AB}\)</span> estimator and the <span class="math inline">\(MS_{W}\)</span> estimator of the population variance (<span class="math inline">\(\sigma^2\)</span>)</li>
+</ul></li>
+<li><strong>The Test statistic: The F-ratio</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The first conceptual null hypothesis is formally operationalised as <span class="math inline">\(\sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta{}_{jk}^{2}}} = 0\)</span></li>
+<li>The null hypothesis is tested by a test statistic that compares the <span class="math inline">\(MS_{AB}\)</span> estimator with the unbiased <span class="math inline">\(MS_W\)</span> estimator as the <span class="math inline">\(F\)</span> ratio of <span class="math inline">\(MS_{AB}\)</span> to <span class="math inline">\(MS_W\)</span></li>
+<li>A standardised F-score</li>
+<li>How much larger is the <span class="math inline">\(MS_{AB}\)</span> estimate compared to <span class="math inline">\(MS_W\)</span></li>
+<li>How big is the positive bias?</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle F_{AB} = \frac{MS_{AB}}{MS_W}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Null Hypothesis Significance Testing</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>To assess the probability of an F-statistic as extreme as or more extreme than the observed F-statistic in the distribution of the central F-statistic (the distribution of the F-statistic under the null hypothesis)</li>
+</ul></li>
+<li><strong>The Central Distribution of <span class="math inline">\(F_B\)</span></strong>
+<ul>
+<li><span class="math inline">\(F_{AB} \sim F\left((J-1)(K-1) , N-JK \right)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Operationalising the Null Hypothesis of Two-Way ANOVA</strong>
+<ul>
+<li><strong>General Concept</strong>
+<ul>
+<li>There can be multiple hypotheses to be tested in a Two-Way ANOVA, but they are all based on the agreement/disagreement between 2 estimators of the variance of the population (the common variance <span class="math inline">\(\sigma^2\)</span>)</li>
+<li></li>
+</ul></li>
+</ul></li>
+<li><h2 id="two-way-anova-as-a-linear-model" class="hasAnchor"><strong>Two-Way ANOVA as a Linear Model</strong><a href="anova.html#two-way-anova-as-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
 </ul>
 
 </div>
