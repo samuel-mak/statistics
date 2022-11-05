@@ -1,0 +1,449 @@
+# Catgorical outcomes
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Analysing Categorical Outcomes**</p>
+
+- **Concept**
+  - The process of analysing categorical outcomes 
+- **Statistics**
+  - Binomial test 
+  - Pearson's Chi-squared
+  - Cochran-Mantel-Haenszel Chi-squared test 
+  - McNemar's test 
+  - Fisher's Exact Test
+  - Barnard's exact test
+  - Boschloo's test 
+  - G-test 
+  - Cramér's V
+
+
+- **Pearson's Chi-squared test (Pearson, 1900)**
+  - **Concept**
+    - A statistical test that tests the null hypothesis that 2 categorical variables are independent 
+    - Test of independence between 2 categorical variable is like a test of homogeneity of conditional distributions 
+      - For example, if factor A and factor B are independent, then the conditional probabilities are homogeneous ($P(\text{Married once} | \text{College}) = P( \text{Married once}| \text{No College})$)
+    - **Conceptual Hypotheses**
+      - **Null Hypothesis**
+        - The two categorical variables are independent 
+      - **Alternative Hypothesis**
+        - The two categorical variables are not independent (they are associated)
+  - **The probability of each cell under the null hypothesis**
+    - **Concept**
+      - The probability of each joint-category under the null hypothesis 
+    - **Mathematics**
+      - $\pi_{ij} = \pi_{i\cdot} \pi_{\cdot j}$
+    - **Estimation**
+      - **Concept**
+        - The maximum likelihood estimation of the population probability of each of the joint-categories 
+      - **Mathematics**
+        - $\displaystyle \hat{\pi}_{ij} = \hat\pi_{i\cdot} \hat\pi_{\cdot j} = \frac{n_{i \cdot}}{n} \times \frac{n_{\cdot j}}{n} = \frac{n_{i \cdot} n_{\cdot j}}{n^2}$
+          - ***Where***
+            - $n_{i\cdot}$ - The number of observations in the $i$^th^ row
+            - $n_{\cdot j}$ - The number of observations in the $j$^th^ column 
+            - $n$ - The total sample size
+  - **The expected number of observations**
+    - **Concept**
+      - The number of observations in each of the K joint-categories under the null hypothesis that the 2 categorical variables are independent 
+    - **Mathematics**
+      - $\displaystyle E(n_{ij}) = n\hat{\pi}_{ij} = n\frac{n_{i \cdot} n_{\cdot j}}{n^2} = \frac{n_{i \cdot} n_{\cdot j}}{n}$
+  - **Pearson's Chi-squared statistic**
+    - **Concept**
+      - The sum of the standardised squared deviations of the observed number of observations and the expected number of observations under the null hypothesis of each of the K joint-categories 
+    - **Mathematics**
+      - $\begin{aligned} \displaystyle \chi^2 &= \sum_{i = 1}^{I}{\sum_{j = 1}^{J}{\frac{\left[ n_{ij} - E(n_{ij})\right]^2}{E(n_{ij})}}} \\ \displaystyle &= \sum_{i = 1}^{I}{\sum_{j = 1}^{J}{\frac{\left( n_{ij} - \frac{n_{i\cdot} n_{\cdot j}}{n}\right)^2}{\frac{n_{i\cdot} n_{\cdot j}}{n}}}} \end{aligned}$
+        - ***Where***
+          - $n_{ij}$ - The observed number of observations in joint-category $ij$
+          - $E(n_{jk}$ - The expected number of observations in joint-category $ij$ under the null hypothesis
+          - $\left( n_{ij} - \frac{n_{i\cdot} n_{\cdot j}}{n}\right)^2$ - The squared deviation for for joint-category $ij$
+    - **Degrees of freedom (NOT ENTIRELY SURE)**
+      - **Concept**
+        - The degrees of freedom under the null hypothesis is the number of joint-categories minus the number of independent linear restrictions placed on the cell probabilities 
+        - Although the calculation of the number of degrees of freedom depends on the application of the Chi-squared test, the general principle is that the appropriate number of degrees of freedom will equal the number of joint-categories minus 1 df for each independent linear restriction placed on the cell probabilities. In some applications, other restrictions may also be introduced because of the necessity for estimating unkown parameters required in the calculation of the expected cell frequencies or because of the method used to collect the sample 
+        - There is always one linear restriction in each cell because the sum of the cell probabilities must equal 1 ($p_1 + p_2 + p_3 + \cdots + p_k = 1$)
+      - **Mathematics**
+        - $df = IJ - 1 - (I-1) - (J-1) = (I-1)(J-1)$
+          - ***Note***
+            - The equation shows that df is the total number of joint-categories ($IJ$) minus the number of restrictions in the $I$ rows, minus the number of restrictions in the $J$ columns, and minus the number of restrictions in all the cells as a whole (minus the 1) (NOT ENTIRELY SURE)
+      - **Introduction**
+        - The calculation of the number of degrees of freedom depends on the application of the Chi-squared test 
+        - The general principle is that the appropriate number of degrees of freedom will equal the number of cells, k, less 1 df for each independent linear restriction placed on the cell probabilities 
+        - There is always one linear restriction in each cell because the sum of the cell probabilities must equal 1 ($p_1 + p_2 + p_3 + \cdots + p_k = 1$)
+    - **Distribution of the Chi-squared statistic**
+      - **Concept**
+        - $X^2$ tends towards a chi-squared distribution as n increases (it can be shown)
+        - The square root of the chi-squared statistic is a normal random variable (normally distributed)
+        - The square of a normal random variable has a chi-squared distribution 
+        - Hence, the chi-squared statistic has a chi-square distribution 
+      - **Mathematics**
+        - $X^2 \sim \chi$
+    - **NHST**
+      - **Concept**
+        - Tests the probability of having a Chi-squared statistic equal to or larger than the observed Chi-squared statistic in the Chi-square distribution under the null hypothesis 
+      - **Hypotheses**
+        - $H_0: \pi_{ij} = \pi_{i \cdot}\pi_{\cdot j}, ~~~~~ \text{for} ~ i = 1:I, j = 1:J$
+  - **Some caveats**
+    - **Number of cell counts**
+      - There is a rule of thumb that it is all expected cell counts are required to be at least 5. 
+      - Although Cochran (1952) noted that his can be as low as one for some situations
+
+        
+ 
+- **Odds Ratio**
+  - **Odds**
+    - **Concept**
+      - The ratio of the probability of an event occurring to the probability of the event not occurring 
+    - **Mathematics**
+      - $\displaystyle Odds(\text{event}) = \frac{P(\text{event})}{1 - P(\text{event})}$
+    - **Conditional Odds**
+      - **Concept**
+        - The ratio of the probability of an event occurring given a value/level of another categorical variable to the probability of it not occurring 
+      - **Mathematics**
+        - $\displaystyle Odds(A | x) = \frac{P(A | x)}{1 - (A | x)}$
+  - **The Odds Ratio**  
+    - **Concept**
+      - The ratio of the odds of an event given a value of a categorical variable and the odds of the same event given another value of the same categorical variable 
+      - This ratio tells the influence of the level of the second categorical variable in the numerator have on the probability of the event of interest
+    - **Mathematics**
+      - $\displaystyle OR(A) = \frac{Odds(A|x_1)}{Odds{(A|x_2)}}$
+        
+        
+        
+- **Bernoulli Trails**
+  - **Concept**
+    - A Bernoulli trial is a random independent experiment with 2 possible outcomes (usually referred to as "success" or "failure") and the probability of the "success" event ($\pi$) is the same every time the experiment is conducted (identical trials) and the outcome of each of the trials does not influence the outcome of other trials (independent trials; sampling with replacement) 
+    - $y_i$ - The outcome of Bernoulli trial $i$ in the sequence of $n$ trials - 1 indicates that the "success" event had occurred and 0 indicates that the "failure" event had occurred in trial $i$
+    - $y$ - The total number of "success" events in a sequence of $n$ trials - $y = \sum_{i = 1}^{n}{y_i}$
+    - $y$ is treated as an independent random variable that can vary between the 2 possible outcomes (the "success" event or the "failure" event)
+    
+    
+    
+    - Bernoulli process - When there is a sequence of Bernoulli trials 
+    - $p= 1-q$
+    - $p$ - The probability of event occurring 
+    - $q$ - The probability of the event not occurring
+    
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Binomial Distribution**</p>
+
+- **Binomial Distribution**
+  - **Concept**
+    - A special case of the multinomial distribution when $K = 2$
+    - A discrete probability distribution for the discrete independent random variable ($y$) of the number of the "success" events in a sequence of a fixed/finite $n$ number of Bernoulli trials/experiments (independent, identical) (the x-axis represents the number of successes; the y-axis represents the probability)
+    - (if trials are not independent or identical, $y$ will not follow a binomial distribution, they will follow other distributions; e.g. hypergeometric distribution is for the case when trials are not independent; specifically, it samples without replacement)
+    - A Bernoulli distribution is a special case of the binomial distribution where $n = 1$
+    - The binomial distribution has 2 parameters, $n$, the number of Bernoulli experiments in the sequence, and $\pi$, the probability of each of the numbers of "success" events 
+    - An independent random variable ($y$) that has an approximate binomial distribution is denoted as $y \sim B(n, \pi)$
+  - **Binomial probability mass function**
+    - **Concept**
+      - The probability mass function for the binomial distribution
+    - **Mathematics**
+      - $P(y) = {n\choose y} \pi^y (1 - \pi)^{n - y} ~~~, y = 0:n$
+        - ***Notes***
+          - ${n\choose y}$ - The binomial coefficient 
+    - **Mean of the binomial PMF**
+      - **Mathematics**
+        - $\mu = \text{E}(y) = n\pi$
+    - **Variance of the binomial PMF**
+      - **Mathematics**
+        - $\sigma^2 = n\pi(1-\pi)$
+    - **Characteristics of the binomial distribution**
+      - **$\pi$ and Skewness (biasedness)**
+        - **Concept**
+          - The binomial is symmetric when $\pi = 0.50$ regardless of $n$ 
+          - The binomial distribution becomes more positively skewed as $\pi$ decreases from $0.50$ towards 0
+          - The binomial distribution becomes more negatively skewed as $\pi$ increases from $0.50$ towards 1
+        - **Mathematics**
+          - The skewness is described by the following equality:
+          - $\displaystyle \frac{\text{E}(y-\mu)^3}{\sigma^3} = \frac{1-2\pi}{\sqrt{n\pi(1 - \pi)}}$
+      - **$n$ and normality**
+        - **Concept**
+          - The binomial distribution converges to normality as $n$ increases
+
+- **Statistical Inference with the Binomial distribution (Not developed)**
+  - **Wald test**
+    - **Concept**
+      - A test statistic in which the standard error nonnull estimated (not the standard error of population distribution under the null hypothesis)
+    - **The Wald statistic for probability**    
+      - **Mathematics**
+        - $\displaystyle W = \frac{(p - \pi)^2}{Var(p_i)} $
+    - **The Wald z statistic**
+      - $\displaystyle z_W = \frac{p - \pi}{SE} = \frac{p - \pi}{\frac{\sqrt{\hat\pi(1 - \hat\pi)}}{n}}$
+
+
+
+- **Multinomial distribution**
+  - **Concept**
+    - A discrete probability distribution for the discrete independent random variable ($y$) of the combination of numbers with each number being the number of occurrence of each of the multiple possible outcomes in a sequence of a fixed/finite $n$ number of random independent and identical trial/experiment 
+    - The categorical distribution is a special case of the multinomial distribution where $n = 1$
+    - The probability of obtaining a combination of $n_1, n_2, \cdots, n_k$ is denoted as $\text{P}(n_1, n_2, \cdots, n_k)$ where $n_k$ is the number of occurrence for category $k$ in a sequence of $n$ random, independent, and identical trials 
+    - <details> <summary> Alternative text </summary> In 1 trial, there are multiple (but fixed) number of possible outcomes, the outcome of a trial is represented by a combination (e.g. if there are 4 possible outcomes, the combination could be 0, 1, 0, 0, meaning that the outcome for this trial is category 2). Now imagine we have $16$ of this trial, the combination could be something like 4, 4, 4, 4. The multinomial distribution models the probability of getting different combinations. In the case of 4, 4, 4, 4, this is a fair trial (the null hypothesis), where each of the categories have equal chance of occurrence, so this combination after $16$ trials would be the most probable (it has a probability of 0.50), whereas a combination of something like 6, 5, 3, 2 would be less probable in the null multinomial distribution </details>
+    - **The outcome of a single trial ($y_i$)**
+      - **Concept**
+        - There are multiple but fixed number of possible outcomes in a single random, independent, and identical trial 
+      - **Mathematics**
+        - $y_i = (y_{i,1}, y_{i,2}, \cdots , y_{i,k})$
+          - ***Where***
+            - $k$ - The number of possible outcomes of a single trial 
+    - **The outcome of $n$ trials**
+      - **Concept**
+        - The number of occurrence of each of the $k$ outcomes after a sequence of $n$ random, independent, and identical trials 
+        - This is represented as a series/combination of $k$ numbers with each number representing the number of occurrence of each of the $k$ outcomes after a sequence of $n$ random, independent, and identical trials
+      - **Mathematics**
+        - $y = (n_1, n_2, \cdots , n_k)$
+  - **Multinomial probability mass function**
+    - **Concept**
+      - A function that models the probability of each of all possible outcome combinations
+      - The multinomial has $K - 1$ dimensions
+    - **Mathematics**
+      - $\displaystyle \text{P}(n_1, n_2, \cdots , n_k) = \left( \frac{n!}{\Pi_{k = 1}^{K}{n_k!}} \right) \Pi_{k = 1}^{K}{\pi_{k}^{n_k}}$
+  
+  
+- **Poisson distribution**
+  - **Concept**
+    - A discrete probability distribution of the discrete independent random variable ($y$) of the number of the "success" events in a sequence of an infinite number of Bernoulli trials/experiments (independent, identical) within a fixed time interval and space 
+    - The Poisson distribution is used for the number of events that occur randomly over time or space when outcomes in disjoint periods or regions are independent 
+    - The Poisson distribution can be used for the binomial case when $n$ is larger and $\pi$ is small (then $\mu = n\pi$)
+    - The Poisson distribution is conceptually similar to the binomial distribution, the difference is that the binomial distribution has a fixed number of trials ($n$), meanwhile, the Poisson distribution has an infinite number of trials (an infinite population of trials)
+  - **Poisson probability mass function**
+    - **Mathematics**
+      - $\displaystyle \text{P}(y) = \frac{e^{-\mu}\mu^{y}}{y!}~~~ y = 0:.$ 
+        - ***Where***
+          - $y$ - The number of times an event occurred (sometimes it is denoted as $k$)
+          - $\mu$ - The expected number of times an event occurred (sometimes it is denoted as $\lambda$)
+        - ***Notes**
+          - Sometimes it is expressed as such 
+    - **Mean of the Poisson PMF**
+      - **Concept**
+        - The number of occurrence of an event in the null Poisson distribution
+      - **Mathematics**
+        - $\mu = \text{E}(y_i) = \lambda$
+    - **Variance of the Poisson PMF**
+      - **Concept**
+        - The variance of the Poisson PMF is the same as its mean 
+      - **Mathematics**
+        - $\text{Var}(y_i) = \text{E}(y_i)$
+    - **Skewness**
+      - The Poisson distribution approaches normal as $\mu$ increases (when $\mu$ is at least 10 it can be assumed to be normal)
+      - **Mathematics**
+        - The skewness is described by the following equality
+        - $\displaystyle \frac{\text{E}(y - \mu)^3}{\sigma^3} = \frac{1}{\sqrt{\mu}}$
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Likelihood**</p>
+
+- **Likelihood**
+  - **Concept**
+    - The probability of the observed sample data as a function of the parameters of the chosen statistical model 
+    - The probability of obtaining the observed sample data given the parameters of the chosen statistical model
+  - **Related terms**
+    - **Kernal** - The part of a likelihood function that involves the model parameters (the relevant part of the likelihood function)
+  - **Mathematics**
+    - $\displaystyle \mathcal{L}(\theta | X) = \text{PF}(x_i)$
+      - ***Where***
+        - $\theta$ - The parameter of the chosen statistical model 
+        - $X$ - The observed sample data 
+      - ***Notes***
+        - It can also be written as $\text{P}(X | \theta)$, but this is less commonly used
+        
+        
+- **Likelihood function**
+  - **Concept**
+    - A function that models the likelihood as a function of the value of the parameter 
+    - It forms a graph that is like a normal distribution with likelihood against the values of the parameter(s)
+    - It is like a sampling distribution in which there is an infinite number of sample data of the same size (n) with different parameter estimates each with an associated probability (likelihood) - The estimate with the highest likelihood is the MLE - This estimate has the highest probability of being obtained given the true population parameter value 
+    - Usually, the likelihood function is logged for further purposes, logging the likelihood function will result in a concave graph 
+    
+    
+- **Likelihood ratio**
+  - **Concept**
+    - The ratio of one likelihood and another likelihood 
+    
+    
+        
+        
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Maximum Likelihood Estimation**</p>
+
+- **Maximum Likelihood Estimation**
+  - **Concept**
+    - An estimation method in which the model parameters are estimated by finding the parameters of the statistical model that maximizes the likelihood of obtaining the data through setting the partial derivative of the particular likelihood function to 0 
+    - Because the likelihood curve is concave, setting this to 0 will get the maxima of the curve; the point that represents the highest possible likelihood of obtaining the sample data)
+    - Sometimes it is called Maximum Log Likelihood because the function is logged for simplifying the calculation during the maximisation problem 
+    
+    
+    
+- **Maximum Likelihood Estimation for binomial Parameter**
+  - **MLE for the population parameter**
+    - **Concept**
+      - The log likelihood of the kernal 
+    - **Mathematics**
+      - **The log likelihood function:**
+        - $\begin{aligned} \displaystyle \mathcal{L}(\pi)&=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}$ 
+      - **The derivative of the likelihood function:**
+        - $\begin{aligned} \displaystyle \frac{\partial{\mathcal{L}(\pi)}}{\partial{\pi}} &= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}$
+      - **Maximisation problem: set the derivative of the log likelihood function to 0 and find $\pi$**
+        - $\begin{aligned} \displaystyle \frac{y - n\pi}{\pi(1-\pi)} &= 0 \\ \displaystyle y - n\pi &= 0 \\ \displaystyle \hat\pi &= \frac{y}{n}\end{aligned}$
+          - ***Notes***
+            - As you can see, this is the sample proportion of success for the $n$ trials
+  - **MLE for the variance**
+    - **Concept**
+      - The sampling variance of the parameter estimate based on the ML method is the inverse of the information 
+    - **Mathematics**
+      - $\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &= \text{information}^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &= \frac{\pi(1-\pi)}{n} \end{aligned}$
+  - **MLE for the standard error**
+    - **Mathematics**
+      - $\begin{aligned} \displaystyle \sigma_{\hat\pi} &= \sqrt{\sigma_{\hat\pi}^{2}} \\ &= \sqrt{\frac{\pi(1-\pi)}{n}} \end{aligned}$
+
+- **NHST for MLE**
+  - Wald test 
+  - Likelihood ratio 
+  - Score statistic
+  
+- **Wald test (Wald, 1943)**
+  - **Concept**
+    - Inferential Test statistic based on the (log) likelihood function
+  - **The Wald statistic**
+    - **Mathematics**
+      - $\displaystyle W = \frac{(\hat\theta - \theta_0)^2}{\sigma^2_{\theta}}$
+        - ***Where***
+          - $\hat\theta $ - The MLE 
+          - $\theta_0$ - The value of the parameter under the null hypothesis 
+          - $\sigma^2_{\theta}$ 
+            - The sampling variance of the population parameter under the alternative hypothesis
+
+- **Likelihood ratio test (Wilks test)**
+  - **The likelihood ratio test statistic**
+    - **Concept**
+      - The ratio of the likelihood under the alternative hypothesis and the likelihood under the null hypothesis 
+      - The squared vertical deviation between the maximised likelihood under the alternative hypothesis and the likelihood of the null hypothesized value of the parameter under the alternative hypothesis
+    - **Mathematics**
+      - $\displaystyle -2\log \Lambda = -2 \log\left( \frac{\ell_{\theta_0}}{\ell_{\theta_1}}\right) = -2(\ell_{\theta_0} - \ell_{\theta_1})$
+        - ***Where***
+          - $L$ -  Maximised log-likelihood function
+          - $\ell_{\hat\theta_1}$ - The maximised likelihood of the value of the parameter given the data (under the alternative hypothesis) 
+          - $\\ell_{\theta_0}$ - The likelihood of the null hypothesised value of the parameter in the likelihood function given the data (under the alternative hypothesis) (The Maximised value of the likelihood generally (under both the null and alternative hypothesis; $H_0 \cup H_1$)?)
+  - **Degrees of freedom of the likelihood ratio test statistic**
+    - **Concept**
+      - The df is the difference in the dimensions of the parameter spaces under $H_0 \cup H_1$ and $h_0$
+  - **The distribution of the likelihood ratio test statistic**
+    - **Concept**
+      - The likelihood ratio test statistic has an approximate central chi-squared distribution 
+      - The likelihood ratio test statistic tends towards a central chi-squared distribution as $n$ increases 
+    - **Mathematics**
+      - $\displaystyle -2\log \Lambda \sim \chi^2(df)$
+      
+      
+      
+- **Score statistic (Lagrange multiplier test)**
+  - **Concept**
+    - Based on the slope and expected curvature at the null hypothesised value of the parameter in the log-likelihood function 
+  - **The score statistic**
+    - **Mathematics**
+      - $\displaystyle \frac{S(\theta_0)^2}{I(\theta_0)}$
+        - ***Where***
+          - $S$ - The first derivative of the likelihood function 
+          - $S(\theta_0)$ - The slope at the null hypothesised value of the parameter in the likelihood function ($\theta_0$)
+          - $I$ - Information 
+          - $I(\theta_0)$ - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))
+
+
+- **Evaluating the three tests**
+  - As $n$ increases towards infinity, the three tests have asymptotic equivalences (Cox and Hinkley, 1974, Sec. 9.3). For small to moderate sample sizes, the likelihood-ratio and score tests tend to be more reliable than the Wald test, that is that they vaeh an actual error rate closer to the nomimal level 
+      
+      
+- **Hessian matrix**
+  - **Concept**
+    - A square matrix in which each of the elements of the matrix is a second-order partial derivative of the function of interest with respect to the square of each of the variables 
+    - A square matrix that describes the change in the rate of change at a particular point of a function (local curvature) of multiple variables  
+  - **Mathematics**
+    - $\displaystyle \mathbf{H}_f = \begin{bmatrix} \displaystyle \frac{\partial{}^2f}{\partial{x_{1}^{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{n}}} \\   \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{2}^2}} &\displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{n}}}   \\  \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}}\partial{x_{2}} } & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}^2}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{n}}}  \\ \vdots & \vdots & \vdots & \ddots & \vdots \\   \displaystyle  \frac{\partial{}^2f}{\partial{x_{n}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}}\partial{x_{2}} } & \displaystyle  \frac{\partial{n}^f}{\partial{x_{n}} \partial{x_{3}}} & \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}^2}} \end{bmatrix}$
+      - ***Where***
+        - $\mathbf{H}_f$ - The Hessian matrix of function $\mathcal{f}$
+        - $\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}$ - The second-order derivative of the function with respect to the cross-product of variable $x_i$ and $x_j$
+
+
+- **Information**
+  - **Concept**
+    - Information is the negative of the expectation of the Second-order derivative of the (log) likelihood function
+    - 
+
+
+
+
+
+    
+- **Terms**
+  - Complement of an event - The complement of an event is the probability of that event not occurring 
+        
+
+        
+        
+        
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

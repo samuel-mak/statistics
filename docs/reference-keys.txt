@@ -4,3 +4,4 @@ mathematics
 anova
 derivation
 multivariate-analysis
+catgorical-outcomes

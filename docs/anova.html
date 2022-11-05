@@ -80,6 +80,7 @@
 <li class="chapter" data-level="4" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>4</b> ANOVA</a></li>
 <li class="chapter" data-level="5" data-path="derivation.html"><a href="derivation.html"><i class="fa fa-check"></i><b>5</b> Derivation</a></li>
 <li class="chapter" data-level="6" data-path="multivariate-analysis.html"><a href="multivariate-analysis.html"><i class="fa fa-check"></i><b>6</b> Multivariate Analysis</a></li>
+<li class="chapter" data-level="7" data-path="catgorical-outcomes.html"><a href="catgorical-outcomes.html"><i class="fa fa-check"></i><b>7</b> Catgorical outcomes</a></li>
 </ul>
 
       </nav>
@@ -220,7 +221,7 @@
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>The conceptual null hypothesis of ANOVA (<span class="math inline">\(H_0: \mu_1 = \mu_2 = \mu_3 = \cdots = \mu_k\)</span>) is formally operationalised as <span class="math inline">\(H_0: \sum_{k=1}^{k}{\tau_k^2} = 0\)</span> and this is tested by comparing the <span class="math inline">\(MS_B\)</span> estimator to the <span class="math inline">\(MS_W\)</span> estimator as a ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span></li>
+<li>The conceptual null hypothesis of ANOVA (<span class="math inline">\(H_0: \mu_1 = \mu_2 = \mu_3 = \cdots = \mu_k\)</span>) is formally operationalised as <span class="math inline">\(H_0: \sum_{k=1}^{k}{\tau_k^2} = 0\)</span> and this is tested by comparing the <span class="math inline">\(MS_B\)</span> estimator to the <span class="math inline">\(MS_W\)</span> estimator as a ratio of <span class="math inline">\(\frac{MS_B}{\sigma^2}\)</span> to <span class="math inline">\(\frac{MS_W}{\sigma^2}\)</span></li>
 <li>This ratio of <span class="math inline">\(MS_B\)</span> to <span class="math inline">\(MS_W\)</span> is the test statistic for the null hypothesis of ANOVA and this test statistic is called the <span class="math inline">\(F\)</span> ratio (or <span class="math inline">\(F\)</span> statistic)<br />
 </li>
 </ul></li>
@@ -385,9 +386,17 @@
 </ul></li>
 </ul></li>
 </ul></li>
+<li><strong>Distribution of <span class="math inline">\(SS_B\)</span></strong>
+<ul>
+<li><span class="math inline">\(\frac{SS_B}{\sigma^2} \sim \chi()\)</span></li>
+</ul></li>
 <li><strong>Model degrees of freedom</strong>
 <ul>
-<li><span class="math inline">\(df_B = k - 1\)</span></li>
+<li><span class="math inline">\(df_B = K - 1\)</span></li>
+</ul></li>
+<li><strong>Distribution of <span class="math inline">\(SS_B\)</span></strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \frac{SS_B}{\sigma^2} \sim \chi \left(K - 1 \right)\)</span></li>
 </ul></li>
 <li><strong>Mean Model Sum of Squares</strong>
 <ul>
@@ -434,6 +443,10 @@
 <li><strong>Degrees of freedom</strong>
 <ul>
 <li><span class="math inline">\(df_e = N-k\)</span></li>
+</ul></li>
+<li><strong>Distribution of <span class="math inline">\(\frac{SS_W}{\sigma^2}\)</span></strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \frac{SS_W}{\sigma^2} \sim \chi \left(N - K \right)\)</span></li>
 </ul></li>
 <li><strong>Mean Error Sum of Squares (Variance Unexplained/Error Variance)</strong>
 <ul>
@@ -604,11 +617,11 @@
 <strong>ANOVA as a Linear Model</strong>
 </p>
 <ul>
-<li><strong>Introduction</strong>
+<li><p><strong>Introduction</strong></p>
 <ul>
 <li>ANOVA can be implemented in a Linear Model</li>
 </ul></li>
-<li><strong>2-sample ANOVA as a Linear Model</strong>
+<li><p><strong>2-sample ANOVA as a Linear Model</strong></p>
 <ul>
 <li><strong>Mathematics</strong>
 <ul>
@@ -650,7 +663,7 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>NHST</strong>
+<li><p><strong>NHST</strong></p>
 <ul>
 <li><strong>Concept</strong>
 <ul>
@@ -686,7 +699,7 @@
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>3-sample ANOVA as a Linear Model</strong>
+<li><p><strong>3-sample ANOVA as a Linear Model with Dummy Coding</strong></p>
 <ul>
 <li><strong>Mathematics</strong>
 <ul>
@@ -696,91 +709,101 @@
 <ul>
 <li><span class="math inline">\(\beta_{0}\)</span>
 <ul>
-<li><span class="math inline">\(\beta_{0} = \mu_{reference}\)</span></li>
-<li>The mean of the reference group</li>
-<li>If there is a control group, the reference group is usually the control group</li>
-<li>This represents the expected value of the outcome variable when the predictor variable is 0</li>
+<li>The mean of the sample at the reference/baseline group/level</li>
+<li>It represents the predicted value in the outcome variable when all other levels of the Factor are 0 (controlling for the effect of all other levels of the Factor)</li>
+<li><span class="math inline">\(\beta_{0} = \mu_{reference ~ level}\)</span></li>
+<li>For example, if level 1 is chosen as the reference level, then <span class="math inline">\(\beta_{0} = \mu_{1}\)</span></li>
 </ul></li>
 <li><span class="math inline">\(\beta_{1}\)</span>
 <ul>
-<li><span class="math inline">\(\beta_{1} = \mu_{1} - \mu_{0}\)</span></li>
 <li>Dummy variable 1</li>
-<li>Dummy variable for category 1</li>
-<li>A dummy variable that represents the effect of category 1 compared to the reference group as the difference between the mean of sample 1 and the mean of sample 0 (the reference group)</li>
+<li>Represents the effect of one level of the Factor (by default, R chooses the second level of the Factor)</li>
+<li>The difference between the mean of the sample at one level of the Factor and the intercept</li>
+<li>For example, if this level is level 2 of the Factor, then <span class="math inline">\(\beta_{1} = \mu_{2} - \mu_{1}\)</span></li>
 </ul></li>
 <li><span class="math inline">\(x_{1}\)</span>
 <ul>
 <li>Weight or indicator function for dummy variable 1</li>
+<li>Dummy coding
+<ul>
 <li><span class="math inline">\(x_{1} = \begin{cases} 1 ~~~ \text{if the observation is from sample 1} \\ 0 ~~~ \text{if the observation is not from sample 1} \end{cases}\)</span></li>
+</ul></li>
 </ul></li>
 <li><span class="math inline">\(\beta_{2}\)</span>
 <ul>
 <li><span class="math inline">\(\beta_{2} = \mu_{2} - \mu_{0}\)</span></li>
 <li>Dummy variable 2</li>
-<li>Dummy variable for category 2</li>
-<li>A dummy variable that represents the effect of category 2 compared to the reference group as the difference between the mean of sample 2 and the mean of sample 0 (the reference group)</li>
+<li>Represents the effect of the other level of the Factor compared to the intercept (by default, R chooses the third level of the Factor)</li>
+<li>The difference between the mean of the sample at the other level of the Factor and the intercept</li>
 </ul></li>
 <li><span class="math inline">\(x_{2}\)</span>
 <ul>
 <li>Weight or indicator function for dummy variable 2</li>
+<li>Dummy contrast coding</li>
 <li><span class="math inline">\(x_{2} = \begin{cases} 1 ~~~ \text{if the observation is from sample 1} \\ 0 ~~~ \text{if the observation is not from sample 1} \end{cases}\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>Coding</strong>
+<li><p><strong>3-sample ANOVA as a Linear Model with Helmert Contrast Coding</strong></p>
 <ul>
-<li><strong>Types of coding</strong>
+<li><strong>Mathematics</strong>
 <ul>
-<li>Dummy coding</li>
-<li>Simple coding</li>
-<li>Deviation Coding</li>
-<li>Orthogonal Polynomial Coding</li>
-<li>Helmert Coding</li>
-<li>Reverse Helmert Coding</li>
-<li>Forward Difference Coding</li>
-<li>Backward Difference Coding</li>
-</ul></li>
-<li><strong>Dummy Coding</strong>
+<li><span class="math inline">\(y_{ik} = \beta_{0} + \beta_{1}x_1 + \beta_{2}x_2 + \epsilon_{ik}\)</span>
 <ul>
-<li><strong>Concept</strong>
+<li><strong>Where</strong>
 <ul>
-<li>Compares each level to the intercept where the intercept is the mean of the reference group</li>
-</ul></li>
-</ul></li>
-<li><strong>Simple Coding</strong>
+<li><span class="math inline">\(\beta_{0}\)</span>
 <ul>
-<li><strong>Concept</strong>
+<li><span class="math inline">\(\beta_{0} = \mu_{grand}\)</span></li>
+<li>The grand mean</li>
+<li>The mean of group means</li>
+<li>With a 3-sample ANOVA with Helmert coding, it is <span class="math inline">\(\beta_{0} = \mu_{grand} = \frac{\mu_{1} + \mu_{2} + \mu_{3}}{3}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{1}\)</span>
 <ul>
-<li>Compares each level to the intercept where the intercept is the grand mean</li>
+<li><span class="math inline">\(\displaystyle \beta_{1} = \mu_{1} - \left(\frac{\mu_{2} + \mu_{3}}{2} \right)\)</span></li>
+<li>Helmert Contrast variable 1</li>
+<li>The difference between the mean of the sample at level 1 of the factor and the mean of the sample at level 2 and 3 lumped together</li>
+<li>Represents the effect of level 2 and 3 compared to level 1</li>
 </ul></li>
-</ul></li>
-<li><strong>Deviation coding</strong>
+<li><span class="math inline">\(x_{1}\)</span>
 <ul>
-<li><strong>Concept</strong>
+<li>Weight or indicator function for Helmert Contrast variable 1</li>
+<li><span class="math inline">\(x_{1} = \begin{cases} \frac{2}{3} ~~~ \text{if the observation is from the sample at level 1} \\ -\frac{1}{3} ~~~ \text{if the observation is from the sample at level 2} \\ -\frac{1}{3} ~~~ \text{if the observation is from the sample at level 3}\end{cases}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{2}\)</span>
 <ul>
-<li>Compares each level to the grand mean</li>
+<li><span class="math inline">\(\beta_{2} = \mu_{2} - \mu_{3}\)</span></li>
+<li>Helmert Contrast variable 2</li>
+<li>Dummy variable for category 2</li>
+<li>The difference between the mean of the sample at level 2 of the factor and the mean of the sample at level 3 of the factor</li>
+<li>Represents the effect of level 2 of the factor compared to level 3 of the factor</li>
 </ul></li>
-</ul></li>
-<li><strong>Resources</strong>
+<li><span class="math inline">\(x_{2}\)</span>
 <ul>
-<li><a href="https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA Statistical Methods and Data Analytics</a></li>
+<li>Weight or indicator function for Helmert Contrast variable 2</li>
+<li><span class="math inline">\(x_{2} = \begin{cases} 0 ~~~ \text{if the observation is from the sample at level 1} \\ \frac{1}{2} ~~~ \text{if the observation is from the sample at level 2} \\ -\frac{1}{2} ~~~ \text{if the observation is from the sample at level 3}\end{cases}\)</span></li>
 </ul></li>
 </ul></li>
-<li><strong>Bootstrap</strong>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Helmert Contrast</strong></p></li>
+<li><p><strong>Bootstrap</strong></p>
 <ul>
 <li>For robust confidence intervals and p-values</li>
 </ul></li>
-<li><strong>Non-parametric F</strong>
+<li><p><strong>Non-parametric F</strong></p>
 <ul>
 <li>Kruskal-Wallis test</li>
 </ul></li>
-<li><strong>Robust F</strong>
+<li><p><strong>Robust F</strong></p>
 <ul>
 <li>Welch’s F</li>
 </ul></li>
-<li><strong>Mann-Whitney test</strong>
+<li><p><strong>Mann-Whitney test</strong></p>
 <ul>
 <li><strong>Concept</strong>
 <ul>
@@ -1089,7 +1112,7 @@ prob
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>Kruskal Wallis test</strong>
+<li><p><strong>Kruskal Wallis test</strong></p>
 <ul>
 <li><strong>Concept</strong>
 <ul>
@@ -1392,6 +1415,12 @@ Factor A and B)</li>
 </ul></li>
 </ul></li>
 </ul></li>
+<li><strong>Proof</strong>
+<ul>
+<li>$SS_T = <em>{j = 1}^{J}{</em>{k = 1}^{K}{<em>{i = 1}^{n</em>{jk}}{(y_{ijk} - {y})^2}}} \ E(SS_T) = E\ E(SS_T) = (N-1)^2 + <em>{j = 1}^{J}{</em>{k = 1}<sup>{K}{<em>{i = 1}<sup>{n_{jk}}{(<em>{j}^{2} + </em>{k}</sup>{2} + </em>{jk}</sup>{2})^2}}} $</li>
+<li>Since <span class="math inline">\(\sum_{j = 1}^{J}{\alpha_{j}} = \sum_{k = 1}^{K}{\beta_{k}} = \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{\delta_{jk}}} = 0\)</span>, all the cross-level products are 0, leaving us with the following:
+<span class="math inline">\(\\ \displaystyle E(SS_T) = (N-1)\sigma^2 + \sum_{j = 1}^{J}{n_{j}\alpha_{j}^{2}} + \sum_{k = 1}^{K}{n_{k}\beta_{k}^{2}} + \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta_{jk}^{2}}} \\ \displaystyle E(SS_T) = \sum_{j = 1}^{J}{n_{j}\alpha_{j}^{2}} + \sum_{k = 1}^{K}{n_{k}\beta_{k}^{2}} + \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta_{jk}^{2}}} + (N-1)\sigma^2 \\ \displaystyle E(SS_T) = E(SS_A) + E(SS_B) + E(SS_{AB}) + E(SS_W)\)</span></li>
+</ul></li>
 <li><strong>Estimating the common variance</strong>
 <ul>
 <li><strong>Estimators of the population variance</strong>
@@ -1407,7 +1436,6 @@ Factor A and B)</li>
 </ul></li>
 <li><strong>The <span class="math inline">\(MS_A\)</span> estimator</strong>
 <ul>
-<li><strong>Concept</strong></li>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(\displaystyle E(MS_A) = \sigma^2 + \frac{1}{J-1}K\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}}\)</span></li>
@@ -1420,7 +1448,6 @@ Factor A and B)</li>
 </ul></li>
 <li><strong>The <span class="math inline">\(MS_B\)</span> estimator</strong>
 <ul>
-<li><h2 id="concept" class="hasAnchor"><strong>Concept</strong><a href="anova.html#concept" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(\displaystyle E(MS_B) = \sigma^2 + \frac{1}{K-1}J\sum_{k = 1}^{K}{n_k\beta_{k}^{2}}\)</span></li>
@@ -1433,7 +1460,7 @@ Factor A and B)</li>
 </ul></li>
 <li><strong>The <span class="math inline">\(MS_{AB}\)</span> estimator</strong>
 <ul>
-<li><h2 id="concept-1" class="hasAnchor"><strong>Concept</strong><a href="anova.html#concept-1" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
+<li><h2 id="concept" class="hasAnchor"><strong>Concept</strong><a href="anova.html#concept" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(\displaystyle E(MS_{AB}) = \sigma^2 + \frac{1}{(J-1)(K-1)}\sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta{}_{jk}^{2}}}\)</span></li>
@@ -1621,16 +1648,1543 @@ Factor A and B)</li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>Operationalising the Null Hypothesis of Two-Way ANOVA</strong>
+<li><strong>Analysing Interactions</strong>
 <ul>
-<li><strong>General Concept</strong>
+<li><strong>Methods for analysiing Interactions</strong>
 <ul>
-<li>There can be multiple hypotheses to be tested in a Two-Way ANOVA, but they are all based on the agreement/disagreement between 2 estimators of the variance of the population (the common variance <span class="math inline">\(\sigma^2\)</span>)</li>
+<li>Simple Effect Analysis</li>
+<li>Johnson Neyman Interval</li>
 <li></li>
+</ul></li>
+<li><strong>Simple Effect Analysis</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The process of assessing the effect of one Factor at each level of another Factor</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Evaluation for ANOVA as a Linear Model</strong>
+</p>
+<ul>
+<li>It requires <span class="math inline">\(k-1\)</span> dummy variables to be defined</li>
+<li></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Two-Way ANOVA as a Linear Model</strong>
+</p>
+<ul>
+<li><strong>2x2 ANOVA with interaction with Dummy Coding</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(y_{ijk} = \beta_{0} + \beta_{A}x_{A} + \beta_{B}x_{B} + \beta_{AB}x_{AB} + \epsilon_{ijk}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(y_{ijk}\)</span>
+<ul>
+<li>Observation <span class="math inline">\(i\)</span> in level <span class="math inline">\(j\)</span> of Factor A and level <span class="math inline">\(k\)</span> of Factor B</li>
+</ul></li>
+<li><span class="math inline">\(\beta_{0}\)</span>
+<ul>
+<li>The intercept</li>
+<li>The mean of the reference group</li>
+<li><span class="math inline">\(\beta_{0} = \mu_{1,1}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{A}\)</span>
+<ul>
+<li>The effect of Factor A controlling for the effect of Factor B and their interaction</li>
+<li>The difference between the mean of the sample at level 2 of Factor A and level 1 of Factor B (which is same as the intercept) and the intercept</li>
+<li><span class="math inline">\(\beta_{A} = \mu_{2, 1} - \mu_{1, 1}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(x_{A}\)</span>
+<ul>
+<li>Weight for dummy variable A</li>
+<li><strong>Dummy Coding</strong>
+<ul>
+<li><span class="math inline">\(x_{A} = \begin{cases} 1 ~~~ \text{if the observation is in level 2 of Factor A} \\ 0 ~~~ \text{if the observation is not in level 2 of Factor A} \end{cases}\)</span></li>
+</ul></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{B}\)</span>
+<ul>
+<li>The effect of Factor B controlling for the effect of Factor A and their interaction</li>
+<li>The difference between the mean of the sample at level 1 of Factor A (which is same as the intercept) and level 2 of Factor B and the intercept</li>
+</ul></li>
+<li><span class="math inline">\(x_{B}\)</span>
+<ul>
+<li>Weight for dummy variable B</li>
+<li><strong>Dummy Coding</strong>
+<ul>
+<li><span class="math inline">\(x_{B} = \begin{cases} 1 ~~~ \text{if the observation is in level 2 of Factor B} \\ 0 ~~~ \text{if the observation is not in level 2 of Factor B} \end{cases}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{B} = \mu_{1, 2} - \mu_{1, 1}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(\beta_{AB}\)</span>
+<ul>
+<li>The interaction effect of Factor A and B controlling for the effect of Factor A and B</li>
+<li>The combined effect of Factor A and B controlling for the effect of Factor A and B</li>
+<li>The effect of level 2 of Factor A on <span class="math inline">\(\beta_{B}\)</span></li>
+</ul></li>
+<li><span class="math inline">\(x_{AB}\)</span>
+<ul>
+<li>Weight for dummy variable AB</li>
+<li><strong>Dummy Coding</strong>
+<ul>
+<li><span class="math inline">\(x_{AB} = \begin{cases} 1 ~~~ \text{if the observation is in level 2 of Factor A and level 2 of Factor B} \\ 0 ~~~ \text{if the observation is not in level 2 of Factor A and level 2 of Factor B} \end{cases}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Other Types of Contrast Coding</strong>
+<ul>
+<li><strong>Introduction</strong>
+<ul>
+<li>In general, if you do other types of coding, the intercept will be the grand mean (the mean of group means) instead of the mean of the reference group (e.g. control group)</li>
+</ul></li>
+<li><strong>Types of coding</strong>
+<ul>
+<li>Dummy coding</li>
+<li>Simple coding</li>
+<li>Deviation Coding</li>
+<li>Orthogonal Polynomial Coding</li>
+<li>Helmert Coding</li>
+<li>Reverse Helmert Coding</li>
+<li>Forward Difference Coding</li>
+<li>Backward Difference Coding</li>
+</ul></li>
+</ul></li>
+<li><strong>Dummy Contrast Coding</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Each of the dummy variables represents the difference between the mean of the sample at each of the levels and the intercept which is the mean of the sample at the reference level (the reference group)</li>
+</ul></li>
+</ul></li>
+<li><strong>Simple Contrast Coding</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Each dummy variable represents the difference between the mean of the sample at each of the levels and the mean of the sample at the reference level (the reference level), the intercept is the grand mean</li>
+<li>This is similar to dummy coding, the only thing that is different is the intercept</li>
+</ul></li>
+</ul></li>
+<li><strong>Deviation Contrast coding</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Each of the dummy variables represents the difference between the mean of each of the levels and the intercept which is the grand mean</li>
+<li>Basically it is like dummy coding, however, the reference level is now the grand mean instead of the mean of the reference group, this is useful if you don’t have an apparent reference group</li>
+</ul></li>
+</ul></li>
+<li><strong>Polynomial contrast</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Used for polynomial trend analysis - To test whether there are certain polynomial trends along the levels</li>
+</ul></li>
+</ul></li>
+<li><strong>Resources</strong>
+<ul>
+<li><a href="https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/">UCLA Statistical Methods and Data Analytics</a></li>
+</ul></li>
+</ul>
+<pre><code>## Rows: 200 Columns: 11
+## ── Column specification ──────
+## Delimiter: &quot;,&quot;
+## dbl (11): id, female, race...
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## # A tibble: 200 × 11
+##       id female  race   ses
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1    70      0     4     1
+##  2   121      1     4     2
+##  3    86      0     4     3
+##  4   141      0     4     3
+##  5   172      0     4     2
+##  6   113      0     4     2
+##  7    50      0     3     2
+##  8    11      0     1     2
+##  9    84      0     4     2
+## 10    48      0     3     2
+## # … with 190 more rows, and 7
+## #   more variables:
+## #   schtyp &lt;dbl&gt;, prog &lt;dbl&gt;,
+## #   read &lt;dbl&gt;, write &lt;dbl&gt;,
+## #   math &lt;dbl&gt;,
+## #   science &lt;dbl&gt;,
+## #   socst &lt;dbl&gt;</code></pre>
+<pre><code>##              .L   .Q
+## [1,] -0.6708204  0.5
+## [2,] -0.2236068 -0.5
+## [3,]  0.2236068 -0.5
+## [4,]  0.6708204  0.5
+##              .C
+## [1,] -0.2236068
+## [2,]  0.6708204
+## [3,] -0.6708204
+## [4,]  0.2236068</code></pre>
+<pre><code>## # A tibble: 200 × 11
+##       id female  race   ses
+##    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1    70      0     4     1
+##  2   121      1     4     2
+##  3    86      0     4     3
+##  4   141      0     4     3
+##  5   172      0     4     2
+##  6   113      0     4     2
+##  7    50      0     3     2
+##  8    11      0     1     2
+##  9    84      0     4     2
+## 10    48      0     3     2
+## # … with 190 more rows, and 7
+## #   more variables:
+## #   schtyp &lt;dbl&gt;, prog &lt;dbl&gt;,
+## #   read &lt;dbl&gt;, write &lt;dbl&gt;,
+## #   math &lt;dbl&gt;,
+## #   science &lt;dbl&gt;,
+## #   socst &lt;dbl&gt;</code></pre>
+<pre><code>##   [,1]
+## 1    1
+## 2   -1</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = write ~ race.f, data = ucla_dat)
+## 
+## Residuals:
+##      Min       1Q   Median 
+## -23.0552  -5.4583   0.9724 
+##       3Q      Max 
+##   7.0000  18.8000 
+## 
+## Coefficients:
+##                             Estimate
+## (Intercept)                  51.6784
+## race.fasian_vs_hispanic      11.5417
+## race.fafrican_vs_hispanic     1.7417
+## race.fcaucasian_vs_hispanic   7.5968
+##                             Std. Error
+## (Intercept)                     0.9821
+## race.fasian_vs_hispanic         3.2861
+## race.fafrican_vs_hispanic       2.7325
+## race.fcaucasian_vs_hispanic     1.9889
+##                             t value
+## (Intercept)                  52.619
+## race.fasian_vs_hispanic       3.512
+## race.fafrican_vs_hispanic     0.637
+## race.fcaucasian_vs_hispanic   3.820
+##                             Pr(&gt;|t|)
+## (Intercept)                  &lt; 2e-16
+## race.fasian_vs_hispanic     0.000552
+## race.fafrican_vs_hispanic   0.524613
+## race.fcaucasian_vs_hispanic 0.000179
+##                                
+## (Intercept)                 ***
+## race.fasian_vs_hispanic     ***
+## race.fafrican_vs_hispanic      
+## race.fcaucasian_vs_hispanic ***
+## ---
+## Signif. codes:  
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01
+##   &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 9.025 on 196 degrees of freedom
+## Multiple R-squared:  0.1071, Adjusted R-squared:  0.0934 
+## F-statistic: 7.833 on 3 and 196 DF,  p-value: 5.785e-05</code></pre>
+<pre><code>##     (Intercept)
+## 1             1
+## 2             1
+## 3             1
+## 4             1
+## 5             1
+## 6             1
+## 7             1
+## 8             1
+## 9             1
+## 10            1
+## 11            1
+## 12            1
+## 13            1
+## 14            1
+## 15            1
+## 16            1
+## 17            1
+## 18            1
+## 19            1
+## 20            1
+## 21            1
+## 22            1
+## 23            1
+## 24            1
+## 25            1
+## 26            1
+## 27            1
+## 28            1
+## 29            1
+## 30            1
+## 31            1
+## 32            1
+## 33            1
+## 34            1
+## 35            1
+## 36            1
+## 37            1
+## 38            1
+## 39            1
+## 40            1
+## 41            1
+## 42            1
+## 43            1
+## 44            1
+## 45            1
+## 46            1
+## 47            1
+## 48            1
+## 49            1
+## 50            1
+## 51            1
+## 52            1
+## 53            1
+## 54            1
+## 55            1
+## 56            1
+## 57            1
+## 58            1
+## 59            1
+## 60            1
+## 61            1
+## 62            1
+## 63            1
+## 64            1
+## 65            1
+## 66            1
+## 67            1
+## 68            1
+## 69            1
+## 70            1
+## 71            1
+## 72            1
+## 73            1
+## 74            1
+## 75            1
+## 76            1
+## 77            1
+## 78            1
+## 79            1
+## 80            1
+## 81            1
+## 82            1
+## 83            1
+##     race.fasian_vs_hispanic
+## 1                     -0.25
+## 2                     -0.25
+## 3                     -0.25
+## 4                     -0.25
+## 5                     -0.25
+## 6                     -0.25
+## 7                     -0.25
+## 8                     -0.25
+## 9                     -0.25
+## 10                    -0.25
+## 11                    -0.25
+## 12                    -0.25
+## 13                    -0.25
+## 14                    -0.25
+## 15                    -0.25
+## 16                    -0.25
+## 17                    -0.25
+## 18                    -0.25
+## 19                    -0.25
+## 20                    -0.25
+## 21                    -0.25
+## 22                    -0.25
+## 23                    -0.25
+## 24                    -0.25
+## 25                    -0.25
+## 26                    -0.25
+## 27                    -0.25
+## 28                    -0.25
+## 29                    -0.25
+## 30                     0.75
+## 31                    -0.25
+## 32                    -0.25
+## 33                    -0.25
+## 34                    -0.25
+## 35                    -0.25
+## 36                    -0.25
+## 37                    -0.25
+## 38                    -0.25
+## 39                    -0.25
+## 40                    -0.25
+## 41                    -0.25
+## 42                    -0.25
+## 43                    -0.25
+## 44                    -0.25
+## 45                    -0.25
+## 46                    -0.25
+## 47                    -0.25
+## 48                    -0.25
+## 49                    -0.25
+## 50                    -0.25
+## 51                     0.75
+## 52                    -0.25
+## 53                    -0.25
+## 54                    -0.25
+## 55                    -0.25
+## 56                    -0.25
+## 57                    -0.25
+## 58                    -0.25
+## 59                    -0.25
+## 60                    -0.25
+## 61                    -0.25
+## 62                    -0.25
+## 63                    -0.25
+## 64                    -0.25
+## 65                    -0.25
+## 66                    -0.25
+## 67                    -0.25
+## 68                    -0.25
+## 69                    -0.25
+## 70                    -0.25
+## 71                    -0.25
+## 72                    -0.25
+## 73                    -0.25
+## 74                    -0.25
+## 75                    -0.25
+## 76                    -0.25
+## 77                    -0.25
+## 78                    -0.25
+## 79                    -0.25
+## 80                    -0.25
+## 81                    -0.25
+## 82                    -0.25
+## 83                    -0.25
+##     race.fafrican_vs_hispanic
+## 1                       -0.25
+## 2                       -0.25
+## 3                       -0.25
+## 4                       -0.25
+## 5                       -0.25
+## 6                       -0.25
+## 7                        0.75
+## 8                       -0.25
+## 9                       -0.25
+## 10                       0.75
+## 11                      -0.25
+## 12                      -0.25
+## 13                      -0.25
+## 14                      -0.25
+## 15                       0.75
+## 16                      -0.25
+## 17                      -0.25
+## 18                      -0.25
+## 19                      -0.25
+## 20                      -0.25
+## 21                      -0.25
+## 22                      -0.25
+## 23                       0.75
+## 24                      -0.25
+## 25                      -0.25
+## 26                       0.75
+## 27                      -0.25
+## 28                      -0.25
+## 29                      -0.25
+## 30                      -0.25
+## 31                      -0.25
+## 32                      -0.25
+## 33                      -0.25
+## 34                      -0.25
+## 35                      -0.25
+## 36                      -0.25
+## 37                      -0.25
+## 38                      -0.25
+## 39                      -0.25
+## 40                      -0.25
+## 41                      -0.25
+## 42                      -0.25
+## 43                      -0.25
+## 44                       0.75
+## 45                      -0.25
+## 46                      -0.25
+## 47                       0.75
+## 48                      -0.25
+## 49                      -0.25
+## 50                      -0.25
+## 51                      -0.25
+## 52                      -0.25
+## 53                      -0.25
+## 54                      -0.25
+## 55                      -0.25
+## 56                      -0.25
+## 57                      -0.25
+## 58                      -0.25
+## 59                      -0.25
+## 60                      -0.25
+## 61                      -0.25
+## 62                      -0.25
+## 63                      -0.25
+## 64                      -0.25
+## 65                      -0.25
+## 66                      -0.25
+## 67                      -0.25
+## 68                      -0.25
+## 69                      -0.25
+## 70                      -0.25
+## 71                      -0.25
+## 72                      -0.25
+## 73                      -0.25
+## 74                      -0.25
+## 75                      -0.25
+## 76                      -0.25
+## 77                      -0.25
+## 78                      -0.25
+## 79                      -0.25
+## 80                      -0.25
+## 81                      -0.25
+## 82                      -0.25
+## 83                      -0.25
+##     race.fcaucasian_vs_hispanic
+## 1                          0.75
+## 2                          0.75
+## 3                          0.75
+## 4                          0.75
+## 5                          0.75
+## 6                          0.75
+## 7                         -0.25
+## 8                         -0.25
+## 9                          0.75
+## 10                        -0.25
+## 11                         0.75
+## 12                         0.75
+## 13                         0.75
+## 14                         0.75
+## 15                        -0.25
+## 16                         0.75
+## 17                         0.75
+## 18                         0.75
+## 19                         0.75
+## 20                         0.75
+## 21                         0.75
+## 22                         0.75
+## 23                        -0.25
+## 24                        -0.25
+## 25                        -0.25
+## 26                        -0.25
+## 27                         0.75
+## 28                         0.75
+## 29                         0.75
+## 30                        -0.25
+## 31                         0.75
+## 32                         0.75
+## 33                         0.75
+## 34                         0.75
+## 35                         0.75
+## 36                         0.75
+## 37                         0.75
+## 38                         0.75
+## 39                        -0.25
+## 40                         0.75
+## 41                         0.75
+## 42                         0.75
+## 43                         0.75
+## 44                        -0.25
+## 45                         0.75
+## 46                         0.75
+## 47                        -0.25
+## 48                         0.75
+## 49                         0.75
+## 50                        -0.25
+## 51                        -0.25
+## 52                         0.75
+## 53                        -0.25
+## 54                         0.75
+## 55                         0.75
+## 56                        -0.25
+## 57                         0.75
+## 58                        -0.25
+## 59                         0.75
+## 60                        -0.25
+## 61                         0.75
+## 62                         0.75
+## 63                         0.75
+## 64                         0.75
+## 65                         0.75
+## 66                         0.75
+## 67                         0.75
+## 68                         0.75
+## 69                         0.75
+## 70                        -0.25
+## 71                         0.75
+## 72                         0.75
+## 73                         0.75
+## 74                         0.75
+## 75                         0.75
+## 76                        -0.25
+## 77                         0.75
+## 78                         0.75
+## 79                         0.75
+## 80                        -0.25
+## 81                         0.75
+## 82                         0.75
+## 83                         0.75
+##     sestwo_vs_one
+## 1               1
+## 2               0
+## 3              -1
+## 4              -1
+## 5               0
+## 6               0
+## 7               0
+## 8               0
+## 9               0
+## 10              0
+## 11              0
+## 12              0
+## 13             -1
+## 14             -1
+## 15              1
+## 16              1
+## 17             -1
+## 18              0
+## 19             -1
+## 20              0
+## 21              0
+## 22              0
+## 23              0
+## 24             -1
+## 25              0
+## 26              0
+## 27             -1
+## 28              0
+## 29             -1
+## 30              1
+## 31              0
+## 32             -1
+## 33             -1
+## 34              0
+## 35             -1
+## 36             -1
+## 37              0
+## 38             -1
+## 39              1
+## 40              0
+## 41              0
+## 42              0
+## 43              0
+## 44              1
+## 45             -1
+## 46              1
+## 47             -1
+## 48              0
+## 49              0
+## 50              0
+## 51              0
+## 52             -1
+## 53              0
+## 54              0
+## 55              0
+## 56             -1
+## 57              1
+## 58              0
+## 59              0
+## 60              0
+## 61              0
+## 62             -1
+## 63              1
+## 64              0
+## 65             -1
+## 66              0
+## 67              0
+## 68              1
+## 69              1
+## 70              0
+## 71              0
+## 72             -1
+## 73              0
+## 74              0
+## 75              0
+## 76              1
+## 77             -1
+## 78             -1
+## 79              0
+## 80             -1
+## 81             -1
+## 82              1
+## 83              0
+##     sesthree_vs_one
+## 1                 1
+## 2                 0
+## 3                -1
+## 4                -1
+## 5                 0
+## 6                 0
+## 7                 0
+## 8                 0
+## 9                 0
+## 10                0
+## 11                0
+## 12                0
+## 13               -1
+## 14               -1
+## 15                1
+## 16                1
+## 17               -1
+## 18                0
+## 19               -1
+## 20                0
+## 21                0
+## 22                0
+## 23                0
+## 24               -1
+## 25                0
+## 26                0
+## 27               -1
+## 28                0
+## 29               -1
+## 30                1
+## 31                0
+## 32               -1
+## 33               -1
+## 34                0
+## 35               -1
+## 36               -1
+## 37                0
+## 38               -1
+## 39                1
+## 40                0
+## 41                0
+## 42                0
+## 43                0
+## 44                1
+## 45               -1
+## 46                1
+## 47               -1
+## 48                0
+## 49                0
+## 50                0
+## 51                0
+## 52               -1
+## 53                0
+## 54                0
+## 55                0
+## 56               -1
+## 57                1
+## 58                0
+## 59                0
+## 60                0
+## 61                0
+## 62               -1
+## 63                1
+## 64                0
+## 65               -1
+## 66                0
+## 67                0
+## 68                1
+## 69                1
+## 70                0
+## 71                0
+## 72               -1
+## 73                0
+## 74                0
+## 75                0
+## 76                1
+## 77               -1
+## 78               -1
+## 79                0
+## 80               -1
+## 81               -1
+## 82                1
+## 83                0
+##     race.fasian_vs_hispanic:sestwo_vs_one
+## 1                                   -0.25
+## 2                                    0.00
+## 3                                    0.25
+## 4                                    0.25
+## 5                                    0.00
+## 6                                    0.00
+## 7                                    0.00
+## 8                                    0.00
+## 9                                    0.00
+## 10                                   0.00
+## 11                                   0.00
+## 12                                   0.00
+## 13                                   0.25
+## 14                                   0.25
+## 15                                  -0.25
+## 16                                  -0.25
+## 17                                   0.25
+## 18                                   0.00
+## 19                                   0.25
+## 20                                   0.00
+## 21                                   0.00
+## 22                                   0.00
+## 23                                   0.00
+## 24                                   0.25
+## 25                                   0.00
+## 26                                   0.00
+## 27                                   0.25
+## 28                                   0.00
+## 29                                   0.25
+## 30                                   0.75
+## 31                                   0.00
+## 32                                   0.25
+## 33                                   0.25
+## 34                                   0.00
+## 35                                   0.25
+## 36                                   0.25
+## 37                                   0.00
+## 38                                   0.25
+## 39                                  -0.25
+## 40                                   0.00
+## 41                                   0.00
+## 42                                   0.00
+## 43                                   0.00
+## 44                                  -0.25
+## 45                                   0.25
+## 46                                  -0.25
+## 47                                   0.25
+## 48                                   0.00
+## 49                                   0.00
+## 50                                   0.00
+## 51                                   0.00
+## 52                                   0.25
+## 53                                   0.00
+## 54                                   0.00
+## 55                                   0.00
+## 56                                   0.25
+## 57                                  -0.25
+## 58                                   0.00
+## 59                                   0.00
+## 60                                   0.00
+## 61                                   0.00
+## 62                                   0.25
+## 63                                  -0.25
+## 64                                   0.00
+## 65                                   0.25
+## 66                                   0.00
+## 67                                   0.00
+## 68                                  -0.25
+## 69                                  -0.25
+## 70                                   0.00
+## 71                                   0.00
+## 72                                   0.25
+## 73                                   0.00
+## 74                                   0.00
+## 75                                   0.00
+## 76                                  -0.25
+## 77                                   0.25
+## 78                                   0.25
+## 79                                   0.00
+## 80                                   0.25
+## 81                                   0.25
+## 82                                  -0.25
+## 83                                   0.00
+##     race.fafrican_vs_hispanic:sestwo_vs_one
+## 1                                     -0.25
+## 2                                      0.00
+## 3                                      0.25
+## 4                                      0.25
+## 5                                      0.00
+## 6                                      0.00
+## 7                                      0.00
+## 8                                      0.00
+## 9                                      0.00
+## 10                                     0.00
+## 11                                     0.00
+## 12                                     0.00
+## 13                                     0.25
+## 14                                     0.25
+## 15                                     0.75
+## 16                                    -0.25
+## 17                                     0.25
+## 18                                     0.00
+## 19                                     0.25
+## 20                                     0.00
+## 21                                     0.00
+## 22                                     0.00
+## 23                                     0.00
+## 24                                     0.25
+## 25                                     0.00
+## 26                                     0.00
+## 27                                     0.25
+## 28                                     0.00
+## 29                                     0.25
+## 30                                    -0.25
+## 31                                     0.00
+## 32                                     0.25
+## 33                                     0.25
+## 34                                     0.00
+## 35                                     0.25
+## 36                                     0.25
+## 37                                     0.00
+## 38                                     0.25
+## 39                                    -0.25
+## 40                                     0.00
+## 41                                     0.00
+## 42                                     0.00
+## 43                                     0.00
+## 44                                     0.75
+## 45                                     0.25
+## 46                                    -0.25
+## 47                                    -0.75
+## 48                                     0.00
+## 49                                     0.00
+## 50                                     0.00
+## 51                                     0.00
+## 52                                     0.25
+## 53                                     0.00
+## 54                                     0.00
+## 55                                     0.00
+## 56                                     0.25
+## 57                                    -0.25
+## 58                                     0.00
+## 59                                     0.00
+## 60                                     0.00
+## 61                                     0.00
+## 62                                     0.25
+## 63                                    -0.25
+## 64                                     0.00
+## 65                                     0.25
+## 66                                     0.00
+## 67                                     0.00
+## 68                                    -0.25
+## 69                                    -0.25
+## 70                                     0.00
+## 71                                     0.00
+## 72                                     0.25
+## 73                                     0.00
+## 74                                     0.00
+## 75                                     0.00
+## 76                                    -0.25
+## 77                                     0.25
+## 78                                     0.25
+## 79                                     0.00
+## 80                                     0.25
+## 81                                     0.25
+## 82                                    -0.25
+## 83                                     0.00
+##     race.fcaucasian_vs_hispanic:sestwo_vs_one
+## 1                                        0.75
+## 2                                        0.00
+## 3                                       -0.75
+## 4                                       -0.75
+## 5                                        0.00
+## 6                                        0.00
+## 7                                        0.00
+## 8                                        0.00
+## 9                                        0.00
+## 10                                       0.00
+## 11                                       0.00
+## 12                                       0.00
+## 13                                      -0.75
+## 14                                      -0.75
+## 15                                      -0.25
+## 16                                       0.75
+## 17                                      -0.75
+## 18                                       0.00
+## 19                                      -0.75
+## 20                                       0.00
+## 21                                       0.00
+## 22                                       0.00
+## 23                                       0.00
+## 24                                       0.25
+## 25                                       0.00
+## 26                                       0.00
+## 27                                      -0.75
+## 28                                       0.00
+## 29                                      -0.75
+## 30                                      -0.25
+## 31                                       0.00
+## 32                                      -0.75
+## 33                                      -0.75
+## 34                                       0.00
+## 35                                      -0.75
+## 36                                      -0.75
+## 37                                       0.00
+## 38                                      -0.75
+## 39                                      -0.25
+## 40                                       0.00
+## 41                                       0.00
+## 42                                       0.00
+## 43                                       0.00
+## 44                                      -0.25
+## 45                                      -0.75
+## 46                                       0.75
+## 47                                       0.25
+## 48                                       0.00
+## 49                                       0.00
+## 50                                       0.00
+## 51                                       0.00
+## 52                                      -0.75
+## 53                                       0.00
+## 54                                       0.00
+## 55                                       0.00
+## 56                                       0.25
+## 57                                       0.75
+## 58                                       0.00
+## 59                                       0.00
+## 60                                       0.00
+## 61                                       0.00
+## 62                                      -0.75
+## 63                                       0.75
+## 64                                       0.00
+## 65                                      -0.75
+## 66                                       0.00
+## 67                                       0.00
+## 68                                       0.75
+## 69                                       0.75
+## 70                                       0.00
+## 71                                       0.00
+## 72                                      -0.75
+## 73                                       0.00
+## 74                                       0.00
+## 75                                       0.00
+## 76                                      -0.25
+## 77                                      -0.75
+## 78                                      -0.75
+## 79                                       0.00
+## 80                                       0.25
+## 81                                      -0.75
+## 82                                       0.75
+## 83                                       0.00
+##     race.fasian_vs_hispanic:sesthree_vs_one
+## 1                                     -0.25
+## 2                                      0.00
+## 3                                      0.25
+## 4                                      0.25
+## 5                                      0.00
+## 6                                      0.00
+## 7                                      0.00
+## 8                                      0.00
+## 9                                      0.00
+## 10                                     0.00
+## 11                                     0.00
+## 12                                     0.00
+## 13                                     0.25
+## 14                                     0.25
+## 15                                    -0.25
+## 16                                    -0.25
+## 17                                     0.25
+## 18                                     0.00
+## 19                                     0.25
+## 20                                     0.00
+## 21                                     0.00
+## 22                                     0.00
+## 23                                     0.00
+## 24                                     0.25
+## 25                                     0.00
+## 26                                     0.00
+## 27                                     0.25
+## 28                                     0.00
+## 29                                     0.25
+## 30                                     0.75
+## 31                                     0.00
+## 32                                     0.25
+## 33                                     0.25
+## 34                                     0.00
+## 35                                     0.25
+## 36                                     0.25
+## 37                                     0.00
+## 38                                     0.25
+## 39                                    -0.25
+## 40                                     0.00
+## 41                                     0.00
+## 42                                     0.00
+## 43                                     0.00
+## 44                                    -0.25
+## 45                                     0.25
+## 46                                    -0.25
+## 47                                     0.25
+## 48                                     0.00
+## 49                                     0.00
+## 50                                     0.00
+## 51                                     0.00
+## 52                                     0.25
+## 53                                     0.00
+## 54                                     0.00
+## 55                                     0.00
+## 56                                     0.25
+## 57                                    -0.25
+## 58                                     0.00
+## 59                                     0.00
+## 60                                     0.00
+## 61                                     0.00
+## 62                                     0.25
+## 63                                    -0.25
+## 64                                     0.00
+## 65                                     0.25
+## 66                                     0.00
+## 67                                     0.00
+## 68                                    -0.25
+## 69                                    -0.25
+## 70                                     0.00
+## 71                                     0.00
+## 72                                     0.25
+## 73                                     0.00
+## 74                                     0.00
+## 75                                     0.00
+## 76                                    -0.25
+## 77                                     0.25
+## 78                                     0.25
+## 79                                     0.00
+## 80                                     0.25
+## 81                                     0.25
+## 82                                    -0.25
+## 83                                     0.00
+##     race.fafrican_vs_hispanic:sesthree_vs_one
+## 1                                       -0.25
+## 2                                        0.00
+## 3                                        0.25
+## 4                                        0.25
+## 5                                        0.00
+## 6                                        0.00
+## 7                                        0.00
+## 8                                        0.00
+## 9                                        0.00
+## 10                                       0.00
+## 11                                       0.00
+## 12                                       0.00
+## 13                                       0.25
+## 14                                       0.25
+## 15                                       0.75
+## 16                                      -0.25
+## 17                                       0.25
+## 18                                       0.00
+## 19                                       0.25
+## 20                                       0.00
+## 21                                       0.00
+## 22                                       0.00
+## 23                                       0.00
+## 24                                       0.25
+## 25                                       0.00
+## 26                                       0.00
+## 27                                       0.25
+## 28                                       0.00
+## 29                                       0.25
+## 30                                      -0.25
+## 31                                       0.00
+## 32                                       0.25
+## 33                                       0.25
+## 34                                       0.00
+## 35                                       0.25
+## 36                                       0.25
+## 37                                       0.00
+## 38                                       0.25
+## 39                                      -0.25
+## 40                                       0.00
+## 41                                       0.00
+## 42                                       0.00
+## 43                                       0.00
+## 44                                       0.75
+## 45                                       0.25
+## 46                                      -0.25
+## 47                                      -0.75
+## 48                                       0.00
+## 49                                       0.00
+## 50                                       0.00
+## 51                                       0.00
+## 52                                       0.25
+## 53                                       0.00
+## 54                                       0.00
+## 55                                       0.00
+## 56                                       0.25
+## 57                                      -0.25
+## 58                                       0.00
+## 59                                       0.00
+## 60                                       0.00
+## 61                                       0.00
+## 62                                       0.25
+## 63                                      -0.25
+## 64                                       0.00
+## 65                                       0.25
+## 66                                       0.00
+## 67                                       0.00
+## 68                                      -0.25
+## 69                                      -0.25
+## 70                                       0.00
+## 71                                       0.00
+## 72                                       0.25
+## 73                                       0.00
+## 74                                       0.00
+## 75                                       0.00
+## 76                                      -0.25
+## 77                                       0.25
+## 78                                       0.25
+## 79                                       0.00
+## 80                                       0.25
+## 81                                       0.25
+## 82                                      -0.25
+## 83                                       0.00
+##     race.fcaucasian_vs_hispanic:sesthree_vs_one
+## 1                                          0.75
+## 2                                          0.00
+## 3                                         -0.75
+## 4                                         -0.75
+## 5                                          0.00
+## 6                                          0.00
+## 7                                          0.00
+## 8                                          0.00
+## 9                                          0.00
+## 10                                         0.00
+## 11                                         0.00
+## 12                                         0.00
+## 13                                        -0.75
+## 14                                        -0.75
+## 15                                        -0.25
+## 16                                         0.75
+## 17                                        -0.75
+## 18                                         0.00
+## 19                                        -0.75
+## 20                                         0.00
+## 21                                         0.00
+## 22                                         0.00
+## 23                                         0.00
+## 24                                         0.25
+## 25                                         0.00
+## 26                                         0.00
+## 27                                        -0.75
+## 28                                         0.00
+## 29                                        -0.75
+## 30                                        -0.25
+## 31                                         0.00
+## 32                                        -0.75
+## 33                                        -0.75
+## 34                                         0.00
+## 35                                        -0.75
+## 36                                        -0.75
+## 37                                         0.00
+## 38                                        -0.75
+## 39                                        -0.25
+## 40                                         0.00
+## 41                                         0.00
+## 42                                         0.00
+## 43                                         0.00
+## 44                                        -0.25
+## 45                                        -0.75
+## 46                                         0.75
+## 47                                         0.25
+## 48                                         0.00
+## 49                                         0.00
+## 50                                         0.00
+## 51                                         0.00
+## 52                                        -0.75
+## 53                                         0.00
+## 54                                         0.00
+## 55                                         0.00
+## 56                                         0.25
+## 57                                         0.75
+## 58                                         0.00
+## 59                                         0.00
+## 60                                         0.00
+## 61                                         0.00
+## 62                                        -0.75
+## 63                                         0.75
+## 64                                         0.00
+## 65                                        -0.75
+## 66                                         0.00
+## 67                                         0.00
+## 68                                         0.75
+## 69                                         0.75
+## 70                                         0.00
+## 71                                         0.00
+## 72                                        -0.75
+## 73                                         0.00
+## 74                                         0.00
+## 75                                         0.00
+## 76                                        -0.25
+## 77                                        -0.75
+## 78                                        -0.75
+## 79                                         0.00
+## 80                                         0.25
+## 81                                        -0.75
+## 82                                         0.75
+## 83                                         0.00
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 117 rows ]
+## attr(,&quot;assign&quot;)
+##  [1] 0 1 1 1 2 2 3 3 3 3 3 3
+## attr(,&quot;contrasts&quot;)
+## attr(,&quot;contrasts&quot;)$race.f
+##            asian_vs_hispanic
+## Hispanic               -0.25
+## Asian                   0.75
+## African-Am             -0.25
+## Caucasian              -0.25
+##            african_vs_hispanic
+## Hispanic                 -0.25
+## Asian                    -0.25
+## African-Am                0.75
+## Caucasian                -0.25
+##            caucasian_vs_hispanic
+## Hispanic                   -0.25
+## Asian                      -0.25
+## African-Am                 -0.25
+## Caucasian                   0.75
+## 
+## attr(,&quot;contrasts&quot;)$ses
+##       two_vs_one three_vs_one
+## One            1            1
+## Two            0            0
+## Three         -1           -1</code></pre>
+<pre><code>## [1] 46.45833</code></pre>
+<pre><code>## [1] 46.11111</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = happiness ~ food * music, data = music_food_dat)
+## 
+## Residuals:
+##    Min     1Q Median     3Q 
+##     -2     -2     -1      2 
+##    Max 
+##      3 
+## 
+## Coefficients:
+##              Estimate
+## (Intercept)    2.0000
+## food1          2.0000
+## music1         4.0000
+## food1:music1   8.0000
+##              Std. Error
+## (Intercept)      0.9487
+## food1            1.3416
+## music1           1.3416
+## food1:music1     1.8974
+##              t value Pr(&gt;|t|)
+## (Intercept)    2.108 0.051134
+## food1          1.491 0.155487
+## music1         2.981 0.008814
+## food1:music1   4.216 0.000656
+##                 
+## (Intercept)  .  
+## food1           
+## music1       ** 
+## food1:music1 ***
+## ---
+## Signif. codes:  
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01
+##   &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 2.121 on 16 degrees of freedom
+## Multiple R-squared:  0.8896, Adjusted R-squared:  0.8689 
+## F-statistic: 42.96 on 3 and 16 DF,  p-value: 7.011e-08</code></pre>
+<pre><code>## Anova Table (Type II tests)
+## 
+## Response: happiness
+##            Sum Sq Df F value
+## music         320  1  71.111
+## food          180  1  40.000
+## music:food     80  1  17.778
+## Residuals      72 16        
+##               Pr(&gt;F)    
+## music      2.781e-07 ***
+## food       1.010e-05 ***
+## music:food 0.0006557 ***
+## Residuals               
+## ---
+## Signif. codes:  
+##   0 &#39;***&#39; 0.001 &#39;**&#39; 0.01
+##   &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>## Contrasts set to contr.sum for the following variables: music</code></pre>
+<pre><code>## [1] 7</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre><code>##    (Intercept) music1 food1
+## 1            1      0     0
+## 2            1      0     0
+## 3            1      0     0
+## 4            1      0     0
+## 5            1      0     0
+## 6            1      0     1
+## 7            1      0     1
+## 8            1      0     1
+## 9            1      0     1
+## 10           1      0     1
+## 11           1      1     1
+## 12           1      1     1
+## 13           1      1     1
+## 14           1      1     1
+## 15           1      1     1
+## 16           1      1     0
+## 17           1      1     0
+## 18           1      1     0
+## 19           1      1     0
+## 20           1      1     0
+##    music1:food1
+## 1             0
+## 2             0
+## 3             0
+## 4             0
+## 5             0
+## 6             0
+## 7             0
+## 8             0
+## 9             0
+## 10            0
+## 11            1
+## 12            1
+## 13            1
+## 14            1
+## 15            1
+## 16            0
+## 17            0
+## 18            0
+## 19            0
+## 20            0
+## attr(,&quot;assign&quot;)
+## [1] 0 1 2 3
+## attr(,&quot;contrasts&quot;)
+## attr(,&quot;contrasts&quot;)$music
+##       [,1]
+## Jazz     0
+## Metal    1
+## 
+## attr(,&quot;contrasts&quot;)$food
+##      [,1]
+## Meat    0
+## Veg     1</code></pre>
+<pre><code>##  [1]  1  5  5  2  2  7  3  8
+##  [9]  3  4 19 15 16 16 19  9
+## [17]  5  5  6 10</code></pre>
+<pre><code>## $id
+##  [1]  1  2  3  4  5  6  7  8
+##  [9]  9 10 11 12 13 14 15 16
+## [17] 17 18 19 20</code></pre>
+<pre><code>##    id happiness music food
+## 1   1         0  Jazz Meat
+## 2   2         4  Jazz Meat
+## 3   3         4  Jazz Meat
+## 4   4         1  Jazz Meat
+## 5   5         1  Jazz Meat
+## 6   6         6  Jazz  Veg
+## 7   7         2  Jazz  Veg
+## 8   8         7  Jazz  Veg
+## 9   9         2  Jazz  Veg
+## 10 10         3  Jazz  Veg
+## 11 11        18 Metal  Veg
+## 12 12        14 Metal  Veg
+## 13 13        15 Metal  Veg
+## 14 14        15 Metal  Veg
+## 15 15        18 Metal  Veg
+## 16 16         8 Metal Meat
+## 17 17         4 Metal Meat
+## 18 18         4 Metal Meat
+## 19 19         5 Metal Meat
+## 20 20         9 Metal Meat</code></pre>
+<pre><code>## `summarise()` has grouped
+## output by &#39;music&#39;. You can
+## override using the `.groups`
+## argument.</code></pre>
+<pre><code>## # A tibble: 4 × 3
+## # Groups:   music [2]
+##   music food   mean
+##   &lt;fct&gt; &lt;fct&gt; &lt;dbl&gt;
+## 1 Jazz  Meat      2
+## 2 Jazz  Veg       4
+## 3 Metal Meat      6
+## 4 Metal Veg      16</code></pre>
+<pre><code>## Scale for &#39;x&#39; is already
+## present. Adding another
+## scale for &#39;x&#39;, which will
+## replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 1 rows containing
+## missing values
+## (geom_point).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing
+## missing values
+## (geom_segment).
+## Removed 1 rows containing
+## missing values
+## (geom_segment).
+## Removed 1 rows containing
+## missing values
+## (geom_segment).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing
+## missing values
+## (geom_point).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing
+## missing values
+## (geom_segment).
+## Removed 1 rows containing
+## missing values
+## (geom_segment).
+## Removed 1 rows containing
+## missing values
+## (geom_segment).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>ANCOVA</strong>
+</p>
+<ul>
+<li><strong>Types of Sum of Squares</strong>
+<ul>
+<li>This matters only if you are doing ANOVA as a linear model (using OLS)</li>
+<li><strong>Types of Sum of Squares</strong>
+<ul>
+<li>Type 1</li>
+<li>Type 2</li>
+<li>Type 3</li>
+<li>Type 4</li>
 </ul></li>
 </ul></li>
 <li><h2 id="two-way-anova-as-a-linear-model" class="hasAnchor"><strong>Two-Way ANOVA as a Linear Model</strong><a href="anova.html#two-way-anova-as-a-linear-model" class="anchor-section" aria-label="Anchor link to header"></a></h2></li>
 </ul>
+<pre><code>##      [,1]
+## [1,]  320
+## [2,] -360
+## [3,]  140</code></pre>
+<pre><code>##    id  x
+## 1   1  1
+## 2   2  2
+## 3   3  3
+## 4   4  4
+## 5   5  5
+## 6   6  6
+## 7   7  7
+## 8   8  7
+## 9   9  7
+## 10 10  7
+## 11 11  8
+## 12 12  9
+## 13 13 10
+## 14 14 11
+## 15 15 11
+## 16 16 12
+## 17 17 15
+## 18 18 19
+## 19 19 20
+## 20 20 20
+## 21 21 NA
+## 22 22 NA
+## 23 23 NA
+## 24 24 22
+## 25 25 22
+## 26 26 23
+## 27 27 NA</code></pre>
+<pre><code>##    id  x
+## 1   1  1
+## 2   2  2
+## 3   3  3
+## 4   4  4
+## 5   5  5
+## 6   6  6
+## 7   7  7
+## 11 11  8
+## 12 12  9
+## 13 13 10
+## 14 14 11
+## 16 16 12
+## 17 17 15
+## 18 18 19
+## 19 19 20
+## 21 21 NA
+## 24 24 22
+## 26 26 23</code></pre>
+<pre><code>## [1]  7  8  9 10</code></pre>
+<pre><code>## [1] 4</code></pre>
 
 </div>
             </section>

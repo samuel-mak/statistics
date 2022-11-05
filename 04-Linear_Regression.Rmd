@@ -176,7 +176,7 @@ anova_plot <- gganova(formula = "y ~ group", data = anova_dat,
           colour = c("#3B9A9D", "#9D3B72", "#9D9D3B"),
           linetype = c("solid", "solid", "solid"),
           alpha = c(0.7, 0.7, 0.7),
-          size = c(0, 0, 0, 0)),
+          size = c(1, 1, 0, 0)),
         geom_segment.grand.mean = list(
           colour = "black",
           linetype = "solid",
@@ -190,8 +190,8 @@ anova_plot <- gganova(formula = "y ~ group", data = anova_dat,
         geom_segment.MD = list(
           colour = c(),
           size = c(),
-          linetype = c("solid", "solid", "solid"),
-          alpha = c(0, 0, 0, 0)),
+          linetype = c("dotted", "dashed", "solid"),
+          alpha = c(1, 1, 1)),
         labels = c("Control", "Experimental 1", "Experimental 2"),
         spacing = 1) 
 anova_plot
@@ -400,7 +400,7 @@ dev.off()
           - If the null hypothesis is false, that is when at least one of the $\tau_ks ≠ 0$, the linear combination of $\tau_ks$ ($\left(\frac{1}{k-1}\right)\sum_{k=1}^{k}{n_k(\tau_k - \bar{\tau})^2}$) will be larger than $0$, hence, $MS_B$ is a positively biased estimator of $\sigma^2$ (it will tend to overestimate $\sigma^2$)
     - **The test statistic: The F ratio**
       - **Concept**
-        - The conceptual null hypothesis of ANOVA ($H_0: \mu_1 = \mu_2 = \mu_3 = \cdots = \mu_k$) is formally operationalised as $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ and this is tested by comparing the $MS_B$ estimator to the $MS_W$ estimator as a ratio of $MS_B$ to $MS_W$
+        - The conceptual null hypothesis of ANOVA ($H_0: \mu_1 = \mu_2 = \mu_3 = \cdots = \mu_k$) is formally operationalised as $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ and this is tested by comparing the $MS_B$ estimator to the $MS_W$ estimator as a ratio of $\frac{MS_B}{\sigma^2}$ to $\frac{MS_W}{\sigma^2}$
         - This ratio of $MS_B$ to $MS_W$ is the test statistic for the null hypothesis of ANOVA and this test statistic is called the $F$ ratio (or $F$ statistic)   
       - **Mathematics**
         - $F = \frac{MS_B}{MS_W}$
@@ -491,8 +491,12 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
         - ***Where***
           - $n_k$ - Group size
           - $\bar{y}_k$ - The mean of group $k$0
+    - **Distribution of $SS_B$**
+      - $\frac{SS_B}{\sigma^2} \sim \chi()$
     - **Model degrees of freedom**
-      - $df_B = k - 1$
+      - $df_B = K - 1$
+    - **Distribution of $SS_B$**
+      - $\displaystyle \frac{SS_B}{\sigma^2} \sim \chi \left(K - 1 \right)$
     - **Mean Model Sum of Squares**
       - **Concept**
         - Between-group/sample variance - The variance between groups
@@ -516,6 +520,8 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
             - $\sum_{k=1}^{k}{(n_k-1)s_{k}^{2}}$
     - **Degrees of freedom**
       - $df_e = N-k$
+    - **Distribution of $\frac{SS_W}{\sigma^2}$**
+      - $\displaystyle \frac{SS_W}{\sigma^2} \sim \chi \left(N - K \right)$
     - **Mean Error Sum of Squares (Variance Unexplained/Error Variance)**
       - **Concept**
         - Variance in the outcome variable not explained by the model and is assumed to be due to random error 
@@ -660,55 +666,65 @@ $H_0: \sum_{k=1}^{k}{\tau_k^2} = 0$ (operationally)
     - **The F-statistic**
       - $F = \frac{MS_B}{MS_E}$
       
-- **3-sample ANOVA as a Linear Model**
+- **3-sample ANOVA as a Linear Model with Dummy Coding**
   - **Mathematics**
     - $y_{ik} = \beta_{0} + \beta_{1}x_1 + \beta_{2}x_2 + \epsilon_{ik}$
       - **Where**
         - $\beta_{0}$
-          - $\beta_{0} = \mu_{reference}$
-          - The mean of the reference group 
-          - If there is a control group, the reference group is usually the control group
-          - This represents the expected value of the outcome variable when the predictor variable is 0
+          - The mean of the sample at the reference/baseline group/level
+          - It represents the predicted value in the outcome variable when all other levels of the Factor are 0 (controlling for the effect of all other levels of the Factor)
+          - $\beta_{0} = \mu_{reference ~ level}$
+          - For example, if level 1 is chosen as the reference level, then $\beta_{0} = \mu_{1}$
         - $\beta_{1}$
-          - $\beta_{1} = \mu_{1} - \mu_{0}$
           - Dummy variable 1
-          - Dummy variable for category 1
-          - A dummy variable that represents the effect of category 1 compared to the reference group as the difference between the mean of sample 1 and the mean of sample 0 (the reference group)
+          - Represents the effect of one level of the Factor (by default, R chooses the second level of the Factor)
+          - The difference between the mean of the sample at one level of the Factor and the intercept 
+          - For example, if this level is level 2 of the Factor, then $\beta_{1} = \mu_{2} - \mu_{1}$
         - $x_{1}$
           - Weight or indicator function for dummy variable 1
-          - $x_{1} = \begin{cases} 1 ~~~ \text{if the observation is from sample 1} \\ 0 ~~~ \text{if the observation is not from sample 1} \end{cases}$
+          - Dummy coding
+            - $x_{1} = \begin{cases} 1 ~~~ \text{if the observation is from sample 1} \\ 0 ~~~ \text{if the observation is not from sample 1} \end{cases}$
         - $\beta_{2}$
           - $\beta_{2} = \mu_{2} - \mu_{0}$
           - Dummy variable 2
-          - Dummy variable for category 2
-          - A dummy variable that represents the effect of category 2 compared to the reference group as the difference between the mean of sample 2 and the mean of sample 0 (the reference group)
+          - Represents the effect of the other level of the Factor compared to the intercept (by default, R chooses the third level of the Factor)
+          - The difference between the mean of the sample at the other level of the Factor and the intercept 
         - $x_{2}$
           - Weight or indicator function for dummy variable 2
+          - Dummy contrast coding
           - $x_{2} = \begin{cases} 1 ~~~ \text{if the observation is from sample 1} \\ 0 ~~~ \text{if the observation is not from sample 1} \end{cases}$
 
 
+- **3-sample ANOVA as a Linear Model with Helmert Contrast Coding**
+  - **Mathematics**
+    - $y_{ik} = \beta_{0} + \beta_{1}x_1 + \beta_{2}x_2 + \epsilon_{ik}$
+      - **Where**
+        - $\beta_{0}$
+          - $\beta_{0} = \mu_{grand}$
+          - The grand mean 
+          - The mean of group means
+          - With a 3-sample ANOVA with Helmert coding, it is $\beta_{0} = \mu_{grand} = \frac{\mu_{1} + \mu_{2} + \mu_{3}}{3}$
+        - $\beta_{1}$
+          - $\displaystyle \beta_{1} = \mu_{1} - \left(\frac{\mu_{2} + \mu_{3}}{2} \right)$
+          - Helmert Contrast variable 1
+          - The difference between the mean of the sample at level 1 of the factor and the mean of the sample at level 2 and 3 lumped together 
+          - Represents the effect of level 2 and 3 compared to level 1
+        - $x_{1}$
+          - Weight or indicator function for Helmert Contrast variable 1
+          - $x_{1} = \begin{cases} \frac{2}{3} ~~~ \text{if the observation is from the sample at level 1} \\ -\frac{1}{3} ~~~ \text{if the observation is from the sample at level 2} \\ -\frac{1}{3} ~~~ \text{if the observation is from the sample at level 3}\end{cases}$
+        - $\beta_{2}$
+          - $\beta_{2} = \mu_{2} - \mu_{3}$
+          - Helmert Contrast variable 2
+          - Dummy variable for category 2
+          - The difference between the mean of the sample at level 2 of the factor and the mean of the sample at level 3 of the factor 
+          - Represents the effect of level 2 of the factor compared to level 3 of the factor 
+        - $x_{2}$
+          - Weight or indicator function for Helmert Contrast variable 2
+          - $x_{2} = \begin{cases} 0 ~~~ \text{if the observation is from the sample at level 1} \\ \frac{1}{2} ~~~ \text{if the observation is from the sample at level 2} \\ -\frac{1}{2} ~~~ \text{if the observation is from the sample at level 3}\end{cases}$
 
-- **Coding**
-  - **Types of coding**
-    - Dummy coding 
-    - Simple coding 
-    - Deviation Coding 
-    - Orthogonal Polynomial Coding 
-    - Helmert Coding 
-    - Reverse Helmert Coding 
-    - Forward Difference Coding 
-    - Backward Difference Coding
-  - **Dummy Coding**
-    - **Concept**
-      - Compares each level to the intercept where the intercept is the mean of the reference group
-  - **Simple Coding**
-    - **Concept**   
-      - Compares each level to the intercept where the intercept is the grand mean 
-  - **Deviation coding**
-    - **Concept**
-      - Compares each level to the grand mean 
-  - **Resources**
-    - [UCLA Statistical Methods and Data Analytics](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/)
+
+- **Helmert Contrast**
+
 
 
     
@@ -986,7 +1002,13 @@ mann_whitney_dat
           - The average amount of squared deviation in the outcome variable that is attributable to the interaction between Factor A and B per each of the $J\times K$ samples 
         - **Mathematics**
           - $MS_{AB} = \frac{SS_{A \times B}}{df_{A\times B}}$
-            
+
+- **Proof**
+  - $\displaystyle SS_T = \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{\sum_{i = 1}^{n_{jk}}{(y_{ijk} - \bar{y})^2}}} \\ \displaystyle E(SS_T) = E\left[\sum_{j = 1}^{J}{\sum_{k = 1}^{K}{\sum_{i = 1}^{n_{jk}}{(y_{ijk} - \bar{y})^2}}} \right] \\ \displaystyle E(SS_T) =  (N-1)\sigma^2 + \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{\sum_{i = 1}^{n_{jk}}{(\alpha_{j}^{2} + \beta_{k}^{2} + \delta_{jk}^{2})^2}}} $
+  - Since $\sum_{j = 1}^{J}{\alpha_{j}} = \sum_{k = 1}^{K}{\beta_{k}} = \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{\delta_{jk}}} = 0$, all the cross-level products are 0, leaving us with the following:
+  $\\ \displaystyle E(SS_T) = (N-1)\sigma^2 + \sum_{j = 1}^{J}{n_{j}\alpha_{j}^{2}} + \sum_{k = 1}^{K}{n_{k}\beta_{k}^{2}} + \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta_{jk}^{2}}} \\ \displaystyle E(SS_T) = \sum_{j = 1}^{J}{n_{j}\alpha_{j}^{2}} + \sum_{k = 1}^{K}{n_{k}\beta_{k}^{2}} + \sum_{j = 1}^{J}{\sum_{k = 1}^{K}{n_{jk}\delta_{jk}^{2}}} + (N-1)\sigma^2 \\ \displaystyle E(SS_T) = E(SS_A) + E(SS_B) + E(SS_{AB}) + E(SS_W)$
+  
+
 
 - **Estimating the common variance**
   - **Estimators of the population variance**
@@ -997,15 +1019,12 @@ mann_whitney_dat
   - **The $MS_W$ estimator**
     - See One-Way ANOVA
   - **The $MS_A$ estimator**
-    - **Concept**
     - **Mathematics**
       - $\displaystyle E(MS_A) = \sigma^2 + \frac{1}{J-1}K\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}}$
     - **Implication of $MS_A$ as an estimator of the population variance**
       - Under the null hypothesis, that is when all $\alpha{}_{j}s = 0$, the linear combination $\frac{1}{J-1}K\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}} = 0$, therefore, $\displaystyle E(MS_A) = \sigma^2$, the observed $MS_A$ is an unbiased estimator of $\sigma^2$
       - However, if the null hypothesis is false, that is when at least one of the $\alpha{}_{j}s≠ 0$, the linear combination $\frac{1}{J-1}K\sum_{j = 1}^{J}{n_j\alpha_{j}^{2}} > 0$, hence, $MS_A$ is a positively biased estimator of $\sigma^2$
   - **The $MS_B$ estimator**
-    - **Concept**
-      - 
     - **Mathematics**
         - $\displaystyle E(MS_B) = \sigma^2 + \frac{1}{K-1}J\sum_{k = 1}^{K}{n_k\beta_{k}^{2}}$
     - **Implication of $MS_B$ as an estimator of the population variance**
@@ -1122,11 +1141,207 @@ mann_whitney_dat
       - $F_{AB} \sim F\left((J-1)(K-1) , N-JK \right)$
     
     
-- **Operationalising the Null Hypothesis of Two-Way ANOVA**
-  - **General Concept**
-    - There can be multiple hypotheses to be tested in a Two-Way ANOVA, but they are all based on the agreement/disagreement between 2 estimators of the variance of the population (the common variance $\sigma^2$)
+- **Analysing Interactions**
+  - **Methods for analysiing Interactions**
+    - Simple Effect Analysis 
+    - Johnson Neyman Interval 
     - 
+  - **Simple Effect Analysis**
+    - **Concept**
+      - The process of assessing the effect of one Factor at each level of another Factor 
 
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Evaluation for ANOVA as a Linear Model**</p>
+
+- It requires $k-1$ dummy variables to be defined 
+- 
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Two-Way ANOVA as a Linear Model**</p>
+
+- **2x2 ANOVA with interaction with Dummy Coding**
+  - **Mathematics**
+    - $y_{ijk} = \beta_{0} + \beta_{A}x_{A} + \beta_{B}x_{B} + \beta_{AB}x_{AB} + \epsilon_{ijk}$
+      - ***Where***
+        - $y_{ijk}$ 
+          - Observation $i$ in level $j$ of Factor A and level $k$ of Factor B
+        - $\beta_{0}$
+          - The intercept 
+          - The mean of the reference group
+          - $\beta_{0} = \mu_{1,1}$
+        - $\beta_{A}$
+          - The effect of Factor A controlling for the effect of Factor B and their interaction
+          - The difference between the mean of the sample at level 2 of Factor A and level 1 of Factor B (which is same as the intercept) and the intercept 
+          - $\beta_{A} = \mu_{2, 1} - \mu_{1, 1}$
+        - $x_{A}$
+          - Weight for dummy variable A
+          - **Dummy Coding**
+            - $x_{A} = \begin{cases} 1 ~~~ \text{if the observation is in level 2 of Factor A}  \\ 0 ~~~ \text{if the observation is not in level 2 of Factor A} \end{cases}$
+        - $\beta_{B}$
+          - The effect of Factor B controlling for the effect of Factor A and their interaction
+          - The difference between the mean of the sample at level 1 of Factor A (which is same as the intercept) and level 2 of Factor B and the intercept 
+        - $x_{B}$
+          - Weight for dummy variable B
+          - **Dummy Coding**
+            - $x_{B} = \begin{cases} 1 ~~~ \text{if the observation is in level 2 of Factor B}  \\ 0 ~~~ \text{if the observation is not in level 2 of Factor B} \end{cases}$
+          - $\beta_{B} = \mu_{1, 2} - \mu_{1, 1}$
+        - $\beta_{AB}$
+          - The interaction effect of Factor A and B controlling for the effect of Factor A and B
+          - The combined effect of Factor A and B controlling for the effect of Factor A and B
+          - The effect of level 2 of Factor A on $\beta_{B}$ 
+        - $x_{AB}$
+          - Weight for dummy variable AB
+          - **Dummy Coding**
+            - $x_{AB} = \begin{cases} 1 ~~~ \text{if the observation is in level 2 of Factor A and level 2 of Factor B}  \\ 0 ~~~ \text{if the observation is not in level 2 of Factor A and level 2 of Factor B} \end{cases}$
+
+
+
+
+
+- **Other Types of Contrast Coding**
+  - **Introduction**
+    - In general, if you do other types of coding, the intercept will be the grand mean (the mean of group means) instead of the mean of the reference group (e.g. control group)
+  - **Types of coding**
+    - Dummy coding 
+    - Simple coding 
+    - Deviation Coding 
+    - Orthogonal Polynomial Coding 
+    - Helmert Coding 
+    - Reverse Helmert Coding 
+    - Forward Difference Coding 
+    - Backward Difference Coding
+    
+- **Dummy Contrast Coding**
+  - **Concept**
+    - Each of the dummy variables represents the difference between the mean of the sample at each of the levels and the intercept which is the mean of the sample at the reference level (the reference group)
+- **Simple Contrast Coding**
+  - **Concept**   
+    - Each dummy variable represents the difference between the mean of the sample at each of the levels and the mean of the sample at the reference level (the reference level), the intercept is the grand mean 
+    - This is similar to dummy coding, the only thing that is different is the intercept 
+- **Deviation Contrast coding**
+  - **Concept**
+    - Each of the dummy variables represents the difference between the mean of each of the levels and the intercept which is the grand mean 
+    - Basically it is like dummy coding, however, the reference level is now the grand mean instead of the mean of the reference group, this is useful if you don't have an apparent reference group
+- **Polynomial contrast**
+  - **Concept**
+    - Used for polynomial trend analysis - To test whether there are certain polynomial trends along the levels
+- **Resources**
+  - [UCLA Statistical Methods and Data Analytics](https://stats.oarc.ucla.edu/r/library/r-library-contrast-coding-systems-for-categorical-variables/)
+
+
+
+```{r}
+
+
+ucla_dat <- read_csv('https://stats.idre.ucla.edu/stat/data/hsb2.csv')
+
+ucla_dat 
+
+contr.poly(4)
+```
+
+
+```{r}
+library(tidyverse)
+ucla_dat
+ucla_dat$race.f = factor(ucla_dat$race, labels = c("Hispanic", "Asian", "African-Am", "Caucasian"))
+
+ucla_dat <- ucla_dat |> mutate(ses = factor(ses, labels = c("One", "Two", "Three")))
+
+original_contrast <- contrasts(ucla_dat$race.f)
+
+asian_vs_hispanic <- c(-1/4, 3/4, -1/4, -1/4)
+african_vs_hispanic <- c(-1/4, -1/4, 3/4, -1/4)
+caucasian_vs_hispanic <- c(-1/4, -1/4, -1/4,3/4)
+
+two_vs_one <- c(1, 0, -1)
+three_vs_one <- c(1, 0, -1)
+
+contr.sum(2)
+
+contrasts(ucla_dat$race.f) <- cbind(asian_vs_hispanic, african_vs_hispanic, caucasian_vs_hispanic)
+contrasts(ucla_dat$ses) <- cbind(two_vs_one,three_vs_one )
+
+lm(write ~ race.f, data = ucla_dat) |> summary() 
+
+
+  
+model.matrix(lm(write ~ race.f*ses, data = ucla_dat))
+ucla_dat[ucla_dat$race.f == "Hispanic", "write"] %>% c() %>% unlist() |>  mean()
+
+ucla_dat |> filter(race.f == "Hispanic", ses == "One") |> select(write) |> c() |> unlist() |> mean()
+
+
+```
+
+```{r}
+library(tidyverse)
+library(afex)
+library(emmeans)
+library(ggbeeswarm)
+library(lme4)
+library(broom)
+
+music_food_dat <- data.frame(
+  happiness = c(0, 4, 4, 1, 1, 6, 2, 7, 2, 3, 18, 14, 15, 15, 18, 8, 4, 4, 5, 9),
+  music = c(rep(c("Jazz"), each = 10), rep(c("Metal"), 10)),
+  food = rep(c("Meat", "Veg", "Veg", "Meat"), each = 5)
+) |> dplyr::mutate(music = factor(music), food = factor(food)) |> rowid_to_column(var = "id")
+
+
+
+contrasts(music_food_dat$music) <- c(0, 1)
+contrasts(music_food_dat$food) <- c(0, 1)
+
+lm(happiness ~ food*music, data = music_food_dat) |> summary()
+
+
+
+
+car::Anova(lm(happiness ~ music*food, data = music_food_dat))
+
+afex_object <- afex::aov_4(happiness ~ music + (1|id), data = music_food_dat)
+
+music_food_dat$happiness |> mean()
+
+afex::afex_plot(afex_object, "music") + scale_y_continuous(limits = c(-1, 18), breaks = seq(-1, 18, 1))
+
+
+
+
+
+model.matrix(lm(happiness ~ music*food, data = music_food_dat))
+
+
+lapply(X = music_food_dat$happiness, FUN = function(x){x + 1}) |> unlist()
+
+music_food_dat[1] |> c()
+music_food_dat
+
+
+music_food_dat |> group_by(music, food) |> summarise(mean = mean(happiness))
+
+
+gganova(formula = "happiness ~ music", data = music_food_dat, 
+        geom_segment.group.mean = list(color = "red"))
+
+```
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**ANCOVA**</p>
+
+
+
+
+
+
+- **Types of Sum of Squares**
+  - This matters only if you are doing ANOVA as a linear model (using OLS)
+  - **Types of Sum of Squares**
+    - Type 1
+    - Type 2
+    - Type 3
+    - Type 4
 
 
 - **Two-Way ANOVA as a Linear Model**
@@ -1147,22 +1362,7 @@ sub("({1})(.*$)", "\\1(\\2)", string)
 
 sub_dat <- data.frame(values = c(2, 6, 5, 1, 2, 7, 8, 9, 3, 6, 2, 5, 9, 2), group = c(rep("Metallica", 3), "matalecA", "metallica", rep("Gojira", 3), "gojira ", "gorillA", rep("Sylosis", 3), "Sylocis"))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 sub_dat
-
-
 
 
 sub_dat[2] <- gsub("^Sy.*s$", "Sylosis", gsub(("^g.*a$|^g.*A$"), "Gojira", gsub(" ", "", gsub("^m.*a$|^m.*A$", "Metallica", sub_dat$group))))
@@ -1172,9 +1372,36 @@ sub_dat[2] <- gsub("^Sy.*s$", "Sylosis", gsub(("^g.*a$|^g.*A$"), "Gojira", gsub(
     
     
     
+```{r}
+A <- matrix(data=c(1, 2, 3, 2, 5, 9, 5, 7, 8), nrow=3, ncol=3, byrow=TRUE)    
+b <- matrix(data=c(20, 100, 200), nrow=3, ncol=1, byrow=FALSE)
+round(solve(A, b), 3)
+```
+   
     
-    
-    
+```{r}
+play_dat <- data.frame(x = c(1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 8, 9, 10, 11, 11, 12, 15, 19, 20, 20, NA, NA, NA,22, 22, 23, NA)) |> rowid_to_column(var = "id")
+
+play_dat
+play_dat[!duplicated(play_dat$x),]
+
+
+
+which(play_dat$x == "7")
+
+filter(play_dat, is.na(x) | is.null(x)) |> nrow()
+
+ccc_dat.2 <- ccc_dat[, c("Condition", "Gender", "SocialDesirability")] |> 
+  mutate(
+    SocialDesirability_2 = (SocialDesirability - mean(SocialDesirability))/sd(SocialDesirability),
+    SocialDesirability_cat = ifelse(SocialDesirability_2 > -qnorm(p = 0.95, mean = 0), ifelse(SocialDesirability_2 > qnorm(p = 0.95, mean = 0), "High", "Mid"), "Low")
+    ) 
+
+
+
+
+```
+
     
     
     

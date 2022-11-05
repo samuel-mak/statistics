@@ -519,7 +519,7 @@ ans$adj.r.squared <- 1 - (1 - ans$r.squared) * ((n -
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Discriminant Function Analysis**</p>
 
 - **Concept**
-  - The process of finding a variate that can best separate groups (maximising the $F$ ratio for the groups) so that it can best discriminate between groups
+  - The process of finding a variate that can best separate groups (maximising the $F$ ratio for the groups) so that it can best discriminate between groups§
   - The groups are transformed in a way that their $F$ ratio are maximised 
   - The first variate is calculated by maximising the $F$ ratio, each of the subsequent variates is calculated after all preceding variates are partialled out. This means that the variates are orthogonal to each other 
 - **Variate** 

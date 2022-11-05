@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 Catgorical outcomes | Statistics</title>
+  <meta name="description" content="Chapter 7 Catgorical outcomes | Statistics" />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 Catgorical outcomes | Statistics" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 Catgorical outcomes | Statistics" />
+  
+  
+  
+
+<meta name="author" content="Samuel Mak" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="multivariate-analysis.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a >Section</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> The Linear Regression Model</a></li>
+<li class="chapter" data-level="2" data-path="generalised-least-squares.html"><a href="generalised-least-squares.html"><i class="fa fa-check"></i><b>2</b> Generalised Least Squares</a></li>
+<li class="chapter" data-level="3" data-path="mathematics.html"><a href="mathematics.html"><i class="fa fa-check"></i><b>3</b> Mathematics</a></li>
+<li class="chapter" data-level="4" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>4</b> ANOVA</a></li>
+<li class="chapter" data-level="5" data-path="derivation.html"><a href="derivation.html"><i class="fa fa-check"></i><b>5</b> Derivation</a></li>
+<li class="chapter" data-level="6" data-path="multivariate-analysis.html"><a href="multivariate-analysis.html"><i class="fa fa-check"></i><b>6</b> Multivariate Analysis</a></li>
+<li class="chapter" data-level="7" data-path="catgorical-outcomes.html"><a href="catgorical-outcomes.html"><i class="fa fa-check"></i><b>7</b> Catgorical outcomes</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="catgorical-outcomes" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Catgorical outcomes<a href="catgorical-outcomes.html#catgorical-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Analysing Categorical Outcomes</strong>
+</p>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The process of analysing categorical outcomes</li>
+</ul></li>
+<li><strong>Statistics</strong>
+<ul>
+<li>Binomial test</li>
+<li>Pearson’s Chi-squared</li>
+<li>Cochran-Mantel-Haenszel Chi-squared test</li>
+<li>McNemar’s test</li>
+<li>Fisher’s Exact Test</li>
+<li>Barnard’s exact test</li>
+<li>Boschloo’s test</li>
+<li>G-test</li>
+<li>Cramér’s V</li>
+</ul></li>
+<li><strong>Pearson’s Chi-squared test (Pearson, 1900)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A statistical test that tests the null hypothesis that 2 categorical variables are independent</li>
+<li>Test of independence between 2 categorical variable is like a test of homogeneity of conditional distributions
+<ul>
+<li>For example, if factor A and factor B are independent, then the conditional probabilities are homogeneous (<span class="math inline">\(P(\text{Married once} | \text{College}) = P( \text{Married once}| \text{No College})\)</span>)</li>
+</ul></li>
+<li><strong>Conceptual Hypotheses</strong>
+<ul>
+<li><strong>Null Hypothesis</strong>
+<ul>
+<li>The two categorical variables are independent</li>
+</ul></li>
+<li><strong>Alternative Hypothesis</strong>
+<ul>
+<li>The two categorical variables are not independent (they are associated)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The probability of each cell under the null hypothesis</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The probability of each joint-category under the null hypothesis</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\pi_{ij} = \pi_{i\cdot} \pi_{\cdot j}\)</span></li>
+</ul></li>
+<li><strong>Estimation</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The maximum likelihood estimation of the population probability of each of the joint-categories</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \hat{\pi}_{ij} = \hat\pi_{i\cdot} \hat\pi_{\cdot j} = \frac{n_{i \cdot}}{n} \times \frac{n_{\cdot j}}{n} = \frac{n_{i \cdot} n_{\cdot j}}{n^2}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(n_{i\cdot}\)</span> - The number of observations in the <span class="math inline">\(i\)</span><sup>th</sup> row</li>
+<li><span class="math inline">\(n_{\cdot j}\)</span> - The number of observations in the <span class="math inline">\(j\)</span><sup>th</sup> column</li>
+<li><span class="math inline">\(n\)</span> - The total sample size</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The expected number of observations</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The number of observations in each of the K joint-categories under the null hypothesis that the 2 categorical variables are independent</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle E(n_{ij}) = n\hat{\pi}_{ij} = n\frac{n_{i \cdot} n_{\cdot j}}{n^2} = \frac{n_{i \cdot} n_{\cdot j}}{n}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Pearson’s Chi-squared statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sum of the standardised squared deviations of the observed number of observations and the expected number of observations under the null hypothesis of each of the K joint-categories</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \chi^2 &amp;= \sum_{i = 1}^{I}{\sum_{j = 1}^{J}{\frac{\left[ n_{ij} - E(n_{ij})\right]^2}{E(n_{ij})}}} \\ \displaystyle &amp;= \sum_{i = 1}^{I}{\sum_{j = 1}^{J}{\frac{\left( n_{ij} - \frac{n_{i\cdot} n_{\cdot j}}{n}\right)^2}{\frac{n_{i\cdot} n_{\cdot j}}{n}}}} \end{aligned}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(n_{ij}\)</span> - The observed number of observations in joint-category <span class="math inline">\(ij\)</span></li>
+<li><span class="math inline">\(E(n_{jk}\)</span> - The expected number of observations in joint-category <span class="math inline">\(ij\)</span> under the null hypothesis</li>
+<li><span class="math inline">\(\left( n_{ij} - \frac{n_{i\cdot} n_{\cdot j}}{n}\right)^2\)</span> - The squared deviation for for joint-category <span class="math inline">\(ij\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Degrees of freedom (NOT ENTIRELY SURE)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The degrees of freedom under the null hypothesis is the number of joint-categories minus the number of independent linear restrictions placed on the cell probabilities</li>
+<li>Although the calculation of the number of degrees of freedom depends on the application of the Chi-squared test, the general principle is that the appropriate number of degrees of freedom will equal the number of joint-categories minus 1 df for each independent linear restriction placed on the cell probabilities. In some applications, other restrictions may also be introduced because of the necessity for estimating unkown parameters required in the calculation of the expected cell frequencies or because of the method used to collect the sample</li>
+<li>There is always one linear restriction in each cell because the sum of the cell probabilities must equal 1 (<span class="math inline">\(p_1 + p_2 + p_3 + \cdots + p_k = 1\)</span>)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(df = IJ - 1 - (I-1) - (J-1) = (I-1)(J-1)\)</span>
+<ul>
+<li><strong><em>Note</em></strong>
+<ul>
+<li>The equation shows that df is the total number of joint-categories (<span class="math inline">\(IJ\)</span>) minus the number of restrictions in the <span class="math inline">\(I\)</span> rows, minus the number of restrictions in the <span class="math inline">\(J\)</span> columns, and minus the number of restrictions in all the cells as a whole (minus the 1) (NOT ENTIRELY SURE)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Introduction</strong>
+<ul>
+<li>The calculation of the number of degrees of freedom depends on the application of the Chi-squared test</li>
+<li>The general principle is that the appropriate number of degrees of freedom will equal the number of cells, k, less 1 df for each independent linear restriction placed on the cell probabilities</li>
+<li>There is always one linear restriction in each cell because the sum of the cell probabilities must equal 1 (<span class="math inline">\(p_1 + p_2 + p_3 + \cdots + p_k = 1\)</span>)</li>
+</ul></li>
+</ul></li>
+<li><strong>Distribution of the Chi-squared statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li><span class="math inline">\(X^2\)</span> tends towards a chi-squared distribution as n increases (it can be shown)</li>
+<li>The square root of the chi-squared statistic is a normal random variable (normally distributed)</li>
+<li>The square of a normal random variable has a chi-squared distribution</li>
+<li>Hence, the chi-squared statistic has a chi-square distribution</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(X^2 \sim \chi\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>NHST</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Tests the probability of having a Chi-squared statistic equal to or larger than the observed Chi-squared statistic in the Chi-square distribution under the null hypothesis</li>
+</ul></li>
+<li><strong>Hypotheses</strong>
+<ul>
+<li><span class="math inline">\(H_0: \pi_{ij} = \pi_{i \cdot}\pi_{\cdot j}, ~~~~~ \text{for} ~ i = 1:I, j = 1:J\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Some caveats</strong>
+<ul>
+<li><strong>Number of cell counts</strong>
+<ul>
+<li>There is a rule of thumb that it is all expected cell counts are required to be at least 5.</li>
+<li>Although Cochran (1952) noted that his can be as low as one for some situations</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Odds Ratio</strong>
+<ul>
+<li><strong>Odds</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The ratio of the probability of an event occurring to the probability of the event not occurring</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle Odds(\text{event}) = \frac{P(\text{event})}{1 - P(\text{event})}\)</span></li>
+</ul></li>
+<li><strong>Conditional Odds</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The ratio of the probability of an event occurring given a value/level of another categorical variable to the probability of it not occurring</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle Odds(A | x) = \frac{P(A | x)}{1 - (A | x)}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The Odds Ratio</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The ratio of the odds of an event given a value of a categorical variable and the odds of the same event given another value of the same categorical variable</li>
+<li>This ratio tells the influence of the level of the second categorical variable in the numerator have on the probability of the event of interest</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle OR(A) = \frac{Odds(A|x_1)}{Odds{(A|x_2)}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Bernoulli Trails</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li><p>A Bernoulli trial is a random independent experiment with 2 possible outcomes (usually referred to as “success” or “failure”) and the probability of the “success” event (<span class="math inline">\(\pi\)</span>) is the same every time the experiment is conducted (identical trials) and the outcome of each of the trials does not influence the outcome of other trials (independent trials; sampling with replacement)</p></li>
+<li><p><span class="math inline">\(y_i\)</span> - The outcome of Bernoulli trial <span class="math inline">\(i\)</span> in the sequence of <span class="math inline">\(n\)</span> trials - 1 indicates that the “success” event had occurred and 0 indicates that the “failure” event had occurred in trial <span class="math inline">\(i\)</span></p></li>
+<li><p><span class="math inline">\(y\)</span> - The total number of “success” events in a sequence of <span class="math inline">\(n\)</span> trials - <span class="math inline">\(y = \sum_{i = 1}^{n}{y_i}\)</span></p></li>
+<li><p><span class="math inline">\(y\)</span> is treated as an independent random variable that can vary between the 2 possible outcomes (the “success” event or the “failure” event)</p></li>
+<li><p>Bernoulli process - When there is a sequence of Bernoulli trials</p></li>
+<li><p><span class="math inline">\(p= 1-q\)</span></p></li>
+<li><p><span class="math inline">\(p\)</span> - The probability of event occurring</p></li>
+<li><p><span class="math inline">\(q\)</span> - The probability of the event not occurring</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Binomial Distribution</strong>
+</p>
+<ul>
+<li><strong>Binomial Distribution</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A special case of the multinomial distribution when <span class="math inline">\(K = 2\)</span></li>
+<li>A discrete probability distribution for the discrete independent random variable (<span class="math inline">\(y\)</span>) of the number of the “success” events in a sequence of a fixed/finite <span class="math inline">\(n\)</span> number of Bernoulli trials/experiments (independent, identical) (the x-axis represents the number of successes; the y-axis represents the probability)</li>
+<li>(if trials are not independent or identical, <span class="math inline">\(y\)</span> will not follow a binomial distribution, they will follow other distributions; e.g. hypergeometric distribution is for the case when trials are not independent; specifically, it samples without replacement)</li>
+<li>A Bernoulli distribution is a special case of the binomial distribution where <span class="math inline">\(n = 1\)</span></li>
+<li>The binomial distribution has 2 parameters, <span class="math inline">\(n\)</span>, the number of Bernoulli experiments in the sequence, and <span class="math inline">\(\pi\)</span>, the probability of each of the numbers of “success” events</li>
+<li>An independent random variable (<span class="math inline">\(y\)</span>) that has an approximate binomial distribution is denoted as <span class="math inline">\(y \sim B(n, \pi)\)</span></li>
+</ul></li>
+<li><strong>Binomial probability mass function</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The probability mass function for the binomial distribution</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(P(y) = {n\choose y} \pi^y (1 - \pi)^{n - y} ~~~, y = 0:n\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li><span class="math inline">\({n\choose y}\)</span> - The binomial coefficient</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mean of the binomial PMF</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\mu = \text{E}(y) = n\pi\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Variance of the binomial PMF</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\sigma^2 = n\pi(1-\pi)\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Characteristics of the binomial distribution</strong>
+<ul>
+<li><strong><span class="math inline">\(\pi\)</span> and Skewness (biasedness)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The binomial is symmetric when <span class="math inline">\(\pi = 0.50\)</span> regardless of <span class="math inline">\(n\)</span></li>
+<li>The binomial distribution becomes more positively skewed as <span class="math inline">\(\pi\)</span> decreases from <span class="math inline">\(0.50\)</span> towards 0</li>
+<li>The binomial distribution becomes more negatively skewed as <span class="math inline">\(\pi\)</span> increases from <span class="math inline">\(0.50\)</span> towards 1</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li>The skewness is described by the following equality:</li>
+<li><span class="math inline">\(\displaystyle \frac{\text{E}(y-\mu)^3}{\sigma^3} = \frac{1-2\pi}{\sqrt{n\pi(1 - \pi)}}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong><span class="math inline">\(n\)</span> and normality</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The binomial distribution converges to normality as <span class="math inline">\(n\)</span> increases</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Statistical Inference with the Binomial distribution (Not developed)</strong>
+<ul>
+<li><strong>Wald test</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A test statistic in which the standard error nonnull estimated (not the standard error of population distribution under the null hypothesis)</li>
+</ul></li>
+<li><strong>The Wald statistic for probability</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li>$W = $</li>
+</ul></li>
+</ul></li>
+<li><strong>The Wald z statistic</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle z_W = \frac{p - \pi}{SE} = \frac{p - \pi}{\frac{\sqrt{\hat\pi(1 - \hat\pi)}}{n}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Multinomial distribution</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A discrete probability distribution for the discrete independent random variable (<span class="math inline">\(y\)</span>) of the combination of numbers with each number being the number of occurrence of each of the multiple possible outcomes in a sequence of a fixed/finite <span class="math inline">\(n\)</span> number of random independent and identical trial/experiment</li>
+<li>The categorical distribution is a special case of the multinomial distribution where <span class="math inline">\(n = 1\)</span></li>
+<li>The probability of obtaining a combination of <span class="math inline">\(n_1, n_2, \cdots, n_k\)</span> is denoted as <span class="math inline">\(\text{P}(n_1, n_2, \cdots, n_k)\)</span> where <span class="math inline">\(n_k\)</span> is the number of occurrence for category <span class="math inline">\(k\)</span> in a sequence of <span class="math inline">\(n\)</span> random, independent, and identical trials</li>
+<li><details>
+<summary>
+Alternative text
+</summary>
+In 1 trial, there are multiple (but fixed) number of possible outcomes, the outcome of a trial is represented by a combination (e.g. if there are 4 possible outcomes, the combination could be 0, 1, 0, 0, meaning that the outcome for this trial is category 2). Now imagine we have <span class="math inline">\(16\)</span> of this trial, the combination could be something like 4, 4, 4, 4. The multinomial distribution models the probability of getting different combinations. In the case of 4, 4, 4, 4, this is a fair trial (the null hypothesis), where each of the categories have equal chance of occurrence, so this combination after <span class="math inline">\(16\)</span> trials would be the most probable (it has a probability of 0.50), whereas a combination of something like 6, 5, 3, 2 would be less probable in the null multinomial distribution
+</details></li>
+<li><strong>The outcome of a single trial (<span class="math inline">\(y_i\)</span>)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>There are multiple but fixed number of possible outcomes in a single random, independent, and identical trial</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(y_i = (y_{i,1}, y_{i,2}, \cdots , y_{i,k})\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(k\)</span> - The number of possible outcomes of a single trial</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The outcome of <span class="math inline">\(n\)</span> trials</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The number of occurrence of each of the <span class="math inline">\(k\)</span> outcomes after a sequence of <span class="math inline">\(n\)</span> random, independent, and identical trials</li>
+<li>This is represented as a series/combination of <span class="math inline">\(k\)</span> numbers with each number representing the number of occurrence of each of the <span class="math inline">\(k\)</span> outcomes after a sequence of <span class="math inline">\(n\)</span> random, independent, and identical trials</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(y = (n_1, n_2, \cdots , n_k)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Multinomial probability mass function</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A function that models the probability of each of all possible outcome combinations</li>
+<li>The multinomial has <span class="math inline">\(K - 1\)</span> dimensions</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{P}(n_1, n_2, \cdots , n_k) = \left( \frac{n!}{\Pi_{k = 1}^{K}{n_k!}} \right) \Pi_{k = 1}^{K}{\pi_{k}^{n_k}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Poisson distribution</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A discrete probability distribution of the discrete independent random variable (<span class="math inline">\(y\)</span>) of the number of the “success” events in a sequence of an infinite number of Bernoulli trials/experiments (independent, identical) within a fixed time interval and space</li>
+<li>The Poisson distribution is used for the number of events that occur randomly over time or space when outcomes in disjoint periods or regions are independent</li>
+<li>The Poisson distribution can be used for the binomial case when <span class="math inline">\(n\)</span> is larger and <span class="math inline">\(\pi\)</span> is small (then <span class="math inline">\(\mu = n\pi\)</span>)</li>
+<li>The Poisson distribution is conceptually similar to the binomial distribution, the difference is that the binomial distribution has a fixed number of trials (<span class="math inline">\(n\)</span>), meanwhile, the Poisson distribution has an infinite number of trials (an infinite population of trials)</li>
+</ul></li>
+<li><strong>Poisson probability mass function</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{P}(y) = \frac{e^{-\mu}\mu^{y}}{y!}~~~ y = 0:.\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(y\)</span> - The number of times an event occurred (sometimes it is denoted as <span class="math inline">\(k\)</span>)</li>
+<li><span class="math inline">\(\mu\)</span> - The expected number of times an event occurred (sometimes it is denoted as <span class="math inline">\(\lambda\)</span>)</li>
+</ul></li>
+<li>*<strong>Notes</strong>
+<ul>
+<li>Sometimes it is expressed as such</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mean of the Poisson PMF</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The number of occurrence of an event in the null Poisson distribution</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\mu = \text{E}(y_i) = \lambda\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Variance of the Poisson PMF</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The variance of the Poisson PMF is the same as its mean</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\text{Var}(y_i) = \text{E}(y_i)\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Skewness</strong>
+<ul>
+<li>The Poisson distribution approaches normal as <span class="math inline">\(\mu\)</span> increases (when <span class="math inline">\(\mu\)</span> is at least 10 it can be assumed to be normal)</li>
+<li><strong>Mathematics</strong>
+<ul>
+<li>The skewness is described by the following equality</li>
+<li><span class="math inline">\(\displaystyle \frac{\text{E}(y - \mu)^3}{\sigma^3} = \frac{1}{\sqrt{\mu}}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Likelihood</strong>
+</p>
+<ul>
+<li><strong>Likelihood</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The probability of the observed sample data as a function of the parameters of the chosen statistical model</li>
+<li>The probability of obtaining the observed sample data given the parameters of the chosen statistical model</li>
+</ul></li>
+<li><strong>Related terms</strong>
+<ul>
+<li><strong>Kernal</strong> - The part of a likelihood function that involves the model parameters (the relevant part of the likelihood function)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta | X) = \text{PF}(x_i)\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\theta\)</span> - The parameter of the chosen statistical model</li>
+<li><span class="math inline">\(X\)</span> - The observed sample data</li>
+</ul></li>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>It can also be written as <span class="math inline">\(\text{P}(X | \theta)\)</span>, but this is less commonly used</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Likelihood function</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A function that models the likelihood as a function of the value of the parameter</li>
+<li>It forms a graph that is like a normal distribution with likelihood against the values of the parameter(s)</li>
+<li>It is like a sampling distribution in which there is an infinite number of sample data of the same size (n) with different parameter estimates each with an associated probability (likelihood) - The estimate with the highest likelihood is the MLE - This estimate has the highest probability of being obtained given the true population parameter value</li>
+<li>Usually, the likelihood function is logged for further purposes, logging the likelihood function will result in a concave graph</li>
+</ul></li>
+</ul></li>
+<li><strong>Likelihood ratio</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The ratio of one likelihood and another likelihood</li>
+</ul></li>
+</ul></li>
+</ul>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Maximum Likelihood Estimation</strong>
+</p>
+<ul>
+<li><strong>Maximum Likelihood Estimation</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>An estimation method in which the model parameters are estimated by finding the parameters of the statistical model that maximizes the likelihood of obtaining the data through setting the partial derivative of the particular likelihood function to 0</li>
+<li>Because the likelihood curve is concave, setting this to 0 will get the maxima of the curve; the point that represents the highest possible likelihood of obtaining the sample data)</li>
+<li>Sometimes it is called Maximum Log Likelihood because the function is logged for simplifying the calculation during the maximisation problem</li>
+</ul></li>
+</ul></li>
+<li><strong>Maximum Likelihood Estimation for binomial Parameter</strong>
+<ul>
+<li><strong>MLE for the population parameter</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The log likelihood of the kernal</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>The log likelihood function:</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \mathcal{L}(\pi)&amp;=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &amp;= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>The derivative of the likelihood function:</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \frac{\partial{\mathcal{L}(\pi)}}{\partial{\pi}} &amp;= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &amp;= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Maximisation problem: set the derivative of the log likelihood function to 0 and find <span class="math inline">\(\pi\)</span></strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \frac{y - n\pi}{\pi(1-\pi)} &amp;= 0 \\ \displaystyle y - n\pi &amp;= 0 \\ \displaystyle \hat\pi &amp;= \frac{y}{n}\end{aligned}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>As you can see, this is the sample proportion of success for the <span class="math inline">\(n\)</span> trials</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>MLE for the variance</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The sampling variance of the parameter estimate based on the ML method is the inverse of the information</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &amp;= \text{information}^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &amp;= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &amp;= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &amp;= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &amp;= \frac{\pi(1-\pi)}{n} \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>MLE for the standard error</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \sigma_{\hat\pi} &amp;= \sqrt{\sigma_{\hat\pi}^{2}} \\ &amp;= \sqrt{\frac{\pi(1-\pi)}{n}} \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>NHST for MLE</strong>
+<ul>
+<li>Wald test</li>
+<li>Likelihood ratio</li>
+<li>Score statistic</li>
+</ul></li>
+<li><strong>Wald test (Wald, 1943)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Inferential Test statistic based on the (log) likelihood function</li>
+</ul></li>
+<li><strong>The Wald statistic</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle W = \frac{(\hat\theta - \theta_0)^2}{\sigma^2_{\theta}}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li>$$ - The MLE</li>
+<li><span class="math inline">\(\theta_0\)</span> - The value of the parameter under the null hypothesis</li>
+<li><span class="math inline">\(\sigma^2_{\theta}\)</span>
+<ul>
+<li>The sampling variance of the population parameter under the alternative hypothesis</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Likelihood ratio test (Wilks test)</strong>
+<ul>
+<li><strong>The likelihood ratio test statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The ratio of the likelihood under the alternative hypothesis and the likelihood under the null hypothesis</li>
+<li>The squared vertical deviation between the maximised likelihood under the alternative hypothesis and the likelihood of the null hypothesized value of the parameter under the alternative hypothesis</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle -2\log \Lambda = -2 \log\left( \frac{\ell_{\theta_0}}{\ell_{\theta_1}}\right) = -2(\ell_{\theta_0} - \ell_{\theta_1})\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(L\)</span> - Maximised log-likelihood function</li>
+<li><span class="math inline">\(\ell_{\hat\theta_1}\)</span> - The maximised likelihood of the value of the parameter given the data (under the alternative hypothesis)</li>
+<li><span class="math inline">\(\\ell_{\theta_0}\)</span> - The likelihood of the null hypothesised value of the parameter in the likelihood function given the data (under the alternative hypothesis) (The Maximised value of the likelihood generally (under both the null and alternative hypothesis; <span class="math inline">\(H_0 \cup H_1\)</span>)?)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Degrees of freedom of the likelihood ratio test statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The df is the difference in the dimensions of the parameter spaces under <span class="math inline">\(H_0 \cup H_1\)</span> and <span class="math inline">\(h_0\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>The distribution of the likelihood ratio test statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The likelihood ratio test statistic has an approximate central chi-squared distribution</li>
+<li>The likelihood ratio test statistic tends towards a central chi-squared distribution as <span class="math inline">\(n\)</span> increases</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle -2\log \Lambda \sim \chi^2(df)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Score statistic (Lagrange multiplier test)</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Based on the slope and expected curvature at the null hypothesised value of the parameter in the log-likelihood function</li>
+</ul></li>
+<li><strong>The score statistic</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \frac{S(\theta_0)^2}{I(\theta_0)}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(S\)</span> - The first derivative of the likelihood function</li>
+<li><span class="math inline">\(S(\theta_0)\)</span> - The slope at the null hypothesised value of the parameter in the likelihood function (<span class="math inline">\(\theta_0\)</span>)</li>
+<li><span class="math inline">\(I\)</span> - Information</li>
+<li><span class="math inline">\(I(\theta_0)\)</span> - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Evaluating the three tests</strong>
+<ul>
+<li>As <span class="math inline">\(n\)</span> increases towards infinity, the three tests have asymptotic equivalences (Cox and Hinkley, 1974, Sec. 9.3). For small to moderate sample sizes, the likelihood-ratio and score tests tend to be more reliable than the Wald test, that is that they vaeh an actual error rate closer to the nomimal level</li>
+</ul></li>
+<li><strong>Hessian matrix</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A square matrix in which each of the elements of the matrix is a second-order partial derivative of the function of interest with respect to the square of each of the variables</li>
+<li>A square matrix that describes the change in the rate of change at a particular point of a function (local curvature) of multiple variables<br />
+</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \mathbf{H}_f = \begin{bmatrix} \displaystyle \frac{\partial{}^2f}{\partial{x_{1}^{2}}} &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{2}}} &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{3}}} &amp; \displaystyle \cdots &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{n}}} \\ \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{1}}} &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{2}^2}} &amp;\displaystyle \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{3}}} &amp; \displaystyle \cdots &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{n}}} \\ \displaystyle \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{1}}} &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{3}}\partial{x_{2}} } &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{3}^2}} &amp; \displaystyle \cdots &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{n}}} \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \displaystyle \frac{\partial{}^2f}{\partial{x_{n}} \partial{x_{1}}} &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{n}}\partial{x_{2}} } &amp; \displaystyle \frac{\partial{n}^f}{\partial{x_{n}} \partial{x_{3}}} &amp; \cdots &amp; \displaystyle \frac{\partial{}^2f}{\partial{x_{n}^2}} \end{bmatrix}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\mathbf{H}_f\)</span> - The Hessian matrix of function <span class="math inline">\(\mathcal{f}\)</span></li>
+<li><span class="math inline">\(\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}\)</span> - The second-order derivative of the function with respect to the cross-product of variable <span class="math inline">\(x_i\)</span> and <span class="math inline">\(x_j\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Information</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Information is the negative of the expectation of the Second-order derivative of the (log) likelihood function</li>
+<li></li>
+</ul></li>
+</ul></li>
+<li><strong>Terms</strong>
+<ul>
+<li>Complement of an event - The complement of an event is the probability of that event not occurring</li>
+</ul></li>
+</ul>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="multivariate-analysis.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "night",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/samuel-mak/statistics/edit/master/07-categorical_outcomes.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/samuel-mak/statistics/blob/master/07-categorical_outcomes.Rmd",
+"text": null
+},
+"download": ["bookdownproj.pdf", "bookdownproj.epub", "bookdownproj.mobi"],
+"search": {
+"engine": "lunr",
+"options": null
+},
+"toc": {
+"collapse": "subsection",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
