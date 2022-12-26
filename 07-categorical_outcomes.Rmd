@@ -113,9 +113,6 @@
     - $y_i$ - The outcome of Bernoulli trial $i$ in the sequence of $n$ trials - 1 indicates that the "success" event had occurred and 0 indicates that the "failure" event had occurred in trial $i$
     - $y$ - The total number of "success" events in a sequence of $n$ trials - $y = \sum_{i = 1}^{n}{y_i}$
     - $y$ is treated as an independent random variable that can vary between the 2 possible outcomes (the "success" event or the "failure" event)
-    
-    
-    
     - Bernoulli process - When there is a sequence of Bernoulli trials 
     - $p= 1-q$
     - $p$ - The probability of event occurring 
@@ -125,7 +122,7 @@
 
 - **Binomial Distribution**
   - **Concept**
-    - A special case of the multinomial distribution when $K = 2$
+    - A special case of the multinomial distribution when the number of trials $K = 2$
     - A discrete probability distribution for the discrete independent random variable ($y$) of the number of the "success" events in a sequence of a fixed/finite $n$ number of Bernoulli trials/experiments (independent, identical) (the x-axis represents the number of successes; the y-axis represents the probability)
     - (if trials are not independent or identical, $y$ will not follow a binomial distribution, they will follow other distributions; e.g. hypergeometric distribution is for the case when trials are not independent; specifically, it samples without replacement)
     - A Bernoulli distribution is a special case of the binomial distribution where $n = 1$
@@ -138,10 +135,11 @@
       - $P(y) = {n\choose y} \pi^y (1 - \pi)^{n - y} ~~~, y = 0:n$
         - ***Notes***
           - ${n\choose y}$ - The binomial coefficient 
-    - **Mean of the binomial PMF**
+  - **Parameters of the binomial distribution**
+    - **Mean**
       - **Mathematics**
         - $\mu = \text{E}(y) = n\pi$
-    - **Variance of the binomial PMF**
+    - **Variance**
       - **Mathematics**
         - $\sigma^2 = n\pi(1-\pi)$
     - **Characteristics of the binomial distribution**
@@ -156,6 +154,7 @@
       - **$n$ and normality**
         - **Concept**
           - The binomial distribution converges to normality as $n$ increases
+          - For fixed $\pi$, the binomial distribution can be reasonably assumed to be normal when $n[\min(\pi, 1–\pi)]$ is as small as about 5 (Agresti, 2013, p.5)
 
 - **Statistical Inference with the Binomial distribution (Not developed)**
   - **Wald test**
@@ -173,33 +172,47 @@
   - **Concept**
     - A discrete probability distribution for the discrete independent random variable ($y$) of the combination of numbers with each number being the number of occurrence of each of the multiple possible outcomes in a sequence of a fixed/finite $n$ number of random independent and identical trial/experiment 
     - The categorical distribution is a special case of the multinomial distribution where $n = 1$
-    - The probability of obtaining a combination of $n_1, n_2, \cdots, n_k$ is denoted as $\text{P}(n_1, n_2, \cdots, n_k)$ where $n_k$ is the number of occurrence for category $k$ in a sequence of $n$ random, independent, and identical trials 
+    - The probability of obtaining a combination of $n_1, n_2, \cdots, n_k$ is denoted as $\text{P}(n_1, n_2, \cdots, n_k)$ where $n_k$ is the number of occurrence for outcome $k$ in a sequence of $n$ random, independent, and identical trials 
     - <details> <summary> Alternative text </summary> In 1 trial, there are multiple (but fixed) number of possible outcomes, the outcome of a trial is represented by a combination (e.g. if there are 4 possible outcomes, the combination could be 0, 1, 0, 0, meaning that the outcome for this trial is category 2). Now imagine we have $16$ of this trial, the combination could be something like 4, 4, 4, 4. The multinomial distribution models the probability of getting different combinations. In the case of 4, 4, 4, 4, this is a fair trial (the null hypothesis), where each of the categories have equal chance of occurrence, so this combination after $16$ trials would be the most probable (it has a probability of 0.50), whereas a combination of something like 6, 5, 3, 2 would be less probable in the null multinomial distribution </details>
-    - **The outcome of a single trial ($y_i$)**
+    - **The outcome of a single multinomial trial ($y_i$)**
       - **Concept**
-        - There are multiple but fixed number of possible outcomes in a single random, independent, and identical trial 
+        - The outcome of a single random, independent and identical multinomial trial 
+        - The outcome can be one of multiple but fixed number of possible outcomes 
       - **Mathematics**
         - $y_i = (y_{i,1}, y_{i,2}, \cdots , y_{i,k})$
           - ***Where***
             - $k$ - The number of possible outcomes of a single trial 
-    - **The outcome of $n$ trials**
+    - **The outcome of a sequence of $n$ multinomial trials**
       - **Concept**
         - The number of occurrence of each of the $k$ outcomes after a sequence of $n$ random, independent, and identical trials 
-        - This is represented as a series/combination of $k$ numbers with each number representing the number of occurrence of each of the $k$ outcomes after a sequence of $n$ random, independent, and identical trials
+        - This is represented as a combination of $k$ numbers with each number representing the number of occurrence of each of the $k$ outcomes after a sequence of $n$ random, independent, and identical trials
       - **Mathematics**
         - $y = (n_1, n_2, \cdots , n_k)$
   - **Multinomial probability mass function**
     - **Concept**
-      - A function that models the probability of each of all possible outcome combinations
-      - The multinomial has $K - 1$ dimensions
+      - A function that models the probability of each of all possible outcome combinations 
+      - The multinomial distribution has $K - 1$ dimensions because $y_{i,k}$ is linearly dependent on the others and therefore is redundant
     - **Mathematics**
-      - $\displaystyle \text{P}(n_1, n_2, \cdots , n_k) = \left( \frac{n!}{\Pi_{k = 1}^{K}{n_k!}} \right) \Pi_{k = 1}^{K}{\pi_{k}^{n_k}}$
-  
+      - $\displaystyle \text{P}(n_1, n_2, \cdots , n_{k-1}) = \left( \frac{n!}{\Pi_{k = 1}^{K}{n_k!}} \right) \Pi_{k = 1}^{K}{\pi_{k}^{n_k}}$
+  - **Parameters of a multinomial distribution**
+    - **Expectation**
+      - **Mathematics**
+        - $E(n_j) = n\pi_j$
+    - **Variance**
+      - **Mathematics**
+        - $\sigma^2_{n_j} = n\pi_j(1-\pi_j)$
+    - **Covariance between any two outcomes**
+      - **Mathematics**
+        - $\text{Cov}(n_j, n_k) = -n\pi_j\pi_k$
   
 - **Poisson distribution**
+  - **History**
+    - Introduced by Poisson (1781 - 1840) and published with his probability theory in his work Recherches sur la probabilité des judgements en matié criminelle et en matiére civile (1837) where he theorised about the number of wrongful convictions in a given country by fousing on certain random variables N that count the number of discrete occurrenses that take place during a time-interval of given length 
+    - Newcomb (1860) applied the Poisson distribution to estimate the distribution of the number of stars found in a unit of space
+    - Bortkiewicz (1898) applied the Poisson distribution to estimate the number of soldiers in the Prussian army killed accidentally by horse kicks (this experiment introduced the Poisson distribution to the field of reliability engineering)
   - **Concept**
     - A discrete probability distribution of the discrete independent random variable ($y$) of the number of the "success" events in a sequence of an infinite number of Bernoulli trials/experiments (independent, identical) within a fixed time interval and space 
-    - The Poisson distribution is used for the number of events that occur randomly over time or space when outcomes in disjoint periods or regions are independent 
+    - The Poisson distribution is used for the number of events that occur randomly over a fixed window of time or space when outcomes in disjoint periods or regions are independent 
     - The Poisson distribution can be used for the binomial case when $n$ is larger and $\pi$ is small (then $\mu = n\pi$)
     - The Poisson distribution is conceptually similar to the binomial distribution, the difference is that the binomial distribution has a fixed number of trials ($n$), meanwhile, the Poisson distribution has an infinite number of trials (an infinite population of trials)
   - **Poisson probability mass function**
@@ -215,6 +228,9 @@
         - The number of occurrence of an event in the null Poisson distribution
       - **Mathematics**
         - $\mu = \text{E}(y_i) = \lambda$
+    - **Mode of the Poisson distribution**
+      - **Concept**
+        - The mode equals to the integer part of $\mu$
     - **Variance of the Poisson PMF**
       - **Concept**
         - The variance of the Poisson PMF is the same as its mean 
@@ -227,15 +243,37 @@
         - $\displaystyle \frac{\text{E}(y - \mu)^3}{\sigma^3} = \frac{1}{\sqrt{\mu}}$
 
 
+- **Binomial and Poission distribution and the problem of Overdispersion**
+  - **Concept**
+    - Modelling count observations with binomial or Poission distributions often result in overdispersion. 
+    - $\mu$ can vary because of unmeasured factor
+    - Unconditionally, 
+      - The Expectation is 
+        - $E(y) = E[E(y | \mu)]$
+      - The variance is 
+        - $\text{Var}(y) = E[\text{Var}(y|\mu)] + \text{Var}[E(y|\mu)]$
+        
 
+        
+- **Overdispersion**
+  - **Concept**
+    - The phenomenon in which the observed variability in the real world is larger than the variability predicted by the statistical model
+    - This may cause inaccurate inferences 
+    - Overdispersion is a common feature because in practice populations are frequently heterogeneous 
+    - Count observations using the binomial or Poission distribution often encounter this problem 
+
+
+    
+    
+    
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Likelihood**</p>
 
 - **Likelihood**
   - **Concept**
-    - The probability of the observed sample data as a function of the parameters of the chosen statistical model 
-    - The probability of obtaining the observed sample data given the parameters of the chosen statistical model
+    - The probability of the observed sample data/datum as a function of the parameters of the chosen statistical model/distribution
+    - In the case of data (when there are multiple observations), it is the joint probability between the observations under the statistical model/distribution given the values of the parameters of the statistical model/distribution
   - **Related terms**
-    - **Kernal** - The part of a likelihood function that involves the model parameters (the relevant part of the likelihood function)
+    - **Kernel** - The part of a likelihood function that involves the model parameters (the relevant part of the likelihood function)
   - **Mathematics**
     - $\displaystyle \mathcal{L}(\theta | X) = \text{PF}(x_i)$
       - ***Where***
@@ -245,17 +283,30 @@
         - It can also be written as $\text{P}(X | \theta)$, but this is less commonly used
         
         
-- **Likelihood function**
+- **The likelihood function of a random sample**
   - **Concept**
-    - A function that models the likelihood as a function of the value of the parameter 
-    - It forms a graph that is like a normal distribution with likelihood against the values of the parameter(s)
-    - It is like a sampling distribution in which there is an infinite number of sample data of the same size (n) with different parameter estimates each with an associated probability (likelihood) - The estimate with the highest likelihood is the MLE - This estimate has the highest probability of being obtained given the true population parameter value 
-    - Usually, the likelihood function is logged for further purposes, logging the likelihood function will result in a concave graph 
+    - A function that describes the likelihood of a random sample data/datum as a function of the values of the parameters of the chosen statistical model
+    - The graph of the likelihood function is the likelihood against the values of the parameter(s) of the chosen statistical model
+    - The graph is concave for most models 
+  - **Mathematics**
+    - $\displaystyle \mathcal{L}(\theta; \mathbf{x}) = \prod_{i = 1}^{n}{f(x_i; \theta)} $
+      - ***Where***
+        - $f(x_i; \theta)$ - The probability density function (PDF) for the variable of interest (in this example here the statistical model has only one parameter, $\theta$, when it has two parameters, let's say $\sigma^2$, then it is expressed as $f(x_i; \theta, \sigma^2)$)
+        - $\mathbf{x} = (x_1, x_2, x_3, \cdots , x_n)'$ - The observed random variable/data 
+      - ***Notes***
+        - $\mathcal{L}(\theta; \mathbf{x})$ can be denoted as $\mathcal{L}(\theta)$
+  - **Log likelihood function**
+    - **Concept**
+      - The log of the likelihood/likelihood function
+      - The log likelihood function is often used instead of the likelihood function because it is more convenient to use and it simplifies many of the later calculations (e.g. it is a sum rather than product of terms)
+      - No information is lost from logging the likelihood because the log is a one-to-one function
+      - Since the log is a strictly increasing function, the values of the model parameters that maximise $\mathcal{l}(\theta; \text{x})$ are the same as the values that maximise $\mathcal{L}(\theta; \mathbf{x})$
+    - **Mathematics**
+      - $\displaystyle \mathcal{l}(\theta; \text{x})=\log{\mathcal{L}(\theta; \text{x})} = \sum_{i = 1}^{n}{\log f(x_i; \theta)}$
+      - ***Notes***
+        - $\mathcal{l}(\theta; \text{x})$ can be denoted as $\mathcal{l}(\theta)$
+
     
-    
-- **Likelihood ratio**
-  - **Concept**
-    - The ratio of one likelihood and another likelihood 
     
     
         
@@ -264,33 +315,89 @@
 
 - **Maximum Likelihood Estimation**
   - **Concept**
-    - An estimation method in which the model parameters are estimated by finding the parameters of the statistical model that maximizes the likelihood of obtaining the data through setting the partial derivative of the particular likelihood function to 0 
-    - Because the likelihood curve is concave, setting this to 0 will get the maxima of the curve; the point that represents the highest possible likelihood of obtaining the sample data)
-    - Sometimes it is called Maximum Log Likelihood because the function is logged for simplifying the calculation during the maximisation problem 
-    
-    
-    
-- **Maximum Likelihood Estimation for binomial Parameter**
-  - **MLE for the population parameter**
+    - An estimation method in which the model parameters are estimated by finding the parameters of the statistical model that maximizes the likelihood of the data through setting the partial derivative of the likelihood function of the data to 0 
+    - Because the likelihood curve is concave, setting this to 0 will get the maxima of the curve; the point that represents the maximum likelihood of the data)
+  - **Mathematics**
+    - The value of $\theta$ with the maximum likelihood of the data 
+      - $\hat\theta = Argmax\mathcal{L}(\theta; \mathbf{x})$
+        - ***Where***
+          - $Argmax\mathcal{L}(\theta; \mathbf{x})$ - This notation means that $\mathcal{L}(\theta; \mathbf{x})$ achieves its maximum value at $\hat\theta$ - The value of $\theta$ with the maximum likelihood 
+    - The value of $\theta$ with the maximum likelihood of the data is found through maximisation of the likelihood function by setting the partial derivative of the likelihood function to 0 
+    - $\displaystyle \frac{\partial\mathcal{L}(\theta)}{\partial \theta} = 0$
+      - ***Notes***
+        - The log likelihood function can be used but I just used the likelihood function here
+        - This is an estimating equation (EE), an equation for estimating the population parameters
+        - If there are multiple parameters (e.g. a normal distribution that has parameter $\mu$ and $\sigma$), the parameters are solved through setting each of the partial derivative for each of the parameters to 0
+- **Properties of the MLEs (THIS SECTION IS NOT DEVELOPED)**
+  - **Theorem 1**
     - **Concept**
-      - The log likelihood of the kernal 
-    - **Mathematics**
-      - **The log likelihood function:**
-        - $\begin{aligned} \displaystyle \mathcal{L}(\pi)&=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}$ 
-      - **The derivative of the likelihood function:**
-        - $\begin{aligned} \displaystyle \frac{\partial{\mathcal{L}(\pi)}}{\partial{\pi}} &= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}$
-      - **Maximisation problem: set the derivative of the log likelihood function to 0 and find $\pi$**
-        - $\begin{aligned} \displaystyle \frac{y - n\pi}{\pi(1-\pi)} &= 0 \\ \displaystyle y - n\pi &= 0 \\ \displaystyle \hat\pi &= \frac{y}{n}\end{aligned}$
-          - ***Notes***
-            - As you can see, this is the sample proportion of success for the $n$ trials
-  - **MLE for the variance**
+      - If the parameter of interest $\eta $ is the parameter $\theta$ in some sort of function $g(\theta)$, ($\eta =g(\theta)$), then the mle of $\theta$ in the same function is the mle of $eta$ ($\hat\eta$)
+      - $g(\hat\theta)$ is the MLE of $\eta = g(\theta)$
+      - $\hat\eta = g(\hat\theta)$
+      - "In some situations, besides the parameter $\theta$, we are also interested in the parameter $\eta = g(\theta)$, it can be shown that the mle of $\eta$ is $\hat\eta = g(\hat\theta)$ where $\hat\theta$ is the mle of $\theta$"
+  - **Theorem 2**
     - **Concept**
-      - The sampling variance of the parameter estimate based on the ML method is the inverse of the information 
+      - The larger the sample size, the closer the mle is to the true parameter value ??? DON'T KNOW ABOUT THIS 
+      
+- **Hessian matrix**
+  - **Concept**
+    - A square matrix in which each of the elements of the matrix is a second-order partial derivative of the function of interest with respect to the square of each of the variables 
+    - A square matrix that describes the change in the rate of change at a particular point of a function (local curvature) of multiple variables  
+    - The Hessian matrix is a general mathematical concept and it is applied in statistics
+  - **Mathematics**
+    - $\displaystyle \mathbf{H}_f = \begin{bmatrix} \displaystyle \frac{\partial{}^2f}{\partial{x_{1}^{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{n}}} \\ \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{2}^2}} &\displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{n}}}   \\  \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}}\partial{x_{2}} } & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}^2}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{n}}}  \\ \vdots & \vdots & \vdots & \ddots & \vdots \\   \displaystyle  \frac{\partial{}^2f}{\partial{x_{n}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}}\partial{x_{2}} } & \displaystyle  \frac{\partial{n}^f}{\partial{x_{n}} \partial{x_{3}}} & \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}^2}} \end{bmatrix}$
+      - ***Where***
+        - $\mathbf{H}_f$ - The Hessian matrix of function $\mathcal{f}$
+        - $\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}$ - The second-order derivative of the function with respect to the cross-product of variable $x_i$ and $x_j$
+        
+- **The Score Function**
+  - **Concept**
+    - The slope of the graph of the log likelihood function given the value of the parameter
+  - **Mathematics**
+    - $\text{score} = \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$
+  - **The expectation of score**
+    - **Concept**
+      - The expectation of score is 0
     - **Mathematics**
-      - $\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &= \text{information}^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &= \frac{\pi(1-\pi)}{n} \end{aligned}$
-  - **MLE for the standard error**
+      - $\displaystyle E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} \right] = 0$
+      
+- **Information**
+  - **Concept**
+    - A quantity that quantifies the amount of information that an observable random variable carries about an unknown parameter of a statistical model/distribution of that random variable 
+    - Through derivations, it can be shown that Fisher Information can be defined in terms of the variance of the score or the curvature of the likelihood function
+  - **Information defined as the variance of the score (a random variable)**
+    - **Concept**
+      - Information can be defined as the variance of the random variable of the score ($\frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$)
+    - **Mathematics** 
+      - $\displaystyle I(\theta) = E\left[\left( \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}\right)^2 | \theta \right] = \text{Var}\left( \frac{\partial\mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta\right)$
+  - **Information defined as the Curvature of the likelihood function**
+    - **Concept**
+      - Information can be defined or expressed in terms of the curvature of the graph of the (log) likelihood function of the observed data/datum under certain regularity conditions (e.g. the log likelihood function is twice differentiable with respect to $\theta$)
+      - The greater the curvature of the graph of the likelihood function, the more information the data has about the unknown parameters of the model (in the extreme case when the graph of the likelihood function is at the highest at a single value of the parameter and 0 at all other values of the parameter, in other words, the likelihood is non-zero at a single point in the parameter space, the data contains complete information about the value of the parameter)
+      - The smaller the curvature of the graph of the likelihood function, the less information the data has about the unknown parameters of the model (if the graph of the likelihood function is flat, that is, when the likelihood is the same across values of the parameter, then the data contains no information at all about the value of the parameter)
+    - Mathematically, information defined as the curvature of the likelihood graph is the negative of the expectation of the Hessian matrix where each element is the second derivative of the (log) likelihood function
     - **Mathematics**
-      - $\begin{aligned} \displaystyle \sigma_{\hat\pi} &= \sqrt{\sigma_{\hat\pi}^{2}} \\ &= \sqrt{\frac{\pi(1-\pi)}{n}} \end{aligned}$
+      - $\displaystyle \textbf{I}(\theta) = -E(\textbf{H}| \theta) \\ \displaystyle \textbf{I}(\theta) = -E\left[\frac{\partial^2 \mathcal{l}(\theta; \text{x})}{\partial \theta^2} | \theta\right]$
+        - ***Notes***
+          - Usually, Information expressed this way is easier to compute than Information expressed as the variance of the score 
+          
+- **Variance of model parameters**
+  - **Concept**
+    - The variance of a model parameter or the variance-covariance matrix of a vector of model parameters
+    - Under regularity conditions, the variance-covariance of model parameters is the inverse of the information weighted by n (sample size) (Rao, 1973, p.364; Rao Cramer lower bound)
+  - **Mathematics**
+    - **For one parameter**
+      - $\begin{aligned} \displaystyle \text{Var}(\hat\theta) &= \sigma_{\hat\theta}^{2}= \frac{1}{n}I^{-1}(\hat\theta) = \frac{1}{nI(\hat\theta)} \\ \displaystyle \text{SE}(\hat\theta) &= \sqrt{\sigma_{\hat\theta}^{2}} = \sqrt{\frac{1}{n}I^{-1}(\hat\theta)} = \sqrt{\frac{1}{nI(\hat\theta)}} \end{aligned}$
+    - **For multiple parameters**
+      - $\displaystyle \textbf{Cov}(\hat\theta) = \frac{1}{n}\textbf{I}^{-1}(\theta)$
+        - ***Notes***
+          - This is a variance-covariance matrix, the variance for each of the model parameters are in the diagonal. To get the Standard Error of each of the model parameters, square the variance of the model parameters. 
+          
+          
+
+          
+          
+    
 
 - **NHST for MLE**
   - Wald test 
@@ -308,6 +415,21 @@
           - $\theta_0$ - The value of the parameter under the null hypothesis 
           - $\sigma^2_{\theta}$ 
             - The sampling variance of the population parameter under the alternative hypothesis
+    - **Distribution of the Wald statistic**
+      - **Concept**
+        - The Wald statistic has an approximate central Chi-squared distribution with df of 1
+      - **Mathematics**
+        - $W \sim \chi^2(1)$
+  - **z-transformed Wald statistic**
+    - **Concept**
+      - The Wald statistic transformed into a z normal statistic
+    - **Mathematics**
+      - $z_W = \sqrt{W}$
+    - **Distribution of the z Wald statistic**
+      - **Concept**
+        - The z Wald statistic has an approximate z normal distribution 
+      - **Mathematics**
+        - $z_W \sim \mathcal{N}(df)$
 
 - **Likelihood ratio test (Wilks test)**
   - **The likelihood ratio test statistic**
@@ -315,20 +437,19 @@
       - The ratio of the likelihood under the alternative hypothesis and the likelihood under the null hypothesis 
       - The squared vertical deviation between the maximised likelihood under the alternative hypothesis and the likelihood of the null hypothesized value of the parameter under the alternative hypothesis
     - **Mathematics**
-      - $\displaystyle -2\log \Lambda = -2 \log\left( \frac{\ell_{\theta_0}}{\ell_{\theta_1}}\right) = -2(\ell_{\theta_0} - \ell_{\theta_1})$
+      - $\displaystyle -2\log \Lambda = -2 \log\left[ \frac{\mathcal{L}{(\theta_0)}}{\mathcal{L}({\theta_1})}\right] = -2\left[\mathcal{L}{(\theta_0)} - \mathcal{L}{(\theta_1)}\right]$
         - ***Where***
           - $L$ -  Maximised log-likelihood function
-          - $\ell_{\hat\theta_1}$ - The maximised likelihood of the value of the parameter given the data (under the alternative hypothesis) 
-          - $\\ell_{\theta_0}$ - The likelihood of the null hypothesised value of the parameter in the likelihood function given the data (under the alternative hypothesis) (The Maximised value of the likelihood generally (under both the null and alternative hypothesis; $H_0 \cup H_1$)?)
+          - $\mathcal{L}{(\theta_1)}$ - The maximised likelihood of the value of the parameter given the data (under the alternative hypothesis) 
+          - $\mathcal{L}{(\theta_0)}$ - The likelihood of the null hypothesised value of the parameter in the likelihood function given the data (under the alternative hypothesis) 
   - **Degrees of freedom of the likelihood ratio test statistic**
     - **Concept**
       - The df is the difference in the dimensions of the parameter spaces under $H_0 \cup H_1$ and $h_0$
   - **The distribution of the likelihood ratio test statistic**
     - **Concept**
-      - The likelihood ratio test statistic has an approximate central chi-squared distribution 
-      - The likelihood ratio test statistic tends towards a central chi-squared distribution as $n$ increases 
+      - Under certain regularity conditions, the null distribution of the likelihood ratio statistic tends towards a chi-squared distribution with 1 degrees of freedom as sample size increases 
     - **Mathematics**
-      - $\displaystyle -2\log \Lambda \sim \chi^2(df)$
+      - $\displaystyle -2\log \Lambda \sim \chi^2(1) \\ or \\ -2\log \Lambda \overset{D}{\to} \chi^2(1) $
       
       
       
@@ -337,71 +458,238 @@
     - Based on the slope and expected curvature at the null hypothesised value of the parameter in the log-likelihood function 
   - **The score statistic**
     - **Mathematics**
-      - $\displaystyle \frac{S(\theta_0)^2}{I(\theta_0)}$
+      - $\displaystyle \frac{\mathcal{L'}(\theta_0)^2}{I(\theta_0)}$
         - ***Where***
-          - $S$ - The first derivative of the likelihood function 
-          - $S(\theta_0)$ - The slope at the null hypothesised value of the parameter in the likelihood function ($\theta_0$)
+          - $\mathcal{L'}$ - The first derivative of the likelihood function 
+          - $\mathcal{L'}(\theta_0)^2$ - The slope at the null hypothesised value of the parameter in the likelihood function (sub in the null hypothesised value of the parameter into the first derivative of the likelihood function and you will get this) ($\theta_0$)
           - $I$ - Information 
           - $I(\theta_0)$ - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))
+        - ***Notes***
+          - Some textbooks (e.g. Hogg and McKean) say it's like this $\displaystyle \frac{\mathcal{L'}(\theta_0)^2}{nI(\theta_0)}$
+    - **Central Distribution of the score statistic**
+      - **Concept**
+        - The score statistic under the null hypothesis has a central Chi-square distribution 
+  - **z transformed score statistic**
+    - **Concept**
+      - The score statistic can be transformed into a z normal statistic under the null hypothesis that has an approximate central normal distribution 
+    - **Mathematics**
+      - $\displaystyle \sqrt{\frac{S(\theta_0)^2}{I(\theta_0)}}$
 
 
 - **Evaluating the three tests**
-  - As $n$ increases towards infinity, the three tests have asymptotic equivalences (Cox and Hinkley, 1974, Sec. 9.3). For small to moderate sample sizes, the likelihood-ratio and score tests tend to be more reliable than the Wald test, that is that they vaeh an actual error rate closer to the nomimal level 
+  - As $n$ increases towards infinity, the three tests have asymptotic equivalences (Cox and Hinkley, 1974, Sec. 9.3). For small to moderate sample sizes, the likelihood-ratio and score tests tend to be more reliable than the Wald test, that is that they vaeh an actual error rate closer to the nominal level 
       
       
-- **Hessian matrix**
-  - **Concept**
-    - A square matrix in which each of the elements of the matrix is a second-order partial derivative of the function of interest with respect to the square of each of the variables 
-    - A square matrix that describes the change in the rate of change at a particular point of a function (local curvature) of multiple variables  
-  - **Mathematics**
-    - $\displaystyle \mathbf{H}_f = \begin{bmatrix} \displaystyle \frac{\partial{}^2f}{\partial{x_{1}^{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{n}}} \\   \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{2}^2}} &\displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{n}}}   \\  \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}}\partial{x_{2}} } & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}^2}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{n}}}  \\ \vdots & \vdots & \vdots & \ddots & \vdots \\   \displaystyle  \frac{\partial{}^2f}{\partial{x_{n}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}}\partial{x_{2}} } & \displaystyle  \frac{\partial{n}^f}{\partial{x_{n}} \partial{x_{3}}} & \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}^2}} \end{bmatrix}$
-      - ***Where***
-        - $\mathbf{H}_f$ - The Hessian matrix of function $\mathcal{f}$
-        - $\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}$ - The second-order derivative of the function with respect to the cross-product of variable $x_i$ and $x_j$
+      
+      
+      
+
+        
+- **Maximum Likelihood Estimation for binomial Parameter**
+  - **MLE for the population parameter**
+    - **Concept**
+      - The log likelihood of the kernal 
+    - **Mathematics**
+      - **The log likelihood function:**
+        - $\begin{aligned} \displaystyle \mathcal{L}(\pi)&=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}$ 
+      - **The derivative of the likelihood function:**
+        - $\begin{aligned} \displaystyle \frac{\partial{\mathcal{L}(\pi)}}{\partial{\pi}} \displaystyle &= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}$
+      - **Maximisation problem: set the derivative of the log likelihood function to 0 and find $\pi$**
+        - $\begin{aligned} \displaystyle \frac{y - n\pi}{\pi(1-\pi)} &= 0 \\ \displaystyle y - n\pi &= 0 \\ \displaystyle \hat\pi &= \frac{y}{n}\end{aligned}$
+          - ***Notes***
+            - As you can see, this is the sample proportion of success for the $n$ trials
+  - **MLE for the variance of $\hat\pi$**
+    - **Concept**
+      - The variance of the parameter estimate in the distribution under the null hypothesis based on the ML method 
+      - It is estimated from the variance of the sample 
+    - **Mathematics**
+      - $\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &= \text{information}^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &= \frac{\pi(1-\pi)}{n} \end{aligned}$
+  - **MLE for the standard error**
+    - **Mathematics**
+      - $\begin{aligned} \displaystyle \sigma_{\hat\pi} &= \sqrt{\sigma_{\hat\pi}^{2}} \\ &= \sqrt{\frac{\pi(1-\pi)}{n}} \end{aligned}$
+
+- **NHST of the binomial parameter $\hat\pi$**
+  - **Wald test**
+    - **The z Wald statistic**
+     - **Mathematics**    
+      - $\displaystyle z_W = \frac{\hat\pi - \pi_0}{\sigma_{\hat\pi}} = \frac{\hat\pi - \pi_0}{\sqrt{\frac{\hat\pi(1-\hat\pi)}{n}}}$
+  - **Score statistic test**
+    - **Concept**
+      - Since the Wald statistic uses the standard error evaluated at $\hat\pi$ and the score statistic uses the standard error evaluated at $\pi_0$, the score statistic is preferred because it uses the actual null SE rather than an estimate of the null SE
+    - **The score statistic**
+      - **Mathematics**
+        - $\displaystyle \frac{S(\theta_0)^2}{I(\theta_0)} = \displaystyle \frac{S(\pi_0)^2}{I(\pi_0)} $
+        - Finding the slope of the likelihood function at the null hypothesised value of the parameter ($S(\pi_0)^2$)
+          - The first derivative of the likelihood function for $\pi$
+            - $\displaystyle S(\pi) = \frac{y - n\pi}{\pi(1-\pi)}$
+          - Sub in $\pi_0$
+            - $\displaystyle S(\pi_0) = \frac{y - n\pi_0}{\pi_0(1-\pi_0)}$
+          - Square it 
+            - $\displaystyle \left[\frac{y - n\pi_0}{\pi_0(1-\pi_0)}\right]^2 $
+        - Finding the SE of the slope under the null hypothesis ($I(\pi_0)$)
+          - $\begin{aligned}\displaystyle I(\pi_0) &=  -E\left(\frac{\partial{}^2f}{\partial{x_{1}^{2}}}\right) \\ \displaystyle &= -E\left(\frac{\partial{}^2 \mathcal{L}(\pi)}{\partial{\pi_0^{2}}}\right) \\ \displaystyle &= \frac{n}{\pi_0 (1 - \pi_0)} \end{aligned}$
+        - Hence 
+          - $\displaystyle \frac{S(\pi_0)^2}{I(\pi_0)} = \frac{\left[\frac{y - n\pi_0}{\pi_0(1-\pi_0)}\right]^2}{\frac{n}{\pi_0 (1 - \pi_0)}} = \frac{(y - n\pi_0)^2}{\frac{\pi_0(1-\pi_0)}{n}} = \frac{(\hat\pi - \pi_0)^2}{\frac{\pi_0(1-\pi_0)}{n}}$
+        
 
 
-- **Information**
-  - **Concept**
-    - Information is the negative of the expectation of the Second-order derivative of the (log) likelihood function
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**The Generalised Linear Model**</p>      
+
+- **Concept**
+  - An extension of ordinary regression models to encompass non-normal distributions of the outcome variable/residuals 
+  - There three components of GLM 
+    - Random component
+    - Systematic component 
+    - Link function
+  - Random component 
+    - Identifies the outcome variable and its probability distribution
+  - Systematic component 
+    - Specifies explanatory variables used in a linear combination
+
+- **Link function**
+  - A function in Generalised Linear Models that maps the random with the systematic components
+  - **Types of link function**
+    - Identity link function
+    - Logit link function
+    - 
     - 
 
 
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Other stuff**</p>    
+
+- **Unbiasedness of an estimator**
+  - **Definition**
+    - Let $x_1, x_2, x_3, \cdots , x_n$ be a sample on a random variable $X$ with pdf $f(x; \theta)$. Let $S = S(x_1, x_2, x_3, \cdots , x_n)$ be a statistic. $S$ is an unbiased estimator of the population parameter $\theta$ if $E(S) = \theta$
 
 
 
+
+
+
+- **Cramér-Rao Lower Bound**
+  - **Concept**
+    - The CRLB states that the variance of an estimator cannot be lower than the CRLB
+    - That is, the CRLB is the smallest possible variance of an estimator 
+  - **For unbiased or biased estimators**
+    - **Mathematics**
+      - This is for the case when $\hat\theta$ can be an unbiased or biased estimator of $\theta$, that is when the expectation of $\hat\theta$ is not $\theta$ but some kind of function of this (e.g. $k(\theta)$)
+      - Let $x_1, x_2, x_3, \cdots, x_n$ be idd with a pdf $f(x; \theta)$. Let $S = u(x_1, x_2, x_3, \cdots, x_n)$ be a sample statistic with a mean $E(S) = E[u(x_1, x_2, x_3, \cdots, x_n)] = k(\theta)$. Under the first 4 regularity conditions: 
+        - $\displaystyle \text{Var}(\theta) ≥ \frac{\left[k'(\theta)\right]^2}{n I(\theta)}$
+  - **For unbiased estimators**  
+    - **Mathematics**
+      - If $S = u(x_1, x_2, x_3, \cdots, x_n)$ is an unbiased estimator of $\theta$, so that $k(\theta) = \theta$, then the Cramér-Rao inequality becomes: 
+      - $\displaystyle \text{Var}(\hat\theta) ≥ \frac{1}{I(\theta)}$
+
+- **Efficient Estimator**
+  - **Concept** 
+    - A sample statistic is an efficient estimator of the population parameter $\theta$ only if the variance of the sample statistic is equal to the Cramér-Rao lower bound 
+  - **Efficiency**
+    - **Concept**
+      - The efficiency of an estimator is quantified as the ratio of the Cramér-Rao lower bound to the actual variance of an unbiased estimator 
+    - **Mathematics**
+      - $\displaystyle \text{Efficiency} = \frac{\textit{CRLB}}{\text{Var}(\theta)} \\ \displaystyle e(\hat\theta_{1n}) = \frac{\frac{1}{I(\theta_0)}}{\sigma^2_{\hat\theta_{1n}}}$
+    - **Interpretation**
+      - According to the CRLB, the variance cannot be lower than the CRLB
+      - Hence, efficiency ranges from asymptotic 0 to 1
+      - An efficiency of 1 means that the estimator is asymptotically efficient 
+      - An efficiency smaller than 1 means that the estimator is inefficient 
+      - The smaller the efficiency below 1 and towards 0, the less efficient is the estimator
+  - **MLE and efficiency**
+    - It can be shown that under regularity conditions, mles achieve an efficiency of 1 asymptotically. In other words, the variances of mles achieve their Cramér-Rao lower bounds asymptotically 
+
+- **Regularity conditions of MLEs (DON'T FUCKING KNOW! Not developed)**
+  1. The variables are independent and identically distributed with density $f(y; \theta)$
+  2. The parameter space $\Theta$ is compact
+  3. The value of the parameter is identified 
+  4. The likelihood function is continuous in $\theta$
+  5. $E_{\theta_0} \log f(Y; \theta)$ exists
+  6. The log-likelihood function is such that $\frac{1}{n}\mathcal{L}(y; \theta)$ converges in probability to $E_{\theta_0} \log f(Y; \theta)$ uniformly in $\theta \in \Theta$
+  7. The pdf is at least twice differentiable as a function of $\theta$
+  8. Integration and differential operators are interchangeable - The order of integration and differentiation can be interchanged 
+  9. The information matrix exists and is non-singular 
+  10. The integral $\int f(x; \theta) dx$ can be differentiated twice under the integral sign as a function of $\theta$
+- **Additional regularity conditions**
+  - The pdf is at least three times differentiable as a function of $\theta$. For all $\theta \in \Omega$, there exist a constant c and a function $M(x)$ such that 
+  
+  
+  
+- **Properties of MLEs**
+  - MLEs are asymptotically efficient 
+  - MLEs are asymptotically normal 
+  - MLEs are asymptotically consistent 
+  
+  
+- **MLEs are asymptotically efficient**
+  - **Concept**
+    - Under regularity conditions, MLEs are asymptotically efficient
+    - This means that the variance of an mle approaches the minimum variance (i.e. CRLB) as sample size increases towards infinity
+    - The efficiency of mles converges to 1 as $n \rightarrow \infty$
     
+    
+- **MLEs are asymptotically normal**
+  - **Concept**
+    - Under certain regularity conditions and correct model specification, MLEs are asymptotically normal 
+    - The distribution of $\hat\theta_{mle}$ approaches normal as sample size increases towards infinity 
+    
+
+
+- **MLEs are asymptotically consistent**
+  - **Concept**
+    - Under regularity conditions 1-6, MLEs are asymptotically consistent 
+    - This means that MLEs in the sampling distribution converge in probability to the true value of the parameter as sample size increases towards infinity 
+    - $\hat\theta \overset{P}{\to} \theta_0 $
+
+
+
+- **Variance of an MLE**    
+  - **Concept**
+    - The asymptotically consistent estimate of the variance 
+  - **Mathematics**
+    - $\displaystyle \text{Var}(\hat\theta) = \frac{1}{nI(\theta_0)}$
+  - **Estimation**
+    - **Concept**
+      - As seen, the variance of an MLE is a function of the true population parameter value. However, this is often unknown, the estimate of this value is used instead. 
+    - **Mathematics**
+      - $\displaystyle \text{Var}(\hat\theta) = \frac{1}{nI(\hat\theta)}$
+    - **Asymptotically consistent**
+      - This estimate of the variance is asymptotically consistent 
+      - It converges in probability to the true variance 
+      - $I(\hat\theta)  \overset{P}{\to} I(\theta_0) $
+
+- **SE of an MLE**
+  - **Mathematics**
+    - $\displaystyle \sqrt{\frac{1}{nI(\theta_0)}}$
+  - **Estimation**
+    - **Mathematics**
+      - $\displaystyle \sqrt{\frac{1}{nI(\hat\theta)}}$
+
+
+##########
+OTHERS 
+
+- **Negative Binomial Distribution**
+  - **Concept**
+    - 
+        
+
 - **Terms**
   - Complement of an event - The complement of an event is the probability of that event not occurring 
         
-
-        
-        
-        
-        
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

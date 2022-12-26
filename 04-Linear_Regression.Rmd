@@ -1241,34 +1241,34 @@ contr.poly(4)
 
 
 ```{r}
-library(tidyverse)
-ucla_dat
-ucla_dat$race.f = factor(ucla_dat$race, labels = c("Hispanic", "Asian", "African-Am", "Caucasian"))
+#library(tidyverse)
+#ucla_dat
+#ucla_dat$race.f = factor(ucla_dat$race, labels = c("Hispanic", "Asian", "African-Am", "Caucasian"))
 
-ucla_dat <- ucla_dat |> mutate(ses = factor(ses, labels = c("One", "Two", "Three")))
+#ucla_dat <- ucla_dat |> mutate(ses = factor(ses, labels = c("One", "Two", "Three")))
 
-original_contrast <- contrasts(ucla_dat$race.f)
+#original_contrast <- contrasts(ucla_dat$race.f)
 
-asian_vs_hispanic <- c(-1/4, 3/4, -1/4, -1/4)
-african_vs_hispanic <- c(-1/4, -1/4, 3/4, -1/4)
-caucasian_vs_hispanic <- c(-1/4, -1/4, -1/4,3/4)
+#asian_vs_hispanic <- c(-1/4, 3/4, -1/4, -1/4)
+#african_vs_hispanic <- c(-1/4, -1/4, 3/4, -1/4)
+#caucasian_vs_hispanic <- c(-1/4, -1/4, -1/4,3/4)
 
-two_vs_one <- c(1, 0, -1)
-three_vs_one <- c(1, 0, -1)
+#two_vs_one <- c(1, 0, -1)
+#three_vs_one <- c(1, 0, -1)
 
-contr.sum(2)
+#contr.sum(2)
 
-contrasts(ucla_dat$race.f) <- cbind(asian_vs_hispanic, african_vs_hispanic, caucasian_vs_hispanic)
-contrasts(ucla_dat$ses) <- cbind(two_vs_one,three_vs_one )
+#contrasts(ucla_dat$race.f) <- cbind(asian_vs_hispanic, african_vs_hispanic, caucasian_vs_hispanic)
+#contrasts(ucla_dat$ses) <- cbind(two_vs_one,three_vs_one )
 
-lm(write ~ race.f, data = ucla_dat) |> summary() 
+#lm(write ~ race.f, data = ucla_dat) |> summary() 
 
 
   
-model.matrix(lm(write ~ race.f*ses, data = ucla_dat))
-ucla_dat[ucla_dat$race.f == "Hispanic", "write"] %>% c() %>% unlist() |>  mean()
+#model.matrix(lm(write ~ race.f*ses, data = ucla_dat))
+#ucla_dat[ucla_dat$race.f == "Hispanic", "write"] %>% c() %>% unlist() |>  mean()
 
-ucla_dat |> filter(race.f == "Hispanic", ses == "One") |> select(write) |> c() |> unlist() |> mean()
+#ucla_dat |> filter(race.f == "Hispanic", ses == "One") |> select(write) |> c() |> unlist() |> mean()
 
 
 ```
@@ -1284,47 +1284,222 @@ library(broom)
 music_food_dat <- data.frame(
   happiness = c(0, 4, 4, 1, 1, 6, 2, 7, 2, 3, 18, 14, 15, 15, 18, 8, 4, 4, 5, 9),
   music = c(rep(c("Jazz"), each = 10), rep(c("Metal"), 10)),
-  food = rep(c("Meat", "Veg", "Veg", "Meat"), each = 5)
-) |> dplyr::mutate(music = factor(music), food = factor(food)) |> rowid_to_column(var = "id")
+  food = rep(c("Meat", "Veg", "Veg", "Meat"), each = 5),
+  basal_happiness = c(23, 25, 23, 21, 18, 23, 25, 23, 21, 18, 25, 27, 25, 26, 22, 25, 27, 25, 26, 22)
+) |> dplyr::mutate(music = factor(music), food = factor(food)) |> rowid_to_column(var = "id") |> dplyr::mutate(basal_happiness_centred = basal_happiness - mean(basal_happiness), happiness_centred = happiness - mean(happiness)) 
+
+
+#levels(music_food_dat$food)
+#contrasts(music_food_dat$music) <- c(0, 1)
+#contrasts(music_food_dat$food) <- c(0, 1)
+
+#ancova_mod <- lm(happiness ~  music*food + basal_happiness_centred, data = music_food_dat)
+
+
+#music_food_dat_2 <- as.tibble(model.matrix(ancova_mod)[, 1:5]) |> 
+  #dplyr::rename("bh_c" = "basal_happiness_centred") |> 
+ # add_column(music_food_dat) |> 
+  #dplyr::rename(
+    #"music_food_interaction" = "musicMetal:foodVeg",
+   # "intercept" = "(Intercept)")
+
+
+#ancova_mod_2 <- lm(happiness ~  musicMetal + foodVeg + music_food_interaction + bh_c, data = music_food_dat_2)
+#summary(ancova_mod_2)
+
+#Matrix approach
+#X <- model.matrix(ancova_mod_2)[, 1:5] |> as.matrix()
+#Y <- music_food_dat$happiness |> as.matrix()
+
+#summary(ancova_mod_2)
+#solve((t(X)%*%X))%*%(t(X)%*%Y)
 
 
 
-contrasts(music_food_dat$music) <- c(0, 1)
-contrasts(music_food_dat$food) <- c(0, 1)
+#ancova_mod |> summary()
+#modelbased::estimate_means(ancova_mod)
+#music_food_dat_residuals <- ancova_mod$residuals |> as.data.frame() |> rownames_to_column( var = "id") |> dplyr::rename("residuals" = "ancova_mod$residuals") |> add_column(music_food_dat)
 
-lm(happiness ~ food*music, data = music_food_dat) |> summary()
+#music_food_dat |> group_by(music, food) |> summarise(n = n(), mean = mean(happiness), mean_2 = mean(basal_happiness))
 
+#music_food_dat_2
 
+#Looking at interaction 
+#ggplot(data = music_food_dat_2, mapping = aes(x = music_food_interaction, y = happiness)) + geom_jitter(width = 0.1) + geom_smooth(method = "lm") + scale_y_continuous(limits = c(0, 20), breaks = seq(0, 20, 1))
 
-
-car::Anova(lm(happiness ~ music*food, data = music_food_dat))
-
-afex_object <- afex::aov_4(happiness ~ music + (1|id), data = music_food_dat)
-
-music_food_dat$happiness |> mean()
-
-afex::afex_plot(afex_object, "music") + scale_y_continuous(limits = c(-1, 18), breaks = seq(-1, 18, 1))
-
-
-
-
-
-model.matrix(lm(happiness ~ music*food, data = music_food_dat))
-
-
-lapply(X = music_food_dat$happiness, FUN = function(x){x + 1}) |> unlist()
-
-music_food_dat[1] |> c()
-music_food_dat
-
-
-music_food_dat |> group_by(music, food) |> summarise(mean = mean(happiness))
-
-
-gganova(formula = "happiness ~ music", data = music_food_dat, 
-        geom_segment.group.mean = list(color = "red"))
 
 ```
+Deviation coding with interaction (both with deviation coding)
+The intercept is the grand mean 
+Beta 1 is the effect of categorical variable 1 compared to the grand mean when the other categorical variable is at its mean level (the intercept)
+Beta 2 is the effect of categorical variable 2 compared to the grand mean when the other categorical variable is at its mean level (the intercept)
+
+Dummy coding for the first variable and deviation coding for the second variable with interaction
+The intercept is the value in the outcome variable when categorical variable 1 is at 0 and when categorical variable 2 is at the grand mean 
+Beta 1 is the effect of categorical variable 1 at the mean level of categorical variable 2 
+Beta 2 is the effect of categorical variable 2 (the difference between the level of interest and the grand mean) when categorical variable 1 is at 0
+
+Deviation coding for the first variable and dummy coding for the second variable with interaction
+Beta 1 is the effect of categorical variable 1 (the difference between the level of interest and the mean) when the categorical variable 2 is at the intercept (in this case it is at the meat level of categorical variable 2)
+Beta 2 is the effect of categorical variable 2 (the difference between the level of interest and its intercept) when categorical variable 1 is at the intercept (in this case it is the mean level)
+
+
+General 
+Beta 1 is the effect of categorical variable 1 (the difference between the mean of the level of interest and its intercept) when beta 2 is held constant at its intercept 
+The same goes for beta 2
+Beta 2 is the effect of categorical variable 2 (the difference between the mean of the level of interest and its intercept) when beta 1 is held constant at its intercept 
+The specific interpretation depends on how the intercept is defined 
+
+Let's look at some examples: 
+
+
+- **Dummy coding for both categorical variables and without interaction**
+  - **The intercept**
+    - **Description**
+      - The intercept is the fitted value of the outcome variable when both categorical variables 1 and 2 are at 0 (their reference levels) 
+    - **How it is calculated**
+      - The value of the intercept is the predicted value on the regression slope for the effect of categorical variable 1 at 0 (the reference level) of categorical variable 2 (which has a slope of beta 1 and crosses the mean value of categorical variable 2's reference level) when categorical variable 2 is at 0 (the reference level)
+  - **Beta 1** 
+    - **Description**
+      - Beta 1 is the difference between the fitted value for categorical variable 1's level of interest when categorical variable 2 is at 0 (its reference level) and the fitted value for its reference level when categorical variable 2 is at 0 (its reference level) 
+    - **How it is calculated**
+      - This difference is the difference between the mean of categorical variable 1's level of interest at the mean level of categorical variable 2 (or what I like to describe as the mean at categorical variable 1's level of interest regardless of the levels of the other categorical variable) and the mean of the reference level of categorical variable 1 at the mean level of categorical variable 2 (or what I like to describe as the mean of categorical variable 1's reference level regardless of the level of the other categorical variable)
+      - Hence, this difference is not the actual difference between the means but it is the difference between the fitted values. 
+  - **Beta 2**
+    - **Description**
+      - Beta 2 is similar to beta 1
+      - Beta 2 is the difference between the fitted value for categorical variable 2's level of interest when categorical variable 1 is at 0 (its reference level) and the fitted value for its reference level when categorical variable 1 is at 0 (its reference level) 
+    - **How it is calculated**
+      - This difference is the difference between the mean of categorical variable 2's level of interest at the mean level of categorical variable 1 (or what I like to describe as the mean at categorical variable 2's level of interest regardless of the levels of the other categorical variable) and the mean of the reference level of categorical variable 2 at the mean level of categorical variable 1 (or what I like to describe as the mean of categorical variable 2's reference level regardless of the level of the other categorical variable)
+      - Similar to beta 1, this difference is not the actual difference between the means but it is the difference between the fitted values.
+  - **Homogeneity of regression slopes**
+    - A model without an interaction term assumes Homogeneity of Regression Slopes. 
+    - **Homogeneity of Regression Slopes** - The effect of one predictor is the same across values of other predictors (there is no interaction effect)
+
+      
+- **Dummy coding for both categorical variables and with interaction**
+  - **The intercept**
+    - **Description**
+      - The intercept is the fitted value of the outcome variable when both categorical variables 1 and 2 are at 0 (their reference levels) taking into account interaction effects (if any)
+    - **How it is calculated**
+      - The value of the intercept is the predicted value on the regression slope for the effect of categorical variable 1 at 0 (the reference level) of categorical variable 2 (which has a slope of beta 1 and crosses the mean value of categorical variable 2's reference level) when categorical variable 2 is at 0 (the reference level) adding the interaction effect (the effect of categorical variable 2's reference level on the effect of categorical variable 1's reference level)
+  - **Beta 1** 
+    - **Description**
+      - Beta 1 is the difference between the fitted value for categorical variable 1's level of interest when categorical variable 2 is at 0 (its reference level) at the mean level of the interaction effect and the fitted value for its reference level when categorical variable 2 is at 0 (its reference level) at the mean level of the interaction effect  
+    - **How it is calculated**
+      - This difference is the difference between the mean of categorical variable 1's level of interest at the mean level of categorical variable 2 (or what I like to describe as the mean at categorical variable 1's level of interest regardless of the levels of the other categorical variable) at the mean level of interaction effect (the effect of categorical variable 2's level of interest on the effect of categorical variable 1's reference level) and the mean of the reference level of categorical variable 1 at the mean level of categorical variable 2 (or what I like to describe as the mean of categorical variable 1's reference level regardless of the level of the other categorical variable) at the mean level of interaction effect (the effect of categorical variable 2's reference level on the effect of categorical variable 1's reference level)
+  - **Beta 2**
+    - **Description**
+      - Beta 2 would be similar to beta 1 but flipped 
+      
+```{r}
+#xbox_raw <- readr::read_csv("./data/discovr_data/xbox.csv") 
+
+#xbox_dat <- 
+ # xbox_raw |> 
+  #mutate(across(c(game, console), ~as.factor(.x)))
+
+#xbox_afex_mod <- afex::aov_4(injury ~ game+console + Error(1|id), data = xbox_dat)
+#afex::afex_plot(xbox_afex_mod, x = "game", trace = "console") +
+  #scale_y_continuous(limits = c(0, 20), breaks = seq(0, 20, 1))
+
+#xbox_dat
+#contrasts(xbox_dat$game) <- c(0, 1)
+#contrasts(xbox_dat$console) <- c(0, 1)
+```
+
+```{r}
+#modelbased::estimate_means(xbox_lm_mod)
+#xbox_afex_mod 
+#xbox_lm_mod <- lm(injury ~ game*console, data = xbox_dat)
+#summary(xbox_lm_mod)
+#model.matrix(xbox_lm_mod)
+```
+
+
+
+
+
+
+
+Deviation coding for both categorical variables and without interaction
+
+Deviation coding for both categorical variables and with interaction
+The intercept is the grand mean
+Beta 1 is the difference between the categorical variable 1's level of interest and its mean level when categorical variable 2 is at its mean level 
+Beta 2 is the difference between the categorical variable 2's level of interest and its mean level when categorical variable 2 is at its mean level 
+
+```{r}
+#(22 + 25)/2
+
+#22-23.5
+#c(0, 4, 4, 1, 1, 6, 2, 7, 2, 3, 18, 14, 15, 15, 18, 8, 4, 4, 5, 9) |> mean()
+#model.matrix(ancova_mod)
+#lm(happiness ~ music*food + basal_happiness, data = music_food_dat) |> broom::tidy()
+#lm(happiness ~ basal_happiness_centred + music, data = music_food_dat) |> summary()
+
+#music_food_dat$happiness |> mean()
+
+#music_food_dat[music_food_dat$music == "Metal", "basal_happiness_centred"] |> mean()
+
+#music_food_dat$happiness |> mean()
+
+#install.packages("modelbased")
+#library(modelbased)
+
+#modelbased::estimate_means(ancova_mod, fixed = "basal_happiness")
+#11.160714- 2.839286
+
+#music_food_dat[music_food_dat$music == "Metal", "happiness"] |> mean()
+
+#5.3571429	 + 8.3214286 - (0.1071429*25)
+
+#3 + (0.1071429*22)
+
+#In ANCOVA, I would not centre variables - Because they are already evaluated at the average level of the covariate anyway 
+
+#Dummy coding 
+#The intercept is now the mean of the reference group adjusted for the effect of the covariate 
+# B1 is the difference between the adjusted mean of the experimental group and the adjusted mean of the reference group
+# The covariate 
+#2.8393 + 8.3214 - (0.1071*1.5)
+
+
+#Deviation coding 
+# The intercept is the grand mean adjusted or the covariate (the grand mean at the average level of the covariate)
+#7 + (0.1071429*23.5)
+#6.16 - 1.84
+
+#4.3571429 + 4.3214286 + 2.0000000 - (0.1071429*22) + 8.0000000
+
+#2 + (0.1071429*22)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1349,59 +1524,30 @@ gganova(formula = "happiness ~ music", data = music_food_dat,
 
 
 ```{r base_r_challenge2, include = F, echo = F}
-string <- "I am Samuel Mak! I am 24!  "
-
-sub("(.{0})(.*)", "\\1(\\2)", string)
-
-sub("(.*!)(.{2})", "\\1(\\2) ", string)
-
-sub("(.*Mak)(.*[0-9])", "\\1] \\2 haha", string)
+#string <- "I am Samuel Mak! I am 24!  "
+#sub("(.{0})(.*)", "\\1(\\2)", string)
 
 
-sub("({1})(.*$)", "\\1(\\2)", string)
 
-sub_dat <- data.frame(values = c(2, 6, 5, 1, 2, 7, 8, 9, 3, 6, 2, 5, 9, 2), group = c(rep("Metallica", 3), "matalecA", "metallica", rep("Gojira", 3), "gojira ", "gorillA", rep("Sylosis", 3), "Sylocis"))
-
-sub_dat
+#sub("(.*!)(.{2})", "\\1(\\2) ", string)
+#sub("(.*Mak)(.*[0-9])", "\\1] \\2 haha", string)
 
 
-sub_dat[2] <- gsub("^Sy.*s$", "Sylosis", gsub(("^g.*a$|^g.*A$"), "Gojira", gsub(" ", "", gsub("^m.*a$|^m.*A$", "Metallica", sub_dat$group))))
+#sub("({1})(.*$)", "\\1(\\2)", string)
+
+#sub_dat <- data.frame(values = c(2, 6, 5, 1, 2, 7, 8, 9, 3, 6, 2, 5, 9, 2), group = c(rep("Metallica", 3), "matalecA", "metallica", rep("Gojira", 3), "gojira ", "gorillA", rep("Sylosis", 3), "Sylocis"))
+
+#sub_dat
+
+
+#sub_dat[2] <- gsub("^Sy.*s$", "Sylosis", gsub(("^g.*a$|^g.*A$"), "Gojira", gsub(" ", "", gsub("^m.*a$|^m.*A$", "Metallica", sub_dat$group))))
 ```
 
     
     
     
-    
-```{r}
-A <- matrix(data=c(1, 2, 3, 2, 5, 9, 5, 7, 8), nrow=3, ncol=3, byrow=TRUE)    
-b <- matrix(data=c(20, 100, 200), nrow=3, ncol=1, byrow=FALSE)
-round(solve(A, b), 3)
-```
-   
-    
-```{r}
-play_dat <- data.frame(x = c(1, 2, 3, 4, 5, 6, 7, 7, 7, 7, 8, 9, 10, 11, 11, 12, 15, 19, 20, 20, NA, NA, NA,22, 22, 23, NA)) |> rowid_to_column(var = "id")
-
-play_dat
-play_dat[!duplicated(play_dat$x),]
-
-
-
-which(play_dat$x == "7")
-
-filter(play_dat, is.na(x) | is.null(x)) |> nrow()
-
-ccc_dat.2 <- ccc_dat[, c("Condition", "Gender", "SocialDesirability")] |> 
-  mutate(
-    SocialDesirability_2 = (SocialDesirability - mean(SocialDesirability))/sd(SocialDesirability),
-    SocialDesirability_cat = ifelse(SocialDesirability_2 > -qnorm(p = 0.95, mean = 0), ifelse(SocialDesirability_2 > qnorm(p = 0.95, mean = 0), "High", "Mid"), "Low")
-    ) 
-
-
-
-
-```
-
+ 
+ 
     
     
     
