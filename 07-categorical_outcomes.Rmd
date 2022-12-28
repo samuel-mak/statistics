@@ -410,25 +410,49 @@
         - **Notes**
           - I don't fully understand the proof 
     - **The variance of the score**
-      - **Mathematics**
-        - **Variance defined as the second moment about the mean**
+      - **Variance defined as the second moment about the mean**
+        - **Concept**   
+          - The variance can be defined as the second moment about the mean
+        - **Mathematics**
           - $\displaystyle \text{Var}(S) = \text{E}\left[ \left(\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right)^2\right]$
-        - **Variance defined as the negative of the expectation of the second derivative of the likelihood function**
-          - **Begin with the identity**
+      - **Variance defined as the negative of the expectation of the second derivative of the likelihood function**
+        - **Concept**   
+          - Through derivations, it can be shown that the variance equals to the negative of the expectation of the second derivative of the likelihood function evaluated at the true value of the parameter. In other words, it is the average curvature of the likelihood functions at the true value of the parameter in the parameter space. 
+          - **Mathematics**
+            - **Begin with the identity**
             - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
-          - **The first derivative under the integral sign**
-            - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
-          - **Which can be reexpressed as** 
-            - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \end{aligned}$
-          - **Differentiate again (the second derivative)**
-            - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\frac{\partial \log f(x; \theta)}{\partial \theta} \frac{\partial \log f(x; \theta)}{\partial \theta} ~ f(x; \theta) ~ dx} \\ \displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2} ~ f(x; \theta)~dx\\ \displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx &= \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \end{aligned}$
-          - **Expressed as expectations**
-            - $\displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx = \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \\ \displaystyle -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right) = E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$
-          - Hence, you can see that the variance ($E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$), which is defined as the second moment about the mean, equals to $-E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)$, which is defined as the negative of the expectation of the second derivative of the likelihood function
-        - **Which expression is preferred?**
-          - Usually the second definition of the variance is preferred as it is usually easier to compute than the first definition
-
-          
+            - **The first derivative under the integral sign**
+              - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
+            - **Which can be reexpressed as** 
+              - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \end{aligned}$
+            - **Differentiate again (the second derivative)**
+              - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\frac{\partial \log f(x; \theta)}{\partial \theta} \frac{\partial \log f(x; \theta)}{\partial \theta} ~ f(x; \theta) ~ dx} \\ \displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2} ~ f(x; \theta)~dx\\ \displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx &= \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \end{aligned}$
+            - **Expressed as expectations**
+              - $\displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx = \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \\ \displaystyle -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right) = E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$
+            - Hence, you can see that the variance ($E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$), which is defined as the second moment about the mean, equals to $-E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)$, which is defined as the negative of the expectation of the second derivative of the likelihood function
+      - **Which expression is preferred?**
+        - Usually the second definition of the variance is preferred as it is usually easier to compute than the first definition
+    - **Fisher Information**
+      - **Concept (general)**
+        - A quantity that quantifies the amount of information that an observable random variable/sample data/datum carries about an unknown parameter of a statistical model of that random variable 
+        - The Fisher information is the variance of the score evaluated at 1 observation
+      - **Mathematics**
+        - $\begin{aligned}\displaystyle I_1(\theta) &= \text{Var}(S) \\ \displaystyle &= \text{Var}\left[\frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \right] \\ \displaystyle  &= \text{Var}\left[\frac{\partial \log f(x_i; \theta)}{\partial \theta}\right] \end{aligned}$
+          - ***Notes***   
+            - $I_1(\theta)$ - Usually it is expressed as $I(\theta)$ but I expressed it as such to indicate that this is the Information from one observation 
+      - **Information defined as the second moment of about the mean**
+        - **Concept**
+          - As seen, the variance of the score can be defined in terms of the second moment of about the mean, since the Fisher Information is the variance of the score at the true value of the parameter, the Fisher Information can be interpreted exactly like that
+      - **Information defined as the curvature**
+        - **Concept**
+          - As seen, the variance of the score can be defined in terms of the curvature of the likelihood function at the true value of the parameter, which means that Fisher information can be interpreted as the same way, which is pretty intuitive 
+          - Information can be expressed in terms of the negative of the expectation of the curvature of the likelihood function evaluated at the true value of the parameter
+          - Hence, the greater the curvature of the likelihood function at the true value of the parameter, the more information the data/datum has about the unknown parameters of the model (in the extreme case when the likelihood function is at the highest at a single value of the parameter and 0 at all other values of the parameter, in other words, the likelihood is non-zero at a single point in the parameter space, the data/datum contains complete information about the parameter)
+          - The smaller the curvature of the likelihood function at the true value of the parameter, the less information the data has about the unknown parameters of the model (in the extreme case when the likelihood function is flat, that is, when the likelihood is the same across values of the parameter, then the data/datum contains no information at all about the value of the parameter)
+      - **Mathematics**
+        - $\begin{aligned}\displaystyle I(\theta) &= \text{Var}(S) \\ &= -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)\end{aligned}$
+        
+        
   - **A multiple-observation case (3 observations)**
     - **Score**
       - **Mathematics**
@@ -450,7 +474,17 @@
       - **The expectation of the score is 0**
         - Since any one of the expectations is 0 (as shown in the one-observation case), the sum of all the expectations is also 0
     - **The variance of the score**
-
+      - **Mathematics**
+        - **Variance defined as the second moment about the mean**
+          - $\begin{aligned} \displaystyle \text{Var}(S) &= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ \displaystyle &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] + 2\sum_{j = 1}^{n = 3}{\sum_{i = 1}^{n = 3}{\text{Cov}\left(\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}, \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right)}} \end{aligned}$
+          - Assuming that observations are uncorrelated: (I am unsure about this part)
+          - $\begin{aligned} \displaystyle \text{Var}(S) &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= 3\times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]\end{aligned}$
+    - **Fisher Information**
+      - **Concept**
+        - The Information from a sample with 3 observations is 3 times the Information from any single observation
+      - **Mathematics**
+        - $\displaystyle \text{Var}(S) = \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right]$
+        - $\begin{aligned}I_3(\theta) &= 3 \times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ I_3(\theta) &= 3 I_1(\theta)\end{aligned}$
       
   - **The expectation of the score**
     - **Concept**
@@ -502,26 +536,7 @@
     - **Mathematics**
       - $\displaystyle \text{Var}(S) = \sigma^2_{S} = E\left( S^2\right) = E \left[\left(\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right)^2\right] = -E \left[\frac{\partial \mathcal{l}^2(\theta; \textbf{x})}{\partial \theta^2}\right]$
       
-- **Information**
-  - **Concept**
-    - A quantity that quantifies the amount of information that an observable random variable/sample data carries about an unknown parameter of a statistical model of that random variable 
-    - Through derivations, it can be shown that Fisher Information can be defined in terms of the variance of the score or the curvature of the likelihood function
-  - **Information defined as the variance of the score (a random variable)**
-    - **Concept**
-      - Information can be defined as the variance of the score ($\frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$)
-    - **Mathematics** 
-      - $\displaystyle I(\theta) = E\left[\left( \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}\right)^2 | \theta \right] = \text{Var}\left( \frac{\partial\mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta\right)$
-  - **Information defined as the Curvature of the likelihood function**
-    - **Concept**
-      - Information can be defined or expressed in terms of the curvature of the graph of the (log) likelihood function of the observed data/datum under certain regularity conditions (e.g. the log likelihood function is twice differentiable with respect to $\theta$)
-      - The greater the curvature of the graph of the likelihood function, the more information the data has about the unknown parameters of the model (in the extreme case when the graph of the likelihood function is at the highest at a single value of the parameter and 0 at all other values of the parameter, in other words, the likelihood is non-zero at a single point in the parameter space, the data contains complete information about the value of the parameter)
-      - The smaller the curvature of the graph of the likelihood function, the less information the data has about the unknown parameters of the model (if the graph of the likelihood function is flat, that is, when the likelihood is the same across values of the parameter, then the data contains no information at all about the value of the parameter)
-    - Mathematically, information defined as the curvature of the likelihood graph is the negative of the expectation of the Hessian matrix where each element is the second derivative of the (log) likelihood function
-    - **Mathematics**
-      - $\displaystyle \textbf{I}(\theta) = -E(\textbf{H}| \theta) \\ \displaystyle \textbf{I}(\theta) = -E\left[\frac{\partial^2 \mathcal{l}(\theta; \text{x})}{\partial \theta^2} | \theta\right]$
-        - ***Notes***
-          - Usually, Information expressed this way is easier to compute than Information expressed as the variance of the score 
-          
+
 - **Variance of model parameters**
   - **Concept**
     - The variance of a model parameter or the variance-covariance matrix of a vector of model parameters
