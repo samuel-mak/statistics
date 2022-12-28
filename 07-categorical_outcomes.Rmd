@@ -286,7 +286,10 @@
 - **The likelihood function of a random sample**
   - **Concept**
     - A function that describes the likelihood of a random sample data/datum as a function of the values of the parameters of the chosen statistical model
+    - In other words, it describes the probability of getting the sample data/datum under different values of the parameters of the statistical model
     - The graph of the likelihood function is the likelihood against the values of the parameter(s) of the chosen statistical model
+    - It treats the sample data/datum is given and the parameter is a variable 
+    - It is the joint probability between the observations at different values of the parameter of the model 
     - The graph is concave for most models 
   - **Mathematics**
     - $\displaystyle \mathcal{L}(\theta; \mathbf{x}) = \prod_{i = 1}^{n}{f(x_i; \theta)} $
@@ -295,6 +298,28 @@
         - $\mathbf{x} = (x_1, x_2, x_3, \cdots , x_n)'$ - The observed random variable/data 
       - ***Notes***
         - $\mathcal{L}(\theta; \mathbf{x})$ can be denoted as $\mathcal{L}(\theta)$
+  - **Example**
+    - The beginning scenario
+      - You have 5 observations in your data and you are hypothesising that they came from a common population with pdf $f(x; \theta)$
+    - The likelihood function is:
+      - $\displaystyle \mathcal{L}(\theta; \mathbf{x}) = \prod_{i = 1}^{n}{f(x_i; \theta)} $
+    - Find the likelihood under all possible values of the parameter 
+      - Examples: 
+        - The likelihood of getting this sample data given that the true value of the parameter is 1
+          - $\displaystyle \mathcal{L}(\theta = 1; \mathbf{x}) = f(x_1; \theta= 1) \times f(x_2; \theta= 1) \times f(x_3; \theta= 1)  \times f(x_2; \theta= 1) \times f(x_3; \theta= 1)$
+        - The likelihood of getting this sample data given that the true value of the parameter is 2
+          - $\displaystyle \mathcal{L}(\theta = 2; \mathbf{x}) = f(x_1; \theta= 2) \times f(x_2; \theta= 2) \times f(x_3; \theta= 2)  \times f(x_2; \theta= 2) \times f(x_3; \theta= 2)$
+        - The likelihood of getting this sample data given that the true value of the parameter is 3
+        - $\displaystyle \mathcal{L}(\theta = 3; \mathbf{x}) = f(x_1; \theta= 3) \times f(x_2; \theta= 3) \times f(x_3; \theta= 3)  \times f(x_2; \theta= 3) \times f(x_3; \theta= 3)$
+      - The likelihood of getting this sample data given that the true value of the parameter is 4
+        - $\displaystyle \mathcal{L}(\theta = 4; \mathbf{x}) = f(x_1; \theta= 4) \times f(x_2; \theta= 4) \times f(x_3; \theta= 4)  \times f(x_2; \theta= 4) \times f(x_3; \theta= 4)$
+      - The likelihood of getting this sample data given that the true value of the parameter is 5
+        - $\displaystyle \mathcal{L}(\theta = 5; \mathbf{x}) = f(x_1; \theta= 5) \times f(x_2; \theta= 5) \times f(x_3; \theta= 5)  \times f(x_2; \theta= 5) \times f(x_3; \theta= 5)$
+      - The likelihood of getting this sample data given that the true value of the parameter is 6
+        - $\displaystyle \mathcal{L}(\theta = 6; \mathbf{x}) = f(x_1; \theta= 6) \times f(x_2; \theta= 6) \times f(x_3; \theta= 6)  \times f(x_2; \theta= 6) \times f(x_3; \theta= 6)$
+    - Plot these likelihoods into a plot of likelihood against the value of the parameter 
+      - The likelihood graph will usually be concave 
+      - This is the likelihood graph for this sample 
   - **Log likelihood function**
     - **Concept**
       - The log of the likelihood/likelihood function
@@ -303,7 +328,7 @@
       - Since the log is a strictly increasing function, the values of the model parameters that maximise $\mathcal{l}(\theta; \text{x})$ are the same as the values that maximise $\mathcal{L}(\theta; \mathbf{x})$
     - **Mathematics**
       - $\displaystyle \mathcal{l}(\theta; \text{x})=\log{\mathcal{L}(\theta; \text{x})} = \sum_{i = 1}^{n}{\log f(x_i; \theta)}$
-      - ***Notes***
+      - ***Notes***  
         - $\mathcal{l}(\theta; \text{x})$ can be denoted as $\mathcal{l}(\theta)$
 
     
@@ -350,24 +375,140 @@
         - $\mathbf{H}_f$ - The Hessian matrix of function $\mathcal{f}$
         - $\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}$ - The second-order derivative of the function with respect to the cross-product of variable $x_i$ and $x_j$
         
-- **The Score Function**
+- **The Score**
   - **Concept**
-    - The slope of the graph of the log likelihood function given the value of the parameter
-  - **Mathematics**
-    - $\text{score} = \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$
-  - **The expectation of score**
+    - The score is the slope of the log-likelihood function evaluated at a particular value of the parameter
+- **The Score at the true value of the parameter**
+  - **Concept**
+    - The slope of the log-likelihood function evaluated at the true value of the parameter ($\theta$)
+    - The score is a variable because it is subject to sampling variation - That is, the score derived from a samples can be different from the scores derived from other samples 
+    - In reality, we will never know this because the true value of the population parameter is unknown
+  - **A single observation case**
+    - **The score**
+      - **Mathematics**
+        - **The likelihood function**
+          - $\displaystyle \mathcal{L}\left( \theta; x \right) = \prod_{i = 1}^{n = 1}{f(x_i; \theta)} = f(x; \theta)$
+        - **The log likelihood**
+          - $\mathcal{l}(\theta; x) = \log\mathcal{L}\left( \theta; x \right) = \log f(x; \theta)$
+        - **The score (first derivative of the log likelihood)**  
+          - $\begin{aligned}S &= \displaystyle \frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \\ &= \frac{\partial \log f(x_i; \theta)}{\partial \theta} \end{aligned}$
+    - **The expectation of the Score**
+      - **Mathematics**
+        - $\displaystyle E(S) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right)$
+      - **The expectation of the score for a single case is 0**
+        - **Concept**
+          - The mean of the scores all with a single observation and evaluated at the true value of the parameter is 0
+        - **Mathematics**
+          - $\displaystyle E(S) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right) = 0$
+        - **Proof**
+          - **Begin with the identity**
+            - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
+          - **The first derivative under the integral sign**
+            - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
+          - **Which can be reexpressed as** 
+            - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \\ &= E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right] \end{aligned}$
+        - **Notes**
+          - I don't fully understand the proof 
+    - **The variance of the score**
+      - **Mathematics**
+        - **Variance defined as the second moment about the mean**
+          - $\displaystyle \text{Var}(S) = \text{E}\left[ \left(\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right)^2\right]$
+        - **Variance defined as the negative of the expectation of the second derivative of the likelihood function**
+          - **Begin with the identity**
+            - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
+          - **The first derivative under the integral sign**
+            - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
+          - **Which can be reexpressed as** 
+            - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \end{aligned}$
+          - **Differentiate again (the second derivative)**
+            - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\frac{\partial \log f(x; \theta)}{\partial \theta} \frac{\partial \log f(x; \theta)}{\partial \theta} ~ f(x; \theta) ~ dx} \\ \displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2} ~ f(x; \theta)~dx\\ \displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx &= \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \end{aligned}$
+          - **Expressed as expectations**
+            - $\displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx = \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \\ \displaystyle -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right) = E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$
+          - Hence, you can see that the variance ($E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$), which is defined as the second moment about the mean, equals to $-E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)$, which is defined as the negative of the expectation of the second derivative of the likelihood function
+        - **Which expression is preferred?**
+          - Usually the second definition of the variance is preferred as it is usually easier to compute than the first definition
+
+          
+  - **A multiple-observation case (3 observations)**
+    - **Score**
+      - **Mathematics**
+        - **The likelihood function**
+          - $\displaystyle \mathcal{L}\left( \theta; x \right) = \prod_{i = 1}^{n = 3}{f(x_i; \theta)} = f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)$
+        - **The log likelihood**
+          - $\begin{aligned} \displaystyle \mathcal{l}(\theta; \textbf{x}) &= \log \mathcal{L}\left( \theta; \textbf{x} \right) \\ &= \log \prod_{i = 1}^{n = 3}{f(x_i; \theta)} \\ &= \log{\left[f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)\right]} \\ &= \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \end{aligned}$
+            - ***Notes***
+              - The log of the product is sum of the log of each factor in the product
+        - **The score (the first derivative of the log likelihood)**
+          - $\begin{aligned} \displaystyle S &=  \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}  \\ &= \frac{\partial}{\partial\theta}\left[ \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \right] \\ &= \frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta} \end{aligned}$
+            - ***Notes***
+              - The derivative of a sum is the sum of the derivative of each of the elements in the sum
+    - **The expectation of the score**
+      - **Mathematics**
+        - $\begin{aligned} \displaystyle E\left(S \right) &= E\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + E\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ E\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \end{aligned}$
+          - ***Notes***
+            - The expectation of a sum is the sum of the expectation of  each of the elements in the sum
+      - **The expectation of the score is 0**
+        - Since any one of the expectations is 0 (as shown in the one-observation case), the sum of all the expectations is also 0
+    - **The variance of the score**
+
+      
+  - **The expectation of the score**
     - **Concept**
-      - The expectation of score is 0
+      - Under certain regularity conditions, the expectation of the score evaluated at the true value of $\theta$ is 0
+      - Imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, the mean of these scores will be 0, that is, they are clustered around 0
     - **Mathematics**
-      - $\displaystyle E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} \right] = 0$
+      - $\displaystyle E(S)  = E\left( \frac{\partial f(x_i; \theta)}{\partial \theta}\right) = 0$
+    - **Proof that the expectation of the score is 0**
+        - **Begin with the identity**
+          - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
+        - **The first derivative under the integral sign**
+          - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
+        - **Which can be reexpressed as** 
+          - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx = \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx = E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right]$
+
+- **Single parameter case**
+    - **Concept**    
+      - In the single parameter case, the score is a scalar
+    - **Mathematics**
+      - $\displaystyle \text{score} = \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$
+  - **Multiple parameter case**
+    - **Concept**
+      - In the multiple parameter case, the score is a vector of scores one for each of the parameters of the model
+    - **Mathematics**
+      - $\displaystyle \text{score} = \left[ \frac{\partial \mathcal{l}(\theta, \sigma^2; \text{x})}{\partial \theta}, \frac{\partial \mathcal{l}(\theta, \sigma^2; \text{x})}{\partial \sigma^2} \right]^T$
+        - ***Notes***
+          - This is an example where there are 2 parameters in the model ($\theta$ and $\sigma^2$)
+          - 
+        
+          
+          
+          
+          
+          
+        - $\displaystyle E\left[ S\right] = E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right] = 0$
+        
+        
+    - **Mathematics**
+      - $\displaystyle E\left[ S\right] = E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right] = 0$
+        - ***Where***
+          - $\theta$ - The true value of the parameter 
+        - ***Notes***
+          - $E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right]$ can also be expressed as $\displaystyle E\left[ \frac{\partial \mathcal{l}}{\partial \theta} | \theta \right]$, but I just wanted to make it clearer and hopefully that is the case (but the only one who actually read this shit is me, so it's just a personal note really)
+  - **Variance of the score**
+    - **Concept**
+      - The variation of the scores given the true value of $\theta$ (alternatively speaking, it is the variation of the scores evaluated at the true value of $\theta$)
+      - The imagination comes back again, similar as before, imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, you then calculate the variance of the scores 
+      - The variance in this case is the second central moment about the mean of the score
+    - **Mathematics**
+      - $\displaystyle \text{Var}(S) = \sigma^2_{S} = E\left( S^2\right) = E \left[\left(\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right)^2\right] = -E \left[\frac{\partial \mathcal{l}^2(\theta; \textbf{x})}{\partial \theta^2}\right]$
       
 - **Information**
   - **Concept**
-    - A quantity that quantifies the amount of information that an observable random variable carries about an unknown parameter of a statistical model/distribution of that random variable 
+    - A quantity that quantifies the amount of information that an observable random variable/sample data carries about an unknown parameter of a statistical model of that random variable 
     - Through derivations, it can be shown that Fisher Information can be defined in terms of the variance of the score or the curvature of the likelihood function
   - **Information defined as the variance of the score (a random variable)**
     - **Concept**
-      - Information can be defined as the variance of the random variable of the score ($\frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$)
+      - Information can be defined as the variance of the score ($\frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$)
     - **Mathematics** 
       - $\displaystyle I(\theta) = E\left[\left( \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}\right)^2 | \theta \right] = \text{Var}\left( \frac{\partial\mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta\right)$
   - **Information defined as the Curvature of the likelihood function**
@@ -457,13 +598,23 @@
   - **Concept**
     - Based on the slope and expected curvature at the null hypothesised value of the parameter in the log-likelihood function 
   - **The score statistic**
+    - **The z score statistic**
+      - **Concept**
+        - The normal z version of the score statistic
+        - It is the ratio of the slope of the likelihood function of the parameter at the null hypothesised value of the parameter to the standard error of the slope at the null hypothesised value of the parameter 
+      - **Mathematics**
+        - $\displaystyle \frac{\mathcal{l'}(\theta_0)}{\sqrt{I(\theta_0)}}$
+          - ***Where***
+            - $\mathcal{l'}(\theta_0)$ - The slope of the likelihood function of the parameter at the null hypothesised value of the parameter 
+            - $\sqrt{I(\theta_0)}$ - The standard error of the slope of the likelihood function of the parameter at the null hypothesised value of the parameter - The standard error depends on the curvature of the likelihood function of the parameter at the null hypothesised value of the parameter - The information evaluated at the null hypothesised value of the parameter 
+            
     - **Mathematics**
-      - $\displaystyle \frac{\mathcal{L'}(\theta_0)^2}{I(\theta_0)}$
+      - $\displaystyle \frac{\mathcal{l'}(\theta_0)^2}{I(\theta_0)}$
         - ***Where***
-          - $\mathcal{L'}$ - The first derivative of the likelihood function 
-          - $\mathcal{L'}(\theta_0)^2$ - The slope at the null hypothesised value of the parameter in the likelihood function (sub in the null hypothesised value of the parameter into the first derivative of the likelihood function and you will get this) ($\theta_0$)
+          - $\mathcal{l'}$ - The first derivative of the log likelihood function 
+          - $\mathcal{l'}(\theta_0)^2$ - The slope at the null hypothesised value of the parameter in the log likelihood function (sub in the null hypothesised value of the parameter into the first derivative of the log likelihood function and you will get this)
           - $I$ - Information 
-          - $I(\theta_0)$ - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))
+          - $I(\theta_0)$ - - The information at the null hypothesised value in the likelihood function - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))
         - ***Notes***
           - Some textbooks (e.g. Hogg and McKean) say it's like this $\displaystyle \frac{\mathcal{L'}(\theta_0)^2}{nI(\theta_0)}$
     - **Central Distribution of the score statistic**
@@ -490,24 +641,39 @@
     - **Concept**
       - The log likelihood of the kernal 
     - **Mathematics**
+      - **The PMF of the binomial distribution**
+        - $\displaystyle P(y) = {n\choose y} \pi^y (1 - \pi)^{n - y} ~~~, y = 0:n$
       - **The log likelihood function:**
-        - $\begin{aligned} \displaystyle \mathcal{L}(\pi)&=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}$ 
-      - **The derivative of the likelihood function:**
-        - $\begin{aligned} \displaystyle \frac{\partial{\mathcal{L}(\pi)}}{\partial{\pi}} \displaystyle &= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}$
-      - **Maximisation problem: set the derivative of the log likelihood function to 0 and find $\pi$**
+        - $\begin{aligned} \displaystyle \mathcal{l}(\pi)&=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}$ 
+          - ***Notes***
+            - Only the kernal of the PMF of the binomial distribution contains the parameters and relevant, therefore, only the kernal is used 
+      - **The first derivative of the likelihood function:**
+        - $\begin{aligned} \displaystyle \frac{\partial{\mathcal{l}(\pi)}}{\partial{\pi}} \displaystyle &= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}$
+      - **Maximisation problem: set the derivative of the log likelihood function to 0 and find $\pi$ (the estimating equation)**
         - $\begin{aligned} \displaystyle \frac{y - n\pi}{\pi(1-\pi)} &= 0 \\ \displaystyle y - n\pi &= 0 \\ \displaystyle \hat\pi &= \frac{y}{n}\end{aligned}$
           - ***Notes***
-            - As you can see, this is the sample proportion of success for the $n$ trials
-  - **MLE for the variance of $\hat\pi$**
+            - As you can see, this is the sample proportion of success for the $n$ trials - This is the MLE of the population probability
+  - **Information**
+    - **Mathematics**
+      - $\displaystyle I_{\pi} =-E\left(\frac{\partial^2 f}{\partial \pi^2}\right) = E\left[ \frac{y}{\pi^2} - \frac{n-y}{(1-\pi)^2}\right] = \frac{n}{\pi(1-\pi)}$
+  - **Variance of $\hat\pi$**
     - **Concept**
       - The variance of the parameter estimate in the distribution under the null hypothesis based on the ML method 
       - It is estimated from the variance of the sample 
     - **Mathematics**
-      - $\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &= \text{information}^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &= \frac{\pi(1-\pi)}{n} \end{aligned}$
-  - **MLE for the standard error**
+      - $\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &= I^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &= \frac{\pi(1-\pi)}{n} \end{aligned}$
+  - **Standard error**
     - **Mathematics**
       - $\begin{aligned} \displaystyle \sigma_{\hat\pi} &= \sqrt{\sigma_{\hat\pi}^{2}} \\ &= \sqrt{\frac{\pi(1-\pi)}{n}} \end{aligned}$
-
+  - **Confidence Interval (Not yet developed)**
+    - **Wald confidence interval**
+      - **Concept**
+        - The Wald confidence interval uses the normal approximation
+      - **Mathematics**
+        - $CI = \hat\pi ± z_{1-\frac{\alpha}{2}} \times \sigma_{\hat\pi}$
+  - **Others**
+    - A marked divergence in results of Wald and Likelihood ratio inference indicates that the distribution of the parameter may not be close to normality 
+    
 - **NHST of the binomial parameter $\hat\pi$**
   - **Wald test**
     - **The z Wald statistic**
@@ -518,10 +684,10 @@
       - Since the Wald statistic uses the standard error evaluated at $\hat\pi$ and the score statistic uses the standard error evaluated at $\pi_0$, the score statistic is preferred because it uses the actual null SE rather than an estimate of the null SE
     - **The score statistic**
       - **Mathematics**
-        - $\displaystyle \frac{S(\theta_0)^2}{I(\theta_0)} = \displaystyle \frac{S(\pi_0)^2}{I(\pi_0)} $
+        - $\displaystyle \frac{ \mathcal{l}(\theta_0)^2}{I(\theta_0)} = \displaystyle \frac{ \mathcal{l}(\pi_0)^2}{I(\pi_0)} $
         - Finding the slope of the likelihood function at the null hypothesised value of the parameter ($S(\pi_0)^2$)
           - The first derivative of the likelihood function for $\pi$
-            - $\displaystyle S(\pi) = \frac{y - n\pi}{\pi(1-\pi)}$
+            - $\displaystyle \mathcal{l}(\pi) = \frac{y - n\pi}{\pi(1-\pi)}$
           - Sub in $\pi_0$
             - $\displaystyle S(\pi_0) = \frac{y - n\pi_0}{\pi_0(1-\pi_0)}$
           - Square it 
@@ -534,7 +700,9 @@
 
 
 
-
+- **Continuity correction**
+  - **Concept**
+    - A correction made when a discrete distribution is approximated by a continuous distribution
 
 
 
