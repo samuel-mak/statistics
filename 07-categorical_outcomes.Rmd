@@ -380,36 +380,47 @@
     - The score is the slope of the log-likelihood function evaluated at a particular value of the parameter
 - **The Score at the true value of the parameter**
   - **Concept**
-    - The slope of the log-likelihood function evaluated at the true value of the parameter ($\theta$)
+    - The slope of the (log) likelihood function evaluated at the true value of the parameter ($\theta$)
     - The score is a variable because it is subject to sampling variation - That is, the score derived from a samples can be different from the scores derived from other samples 
     - In reality, we will never know this because the true value of the population parameter is unknown
   - **A single observation case**
     - **The score**
       - **Mathematics**
         - **The likelihood function**
-          - $\displaystyle \mathcal{L}\left( \theta; x \right) = \prod_{i = 1}^{n = 1}{f(x_i; \theta)} = f(x; \theta)$
+          - $\begin{aligned}\displaystyle \mathcal{L}\left( \theta; x \right) &= \prod_{i = 1}^{n = 1}{f(x_i; \theta)} \\ &= f(x; \theta) \end{aligned}$
         - **The log likelihood**
-          - $\mathcal{l}(\theta; x) = \log\mathcal{L}\left( \theta; x \right) = \log f(x; \theta)$
-        - **The score (first derivative of the log likelihood)**  
-          - $\begin{aligned}S &= \displaystyle \frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \\ &= \frac{\partial \log f(x_i; \theta)}{\partial \theta} \end{aligned}$
+          - $\begin{aligned} \displaystyle \mathcal{l}(\theta; x) &= \log\mathcal{L}\left( \theta; x \right) \\ &= \log f(x; \theta) \end{aligned}$
+        - **The score (first derivative of the log likelihood evaluated at the true value of the parameter)**  
+          - $\begin{aligned}S_\theta &= \displaystyle \frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \\ &= \frac{\partial \log f(x_i; \theta)}{\partial \theta} \end{aligned}$
     - **The expectation of the Score**
       - **Mathematics**
-        - $\displaystyle E(S) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right)$
-      - **The expectation of the score for a single case is 0**
+        - $\displaystyle E(S_\theta) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right)$
+      - **The expectation of the score is 0**
         - **Concept**
           - The mean of the scores all with a single observation and evaluated at the true value of the parameter is 0
         - **Mathematics**
-          - $\displaystyle E(S) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right) = 0$
+          - $\displaystyle E(S_\theta) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right) = 0$
         - **Proof**
           - **Begin with the identity**
             - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
           - **The first derivative under the integral sign**
             - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
-          - **Which can be reexpressed as** 
-            - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \\ &= E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right] \end{aligned}$
-        - **Notes**
-          - I don't fully understand the proof 
+          - **Reversing the chain rule for log** 
+            - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \end{aligned}$
+              - ***Reminder***
+                - **The chain rule for log**
+                  - $\begin{aligned}y &= \log{(g(x))} \\ \displaystyle \frac{dy}{dx} &= \frac{1}{g(x)} \times g'(x) \end{aligned}$
+                - **Hence**
+                  - $\begin{aligned} \displaystyle \int_{-\infty}^{\infty}{\frac{\partial \log{f(x ;\theta)}}{\partial \theta} \times f(x; \theta) ~ dx} &= \displaystyle \int_{-\infty}^{\infty}{\frac{1}{f(x; \theta)} \times f'(x; \theta) \times f(x; \theta) ~ dx} \\ &= \displaystyle \int_{-\infty}^{\infty}{\frac{1}{f(x; \theta)} \times \frac{\partial f(x; \theta)}{\partial \theta} \times f(x; \theta) ~ dx} \\ &= \displaystyle \int_{-\infty}^{\infty}{\frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)} \times f(x; \theta) ~ dx} \end{aligned}$
+                  - In the derivation above, it utilises this rule but in the reversed order
+
+          - **Expressed as expectation**
+            - $\displaystyle 0 = E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right]$
+
     - **The variance of the score**
+      - **Concept** 
+        - The sampling variation of the scores given the true value of $\theta$ (alternatively speaking, it is the variation of the scores evaluated at the true value of $\theta$ due to sampling error)
+        - The imagination comes back again, similar as before, imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, you then calculate the variance of the scores 
       - **Variance defined as the second moment about the mean**
         - **Concept**   
           - The variance can be defined as the second moment about the mean
@@ -419,22 +430,24 @@
         - **Concept**   
           - Through derivations, it can be shown that the variance equals to the negative of the expectation of the second derivative of the likelihood function evaluated at the true value of the parameter. In other words, it is the average curvature of the likelihood functions at the true value of the parameter in the parameter space. 
           - **Mathematics**
-            - **Begin with the identity**
-            - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
-            - **The first derivative under the integral sign**
+            - **Begin with the identity (this is seen before in the expectation section)**
+            - $\begin{aligned}\displaystyle 1 &= \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx \\ &= \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx \end{aligned}$
+            - **The first derivative under the integral sign (this is seen before in the expectation section)**
               - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
-            - **Which can be reexpressed as** 
+            - **Which can be reexpressed as (this is seen before in the expectation section)** 
               - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \end{aligned}$
             - **Differentiate again (the second derivative)**
               - $\begin{aligned}\displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\frac{\partial \log f(x; \theta)}{\partial \theta} \frac{\partial \log f(x; \theta)}{\partial \theta} ~ f(x; \theta) ~ dx} \\ \displaystyle 0 &= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2} ~ f(x; \theta)~dx\\ \displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx &= \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \end{aligned}$
             - **Expressed as expectations**
               - $\displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx = \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \\ \displaystyle -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right) = E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$
-            - Hence, you can see that the variance ($E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$), which is defined as the second moment about the mean, equals to $-E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)$, which is defined as the negative of the expectation of the second derivative of the likelihood function
+            - Hence, you can see that the second moment about the mean ($E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]$) equals to the negative of the expectation of the curvature of the likelihood function evaluated at the true value of the parameter ($-E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)$)
       - **Which expression is preferred?**
         - Usually the second definition of the variance is preferred as it is usually easier to compute than the first definition
+        
+&nbsp
     - **Fisher Information**
       - **Concept (general)**
-        - A quantity that quantifies the amount of information that an observable random variable/sample data/datum carries about an unknown parameter of a statistical model of that random variable 
+        - A quantity that quantifies the amount of information that any datum/observation in a data/datum/sample carries about an unknown parameter of a statistical model of that random variable 
         - The Fisher information is the variance of the score evaluated at 1 observation
       - **Mathematics**
         - $\begin{aligned}\displaystyle I_1(\theta) &= \text{Var}(S) \\ \displaystyle &= \text{Var}\left[\frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \right] \\ \displaystyle  &= \text{Var}\left[\frac{\partial \log f(x_i; \theta)}{\partial \theta}\right] \end{aligned}$
@@ -442,7 +455,7 @@
             - $I_1(\theta)$ - Usually it is expressed as $I(\theta)$ but I expressed it as such to indicate that this is the Information from one observation 
       - **Information defined as the second moment of about the mean**
         - **Concept**
-          - As seen, the variance of the score can be defined in terms of the second moment of about the mean, since the Fisher Information is the variance of the score at the true value of the parameter, the Fisher Information can be interpreted exactly like that
+          - As seen, the variance of the score can be defined in terms of the second moment of about the mean, since the Fisher Information is the variance of the score at the true value of the parameter, the Fisher Information can be interpreted the same way 
       - **Information defined as the curvature**
         - **Concept**
           - As seen, the variance of the score can be defined in terms of the curvature of the likelihood function at the true value of the parameter, which means that Fisher information can be interpreted as the same way, which is pretty intuitive 
@@ -453,88 +466,45 @@
         - $\begin{aligned}\displaystyle I(\theta) &= \text{Var}(S) \\ &= -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)\end{aligned}$
         
         
-  - **A multiple-observation case (3 observations)**
+  - **A multiple-observation case**
     - **Score**
       - **Mathematics**
         - **The likelihood function**
-          - $\displaystyle \mathcal{L}\left( \theta; x \right) = \prod_{i = 1}^{n = 3}{f(x_i; \theta)} = f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)$
-        - **The log likelihood**
-          - $\begin{aligned} \displaystyle \mathcal{l}(\theta; \textbf{x}) &= \log \mathcal{L}\left( \theta; \textbf{x} \right) \\ &= \log \prod_{i = 1}^{n = 3}{f(x_i; \theta)} \\ &= \log{\left[f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)\right]} \\ &= \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \end{aligned}$
+          - $\displaystyle \mathcal{L}(\theta; X) = \prod_{i = 1}^{n}{f(x; \theta)}$
+        - **The log likelihood function**
+          - $\displaystyle \mathcal{l}(\theta; X) = \log{\mathcal{L}(\theta; X)} = \sum_{i = 1}^{n}{\log{f(x; \theta)}}$
             - ***Notes***
-              - The log of the product is sum of the log of each factor in the product
-        - **The score (the first derivative of the log likelihood)**
-          - $\begin{aligned} \displaystyle S &=  \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}  \\ &= \frac{\partial}{\partial\theta}\left[ \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \right] \\ &= \frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta} \end{aligned}$
-            - ***Notes***
-              - The derivative of a sum is the sum of the derivative of each of the elements in the sum
-    - **The expectation of the score**
+              - The log of a product is the sum of the log of each factor in the product
+        - **The Score (the first derivative of the log likelihood function) (NOT SURE ABOUT THIS)**
+          - $\begin{aligned} \displaystyle S_n &= \frac{\partial \mathcal{l}(\theta; X) }{\partial \theta} \\ \displaystyle &= \frac{\partial }{\partial \theta} \mathcal{l}(\theta; X) \\ \displaystyle &= \frac{\partial}{\partial \theta} \sum_{i = 1}^{n}{\log{f(x; \theta)}} \\ \displaystyle  &= \sum_{i = 1}^{n}{\frac{\partial}{\partial \theta}\log{f(x; \theta)}} \\ \displaystyle &= \sum_{i = 1}^{n}{\frac{\partial \log{f(x; \theta)}}{\partial \theta}} \\  \displaystyle &= \sum_{i = 1}^{n}{S_1} \\ &= nS_1 \end{aligned}$
+            - ***Note***
+              - **The sum rule of differentiation** - The derivative of a sum is the sum of the derivative of each term in the sum  
+    - **Expectation of the Score**
       - **Mathematics**
-        - $\begin{aligned} \displaystyle E\left(S \right) &= E\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + E\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ E\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \end{aligned}$
-          - ***Notes***
-            - The expectation of a sum is the sum of the expectation of  each of the elements in the sum
-      - **The expectation of the score is 0**
-        - Since any one of the expectations is 0 (as shown in the one-observation case), the sum of all the expectations is also 0
+        - $\begin{aligned}\displaystyle \text{E}(S_n) &= \text{E}\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &= \text{E}\left[ \sum_{i = 1}^{n}{\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}}\right]\\ &= \sum_{i = 1}^{n}{\text{E}\left[ \frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right]} \end{aligned}$ 
+        - The expectation of each score is 0, hence:
+        - $\begin{aligned} \text{E}(S_n) &= \sum_{i = 1}^{n}{0} \\ &= 0\end{aligned}$
+    - **Variance of the score**
+      - **Variance defined as the second moment about the mean**
+        - **Concept**
+          - The variance of the score in a sample with n observations is n times the information of any one observation in the sample 
+        - **Mathematics**
+          - $\begin{aligned} \displaystyle \text{Var}(S) &= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &= \text{Var}\left[\sum_{i = 1}^{n}{\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}}\right] \\ &= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta}\right]} + \sum_{j = 1}^{J}{\sum_{i = 1}^{I}{\text{Cov}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta} \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right]}} \end{aligned}$
+          - **Assuming that the scores are uncorrelated (having a correlation of 0)**
+          - $\begin{aligned}\displaystyle \text{Var}\left(S_n\right) &= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta}\right]} \\ &= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]} \\ &= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &= n\text{Var}(S_1)\end{aligned}$
+    - **Fisher Information**
+      - **Concept**
+        - The Information in a sample with n observations is n times the Information from any one observation in the sample 
+      - **Mathematics**
+        - $\begin{aligned}\displaystyle \text{Var}\left(S_n\right) &= n\text{Var}(S_1) \\ I_n(\theta) &= nI_1(\theta)\end{aligned}$
     - **The variance of the score**
       - **Mathematics**
         - **Variance defined as the second moment about the mean**
           - $\begin{aligned} \displaystyle \text{Var}(S) &= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ \displaystyle &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] + 2\sum_{j = 1}^{n = 3}{\sum_{i = 1}^{n = 3}{\text{Cov}\left(\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}, \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right)}} \end{aligned}$
           - Assuming that observations are uncorrelated: (I am unsure about this part)
           - $\begin{aligned} \displaystyle \text{Var}(S) &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= 3\times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]\end{aligned}$
-    - **Fisher Information**
-      - **Concept**
-        - The Information from a sample with 3 observations is 3 times the Information from any single observation
-      - **Mathematics**
-        - $\displaystyle \text{Var}(S) = \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right]$
-        - $\begin{aligned}I_3(\theta) &= 3 \times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ I_3(\theta) &= 3 I_1(\theta)\end{aligned}$
       
-  - **The expectation of the score**
-    - **Concept**
-      - Under certain regularity conditions, the expectation of the score evaluated at the true value of $\theta$ is 0
-      - Imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, the mean of these scores will be 0, that is, they are clustered around 0
-    - **Mathematics**
-      - $\displaystyle E(S)  = E\left( \frac{\partial f(x_i; \theta)}{\partial \theta}\right) = 0$
-    - **Proof that the expectation of the score is 0**
-        - **Begin with the identity**
-          - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
-        - **The first derivative under the integral sign**
-          - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
-        - **Which can be reexpressed as** 
-          - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx = \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx = E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right]$
 
-- **Single parameter case**
-    - **Concept**    
-      - In the single parameter case, the score is a scalar
-    - **Mathematics**
-      - $\displaystyle \text{score} = \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}$
-  - **Multiple parameter case**
-    - **Concept**
-      - In the multiple parameter case, the score is a vector of scores one for each of the parameters of the model
-    - **Mathematics**
-      - $\displaystyle \text{score} = \left[ \frac{\partial \mathcal{l}(\theta, \sigma^2; \text{x})}{\partial \theta}, \frac{\partial \mathcal{l}(\theta, \sigma^2; \text{x})}{\partial \sigma^2} \right]^T$
-        - ***Notes***
-          - This is an example where there are 2 parameters in the model ($\theta$ and $\sigma^2$)
-          - 
-        
-          
-          
-          
-          
-          
-        - $\displaystyle E\left[ S\right] = E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right] = 0$
-        
-        
-    - **Mathematics**
-      - $\displaystyle E\left[ S\right] = E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right] = 0$
-        - ***Where***
-          - $\theta$ - The true value of the parameter 
-        - ***Notes***
-          - $E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right]$ can also be expressed as $\displaystyle E\left[ \frac{\partial \mathcal{l}}{\partial \theta} | \theta \right]$, but I just wanted to make it clearer and hopefully that is the case (but the only one who actually read this shit is me, so it's just a personal note really)
-  - **Variance of the score**
-    - **Concept**
-      - The variation of the scores given the true value of $\theta$ (alternatively speaking, it is the variation of the scores evaluated at the true value of $\theta$)
-      - The imagination comes back again, similar as before, imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, you then calculate the variance of the scores 
-      - The variance in this case is the second central moment about the mean of the score
-    - **Mathematics**
-      - $\displaystyle \text{Var}(S) = \sigma^2_{S} = E\left( S^2\right) = E \left[\left(\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right)^2\right] = -E \left[\frac{\partial \mathcal{l}^2(\theta; \textbf{x})}{\partial \theta^2}\right]$
       
 
 - **Variance of model parameters**
@@ -878,7 +848,61 @@ OTHERS
 
 
 
+**Others**
 
+---
+title: "others"
+author: "Samuel Mak"
+date: '2022-12-29'
+output: html_document
+---
+
+ - **Score**
+      - **Mathematics**
+        - **The likelihood function**
+          - $\displaystyle \mathcal{L}\left( \theta; x \right) = \prod_{i = 1}^{n = 3}{f(x_i; \theta)} = f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)$
+        - **The log likelihood**
+          - $\begin{aligned} \displaystyle \mathcal{l}(\theta; \textbf{x}) &= \log \mathcal{L}\left( \theta; \textbf{x} \right) \\ &= \log \prod_{i = 1}^{n = 3}{f(x_i; \theta)} \\ &= \log{\left[f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)\right]} \\ &= \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \end{aligned}$
+            - ***Notes***
+              - The log of the product is sum of the log of each factor in the product
+        - **The score (the first derivative of the log likelihood)**
+          - $\begin{aligned} \displaystyle S &=  \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}  \\ &= \frac{\partial}{\partial\theta}\left[ \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \right] \\ &= \frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta} \end{aligned}$
+            - ***Notes***
+              - The derivative of a sum is the sum of the derivative of each of the elements in the sum
+    - **The expectation of the score**
+      - **Mathematics**
+        - $\begin{aligned} \displaystyle E\left(S \right) &= E\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + E\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ E\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \end{aligned}$
+          - ***Notes***
+            - The expectation of a sum is the sum of the expectation of  each of the elements in the sum
+      - **The expectation of the score is 0**
+        - Since any one of the expectations is 0 (as shown in the one-observation case), the sum of all the expectations is also 0
+    - **The variance of the score**
+      - **Mathematics**
+        - **Variance defined as the second moment about the mean**
+          - $\begin{aligned} \displaystyle \text{Var}(S) &= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ \displaystyle &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] + 2\sum_{j = 1}^{n = 3}{\sum_{i = 1}^{n = 3}{\text{Cov}\left(\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}, \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right)}} \end{aligned}$
+          - Assuming that observations are uncorrelated: (I am unsure about this part)
+          - $\begin{aligned} \displaystyle \text{Var}(S) &= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &= 3\times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]\end{aligned}$
+    - **Fisher Information**
+      - **Concept**
+        - The Information from a sample with 3 observations is 3 times the Information from any single observation
+      - **Mathematics**
+        - $\displaystyle \text{Var}(S) = \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right]$
+        - $\begin{aligned}I_3(\theta) &= 3 \times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ I_3(\theta) &= 3 I_1(\theta)\end{aligned}$
+        
+        
+  - **The expectation of the score**
+    - **Concept**
+      - Under certain regularity conditions, the expectation of the score evaluated at the true value of $\theta$ is 0
+      - Imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, the mean of these scores will be 0, that is, they are clustered around 0
+    - **Mathematics**
+      - $\displaystyle E(S)  = E\left( \frac{\partial f(x_i; \theta)}{\partial \theta}\right) = 0$
+    - **Proof that the expectation of the score is 0**
+        - **Begin with the identity**
+          - $\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~  ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)}  ~ dx$
+        - **The first derivative under the integral sign**
+          - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}}  ~ dx$
+        - **Which can be reexpressed as** 
+          - $\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx = \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx = E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right]$
 
 
 
