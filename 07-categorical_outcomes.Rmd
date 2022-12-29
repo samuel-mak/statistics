@@ -374,7 +374,7 @@
       - ***Where***
         - $\mathbf{H}_f$ - The Hessian matrix of function $\mathcal{f}$
         - $\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}$ - The second-order derivative of the function with respect to the cross-product of variable $x_i$ and $x_j$
-        
+         
 - **The Score**
   - **Concept**
     - The score is the slope of the log-likelihood function evaluated at a particular value of the parameter
