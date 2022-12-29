@@ -627,7 +627,10 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 <li><strong>Concept</strong>
 <ul>
 <li>A function that describes the likelihood of a random sample data/datum as a function of the values of the parameters of the chosen statistical model</li>
+<li>In other words, it describes the probability of getting the sample data/datum under different values of the parameters of the statistical model</li>
 <li>The graph of the likelihood function is the likelihood against the values of the parameter(s) of the chosen statistical model</li>
+<li>It treats the sample data/datum is given and the parameter is a variable</li>
+<li>It is the joint probability between the observations at different values of the parameter of the model</li>
 <li>The graph is concave for most models</li>
 </ul></li>
 <li><strong>Mathematics</strong>
@@ -643,6 +646,50 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 <ul>
 <li><span class="math inline">\(\mathcal{L}(\theta; \mathbf{x})\)</span> can be denoted as <span class="math inline">\(\mathcal{L}(\theta)\)</span></li>
 </ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Example</strong>
+<ul>
+<li>The beginning scenario
+<ul>
+<li>You have 5 observations in your data and you are hypothesising that they came from a common population with pdf <span class="math inline">\(f(x; \theta)\)</span></li>
+</ul></li>
+<li>The likelihood function is:
+<ul>
+<li>$(; ) = _{i = 1}^{n}{f(x_i; )} $</li>
+</ul></li>
+<li>Find the likelihood under all possible values of the parameter
+<ul>
+<li>Examples:
+<ul>
+<li>The likelihood of getting this sample data given that the true value of the parameter is 1
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta = 1; \mathbf{x}) = f(x_1; \theta= 1) \times f(x_2; \theta= 1) \times f(x_3; \theta= 1) \times f(x_2; \theta= 1) \times f(x_3; \theta= 1)\)</span></li>
+</ul></li>
+<li>The likelihood of getting this sample data given that the true value of the parameter is 2
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta = 2; \mathbf{x}) = f(x_1; \theta= 2) \times f(x_2; \theta= 2) \times f(x_3; \theta= 2) \times f(x_2; \theta= 2) \times f(x_3; \theta= 2)\)</span></li>
+</ul></li>
+<li>The likelihood of getting this sample data given that the true value of the parameter is 3</li>
+<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta = 3; \mathbf{x}) = f(x_1; \theta= 3) \times f(x_2; \theta= 3) \times f(x_3; \theta= 3) \times f(x_2; \theta= 3) \times f(x_3; \theta= 3)\)</span></li>
+</ul></li>
+<li>The likelihood of getting this sample data given that the true value of the parameter is 4
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta = 4; \mathbf{x}) = f(x_1; \theta= 4) \times f(x_2; \theta= 4) \times f(x_3; \theta= 4) \times f(x_2; \theta= 4) \times f(x_3; \theta= 4)\)</span></li>
+</ul></li>
+<li>The likelihood of getting this sample data given that the true value of the parameter is 5
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta = 5; \mathbf{x}) = f(x_1; \theta= 5) \times f(x_2; \theta= 5) \times f(x_3; \theta= 5) \times f(x_2; \theta= 5) \times f(x_3; \theta= 5)\)</span></li>
+</ul></li>
+<li>The likelihood of getting this sample data given that the true value of the parameter is 6
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta = 6; \mathbf{x}) = f(x_1; \theta= 6) \times f(x_2; \theta= 6) \times f(x_3; \theta= 6) \times f(x_2; \theta= 6) \times f(x_3; \theta= 6)\)</span></li>
+</ul></li>
+</ul></li>
+<li>Plot these likelihoods into a plot of likelihood against the value of the parameter
+<ul>
+<li>The likelihood graph will usually be concave</li>
+<li>This is the likelihood graph for this sample</li>
 </ul></li>
 </ul></li>
 <li><strong>Log likelihood function</strong>
@@ -741,64 +788,321 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>The Score Function</strong>
+<li><strong>The Score</strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>The slope of the graph of the log likelihood function given the value of the parameter</li>
+<li>The score is the slope of the log-likelihood function evaluated at a particular value of the parameter</li>
+</ul></li>
+</ul></li>
+<li><strong>The Score at the true value of the parameter</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The slope of the log-likelihood function evaluated at the true value of the parameter (<span class="math inline">\(\theta\)</span>)</li>
+<li>The score is a variable because it is subject to sampling variation - That is, the score derived from a samples can be different from the scores derived from other samples</li>
+<li>In reality, we will never know this because the true value of the population parameter is unknown</li>
+</ul></li>
+<li><strong>A single observation case</strong>
+<ul>
+<li><strong>The score</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>The likelihood function</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}\left( \theta; x \right) = \prod_{i = 1}^{n = 1}{f(x_i; \theta)} = f(x; \theta)\)</span></li>
+</ul></li>
+<li><strong>The log likelihood</strong>
+<ul>
+<li><span class="math inline">\(\mathcal{l}(\theta; x) = \log\mathcal{L}\left( \theta; x \right) = \log f(x; \theta)\)</span></li>
+</ul></li>
+<li><strong>The score (first derivative of the log likelihood)</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}S &amp;= \displaystyle \frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \\ &amp;= \frac{\partial \log f(x_i; \theta)}{\partial \theta} \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The expectation of the Score</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle E(S) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right)\)</span></li>
+</ul></li>
+<li><strong>The expectation of the score for a single case is 0</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The mean of the scores all with a single observation and evaluated at the true value of the parameter is 0</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\text{score} = \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}\)</span></li>
+<li><span class="math inline">\(\displaystyle E(S) = E\left( \frac{\partial \log f(x_i; \theta)}{\partial \theta}\right) = 0\)</span></li>
 </ul></li>
-<li><strong>The expectation of score</strong>
+<li><strong>Proof</strong>
+<ul>
+<li><strong>Begin with the identity</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~ ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)} ~ dx\)</span></li>
+</ul></li>
+<li><strong>The first derivative under the integral sign</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}} ~ dx\)</span></li>
+</ul></li>
+<li><strong>Which can be reexpressed as</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}\displaystyle 0 &amp;= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &amp;= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \\ &amp;= E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right] \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Notes</strong>
+<ul>
+<li>I don’t fully understand the proof</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The variance of the score</strong>
+<ul>
+<li><strong>Variance defined as the second moment about the mean</strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>The expectation of score is 0</li>
+<li>The variance can be defined as the second moment about the mean</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\displaystyle E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} \right] = 0\)</span></li>
+<li><span class="math inline">\(\displaystyle \text{Var}(S) = \text{E}\left[ \left(\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right)^2\right]\)</span></li>
 </ul></li>
 </ul></li>
-</ul></li>
-<li><strong>Information</strong>
+<li><strong>Variance defined as the negative of the expectation of the second derivative of the likelihood function</strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
-<li>A quantity that quantifies the amount of information that an observable random variable carries about an unknown parameter of a statistical model/distribution of that random variable</li>
-<li>Through derivations, it can be shown that Fisher Information can be defined in terms of the variance of the score or the curvature of the likelihood function</li>
+<li>Through derivations, it can be shown that the variance equals to the negative of the expectation of the second derivative of the likelihood function evaluated at the true value of the parameter. In other words, it is the average curvature of the likelihood functions at the true value of the parameter in the parameter space.</li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>Begin with the identity</strong></li>
+<li><span class="math inline">\(\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~ ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)} ~ dx\)</span></li>
+<li><strong>The first derivative under the integral sign</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}} ~ dx\)</span></li>
 </ul></li>
-<li><strong>Information defined as the variance of the score (a random variable)</strong>
+<li><strong>Which can be reexpressed as</strong>
 <ul>
-<li><strong>Concept</strong>
+<li><span class="math inline">\(\begin{aligned}\displaystyle 0 &amp;= \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx \\ &amp;= \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Differentiate again (the second derivative)</strong>
 <ul>
-<li>Information can be defined as the variance of the random variable of the score (<span class="math inline">\(\frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}\)</span>)</li>
+<li><span class="math inline">\(\begin{aligned}\displaystyle 0 &amp;= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\frac{\partial \log f(x; \theta)}{\partial \theta} \frac{\partial \log f(x; \theta)}{\partial \theta} ~ f(x; \theta) ~ dx} \\ \displaystyle 0 &amp;= \int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx + \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2} ~ f(x; \theta)~dx\\ \displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx &amp;= \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Expressed as expectations</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle -\int_{-\infty}^{\infty}{\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}} ~ f(x; \theta)~dx = \int_{-\infty}^{\infty}{\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2}~ f(x; \theta)~dx \\ \displaystyle -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right) = E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]\)</span></li>
+</ul></li>
+<li>Hence, you can see that the variance (<span class="math inline">\(E\left[\left(\frac{\partial \log f(x; \theta)}{\partial \theta}\right)^2\right]\)</span>), which is defined as the second moment about the mean, equals to <span class="math inline">\(-E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)\)</span>, which is defined as the negative of the expectation of the second derivative of the likelihood function</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Which expression is preferred?</strong>
+<ul>
+<li>Usually the second definition of the variance is preferred as it is usually easier to compute than the first definition</li>
+</ul></li>
+</ul></li>
+<li><strong>Fisher Information</strong>
+<ul>
+<li><strong>Concept (general)</strong>
+<ul>
+<li>A quantity that quantifies the amount of information that an observable random variable/sample data/datum carries about an unknown parameter of a statistical model of that random variable</li>
+<li>The Fisher information is the variance of the score evaluated at 1 observation</li>
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\displaystyle I(\theta) = E\left[\left( \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}\right)^2 | \theta \right] = \text{Var}\left( \frac{\partial\mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta\right)\)</span></li>
-</ul></li>
-</ul></li>
-<li><strong>Information defined as the Curvature of the likelihood function</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>Information can be defined or expressed in terms of the curvature of the graph of the (log) likelihood function of the observed data/datum under certain regularity conditions (e.g. the log likelihood function is twice differentiable with respect to <span class="math inline">\(\theta\)</span>)</li>
-<li>The greater the curvature of the graph of the likelihood function, the more information the data has about the unknown parameters of the model (in the extreme case when the graph of the likelihood function is at the highest at a single value of the parameter and 0 at all other values of the parameter, in other words, the likelihood is non-zero at a single point in the parameter space, the data contains complete information about the value of the parameter)</li>
-<li>The smaller the curvature of the graph of the likelihood function, the less information the data has about the unknown parameters of the model (if the graph of the likelihood function is flat, that is, when the likelihood is the same across values of the parameter, then the data contains no information at all about the value of the parameter)</li>
-</ul></li>
-<li>Mathematically, information defined as the curvature of the likelihood graph is the negative of the expectation of the Hessian matrix where each element is the second derivative of the (log) likelihood function</li>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(\displaystyle \textbf{I}(\theta) = -E(\textbf{H}| \theta) \\ \displaystyle \textbf{I}(\theta) = -E\left[\frac{\partial^2 \mathcal{l}(\theta; \text{x})}{\partial \theta^2} | \theta\right]\)</span>
+<li><span class="math inline">\(\begin{aligned}\displaystyle I_1(\theta) &amp;= \text{Var}(S) \\ \displaystyle &amp;= \text{Var}\left[\frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \right] \\ \displaystyle &amp;= \text{Var}\left[\frac{\partial \log f(x_i; \theta)}{\partial \theta}\right] \end{aligned}\)</span>
 <ul>
 <li><strong><em>Notes</em></strong>
 <ul>
-<li>Usually, Information expressed this way is easier to compute than Information expressed as the variance of the score</li>
+<li><span class="math inline">\(I_1(\theta)\)</span> - Usually it is expressed as <span class="math inline">\(I(\theta)\)</span> but I expressed it as such to indicate that this is the Information from one observation</li>
 </ul></li>
 </ul></li>
+</ul></li>
+<li><strong>Information defined as the second moment of about the mean</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>As seen, the variance of the score can be defined in terms of the second moment of about the mean, since the Fisher Information is the variance of the score at the true value of the parameter, the Fisher Information can be interpreted exactly like that</li>
+</ul></li>
+</ul></li>
+<li><strong>Information defined as the curvature</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>As seen, the variance of the score can be defined in terms of the curvature of the likelihood function at the true value of the parameter, which means that Fisher information can be interpreted as the same way, which is pretty intuitive</li>
+<li>Information can be expressed in terms of the negative of the expectation of the curvature of the likelihood function evaluated at the true value of the parameter</li>
+<li>Hence, the greater the curvature of the likelihood function at the true value of the parameter, the more information the data/datum has about the unknown parameters of the model (in the extreme case when the likelihood function is at the highest at a single value of the parameter and 0 at all other values of the parameter, in other words, the likelihood is non-zero at a single point in the parameter space, the data/datum contains complete information about the parameter)</li>
+<li>The smaller the curvature of the likelihood function at the true value of the parameter, the less information the data has about the unknown parameters of the model (in the extreme case when the likelihood function is flat, that is, when the likelihood is the same across values of the parameter, then the data/datum contains no information at all about the value of the parameter)</li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}\displaystyle I(\theta) &amp;= \text{Var}(S) \\ &amp;= -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)\end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>A multiple-observation case (3 observations)</strong>
+<ul>
+<li><strong>Score</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>The likelihood function</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \mathcal{L}\left( \theta; x \right) = \prod_{i = 1}^{n = 3}{f(x_i; \theta)} = f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)\)</span></li>
+</ul></li>
+<li><strong>The log likelihood</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \mathcal{l}(\theta; \textbf{x}) &amp;= \log \mathcal{L}\left( \theta; \textbf{x} \right) \\ &amp;= \log \prod_{i = 1}^{n = 3}{f(x_i; \theta)} \\ &amp;= \log{\left[f(x_1; \theta) \times f(x_2; \theta) \times f(x_3; \theta)\right]} \\ &amp;= \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \end{aligned}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>The log of the product is sum of the log of each factor in the product</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The score (the first derivative of the log likelihood)</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle S &amp;= \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta} \\ &amp;= \frac{\partial}{\partial\theta}\left[ \log{f(x_1; \theta)} + \log{f(x_2; \theta)} + \log{f(x_3; \theta)} \right] \\ &amp;= \frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta} \end{aligned}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>The derivative of a sum is the sum of the derivative of each of the elements in the sum</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The expectation of the score</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle E\left(S \right) &amp;= E\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &amp;= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &amp;= E\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + E\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ E\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \end{aligned}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>The expectation of a sum is the sum of the expectation of each of the elements in the sum</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The expectation of the score is 0</strong>
+<ul>
+<li>Since any one of the expectations is 0 (as shown in the one-observation case), the sum of all the expectations is also 0</li>
+</ul></li>
+</ul></li>
+<li><strong>The variance of the score</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><strong>Variance defined as the second moment about the mean</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ \displaystyle &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] + 2\sum_{j = 1}^{n = 3}{\sum_{i = 1}^{n = 3}{\text{Cov}\left(\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}, \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right)}} \end{aligned}\)</span></li>
+<li>Assuming that observations are uncorrelated: (I am unsure about this part)</li>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &amp;= 3\times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &amp;= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]\end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Fisher Information</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The Information from a sample with 3 observations is 3 times the Information from any single observation</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{Var}(S) = \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right]\)</span></li>
+<li><span class="math inline">\(\begin{aligned}I_3(\theta) &amp;= 3 \times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ I_3(\theta) &amp;= 3 I_1(\theta)\end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>The expectation of the score</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>Under certain regularity conditions, the expectation of the score evaluated at the true value of <span class="math inline">\(\theta\)</span> is 0</li>
+<li>Imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, the mean of these scores will be 0, that is, they are clustered around 0</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle E(S) = E\left( \frac{\partial f(x_i; \theta)}{\partial \theta}\right) = 0\)</span></li>
+</ul></li>
+<li><strong>Proof that the expectation of the score is 0</strong>
+<ul>
+<li><strong>Begin with the identity</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle 1 = \int_{-\infty}^{\infty}{\mathcal{L}(\theta; x)} ~ ~ dx = \int_{-\infty}^{\infty}{\mathcal{f}(x; \theta)} ~ dx\)</span></li>
+</ul></li>
+<li><strong>The first derivative under the integral sign</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta}} ~ dx\)</span></li>
+</ul></li>
+<li><strong>Which can be reexpressed as</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle 0 = \int_{-\infty}^{\infty}{\frac{\partial\mathcal{f}(x; \theta)}{\partial \theta \mathcal{f}(x; \theta)}\mathcal{f}(x; \theta)} ~ dx = \int_{-\infty}^{\infty}{\frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\mathcal{f}(x; \theta)} ~ dx = E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right]\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Single parameter case</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>In the single parameter case, the score is a scalar</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{score} = \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta}\)</span></li>
+</ul></li>
+<li><strong>Multiple parameter case</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>In the multiple parameter case, the score is a vector of scores one for each of the parameters of the model</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{score} = \left[ \frac{\partial \mathcal{l}(\theta, \sigma^2; \text{x})}{\partial \theta}, \frac{\partial \mathcal{l}(\theta, \sigma^2; \text{x})}{\partial \sigma^2} \right]^T\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>This is an example where there are 2 parameters in the model (<span class="math inline">\(\theta\)</span> and <span class="math inline">\(\sigma^2\)</span>)</li>
+<li></li>
+</ul></li>
+<li><span class="math inline">\(\displaystyle E\left[ S\right] = E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right] = 0\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle E\left[ S\right] = E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right] = 0\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\theta\)</span> - The true value of the parameter</li>
+</ul></li>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li><span class="math inline">\(E\left[ \frac{\partial \mathcal{l}(\theta; \text{x})}{\partial \theta} | \theta \right]\)</span> can also be expressed as <span class="math inline">\(\displaystyle E\left[ \frac{\partial \mathcal{l}}{\partial \theta} | \theta \right]\)</span>, but I just wanted to make it clearer and hopefully that is the case (but the only one who actually read this shit is me, so it’s just a personal note really)</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Variance of the score</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The variation of the scores given the true value of <span class="math inline">\(\theta\)</span> (alternatively speaking, it is the variation of the scores evaluated at the true value of <span class="math inline">\(\theta\)</span>)</li>
+<li>The imagination comes back again, similar as before, imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, you then calculate the variance of the scores</li>
+<li>The variance in this case is the second central moment about the mean of the score</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{Var}(S) = \sigma^2_{S} = E\left( S^2\right) = E \left[\left(\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right)^2\right] = -E \left[\frac{\partial \mathcal{l}^2(\theta; \textbf{x})}{\partial \theta^2}\right]\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -940,16 +1244,35 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 </ul></li>
 <li><strong>The score statistic</strong>
 <ul>
+<li><strong>The z score statistic</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The normal z version of the score statistic</li>
+<li>It is the ratio of the slope of the likelihood function of the parameter at the null hypothesised value of the parameter to the standard error of the slope at the null hypothesised value of the parameter</li>
+</ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\displaystyle \frac{\mathcal{L&#39;}(\theta_0)^2}{I(\theta_0)}\)</span>
+<li><span class="math inline">\(\displaystyle \frac{\mathcal{l&#39;}(\theta_0)}{\sqrt{I(\theta_0)}}\)</span>
 <ul>
 <li><strong><em>Where</em></strong>
 <ul>
-<li><span class="math inline">\(\mathcal{L&#39;}\)</span> - The first derivative of the likelihood function</li>
-<li><span class="math inline">\(\mathcal{L&#39;}(\theta_0)^2\)</span> - The slope at the null hypothesised value of the parameter in the likelihood function (sub in the null hypothesised value of the parameter into the first derivative of the likelihood function and you will get this) (<span class="math inline">\(\theta_0\)</span>)</li>
+<li><span class="math inline">\(\mathcal{l&#39;}(\theta_0)\)</span> - The slope of the likelihood function of the parameter at the null hypothesised value of the parameter</li>
+<li><span class="math inline">\(\sqrt{I(\theta_0)}\)</span> - The standard error of the slope of the likelihood function of the parameter at the null hypothesised value of the parameter - The standard error depends on the curvature of the likelihood function of the parameter at the null hypothesised value of the parameter - The information evaluated at the null hypothesised value of the parameter</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \frac{\mathcal{l&#39;}(\theta_0)^2}{I(\theta_0)}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(\mathcal{l&#39;}\)</span> - The first derivative of the log likelihood function</li>
+<li><span class="math inline">\(\mathcal{l&#39;}(\theta_0)^2\)</span> - The slope at the null hypothesised value of the parameter in the log likelihood function (sub in the null hypothesised value of the parameter into the first derivative of the log likelihood function and you will get this)</li>
 <li><span class="math inline">\(I\)</span> - Information</li>
-<li><span class="math inline">\(I(\theta_0)\)</span> - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))</li>
+<li><span class="math inline">\(I(\theta_0)\)</span> - - The information at the null hypothesised value in the likelihood function - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))</li>
 </ul></li>
 <li><strong><em>Notes</em></strong>
 <ul>
@@ -991,27 +1314,44 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
+<li><strong>The PMF of the binomial distribution</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle P(y) = {n\choose y} \pi^y (1 - \pi)^{n - y} ~~~, y = 0:n\)</span></li>
+</ul></li>
 <li><strong>The log likelihood function:</strong>
 <ul>
-<li><span class="math inline">\(\begin{aligned} \displaystyle \mathcal{L}(\pi)&amp;=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &amp;= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}\)</span></li>
-</ul></li>
-<li><strong>The derivative of the likelihood function:</strong>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \mathcal{l}(\pi)&amp;=\log{\left[\pi^{y}(1-\pi)^{n-y}\right]} \\ \displaystyle &amp;= y\log(\pi)+(n-y)\log(1-\pi) \end{aligned}\)</span>
 <ul>
-<li><span class="math inline">\(\begin{aligned} \displaystyle \frac{\partial{\mathcal{L}(\pi)}}{\partial{\pi}} \displaystyle &amp;= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &amp;= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}\)</span></li>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>Only the kernal of the PMF of the binomial distribution contains the parameters and relevant, therefore, only the kernal is used</li>
 </ul></li>
-<li><strong>Maximisation problem: set the derivative of the log likelihood function to 0 and find <span class="math inline">\(\pi\)</span></strong>
+</ul></li>
+</ul></li>
+<li><strong>The first derivative of the likelihood function:</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \frac{\partial{\mathcal{l}(\pi)}}{\partial{\pi}} \displaystyle &amp;= \frac{y}{\pi} - \frac{n - y}{1- \pi} \\ \displaystyle &amp;= \frac{y - n\pi}{\pi(1-\pi)} \end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Maximisation problem: set the derivative of the log likelihood function to 0 and find <span class="math inline">\(\pi\)</span> (the estimating equation)</strong>
 <ul>
 <li><span class="math inline">\(\begin{aligned} \displaystyle \frac{y - n\pi}{\pi(1-\pi)} &amp;= 0 \\ \displaystyle y - n\pi &amp;= 0 \\ \displaystyle \hat\pi &amp;= \frac{y}{n}\end{aligned}\)</span>
 <ul>
 <li><strong><em>Notes</em></strong>
 <ul>
-<li>As you can see, this is the sample proportion of success for the <span class="math inline">\(n\)</span> trials</li>
+<li>As you can see, this is the sample proportion of success for the <span class="math inline">\(n\)</span> trials - This is the MLE of the population probability</li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><strong>MLE for the variance of <span class="math inline">\(\hat\pi\)</span></strong>
+<li><strong>Information</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle I_{\pi} =-E\left(\frac{\partial^2 f}{\partial \pi^2}\right) = E\left[ \frac{y}{\pi^2} - \frac{n-y}{(1-\pi)^2}\right] = \frac{n}{\pi(1-\pi)}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Variance of <span class="math inline">\(\hat\pi\)</span></strong>
 <ul>
 <li><strong>Concept</strong>
 <ul>
@@ -1020,15 +1360,33 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 </ul></li>
 <li><strong>Mathematics</strong>
 <ul>
-<li><span class="math inline">\(\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &amp;= \text{information}^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &amp;= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &amp;= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &amp;= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &amp;= \frac{\pi(1-\pi)}{n} \end{aligned}\)</span></li>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \sigma_{\hat\pi}^{2} &amp;= I^{-1} \\ \displaystyle \sigma_{\hat\pi}^{2} &amp;= -E\left(\frac{\partial^2 f}{\partial \pi^2}\right)^{-1} \\ \displaystyle &amp;= E \left[ \frac{y}{\pi^2} + \frac{n-y}{(1-\pi)^2} \right]^{-1} \\ \displaystyle &amp;= \left[\frac{n}{\pi(1 - \pi)}\right]^{-1} \\ \displaystyle &amp;= \frac{\pi(1-\pi)}{n} \end{aligned}\)</span></li>
 </ul></li>
 </ul></li>
-<li><strong>MLE for the standard error</strong>
+<li><strong>Standard error</strong>
 <ul>
 <li><strong>Mathematics</strong>
 <ul>
 <li><span class="math inline">\(\begin{aligned} \displaystyle \sigma_{\hat\pi} &amp;= \sqrt{\sigma_{\hat\pi}^{2}} \\ &amp;= \sqrt{\frac{\pi(1-\pi)}{n}} \end{aligned}\)</span></li>
 </ul></li>
+</ul></li>
+<li><strong>Confidence Interval (Not yet developed)</strong>
+<ul>
+<li><strong>Wald confidence interval</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>The Wald confidence interval uses the normal approximation</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(CI = \hat\pi ± z_{1-\frac{\alpha}{2}} \times \sigma_{\hat\pi}\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Others</strong>
+<ul>
+<li>A marked divergence in results of Wald and Likelihood ratio inference indicates that the distribution of the parameter may not be close to normality</li>
 </ul></li>
 </ul></li>
 <li><strong>NHST of the binomial parameter <span class="math inline">\(\hat\pi\)</span></strong>
@@ -1055,7 +1413,7 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 <ul>
 <li>The first derivative of the likelihood function for <span class="math inline">\(\pi\)</span>
 <ul>
-<li><span class="math inline">\(\displaystyle S(\pi) = \frac{y - n\pi}{\pi(1-\pi)}\)</span></li>
+<li><span class="math inline">\(\displaystyle \mathcal{l}(\pi) = \frac{y - n\pi}{\pi(1-\pi)}\)</span></li>
 </ul></li>
 <li>Sub in <span class="math inline">\(\pi_0\)</span>
 <ul>
@@ -1076,6 +1434,13 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 </ul></li>
 </ul></li>
 </ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Continuity correction</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>A correction made when a discrete distribution is approximated by a continuous distribution</li>
 </ul></li>
 </ul></li>
 </ul>
