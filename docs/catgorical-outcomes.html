@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Catgorical outcomes | others</title>
-  <meta name="description" content="Chapter 7 Catgorical outcomes | others" />
+  <title>Chapter 7 Catgorical outcomes | Statistics</title>
+  <meta name="description" content="Chapter 7 Catgorical outcomes | Statistics" />
   <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Catgorical outcomes | others" />
+  <meta property="og:title" content="Chapter 7 Catgorical outcomes | Statistics" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Catgorical outcomes | others" />
+  <meta name="twitter:title" content="Chapter 7 Catgorical outcomes | Statistics" />
   
   
   
@@ -23,7 +23,6 @@
 <meta name="author" content="Samuel Mak" />
 
 
-<meta name="date" content="2022-12-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -91,7 +90,7 @@
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">others</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Statistics</a>
           </h1>
         </div>
 
@@ -1401,8 +1400,8 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 <ul>
 <li><strong>Scenario</strong>
 <ul>
-<li>Let <span class="math inline">\(T = t(X)\)</span> be a sample statistic that is an estimator of the true value of the parameter <span class="math inline">\(\theta\)</span>.</li>
-<li>To generalise the proof to accommodate both unbiased and biased estimator, let’s assume that <span class="math inline">\(T\)</span> can be a biased or unbiased estimator, hence, let’s express the expectation of <span class="math inline">\(T\)</span> as <span class="math inline">\(\text{E}(T) = g(\theta)\)</span> (So that if <span class="math inline">\(T\)</span> is an unbiased estimator, then <span class="math inline">\(g()\)</span> would be an identity function).</li>
+<li>Let <span class="math inline">\(\hat\theta = u(X) = u(x_1, x_2, \cdots , x_n)\)</span> be a sample statistic and an estimator of the true value of the parameter <span class="math inline">\(\theta\)</span>.</li>
+<li>To generalise the proof to accommodate both unbiased and biased estimator, let’s assume that <span class="math inline">\(\hat\theta\)</span> can be a biased or unbiased estimator, hence, let’s express the expectation of <span class="math inline">\(\hat\theta\)</span> as <span class="math inline">\(\text{E}(\hat\theta) = g(\theta)\)</span> (So that if <span class="math inline">\(\hat\theta\)</span> is an unbiased estimator, <span class="math inline">\(g()\)</span> would be an identity function).</li>
 <li>Let <span class="math inline">\(f(x; \theta)\)</span> be the pdf of the random variable <span class="math inline">\(X\)</span></li>
 <li><strong>The log-likelihood function</strong>
 <ul>
@@ -1413,28 +1412,37 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 <li><span class="math inline">\(\begin{aligned}\displaystyle S &amp;= \frac{\partial \log \mathcal{f}(x; \theta) }{\partial \theta} \\ &amp;= \frac{1}{f(x; \theta)} \times \frac{\partial f(x; \theta)}{\partial \theta} \\ &amp;= \frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)}\end{aligned}\)</span></li>
 </ul></li>
 </ul></li>
-<li><strong>Covariance of <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span></strong>
+<li><strong>Covariance of <span class="math inline">\(S\)</span> and <span class="math inline">\(\hat\theta\)</span></strong>
 <ul>
-<li><span class="math inline">\(\displaystyle \text{Cov}(S, T) = \text{E}\left[ (S - \text{E}(S)) (T - \text{E}(T))\right]=\text{E}(ST) - \text{E}(S)\text{E}(T)\)</span></li>
-<li>Since <span class="math inline">\(\text{E}(S)\)</span> is 0 (proof is in the Score section), the covariance simplifies to:</li>
-<li><span class="math inline">\(\displaystyle \text{Cov}(S, T) =\text{E}(ST)\)</span>
+<li><span class="math inline">\(\displaystyle \text{Cov}(S, \hat\theta) = \text{E}\left[ (S - \text{E}(S)) (\hat\theta - \text{E}(\hat\theta))\right]=\text{E}(S\hat\theta) - \text{E}(S)\text{E}(\hat\theta)\)</span>
 <ul>
 <li><strong><em>Notes</em></strong>
 <ul>
 <li>The definition of the covariance of 2 random variables is:
 <ul>
-<li><span class="math inline">\(\displaystyle \text{Cov}(X, Y) = \text{E}\left[ (X - \text{E}(X)) (Y - \text{E}(Y))\right]=\text{E}(XY) - \text{E}(S)\text{E}(T)\)</span></li>
+<li><span class="math inline">\(\displaystyle \text{Cov}(X, Y) = \text{E}\left[ (X - \text{E}(X)) (Y - \text{E}(Y))\right]=\text{E}(XY) - \text{E}(X)\text{E}(Y)\)</span></li>
 </ul></li>
 </ul></li>
+</ul></li>
+<li>Since <span class="math inline">\(\text{E}(S) = 0\)</span> (proof is in the Score section), the covariance simplifies to:</li>
+<li><span class="math inline">\(\displaystyle \text{Cov}(S, \hat\theta) =\text{E}(S\hat\theta)\)</span></li>
 </ul></li>
 <li><strong>Expanding the expression</strong>
 <ul>
-<li><span class="math inline">\(\begin{aligned}\displaystyle \text{Cov}(S, T) &amp;= \text{E}(ST) \\ &amp;= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)}\right) \times T\right]\end{aligned}\)</span></li>
+<li><span class="math inline">\(\begin{aligned}\displaystyle \text{Cov}(S, \hat\theta) &amp;= \text{E}(S\hat\theta) \\ &amp;= \text{E}\left[ \left( \frac{\partial f(X; \theta)}{\partial \theta f(X; \theta)}\right) \hat\theta\right]\end{aligned}\)</span></li>
 </ul></li>
 <li><strong>Expressing it as an integral</strong>
 <ul>
-<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Cov}\left( S, T\right) &amp;= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)}\right) \times T\right] \\ &amp;= \int_{-\infty}^{\infty}{\frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)} \times t(x) f(x; \theta) ~ dx} \\ &amp;= \frac{\partial}{\partial \theta}\int_{}^{}{t(x) f(x; \theta) ~ dx} \\ &amp;= \frac{\partial}{\partial \theta}\text{E}(T) \\ &amp;= g&#39;(\theta) \end{aligned}\)</span> |||||||||||||||||||STOPPED HERE|||||||||||||||</li>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Cov}\left( S, T\right) &amp;= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)}\right) \hat\theta\right] \\ &amp;= \int_{}^{}{\frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)} u(x) f(x; \theta) ~ dx} \\ &amp;= \frac{\partial}{\partial \theta}\int_{}^{}{\frac{f(x; \theta)}{f(x; \theta)}u(x) f(x; \theta) ~ dx} \\ &amp;= \frac{\partial}{\partial \theta}\int_{}^{}{u(x) f(x; \theta) ~ dx} \\ &amp;= \frac{\partial}{\partial \theta}\text{E}(\hat\theta) \\ &amp;= g&#39;(\theta) \end{aligned}\)</span></li>
 </ul></li>
+<li><strong>Since The Cauchy-Schwarz inequality proofed that</strong>
+<ul>
+<li><span class="math inline">\(\sqrt{\text{Var}(X) \text{Var}(Y)} ≥ |\text{Cov(X, Y)}|\)</span></li>
+</ul></li>
+<li><strong>And as proofed, <span class="math inline">\(\text{Cov(X, Y)} = g&#39;(\theta)\)</span></strong></li>
+<li><strong>Therefore</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \sqrt{\text{Var}(S) \text{Var}(\hat\theta)} &amp;≥ |g&#39;(\theta)| \\ \text{Var}(S)\text{Var}(\hat\theta) &amp;≥ \left[g&#39;(\theta)\right]^2 \\ \text{Var}(\hat\theta) &amp;≥ \frac{\left[g&#39;(\theta)\right]^2 }{\text{Var}(S)} \\ \text{Var}(\hat\theta) &amp;≥ \frac{\left[g&#39;(\theta)\right]^2 }{nI(\theta)}\end{aligned}\)</span></li>
 </ul></li>
 </ul></li>
 </ul></li>

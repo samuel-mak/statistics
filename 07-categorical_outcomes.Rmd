@@ -749,24 +749,29 @@
       - $\displaystyle \text{Var}(\hat\theta) ≥ \frac{1}{I(\theta)}$
     - **Proof**
       - **Scenario**
-        - Let $T = t(X)$ be a sample statistic that is an estimator of the true value of the parameter $\theta$. 
-        - To generalise the proof to accommodate both unbiased and biased estimator, let's assume that $T$ can be a biased or unbiased estimator, hence, let's express the expectation of $T$ as $\text{E}(T) = g(\theta)$ (So that if $T$ is an unbiased estimator, then $g()$ would be an identity function). 
+        - Let $\hat\theta = u(X) = u(x_1, x_2, \cdots , x_n)$ be a sample statistic and an estimator of the true value of the parameter $\theta$. 
+        - To generalise the proof to accommodate both unbiased and biased estimator, let's assume that $\hat\theta$ can be a biased or unbiased estimator, hence, let's express the expectation of $\hat\theta$ as $\text{E}(\hat\theta) = g(\theta)$ (So that if $\hat\theta$ is an unbiased estimator, $g()$ would be an identity function). 
         - Let $f(x; \theta)$ be the pdf of the random variable $X$
         - **The log-likelihood function**
           - $\mathcal{l}(\theta; X)$
         - **The score**
           - $\begin{aligned}\displaystyle S &= \frac{\partial \log \mathcal{f}(x; \theta) }{\partial \theta} \\ &= \frac{1}{f(x; \theta)} \times \frac{\partial f(x; \theta)}{\partial \theta} \\ &= \frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)}\end{aligned}$
-      - **Covariance of $S$ and $T$**
-        - $\displaystyle \text{Cov}(S, T) = \text{E}\left[ (S - \text{E}(S)) (T - \text{E}(T))\right]=\text{E}(ST) - \text{E}(S)\text{E}(T)$
-        - Since $\text{E}(S)$ is 0 (proof is in the Score section), the covariance simplifies to: 
-        - $\displaystyle \text{Cov}(S, T) =\text{E}(ST)$
+      - **Covariance of $S$ and $\hat\theta$**
+        - $\displaystyle \text{Cov}(S, \hat\theta) = \text{E}\left[ (S - \text{E}(S)) (\hat\theta - \text{E}(\hat\theta))\right]=\text{E}(S\hat\theta) - \text{E}(S)\text{E}(\hat\theta)$
           - ***Notes***
             - The definition of the covariance of 2 random variables is: 
-              - $\displaystyle \text{Cov}(X, Y) = \text{E}\left[ (X - \text{E}(X)) (Y - \text{E}(Y))\right]=\text{E}(XY) - \text{E}(S)\text{E}(T)$
-        - **Expanding the expression**
-          - $\begin{aligned}\displaystyle \text{Cov}(S, T) &= \text{E}(ST) \\ &= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)}\right) \times T\right]\end{aligned}$
-        - **Expressing it as an integral**
-          - $\begin{aligned} \displaystyle \text{Cov}\left( S, T\right) &= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)}\right) \times T\right] \\ &= \int_{-\infty}^{\infty}{\frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)} \times t(x) f(x; \theta) ~ dx} \\ &= \frac{\partial}{\partial \theta}\int_{}^{}{t(x) f(x; \theta) ~ dx} \\ &= \frac{\partial}{\partial \theta}\text{E}(T) \\ &= g'(\theta) \end{aligned}$ |||||||||||||||||||STOPPED HERE|||||||||||||||
+              - $\displaystyle \text{Cov}(X, Y) = \text{E}\left[ (X - \text{E}(X)) (Y - \text{E}(Y))\right]=\text{E}(XY) - \text{E}(X)\text{E}(Y)$
+        - Since $\text{E}(S) = 0$ (proof is in the Score section), the covariance simplifies to: 
+        - $\displaystyle \text{Cov}(S, \hat\theta) =\text{E}(S\hat\theta)$
+      - **Expanding the expression**
+        - $\begin{aligned}\displaystyle \text{Cov}(S, \hat\theta) &= \text{E}(S\hat\theta) \\ &= \text{E}\left[ \left( \frac{\partial f(X; \theta)}{\partial \theta f(X; \theta)}\right)  \hat\theta\right]\end{aligned}$
+      - **Expressing it as an integral**
+        - $\begin{aligned} \displaystyle \text{Cov}\left( S, T\right) &= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)}\right) \hat\theta\right] \\ &= \int_{}^{}{\frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)}  u(x) f(x; \theta) ~ dx} \\ &= \frac{\partial}{\partial \theta}\int_{}^{}{\frac{f(x; \theta)}{f(x; \theta)}u(x) f(x; \theta) ~ dx} \\ &= \frac{\partial}{\partial \theta}\int_{}^{}{u(x) f(x; \theta) ~ dx} \\ &= \frac{\partial}{\partial \theta}\text{E}(\hat\theta) \\ &= g'(\theta) \end{aligned}$ 
+      - **Since The Cauchy-Schwarz inequality proofed that**
+        - $\sqrt{\text{Var}(X) \text{Var}(Y)} ≥ |\text{Cov(X, Y)}|$
+      - **And as proofed, $\text{Cov(X, Y)} = g'(\theta)$**
+      - **Therefore** 
+        - $\begin{aligned} \displaystyle \sqrt{\text{Var}(S) \text{Var}(\hat\theta)} &≥ |g'(\theta)| \\  \text{Var}(S)\text{Var}(\hat\theta) &≥ \left[g'(\theta)\right]^2 \\ \text{Var}(\hat\theta) &≥ \frac{\left[g'(\theta)\right]^2 }{\text{Var}(S)} \\ \text{Var}(\hat\theta) &≥ \frac{\left[g'(\theta)\right]^2 }{nI(\theta)}\end{aligned}$
 
 - **Efficient Estimator**
   - **Concept** 
@@ -869,13 +874,6 @@ OTHERS
 
 
 **Others**
-
----
-title: "others"
-author: "Samuel Mak"
-date: '2022-12-29'
-output: html_document
----
 
  - **Score**
       - **Mathematics**
