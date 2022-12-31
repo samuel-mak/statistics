@@ -116,6 +116,139 @@
 </ul></li>
 </ul></li>
 </ul>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<pre><code>## Saving 2500 x 1500 px image
+## Saving 2500 x 1500 px image
+## Saving 2500 x 1500 px image</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_text).</code></pre>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-143-2.png" width="672" /></p>
+<pre><code>## Saving 2500 x 1500 px image</code></pre>
+<p style="margin-bottom: 0px; font-size: 20px; ">
+<strong>Expectation</strong>
+</p>
+<ul>
+<li><strong>Expectation of a random variable</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>weighted by its probability or proportion of occurrence/proportion relative to the entire population or density of 1</li>
+<li>The expectation is the area under the function in which the value of the random variable is weighted by its probability (or proportion of occurrence relative to the entire population of density of 1) (the area of the function <span class="math inline">\(f(x) = xp(x)\)</span>)</li>
+<li>The function produces a distribution with weighted value against the value of the random variable. The distribution is made up of many individual columns with each for each of the possible values of the random variable. The heights of the columns represent the weighted values of their corresponding values of the random variable and all columns have a width of 1. This means that the area of each column simply represents the weighted value of a particular value of the random variable. The also means that the sum of the area of all the columns, which is the area of the distribution, is the weighed average or weighted sum of that random variable, which is the expectation of the random variable. Hence, the expectation of a random variable is found through the area of the function <span class="math inline">\(f(x) = xp(x)\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Expectation of a discrete random variable</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>In the discrete case, the function produces a discrete distribution with weighted value against the discrete random variable, which is like a histogram as opposed to a continuous curve like a pdf. The expectation is found through summation where the areas of all the columns are summed. Hence, it really is just the sum of the function <span class="math inline">\(f(x) = x_ip(x_i)\)</span> for all possible values of the discrete random variable and can be viewed as the weighted average or weighted sum. (when viewed as the weighted average, it is the sum of all possible values of the discrete random variable weighted by its number of occurrence and have the entire sum divided by the sum of all the weighteds; when viewed as the weighted sum, it is the sum of each possible value of the discrete random varible weighted by its probability or proportion of occurrence relative to the entire population or density of 1)</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{E}(X) = \sum_{i = 1}^{k}{x_i p(x_i)}\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(x\)</span> - A discrete random variable (e.g. the number of the success event in a binomial distribution)</li>
+<li><span class="math inline">\(x_i\)</span> - A discrete random variable at a particular discrete value <span class="math inline">\(i\)</span></li>
+<li><span class="math inline">\(p(x_i)\)</span> - The proportion of the discrete random variable at a particular value <span class="math inline">\(i\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><details>
+<summary>
+<strong>Examples</strong>
+</summary>
+<ul>
+<li><strong>Example 1</strong>
+<ul>
+<li><strong>Scenario</strong>
+<ul>
+<li>Let <span class="math inline">\(X\)</span> be a discrete random variable, specifically, the number of cases of theft at a Sainsbury’s store per day</li>
+<li>Histogram
+<ul>
+<li><img src="expectation_plot_1.png" /></li>
+</ul></li>
+</ul></li>
+<li><strong>Turn the frequency to proportions</strong>
+<ul>
+<li><img src="expectation_plot_2.png" /></li>
+</ul></li>
+<li><strong>The expected value</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}\displaystyle \text{E}(X) &amp;= \sum_{i = 1}^{k}{x_i p(x_i)}\\ &amp;= 0(\frac{3}{100}) + 1(\frac{5}{100}) + 3(\frac{10}{100})+ 3(\frac{15}{100}) + 4(\frac{20}{100}) + 5(\frac{25}{100}) + \\ &amp;~~~~~5(\frac{10}{100}) + 7(\frac{5}{100}) + 8(\frac{3}{100}) + 9(\frac{3}{100}) + 10(\frac{1}{100}) \\ &amp;= 0(.03) + 1(.05) + 3(.10)+ 3(.15) + 4(.20) + 5(.25) + \\ &amp;~~~~~5(.10) + 7(.05) + 8(.03) + 9(.03) + 10(.01) \\ &amp;= 4.31 \end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Example 2</strong>
+<ul>
+<li><strong>Scenario</strong>
+<ul>
+<li>There are 3 possible categories of marks for a final exam, 60, 70, and 80. Out of the cohort of 100 students, 60 achieved a mark of 60, 30 achieved 70, and 10 achieved 80.</li>
+<li><img src="expectation_student_marks_plot_1.png" /></li>
+</ul></li>
+<li><strong>Turn the frequency to proportions</strong>
+<ul>
+<li><img src="expectation_student_marks_plot_2.png" /></li>
+<li><strong>The expectation</strong></li>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \text{E}(M) &amp;= \sum_{i = 1}^{K}{x_i p(x_i)} \\ &amp;= 60\left(\frac{6}{10}\right) + 70\left(\frac{3}{10}\right) + 80\left(\frac{1}{10}\right) \\ &amp;= 60(.60) + 70(.30) + 80(.10) \\ &amp;= 65\end{aligned}\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li><strong>It is the mean version for the discrete case</strong>
+<ul>
+<li>This is same as the mean in the discrete case where the expectation is expressed as a weighted average weighted on the proportion of each of the values instead of the sum of each of the observation over the total</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \text{E}(M) &amp;= \frac{1}{N}\sum_{i = 1}^{n}{x_i} \\ &amp;= \frac{1}{10}\left[ 60 + 60 + 60 + 60 + 60 + 60 + 70 + 70 + 70 + 80 \right] \\ &amp;= \frac{1}{10} \left[ 60(6) + 70 (3) + 80(1)\right] \\ &amp;= 60\left(\frac{6}{10}\right) + 70\left(\frac{3}{10}\right) + 80\left(\frac{1}{10}\right)\end{aligned}\)</span></li>
+<li>Which is just</li>
+<li>$ x_1p(x_1) + x_2p(x_2) + x_3p(x_3) = _{i = 1}^{K}{x_i p(x_i)} $
+</details></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Expectation of a continuous random variable</strong>
+<ul>
+<li><strong>Concept</strong>
+<ul>
+<li>It is the centre of mass of the density</li>
+<li>The weighted sum of a continuous variable - The sum of each possible value of the continuous random variable weighted by its probability or proportion of occurrence/proportion in the entire density or population of 1 (which can be based on its pdf)</li>
+<li>It is the area under the curve of the graph with probability of occurrence against each possible value of x</li>
+<li>Since this is a continuous case, integration is used to take into account all possible values. In some cases, the expectation can be converted into its summation form</li>
+</ul></li>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{E}(X) = \int_{-\infty}^{\infty}{xf(x)} ~ dx\)</span>
+<ul>
+<li><strong><em>Where</em></strong>
+<ul>
+<li><span class="math inline">\(X\)</span> is a continuous random variable with pdf <span class="math inline">\(f(x)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Expectation of functions of random variables</strong>
+<ul>
+<li><strong>Expectation of functions of discrete random variables</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\text{E}(g(X)) = \sum_{x}^{}{g(x)p(x)}\)</span></li>
+</ul></li>
+<li><strong>Proof</strong></li>
+</ul></li>
+<li><strong>Expectation of functions of continuous random variables</strong>
+<ul>
+<li><strong>Mathematics</strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{E}(g(X)) = \int_{-\infty}^{\infty}{g(x)p(x)} ~ dx\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
 
 </div>
             </section>

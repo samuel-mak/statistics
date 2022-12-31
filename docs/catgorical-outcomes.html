@@ -949,90 +949,46 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 - Hence, the greater the curvature of the likelihood function at the true value of the parameter, the more information the data/datum has about the unknown parameters of the model (in the extreme case when the likelihood function is at the highest at a single value of the parameter and 0 at all other values of the parameter, in other words, the likelihood is non-zero at a single point in the parameter space, the data/datum contains complete information about the parameter)
 - The smaller the curvature of the likelihood function at the true value of the parameter, the less information the data has about the unknown parameters of the model (in the extreme case when the likelihood function is flat, that is, when the likelihood is the same across values of the parameter, then the data/datum contains no information at all about the value of the parameter)
 - <strong>Mathematics</strong>
-- <span class="math inline">\(\begin{aligned}\displaystyle I(\theta) &amp;= \text{Var}(S) \\ &amp;= -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)\end{aligned}\)</span></p>
+- <span class="math inline">\(\begin{aligned}\displaystyle I(\theta) &amp;= \text{Var}(S) \\ &amp;= -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)\end{aligned}\)</span>
+- <strong>A multiple-observation case</strong>
+- <strong>Score</strong>
+- <strong>Mathematics</strong>
+- <strong>The likelihood function</strong>
+- <span class="math inline">\(\displaystyle \mathcal{L}(\theta; X) = \prod_{i = 1}^{n}{f(x; \theta)}\)</span>
+- <strong>The log likelihood function</strong>
+- <span class="math inline">\(\displaystyle \mathcal{l}(\theta; X) = \log{\mathcal{L}(\theta; X)} = \sum_{i = 1}^{n}{\log{f(x; \theta)}}\)</span>
+- <strong><em>Notes</em></strong>
+- The log of a product is the sum of the log of each factor in the product
+- <strong>The Score (the first derivative of the log likelihood function) (NOT SURE ABOUT THIS)</strong>
+- <span class="math inline">\(\begin{aligned} \displaystyle S_n &amp;= \frac{\partial \mathcal{l}(\theta; X) }{\partial \theta} \\ \displaystyle &amp;= \frac{\partial }{\partial \theta} \mathcal{l}(\theta; X) \\ \displaystyle &amp;= \frac{\partial}{\partial \theta} \sum_{i = 1}^{n}{\log{f(x; \theta)}} \\ \displaystyle &amp;= \sum_{i = 1}^{n}{\frac{\partial}{\partial \theta}\log{f(x; \theta)}} \\ \displaystyle &amp;= \sum_{i = 1}^{n}{\frac{\partial \log{f(x; \theta)}}{\partial \theta}} \\ \displaystyle &amp;= \sum_{i = 1}^{n}{S_1} \\ &amp;= nS_1 \end{aligned}\)</span>
+- <strong><em>Note</em></strong>
+- <strong>The sum rule of differentiation</strong> - The derivative of a sum is the sum of the derivative of each term in the sum<br />
+- <strong>Expectation of the Score</strong>
+- <strong>Mathematics</strong>
+- <span class="math inline">\(\begin{aligned}\displaystyle \text{E}(S_n) &amp;= \text{E}\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &amp;= \text{E}\left[ \sum_{i = 1}^{n}{\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}}\right]\\ &amp;= \sum_{i = 1}^{n}{\text{E}\left[ \frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right]} \end{aligned}\)</span>
+- The expectation of each score is 0, hence:
+- <span class="math inline">\(\begin{aligned} \text{E}(S_n) &amp;= \sum_{i = 1}^{n}{0} \\ &amp;= 0\end{aligned}\)</span>
+- <strong>Variance of the score</strong>
+- <strong>Variance defined as the second moment about the mean</strong>
+- <strong>Concept</strong>
+- The variance of the score in a sample with n observations is n times the information of any one observation in the sample
+- <strong>Mathematics</strong>
+- <span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &amp;= \text{Var}\left[\sum_{i = 1}^{n}{\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}}\right] \\ &amp;= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta}\right]} + \sum_{j = 1}^{J}{\sum_{i = 1}^{I}{\text{Cov}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta} \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right]}} \end{aligned}\)</span>
+- <strong><em>Notes</em></strong>
+- <strong>Bienaymé’s identity</strong>
+- <strong>Concept</strong>
+- The variance of the sum is the sum of the variance of each of the elements plus the sum of the covariance of each pair of the elements
+- If the random variables are uncorrelated, that is, they have a covariance of 0, then it simplies that the variance of the sum is the sum of the variance of the elements
+- <strong>Mathematics</strong>
+- $ (<em>{i = 1}^{n}{x_i}) = </em>{i = 1}^{n}{(x_i)} + <em>{j = 1}^{J}{</em>{i = 1}^{I}{( x_i, x_j)}} $
+- <strong>Assuming that the scores are uncorrelated (having a correlation of 0)</strong>
+- <span class="math inline">\(\begin{aligned}\displaystyle \text{Var}\left(S_n\right) &amp;= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta}\right]} \\ &amp;= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]} \\ &amp;= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &amp;= n\text{Var}(S_1)\end{aligned}\)</span>
+- <strong>Fisher Information</strong>
+- <strong>Concept</strong>
+- The Information in a sample with n observations is n times the Information from any one observation in the sample
+- <strong>Mathematics</strong>
+- <span class="math inline">\(\begin{aligned}\displaystyle \text{Var}\left(S_n\right) &amp;= n\text{Var}(S_1) \\ I_n(\theta) &amp;= nI_1(\theta)\end{aligned}\)</span></p>
 <ul>
-<li><strong>A multiple-observation case</strong>
-<ul>
-<li><strong>Score</strong>
-<ul>
-<li><strong>Mathematics</strong>
-<ul>
-<li><strong>The likelihood function</strong>
-<ul>
-<li><span class="math inline">\(\displaystyle \mathcal{L}(\theta; X) = \prod_{i = 1}^{n}{f(x; \theta)}\)</span></li>
-</ul></li>
-<li><strong>The log likelihood function</strong>
-<ul>
-<li><span class="math inline">\(\displaystyle \mathcal{l}(\theta; X) = \log{\mathcal{L}(\theta; X)} = \sum_{i = 1}^{n}{\log{f(x; \theta)}}\)</span>
-<ul>
-<li><strong><em>Notes</em></strong>
-<ul>
-<li>The log of a product is the sum of the log of each factor in the product</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>The Score (the first derivative of the log likelihood function) (NOT SURE ABOUT THIS)</strong>
-<ul>
-<li><span class="math inline">\(\begin{aligned} \displaystyle S_n &amp;= \frac{\partial \mathcal{l}(\theta; X) }{\partial \theta} \\ \displaystyle &amp;= \frac{\partial }{\partial \theta} \mathcal{l}(\theta; X) \\ \displaystyle &amp;= \frac{\partial}{\partial \theta} \sum_{i = 1}^{n}{\log{f(x; \theta)}} \\ \displaystyle &amp;= \sum_{i = 1}^{n}{\frac{\partial}{\partial \theta}\log{f(x; \theta)}} \\ \displaystyle &amp;= \sum_{i = 1}^{n}{\frac{\partial \log{f(x; \theta)}}{\partial \theta}} \\ \displaystyle &amp;= \sum_{i = 1}^{n}{S_1} \\ &amp;= nS_1 \end{aligned}\)</span>
-<ul>
-<li><strong><em>Note</em></strong>
-<ul>
-<li><strong>The sum rule of differentiation</strong> - The derivative of a sum is the sum of the derivative of each term in the sum<br />
-</li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Expectation of the Score</strong>
-<ul>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(\begin{aligned}\displaystyle \text{E}(S_n) &amp;= \text{E}\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &amp;= \text{E}\left[ \sum_{i = 1}^{n}{\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}}\right]\\ &amp;= \sum_{i = 1}^{n}{\text{E}\left[ \frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right]} \end{aligned}\)</span></li>
-<li>The expectation of each score is 0, hence:</li>
-<li><span class="math inline">\(\begin{aligned} \text{E}(S_n) &amp;= \sum_{i = 1}^{n}{0} \\ &amp;= 0\end{aligned}\)</span></li>
-</ul></li>
-</ul></li>
-<li><strong>Variance of the score</strong>
-<ul>
-<li><strong>Variance defined as the second moment about the mean</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>The variance of the score in a sample with n observations is n times the information of any one observation in the sample</li>
-</ul></li>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &amp;= \text{Var}\left[\sum_{i = 1}^{n}{\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}}\right] \\ &amp;= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta}\right]} + \sum_{j = 1}^{J}{\sum_{i = 1}^{I}{\text{Cov}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta} \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right]}} \end{aligned}\)</span></li>
-<li><strong>Assuming that the scores are uncorrelated (having a correlation of 0)</strong></li>
-<li><span class="math inline">\(\begin{aligned}\displaystyle \text{Var}\left(S_n\right) &amp;= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x_i; \theta)}}{\partial \theta}\right]} \\ &amp;= \sum_{i = 1}^{n}{\text{Var}\left[ \frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]} \\ &amp;= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &amp;= n\text{Var}(S_1)\end{aligned}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><strong>Fisher Information</strong>
-<ul>
-<li><strong>Concept</strong>
-<ul>
-<li>The Information in a sample with n observations is n times the Information from any one observation in the sample</li>
-</ul></li>
-<li><strong>Mathematics</strong>
-<ul>
-<li><span class="math inline">\(\begin{aligned}\displaystyle \text{Var}\left(S_n\right) &amp;= n\text{Var}(S_1) \\ I_n(\theta) &amp;= nI_1(\theta)\end{aligned}\)</span></li>
-</ul></li>
-</ul></li>
-<li><strong>The variance of the score</strong>
-<ul>
-<li><strong>Mathematics</strong>
-<ul>
-<li><strong>Variance defined as the second moment about the mean</strong>
-<ul>
-<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ \displaystyle &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] + 2\sum_{j = 1}^{n = 3}{\sum_{i = 1}^{n = 3}{\text{Cov}\left(\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}, \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right)}} \end{aligned}\)</span></li>
-<li>Assuming that observations are uncorrelated: (I am unsure about this part)</li>
-<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &amp;= 3\times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &amp;= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]\end{aligned}\)</span></li>
-</ul></li>
-</ul></li>
-</ul></li>
-</ul></li>
 <li><strong>Variance of model parameters</strong>
 <ul>
 <li><strong>Concept</strong>
@@ -1441,6 +1397,46 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 <li>If <span class="math inline">\(S = u(x_1, x_2, x_3, \cdots, x_n)\)</span> is an unbiased estimator of <span class="math inline">\(\theta\)</span>, so that <span class="math inline">\(k(\theta) = \theta\)</span>, then the Cramér-Rao inequality becomes:</li>
 <li><span class="math inline">\(\displaystyle \text{Var}(\hat\theta) ≥ \frac{1}{I(\theta)}\)</span></li>
 </ul></li>
+<li><strong>Proof</strong>
+<ul>
+<li><strong>Scenario</strong>
+<ul>
+<li>Let <span class="math inline">\(T = t(X)\)</span> be a sample statistic that is an estimator of the true value of the parameter <span class="math inline">\(\theta\)</span>.</li>
+<li>To generalise the proof to accommodate both unbiased and biased estimator, let’s assume that <span class="math inline">\(T\)</span> can be a biased or unbiased estimator, hence, let’s express the expectation of <span class="math inline">\(T\)</span> as <span class="math inline">\(\text{E}(T) = g(\theta)\)</span> (So that if <span class="math inline">\(T\)</span> is an unbiased estimator, then <span class="math inline">\(g()\)</span> would be an identity function).</li>
+<li>Let <span class="math inline">\(f(x; \theta)\)</span> be the pdf of the random variable <span class="math inline">\(X\)</span></li>
+<li><strong>The log-likelihood function</strong>
+<ul>
+<li><span class="math inline">\(\mathcal{l}(\theta; X)\)</span></li>
+</ul></li>
+<li><strong>The score</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}\displaystyle S &amp;= \frac{\partial \log \mathcal{f}(x; \theta) }{\partial \theta} \\ &amp;= \frac{1}{f(x; \theta)} \times \frac{\partial f(x; \theta)}{\partial \theta} \\ &amp;= \frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)}\end{aligned}\)</span></li>
+</ul></li>
+</ul></li>
+<li><strong>Covariance of <span class="math inline">\(S\)</span> and <span class="math inline">\(T\)</span></strong>
+<ul>
+<li><span class="math inline">\(\displaystyle \text{Cov}(S, T) = \text{E}\left[ (S - \text{E}(S)) (T - \text{E}(T))\right]=\text{E}(ST) - \text{E}(S)\text{E}(T)\)</span></li>
+<li>Since <span class="math inline">\(\text{E}(S)\)</span> is 0 (proof is in the Score section), the covariance simplifies to:</li>
+<li><span class="math inline">\(\displaystyle \text{Cov}(S, T) =\text{E}(ST)\)</span>
+<ul>
+<li><strong><em>Notes</em></strong>
+<ul>
+<li>The definition of the covariance of 2 random variables is:
+<ul>
+<li><span class="math inline">\(\displaystyle \text{Cov}(X, Y) = \text{E}\left[ (X - \text{E}(X)) (Y - \text{E}(Y))\right]=\text{E}(XY) - \text{E}(S)\text{E}(T)\)</span></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>Expanding the expression</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned}\displaystyle \text{Cov}(S, T) &amp;= \text{E}(ST) \\ &amp;= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)}\right) \times T\right]\end{aligned}\)</span></li>
+</ul></li>
+<li><strong>Expressing it as an integral</strong>
+<ul>
+<li><span class="math inline">\(\begin{aligned} \displaystyle \text{Cov}\left( S, T\right) &amp;= \text{E}\left[ \left( \frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)}\right) \times T\right] \\ &amp;= \int_{-\infty}^{\infty}{\frac{\partial f(x; \theta)}{\partial \theta f(X; \theta)} \times t(x) f(x; \theta) ~ dx} \\ &amp;= \frac{\partial}{\partial \theta}\int_{}^{}{t(x) f(x; \theta) ~ dx} \\ &amp;= \frac{\partial}{\partial \theta}\text{E}(T) \\ &amp;= g&#39;(\theta) \end{aligned}\)</span> |||||||||||||||||||STOPPED HERE|||||||||||||||</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul></li>
 <li><strong>Efficient Estimator</strong>
@@ -1633,7 +1629,7 @@ In 1 trial, there are multiple (but fixed) number of possible outcomes, the outc
 <li><strong>Variance defined as the second moment about the mean</strong>
 <ul>
 <li><span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[ \frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ \displaystyle &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_2; \theta)}}{\partial \theta} + \frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] + 2\sum_{j = 1}^{n = 3}{\sum_{i = 1}^{n = 3}{\text{Cov}\left(\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}, \frac{\partial \log{f(x_j; \theta)}}{\partial \theta}\right)}} \end{aligned}\)</span></li>
-<li>Assuming that observations are uncorrelated: (I am unsure about this part)</li>
+<li>Assuming that observations are uncorrelated:</li>
 <li><span class="math inline">\(\begin{aligned} \displaystyle \text{Var}(S) &amp;= \text{Var}\left[\frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right] + \text{Var}\left[\frac{\partial \log{f(x_2; \theta)}}{\partial \theta}\right]+ \text{Var}\left[\frac{\partial \log{f(x_3; \theta)}}{\partial \theta}\right] \\ &amp;= 3\times \text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right] \\ &amp;= n\times\text{Var}\left[\frac{\partial \log{f(x; \theta)}}{\partial \theta}\right]\end{aligned}\)</span></li>
 </ul></li>
 </ul></li>
