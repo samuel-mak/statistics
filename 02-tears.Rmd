@@ -1,4 +1,4 @@
-# Generalised Least Squares 
+# Unclassified stuff
 
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Slope Estimation**</p>
 
@@ -212,16 +212,172 @@ expectation_student_marks_plot_2
 ggsave(filename = "expectation_student_marks_plot_2.png", expectation_student_marks_plot_2, width = 2500, scale = 1, units = "px")
 ```
 
+
+<p style = "margin-bottom: 0px; font-size: 20px; ">**Limit of a function**</p>
+
+- **Limit of a function**
+  - **Concept**
+    - The notion of a function approaching a limit
+    - In general, the limit process is a process whereby $f(x)$ approaches (but not at) a certain value $c$ on the x-axis. Along this process, it describes how close $f(x)$ is to the limit $L$ on the y-axis as the $x$ approaches (but not at) $c$ using an interval around or distance from $L$ and $c$. Precisely, given the distance $\epsilon > 0$ from $L$ on the y-axis, it describes the distance $\delta > 0$ from $c$ on the x-axis within which all values of $x$ is mapped by the function $f$ into any values of $f(x)$ within the distance of $\epsilon$ from $L$ on the y-axis
+    - The limit process is a process whereby $f(x)$ approaches the limit $L$ as $x$ approaches a value $c$. It describes the distance of $x$ from $c$ for any given distance of $f(x)$ from $L$ using open intervals around $x$ and $L$. Specifically, let $\epsilon > 0$ represent the absolute distance from $L$ in each of both the positive and negative directions, hence creating an open interval around $L$ with the lower bound of $L - \epsilon$ and an upper bound of $L + \epsilon$. There is supposed to be a corresponding open interval on the x-axis around some value $c$ with an absolute distance of $\delta$ from $c$ in each of both the positive and negative directions, in other words, an open interval around $c$ with the lower bound of $c - \delta$ and an upper bound of $c+ \delta$, that "works", in the sense that within which (the interval $c ± \delta$), any values of $x$ is mapped by the function $f$ into any values of $f(x)$ within the open interval of $L ± \epsilon$
+    - Hence, it describes the interval on the x-axis to guarantee that numbers within this interval are mapped by the function into the given interval of interest on the y-axis
+    
+    - **Terms and notations**
+    - $\epsilon$ - Any given distance from $L$ on the y-axis 
+    - $\delta$ - Any given distance from $c$ on the x-axis 
+  - **Mathematics**
+    - $\displaystyle \lim_{x \rightarrow c}{f(x)} = L$
+
+
+
+```{r}
+limits_dat <- data.frame(
+  x = seq(-5, 5, 0.01)
+) |> 
+  mutate(y = x^2)
+
+limits_fun <- function(x){
+  x^2
+}
+# When x is 1
+
+interval
+
+
+xmin <- 1
+xmax <- 5
+xmin_2 <- c()
+xmax_2 <- c()
+for(i in seq(0.1, 2, 0.1)){
+
+  xmin_2 <- c(xmin_2, xmin + i)
+  xmax_2 <- c(xmax_2, xmax - i)
+
+}
+interval_dat <- data.frame(xmin = xmin_2, xmax = xmax_2) |> 
+  mutate(
+    delta = seq(0.1, 2, 0.1),
+    ymin = xmin^2,
+    ymax = xmax^2)
+
+ggplot() +
+  geom_line(
+    data = limits_dat,
+    mapping = aes(
+      x = x,
+      y = y
+    )
+  ) +
+  scale_x_continuous(limits = c(-5, 5), breaks = seq(-5, 5, 1)) +
+  geom_pointrange(
+    data = interval_dat,
+    mapping = aes(
+      x = 3, 
+      y = 0,
+      xmin = xmin,
+      xmax = xmax
+    )
+  ) +
+  geom_pointrange(
+    data = interval_dat,
+    mapping = aes(
+      y = 9, 
+      x = 0,
+      ymin = ymin,
+      ymax = ymax
+    )
+  ) + 
+  geom_segment(
+    data = interval_dat,
+    mapping = aes(
+      x = 0,
+      xend = xmin,
+      y = ymin,
+      yend = ymin
+    ),
+    size = 0.3
+  ) +
+  geom_segment(
+    data = interval_dat,
+    mapping = aes(
+      y = 0,
+      yend = ymin,
+      x = xmin,
+      xend = xmin
+    ),
+    size = 0.3
+  ) +
+  geom_segment(
+    data = interval_dat,
+    mapping = aes(
+      x = 0,
+      xend = xmax,
+      y = ymax,
+      yend = ymax
+    ),
+    size = 0.3
+  ) +
+  geom_segment(
+    data = interval_dat,
+    mapping = aes(
+      y = 0,
+      yend = ymax,
+      x = xmax,
+      xend = xmax
+    ),
+    size = 0.3
+  ) + 
+  geom_segment(
+    mapping = aes(
+      x = c(3, 0),
+      xend = c(3,3),
+      y = c(0, 9),
+      yend = c(9,9)
+    ),
+    colour = "blue"
+  ) +
+  annotate(
+    geom = "text",
+    label = c("L", "c"),
+    x = c(-.25, 3),
+    y = c(9,-.7)) +
+  
+  transition_time(time = delta) +
+  ease_aes(default = "linear")
+
+```
+```{r}
+sin(2)
+library(tidyverse)
+sin_dat <- data.frame(x = seq(-5, 5, 0.0001)) |> mutate(y = x*(sin(1/x)))
+sin_dat |> plot()
+
+ggplot() +
+  geom_line(
+    data = sin_dat,
+    mapping = aes(
+      x = x,
+      y = y
+    )
+  ) +
+  scale_x_continuous(limits = c(-0.1, 0.1)) +
+  theme_minimal()
+```
+
+
+
       
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Expectation**</p>
+
   - **Expectation of a random variable**
     - **Concept**
       - weighted by its probability or proportion of occurrence/proportion relative to the entire population or density of 1
       - The expectation is the area under the function in which the value of the random variable is weighted by its probability (or proportion of occurrence relative to the entire population of density of 1) (the area of the function $f(x) = xp(x)$)
       - The function produces a distribution with weighted value against the value of the random variable. The distribution is made up of many individual columns with each for each of the possible values of the random variable. The heights of the columns represent the weighted values of their corresponding values of the random variable and all columns have a width of 1. This means that the area of each column simply represents the weighted value of a particular value of the random variable. The also means that the sum of the area of all the columns, which is the area of the distribution, is the weighed average or weighted sum of that random variable, which is the expectation of the random variable. Hence, the expectation of a random variable is found through the area of the function $f(x) = xp(x)$
+      - The expectation is the centre of mass of the distribution
 - **Expectation of a discrete random variable**
   - **Concept**
-    - In the discrete case, the function produces a discrete distribution with weighted value against the discrete random variable, which is like a histogram as opposed to a continuous curve like a pdf. The expectation is found through summation where the areas of all the columns are summed. Hence, it really is just the sum of the function  $f(x) = x_ip(x_i)$ for all possible values of the discrete random variable and can be viewed as the weighted average or weighted sum. (when viewed as the weighted average, it is the sum of all possible values of the discrete random variable weighted by its number of occurrence and have the entire sum divided by the sum of all the weighteds; when viewed as the weighted sum, it is the sum of each possible value of the discrete random varible weighted by its probability or proportion of occurrence relative to the entire population or density of 1)
+    - In the discrete case, the function produces a discrete distribution with weighted value against the discrete random variable, which is like a histogram as opposed to a continuous curve like a pdf. The expectation is found through summation where the areas of all the columns are summed. Hence, the expectation is found in a straightforward way of just summing the function  $f(x) = x_ip(x_i)$ for all possible values of the discrete random variable and can be viewed as the weighted average or weighted sum. (when viewed as the weighted average, it is the sum of all possible values of the discrete random variable weighted by its number of occurrence and have the entire sum divided by the sum of all the weights; when viewed as the weighted sum, it is the sum of each possible value of the discrete random variable weighted by its probability or proportion of occurrence relative to the entire population or density of 1)
   - **Mathematics**
     - $\displaystyle \text{E}(X) = \sum_{i  = 1}^{k}{x_i p(x_i)}$
       - ***Where***
@@ -256,10 +412,7 @@ ggsave(filename = "expectation_student_marks_plot_2.png", expectation_student_ma
 
 - **Expectation of a continuous random variable**
   - **Concept**
-    - It is the centre of mass of the density
-    - The weighted sum of a continuous variable - The sum of each possible value of the continuous random variable weighted by its probability or proportion of occurrence/proportion in the entire density or population of 1 (which can be based on its pdf)
-    - It is the area under the curve of the graph with probability of occurrence against each possible value of x
-    - Since this is a continuous case, integration is used to take into account all possible values. In some cases, the expectation can be converted into its summation form
+    - In the continuous case, the function $f(x) = xp(x)$ produces a continuous distribution with weighted value against the continuous random variable, which is like a pdf as opposed to a discrete distribution. The expectation is found using the same principle used in the discrete case but through another technique, integration, where the area of continuous distribution is found through the first integral of the function $f(x) = xp(x)$ to take into account all possible intermediary values of the continuous variable. 
   - **Mathematics**
     - $\displaystyle \text{E}(X) = \int_{-\infty}^{\infty}{xf(x)} ~ dx$
       - ***Where***
@@ -268,15 +421,40 @@ ggsave(filename = "expectation_student_marks_plot_2.png", expectation_student_ma
 - **Expectation of functions of random variables**
   - **Expectation of functions of discrete random variables**
     - **Mathematics**
-      - $\text{E}(g(X)) = \sum_{x}^{}{g(x)p(x)}$
+      - $\displaystyle \text{E}(g(X)) = \sum_{i = 1}^{k}{g(x_i)p(x_i)}$
     - **Proof**
   - **Expectation of functions of continuous random variables**
     - **Mathematics**
       - $\displaystyle \text{E}(g(X)) = \int_{-\infty}^{\infty}{g(x)p(x)} ~ dx$
+  - **Caveats**
+    - It is worth knowing that $\text{E}(g(X)) ≠ g(\text{E}(X))$
     
+
+- **Expectation of Linear Combinations of Random Variables**   
+  - **Mathematics**
+    - **Scenario**
+      - Let the linear combination be 
+        - $\displaystyle Y = a + \sum_{i = 1}^{n}{b_i X_i} = a + b_1X_1 + b_2X_2 + \cdots + b_nX_n$
+          - ***Where***
+            - $a$ is a constant
+            - $b_i $ is the weight for the $ith$ random variable
+            - $\text{E}(X_i)$ is the expectation of the $ith$ random variable
+    - **The expectation**
+      - $\displaystyle \text{E}(Y) = a + \sum_{i = 1}^{n}{b_i \text{E}(X_i)} = a + b_1\text{E}(X_1) + b_2\text{E}(X_2) + \cdots + b_n\text{E}(X_n)$
+  - **Proof**
+    - $\begin{aligned} \displaystyle \displaystyle Y &= a + \sum_{i = 1}^{2}{b_i X_i} = a + b_1X_1 + b_2X_2 \\ \displaystyle \text{E}(Y) &= \int_{}^{}{\int_{}^{}{~a + b_1x_1 + b_2x_2 } }~f(x_1, x_2)~dx_1dx_2 \\ \displaystyle &= a \int_{}^{}{\int_{}^{}{~f(x_1, x_2)~dx_1dx_2} } + b_1\int_{}^{}{\int_{}^{}{~x_1f(x_1, x_2)~dx_1dx_2} } + b_2 \int_{}^{}{\int_{}^{}{~x_2f(x_1, x_2)~dx_1dx_2} } \end{aligned}$
     
       
-
+- **Hessian matrix**
+  - **Concept**
+    - A square matrix in which each element is a second-order partial derivative of the function of interest with respect to each of the variables/pair of variables
+    - It is used to describe the change in the rate of change at a particular point (local curvature) of a multivariable function 
+    - The Hessian matrix is a general mathematical concept and it is applied in statistics
+  - **Mathematics**
+    - $\displaystyle \mathbf{H}_f = \begin{bmatrix} \displaystyle \frac{\partial{}^2f}{\partial{x_{1}^{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{n}}} \\ \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{2}^2}} &\displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{n}}}   \\  \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}}\partial{x_{2}} } & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}^2}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{n}}}  \\ \vdots & \vdots & \vdots & \ddots & \vdots \\   \displaystyle  \frac{\partial{}^2f}{\partial{x_{n}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}}\partial{x_{2}} } & \displaystyle  \frac{\partial{n}^f}{\partial{x_{n}} \partial{x_{3}}} & \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}^2}} \end{bmatrix}$
+      - ***Where***
+        - $\mathbf{H}_f$ - The Hessian matrix of function $\mathcal{f}$
+        - $\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}$ - The second-order derivative of the function with respect to the cross-product of variable $x_i$ and $x_j$
       
       
       

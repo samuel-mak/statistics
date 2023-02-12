@@ -283,104 +283,86 @@
         - It can also be written as $\text{P}(X | \theta)$, but this is less commonly used
         
         
-- **The likelihood function of a random sample**
+        
+        
+        
+        
+        
+        
+        
+        
+        
+- **The Likelihood Function (of a random sample)**
   - **Concept**
     - A function that describes the likelihood of a random sample data/datum as a function of the values of the parameters of the chosen statistical model
-    - In other words, it describes the probability of getting the sample data/datum under different values of the parameters of the statistical model
-    - The graph of the likelihood function is the likelihood against the values of the parameter(s) of the chosen statistical model
-    - It treats the sample data/datum is given and the parameter is a variable 
-    - It is the joint probability between the observations at different values of the parameter of the model 
-    - The graph is concave for most models 
+    - It is the joint probability of the observations at different values of the parameter of the model 
+    - In other words, it describes the probability of getting the sample data/datum given certain values of the parameters of the statistical model
+    - It treats the sample data/datum as given and parameters as variables 
+    - The resulting graph of the likelihood function can be visualised through a plot with likelihood against the values of the parameter(s) of the chosen statistical model (although the graph is concave for most statistical models, it can vary between statistical models and is not necessarily concave)
   - **Mathematics**
     - $\displaystyle \mathcal{L}(\theta; \mathbf{x}) = \prod_{i = 1}^{n}{f(x_i; \theta)} $
       - ***Where***
         - $f(x_i; \theta)$ - The probability density function (PDF) for the variable of interest (in this example here the statistical model has only one parameter, $\theta$, when it has two parameters, let's say $\sigma^2$, then it is expressed as $f(x_i; \theta, \sigma^2)$)
-        - $\mathbf{x} = (x_1, x_2, x_3, \cdots , x_n)'$ - The observed random variable/data 
+        - $\mathbf{x} = (x_1, x_2, x_3, \cdots , x_n)'$ - A vector of observed random variable/data 
       - ***Notes***
-        - $\mathcal{L}(\theta; \mathbf{x})$ can be denoted as $\mathcal{L}(\theta)$
-  - **Example**
-    - The beginning scenario
-      - You have 5 observations in your data and you are hypothesising that they came from a common population with pdf $f(x; \theta)$
-    - The likelihood function is:
-      - $\displaystyle \mathcal{L}(\theta; \mathbf{x}) = \prod_{i = 1}^{n}{f(x_i; \theta)} $
-    - Find the likelihood under all possible values of the parameter 
-      - Examples: 
-        - The likelihood of getting this sample data given that the true value of the parameter is 1
-          - $\displaystyle \mathcal{L}(\theta = 1; \mathbf{x}) = f(x_1; \theta= 1) \times f(x_2; \theta= 1) \times f(x_3; \theta= 1)  \times f(x_2; \theta= 1) \times f(x_3; \theta= 1)$
-        - The likelihood of getting this sample data given that the true value of the parameter is 2
-          - $\displaystyle \mathcal{L}(\theta = 2; \mathbf{x}) = f(x_1; \theta= 2) \times f(x_2; \theta= 2) \times f(x_3; \theta= 2)  \times f(x_2; \theta= 2) \times f(x_3; \theta= 2)$
-        - The likelihood of getting this sample data given that the true value of the parameter is 3
-        - $\displaystyle \mathcal{L}(\theta = 3; \mathbf{x}) = f(x_1; \theta= 3) \times f(x_2; \theta= 3) \times f(x_3; \theta= 3)  \times f(x_2; \theta= 3) \times f(x_3; \theta= 3)$
-      - The likelihood of getting this sample data given that the true value of the parameter is 4
-        - $\displaystyle \mathcal{L}(\theta = 4; \mathbf{x}) = f(x_1; \theta= 4) \times f(x_2; \theta= 4) \times f(x_3; \theta= 4)  \times f(x_2; \theta= 4) \times f(x_3; \theta= 4)$
-      - The likelihood of getting this sample data given that the true value of the parameter is 5
-        - $\displaystyle \mathcal{L}(\theta = 5; \mathbf{x}) = f(x_1; \theta= 5) \times f(x_2; \theta= 5) \times f(x_3; \theta= 5)  \times f(x_2; \theta= 5) \times f(x_3; \theta= 5)$
-      - The likelihood of getting this sample data given that the true value of the parameter is 6
-        - $\displaystyle \mathcal{L}(\theta = 6; \mathbf{x}) = f(x_1; \theta= 6) \times f(x_2; \theta= 6) \times f(x_3; \theta= 6)  \times f(x_2; \theta= 6) \times f(x_3; \theta= 6)$
-    - Plot these likelihoods into a plot of likelihood against the value of the parameter 
-      - The likelihood graph will usually be concave 
-      - This is the likelihood graph for this sample 
-  - **Log likelihood function**
+        - $\mathcal{L}(\theta; \mathbf{x})$ is sometimes denoted as $\mathcal{L}(\theta)$
+  - **The Log Likelihood Function**
     - **Concept**
-      - The log of the likelihood/likelihood function
-      - The log likelihood function is often used instead of the likelihood function because it is more convenient to use and it simplifies many of the later calculations (e.g. it is a sum rather than product of terms)
+      - The log of the likelihood function (or likelihood)
+      - The log likelihood function is often used instead of the likelihood function because it is more convenient to use and it simplifies many of the subsequent calculations because the log of the product is the sum of the log and calculations are easier with sum rather than with products 
       - No information is lost from logging the likelihood because the log is a one-to-one function
       - Since the log is a strictly increasing function, the values of the model parameters that maximise $\mathcal{l}(\theta; \text{x})$ are the same as the values that maximise $\mathcal{L}(\theta; \mathbf{x})$
     - **Mathematics**
-      - $\displaystyle \mathcal{l}(\theta; \text{x})=\log{\mathcal{L}(\theta; \text{x})} = \sum_{i = 1}^{n}{\log f(x_i; \theta)}$
+      - $\displaystyle \mathcal{l}(\theta; \text{x})=\log{\mathcal{L}(\theta; \text{x})}$
+    - **The log of a product is the sum of the log**
+      - $\displaystyle \log\prod_{i = 1}^{n}{f(x_i; \theta)} = \sum_{i = 1}^{n}{\log f(x_i; \theta)}$
       - ***Notes***  
-        - $\mathcal{l}(\theta; \text{x})$ can be denoted as $\mathcal{l}(\theta)$
+        - $\mathcal{l}(\theta; \mathbf{X})$ can be denoted as $\mathcal{l}(\theta)$
 
-    
-    
-    
         
         
 <p style = "margin-bottom: 0px; font-size: 20px; ">**Maximum Likelihood Estimation**</p>
 
 - **Maximum Likelihood Estimation**
   - **Concept**
-    - An estimation method in which the model parameters are estimated by finding the parameters of the statistical model that maximizes the likelihood of the data through setting the partial derivative of the likelihood function of the data to 0 
-    - Because the likelihood curve is concave, setting this to 0 will get the maxima of the curve; the point that represents the maximum likelihood of the data)
+    - A model parameter estimation method in which the parameters are estimated by finding the parameters of the statistical model that maximizes the likelihood of the sample data 
+    - This is done by finding the maximum (if there exists) of the graph of the partial derivative of the likelihood function of the sample data 
+    - If the graph of the partial derivative of the likelihood function of the sample data is concave, there will only be one maximum, and 
   - **Mathematics**
-    - The value of $\theta$ with the maximum likelihood of the data 
-      - $\hat\theta = Argmax\mathcal{L}(\theta; \mathbf{x})$
-        - ***Where***
-          - $Argmax\mathcal{L}(\theta; \mathbf{x})$ - This notation means that $\mathcal{L}(\theta; \mathbf{x})$ achieves its maximum value at $\hat\theta$ - The value of $\theta$ with the maximum likelihood 
-    - The value of $\theta$ with the maximum likelihood of the data is found through maximisation of the likelihood function by setting the partial derivative of the likelihood function to 0 
-    - $\displaystyle \frac{\partial\mathcal{L}(\theta)}{\partial \theta} = 0$
-      - ***Notes***
-        - The log likelihood function can be used but I just used the likelihood function here
-        - This is an estimating equation (EE), an equation for estimating the population parameters
-        - If there are multiple parameters (e.g. a normal distribution that has parameter $\mu$ and $\sigma$), the parameters are solved through setting each of the partial derivative for each of the parameters to 0
-- **Properties of the MLEs (THIS SECTION IS NOT DEVELOPED)**
-  - **Theorem 1**
-    - **Concept**
-      - If the parameter of interest $\eta $ is the parameter $\theta$ in some sort of function $g(\theta)$, ($\eta =g(\theta)$), then the mle of $\theta$ in the same function is the mle of $eta$ ($\hat\eta$)
-      - $g(\hat\theta)$ is the MLE of $\eta = g(\theta)$
-      - $\hat\eta = g(\hat\theta)$
-      - "In some situations, besides the parameter $\theta$, we are also interested in the parameter $\eta = g(\theta)$, it can be shown that the mle of $\eta$ is $\hat\eta = g(\hat\theta)$ where $\hat\theta$ is the mle of $\theta$"
-  - **Theorem 2**
-    - **Concept**
-      - The larger the sample size, the closer the mle is to the true parameter value ??? DON'T KNOW ABOUT THIS 
-      
-- **Hessian matrix**
-  - **Concept**
-    - A square matrix in which each of the elements of the matrix is a second-order partial derivative of the function of interest with respect to the square of each of the variables 
-    - A square matrix that describes the change in the rate of change at a particular point of a function (local curvature) of multiple variables  
-    - The Hessian matrix is a general mathematical concept and it is applied in statistics
-  - **Mathematics**
-    - $\displaystyle \mathbf{H}_f = \begin{bmatrix} \displaystyle \frac{\partial{}^2f}{\partial{x_{1}^{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{2}}} & \displaystyle  \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{1}} \partial{x_{n}}} \\ \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{2}^2}} &\displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{3}}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{2}} \partial{x_{n}}}   \\  \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}}\partial{x_{2}} } & \displaystyle \frac{\partial{}^2f}{\partial{x_{3}^2}} & \displaystyle \cdots & \displaystyle  \frac{\partial{}^2f}{\partial{x_{3}} \partial{x_{n}}}  \\ \vdots & \vdots & \vdots & \ddots & \vdots \\   \displaystyle  \frac{\partial{}^2f}{\partial{x_{n}} \partial{x_{1}}} & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}}\partial{x_{2}} } & \displaystyle  \frac{\partial{n}^f}{\partial{x_{n}} \partial{x_{3}}} & \cdots & \displaystyle \frac{\partial{}^2f}{\partial{x_{n}^2}} \end{bmatrix}$
+    - $\hat\theta_{mle} = Argmax\mathcal{L}(\theta; \mathbf{X})$
       - ***Where***
-        - $\mathbf{H}_f$ - The Hessian matrix of function $\mathcal{f}$
-        - $\frac{\partial{}^2f}{\partial{x_{i}} \partial{x_{j}}}$ - The second-order derivative of the function with respect to the cross-product of variable $x_i$ and $x_j$
+        - $Argmax\mathcal{L}(\theta; \mathbf{X})$ - This notation means that $\mathcal{L}(\theta; \mathbf{X})$ achieves its maximum value at $\hat\theta$ - The value of $\theta$ with the maximum likelihood 
+  - **Methods**
+    - **Concept**
+      - The exact method can vary and depend on the properties of the pdf/likelihood function
+    - **First Derivative of the likelihood function**
+      - **Concept**
+        - The value of the parameter(s) is found by equating the first derivative of the likelihood function of the sample data to zero and then solving for the parameter(s)
+        - If there are multiple parameters (i.e. a multivariable function), multivariable calculus techniques, such as partial differentiation, are used (in partial differentiation, each of the partial derivative for each of the parameters is set to 0 and each of the parameters are solved)
+      - **Mathematics**
+        - $\displaystyle \frac{\partial\mathcal{L}(\theta)}{\partial \theta} = 0$
+      - ***Notes***
+        - This is an estimating equation (EE), an equation for estimating the population parameters
+  
+- **Properties of the MLEs (THIS SECTION IS NOT DEVELOPED)**
+  - **The Invariance Property of MLE**
+    - **Concept**
+      - If the parameter of interest $\eta$ is some function ($g(.)$) of another parameter $\theta$ ($g(\theta)$), that is $\eta = g(\theta)$, then the $g(.)$ function of the mle of $\theta$ ($g(\hat\theta_{mle})$) is the mle of $\eta$ (I find the mathematical definition below is better for understanding)
+    - **Mathematics**
+      - If $\eta = g(\theta)$, then $\hat\eta_{mle} = g(\hat\theta_{mle})$
+        - ***Where***
+          - $g()$ is some kind of function
+
+
+
+
          
 - **The Score**
   - **Concept**
     - The score is the slope of the log-likelihood function evaluated at a particular value of the parameter
 - **The Score at the true value of the parameter**
   - **Concept**
-    - The slope of the (log) likelihood function evaluated at the true value of the parameter ($\theta$)
+    - The slope of the likelihood function evaluated at the true value of the parameter ($\theta$)
     - The score is a variable because it is subject to sampling variation - That is, the score derived from a samples can be different from the scores derived from other samples 
     - In reality, we will never know this because the true value of the population parameter is unknown
   - **A single observation case**
@@ -413,14 +395,11 @@
                 - **Hence**
                   - $\begin{aligned} \displaystyle \int_{-\infty}^{\infty}{\frac{\partial \log{f(x ;\theta)}}{\partial \theta} \times f(x; \theta) ~ dx} &= \displaystyle \int_{-\infty}^{\infty}{\frac{1}{f(x; \theta)} \times f'(x; \theta) \times f(x; \theta) ~ dx} \\ &= \displaystyle \int_{-\infty}^{\infty}{\frac{1}{f(x; \theta)} \times \frac{\partial f(x; \theta)}{\partial \theta} \times f(x; \theta) ~ dx} \\ &= \displaystyle \int_{-\infty}^{\infty}{\frac{\partial f(x; \theta)}{\partial \theta f(x; \theta)} \times f(x; \theta) ~ dx} \end{aligned}$
                   - In the derivation above, it utilises this rule but in the reversed order
-
           - **Expressed as expectation**
             - $\displaystyle 0 = E\left[ \frac{\partial \log \mathcal{f}(x; \theta)}{\partial \theta}\right]$
-
     - **The variance of the score**
       - **Concept** 
         - The sampling variation of the scores given the true value of $\theta$ (alternatively speaking, it is the variation of the scores evaluated at the true value of $\theta$ due to sampling error)
-        - The imagination comes back again, similar as before, imagine you know the true value of the parameter, you then take many samples, each time you take a sample, you calculate the score with respect to the true value of the parameter, after doing this for each of the samples, you will have many scores, each coming from each sample, you then calculate the variance of the scores 
       - **Variance defined as the second moment about the mean**
         - **Concept**   
           - The variance can be defined as the second moment about the mean
@@ -447,12 +426,11 @@
 &nbsp
     - **Fisher Information**
       - **Concept (general)**
-        - A quantity that quantifies the amount of information that any datum/observation in a data/datum/sample carries about an unknown parameter of a statistical model of that random variable 
-        - The Fisher information is the variance of the score evaluated at 1 observation
+        - A quantity that quantifies the amount of information that a sample of size $n = 1$ carries about an unknown parameter of a statistical model of that random variable 
       - **Mathematics**
         - $\begin{aligned}\displaystyle I_1(\theta) &= \text{Var}(S) \\ \displaystyle &= \text{Var}\left[\frac{\partial \mathcal{l}(\theta; x)}{\partial \theta} \right] \\ \displaystyle  &= \text{Var}\left[\frac{\partial \log f(x_i; \theta)}{\partial \theta}\right] \end{aligned}$
           - ***Notes***   
-            - $I_1(\theta)$ - Usually it is expressed as $I(\theta)$ but I expressed it as such to indicate that this is the Information from one observation 
+            - $I_1(\theta)$ - Usually it is expressed as $I(\theta)$ but I expressed it as such to emphasise that it is the Information from one observation 
       - **Information defined as the second moment of about the mean**
         - **Concept**
           - As seen, the variance of the score can be defined in terms of the second moment of about the mean, since the Fisher Information is the variance of the score at the true value of the parameter, the Fisher Information can be interpreted the same way 
@@ -464,11 +442,12 @@
           - The smaller the curvature of the likelihood function at the true value of the parameter, the less information the data has about the unknown parameters of the model (in the extreme case when the likelihood function is flat, that is, when the likelihood is the same across values of the parameter, then the data/datum contains no information at all about the value of the parameter)
       - **Mathematics**
         - $\begin{aligned}\displaystyle I(\theta) &= \text{Var}(S) \\ &= -E\left(\frac{\partial^2 \log f(x; \theta)}{\partial \theta^2}\right)\end{aligned}$
+        
   - **A multiple-observation case**
     - **Score**
       - **Mathematics**
         - **The likelihood function**
-          - $\displaystyle \mathcal{L}(\theta; X) = \prod_{i = 1}^{n}{f(x; \theta)}$
+          - $\displaystyle \mathcal{L}(\theta; \mathbf{X}) = \prod_{i = 1}^{n}{f(x; \theta)}$
         - **The log likelihood function**
           - $\displaystyle \mathcal{l}(\theta; X) = \log{\mathcal{L}(\theta; X)} = \sum_{i = 1}^{n}{\log{f(x; \theta)}}$
             - ***Notes***
@@ -476,11 +455,11 @@
         - **The Score (the first derivative of the log likelihood function) (NOT SURE ABOUT THIS)**
           - $\begin{aligned} \displaystyle S_n &= \frac{\partial \mathcal{l}(\theta; X) }{\partial \theta} \\ \displaystyle &= \frac{\partial }{\partial \theta} \mathcal{l}(\theta; X) \\ \displaystyle &= \frac{\partial}{\partial \theta} \sum_{i = 1}^{n}{\log{f(x; \theta)}} \\ \displaystyle  &= \sum_{i = 1}^{n}{\frac{\partial}{\partial \theta}\log{f(x; \theta)}} \\ \displaystyle &= \sum_{i = 1}^{n}{\frac{\partial \log{f(x; \theta)}}{\partial \theta}} \\  \displaystyle &= \sum_{i = 1}^{n}{S_1} \\ &= nS_1 \end{aligned}$
             - ***Note***
-              - **The sum rule of differentiation** - The derivative of a sum is the sum of the derivative of each term in the sum  
+              - **The sum rule of differentiation** - The derivative of a sum is the sum of the derivative
     - **Expectation of the Score**
       - **Mathematics**
         - $\begin{aligned}\displaystyle \text{E}(S_n) &= \text{E}\left[\frac{\partial \mathcal{l}(\theta; \textbf{x})}{\partial \theta}\right] \\ &= \text{E}\left[ \sum_{i = 1}^{n}{\frac{\partial \log{f(x_i; \theta)}}{\partial \theta}}\right]\\ &= \sum_{i = 1}^{n}{\text{E}\left[ \frac{\partial \log{f(x_1; \theta)}}{\partial \theta}\right]} \end{aligned}$ 
-        - The expectation of each score is 0, hence:
+        - The expectation of the score is 0, hence:
         - $\begin{aligned} \text{E}(S_n) &= \sum_{i = 1}^{n}{0} \\ &= 0\end{aligned}$
     - **Variance of the score**
       - **Variance defined as the second moment about the mean**
@@ -492,7 +471,7 @@
               - **Bienaymé's identity**
                 - **Concept**
                   - The variance of the sum is the sum of the variance of each of the elements plus the sum of the covariance of each pair of the elements
-                  - If the random variables are uncorrelated, that is, they have a covariance of 0, then it simplies that the variance of the sum is the sum of the variance of the elements
+                  - If the random variables are uncorrelated, that is, they have a covariance of 0, then it implies that the variance of the sum is the sum of the variance of the elements
                 - **Mathematics**
                   - $ \text{Var}(\sum_{i = 1}^{n}{x_i}) = \sum_{i = 1}^{n}{\text{Var}\left(x_i\right)} + \sum_{j = 1}^{J}{\sum_{i = 1}^{I}{\text{Cov}\left( x_i, x_j\right)}} $
           - **Assuming that the scores are uncorrelated (having a correlation of 0)**
@@ -502,9 +481,166 @@
         - The Information in a sample with n observations is n times the Information from any one observation in the sample 
       - **Mathematics**
         - $\begin{aligned}\displaystyle \text{Var}\left(S_n\right) &= n\text{Var}(S_1) \\ I_n(\theta) &= nI_1(\theta)\end{aligned}$
+        
+    - **Sample Estimation of the variance**
+      - **Concept**
+        - The Fisher information can be estimated from the sample because it can be shown that $I(\hat\theta_{n}) \xrightarrow{P} I(\theta_{0})$
+    - **Variance of mle**
+      - **Mathematics**
+        - $\displaystyle \sigma_{\hat\theta}^{2} = \frac{1}{nI(\hat\theta)}$
+        
+    - **Confidence interval**
+      - **Mathematics**
+        - $\displaystyle \left( \hat\theta_n - z_{\alpha/2} \frac{1}{\sqrt{nI(\hat\theta)}}, \hat\theta_n + z_{\alpha/2} \frac{1}{\sqrt{nI(\hat\theta)}} \right)$
 
+- **Closed form issue**
+  - **Concept**
+    - In some (most) cases, the solution of the estimating equation $\displaystyle \frac{\partial \mathcal{L}(\theta; \mathbf{X}) }{\partial \theta} = 0$ cannot be obtained in closed form. In situations like this, numerical methods are used to find the solution 
+  - **Newton-Raphson method**
+    - **Concept**
+      - The following mathematics is the general Newton-Raphson method applied to MLE. The general Newton-Raphson method description is available in the maths section
+    - **Mathematics**
+      - $\displaystyle \hat\theta_{}^{(1)} = \hat\theta_{}^{(0)} - \frac{\mathcal{L}'(\hat\theta_{}^{(0)}; \mathbf{X})}{\mathcal{L}''(\hat\theta_{}^{(0)}; \mathbf{X})}$
+    - **Some interesting stuff**
+      - Each of the k-step estimators is an asymptotically efficient estimate of $\theta$ given its previous estimate is a consistent estimator of $\theta$
+  - **Newton's method** 
+    - **Concept**
+      - An iterative method for estimating the root/solution of a function (an expression that equates to 0) 
+      It can be used to approximate the root\solution of a non-closed form mathematical expression that equates to 0
+      - This method has rapid quadratic convergence rate 
+      - Start with an initial estimate ($x_0$). Then create a tangent line on the function at the value of that estimate ($f(x_0)$), the x-intercept of that tangent line will become the one-step estimate (a new estimate; and this is typically closer to the true value than the initial estimate). That is one iteration. Then for the second iteration, do the same thing again but with $x_1$ as the starting estimate. That is, create a tangent line on the function at $x_1$. The x-intercept of that tangent line will become the second-step estimate. That is now two iterations. Repeat this process until some kind of convergence criterion/criteria is reached. (Convergence is seen when the estimates tend towards some range of values)
+    - **Mathematics**
+      - $\displaystyle x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}$
+    - **Procedure**
+      - **Start with a close initial guess at the solution**
+        - Let $\hat\theta^{(0)}$ be the initial guess 
+      - **First iteration: producing the one-step estimate**
+        - $\displaystyle \hat\theta^{(1)} = \hat\theta^{(0)} - \frac{\mathcal{L}'(\hat\theta^{(0)}; \mathbf{X})}{\mathcal{L}''(\hat\theta^{(0)}; \mathbf{X})}$
+      - **Second iteration: producing the second-step estimate**
+        - $\displaystyle \hat\theta^{(2)} = \hat\theta^{(1)} - \frac{\mathcal{L}'(\hat\theta^{(1)}; \mathbf{X})}{\mathcal{L}''(\hat\theta^{(1)}; \mathbf{X})}$
+      - **Iterate the process until convergent criteria is reached**
+    - **Mathematical Explanation**
+      - **Start with an initial estimate**
+        - Let $x_0$ be an initial estimate
+      - **First iteration: Producing the one-step estimate**
+        - Produce a tangent line on the curve at the value of the initial estimate ($x_0$)
+        - The tangent line will cross the x-axis 
+        - The point on the x-axis that the tangent cross (which is the x-intercept of the tangent line) is the one-step estimate, which is another estimate. Typically, this estimate is closer to the true value than the initial estimate.
+        - **Find the x-intercept**
+          - The x-intercept is found by subtracting the initial estimate by the distance between the initial estimate and the new estimate on the x-axis. 
+          - Let $k$ be the distance between the initial estimate and the new estimate on the x-axis
+          - $x_1 = x_0 - k$
+          - **Find k**
+            - $\tan(\theta) = \frac{f(x_0)}{k}$
+            - Since $\tan(\theta)$ can be described by $\frac{dy}{dx}= \frac{df(x_0)}{k} = f'(x_0)$,  $\tan(\theta)$ is re expressed by $f'(x_0)$
+            - $\displaystyle f'(x_0) = \frac{f(x_0)}{k}$
+            - $\displaystyle k = \frac{f(x_0)}{f'(x_0)}$
+          - $\begin{aligned} \displaystyle x_1 &= x_0 - k \\ &= x_0-\frac{f(x_0)}{f'(x_0)} \end{aligned}$
       
 
+
+
+
+- **NHST for MLE**
+  - Wald test 
+  - Likelihood ratio 
+  - Score statistic
+  
+  
+- **Likelihood ratio test (Wilks test)**
+  - **Concept**
+    - Utilises the ratio of the likelihood of the sample data given the null hypothesised value of the parameter to the likelihood of the sample data given the observed value (the mle)
+  - **The Likelihood Ratio statistic**
+    - **Concept**
+      - The ratio of the likelihood of the sample data given the null hypothesised value of the parameter to the likelihood of the sample data given sample estimate
+    - **Mathematics**
+      - $\displaystyle \Lambda =  \frac{\mathcal{L}{(\theta_0)}}{\mathcal{L}({\hat\theta})}$
+        - ***Where***
+          - $\mathcal{L}{(\theta_0)}$ - The likelihood of the sample data given the null hypothesised value of the parameter
+          - $\mathcal{L}({\hat\theta})$ - The likelihood of the sample data given the sample estimate 
+    - **Interpretation**
+      - $\Lambda ≤ 1$
+      - $\Lambda = 1$ indicates that the likelihood of the sample data given the null hypothesised value of the parameter is the same as the likelihood of the sample data given the observed value (the mle), which means that there is no difference between the observed estimate and the null hypothesised value 
+      - The smaller the $\Lambda$ relative to 1, the further away the likelihood graph is from the null hypothesised value of the parameter on the parameter space 
+  - **Wilk's statistic**
+    - **Concept**
+      - The Wilk's statistic is a log-transformed likelihood ratio statistic
+      - The Likelihood ratio statistic is transformed to this Wilk's statistic so that, under certain regularity conditions, the Wilk's statistic has an asymptotic chi-squared distribution
+      - It is often referred to 2ll because of how it looks in the mathematical expression
+    - **Mathematics**
+      - $\begin{aligned}\displaystyle -2\log \Lambda &= -2 \log\left[ \frac{\mathcal{L}{(\theta_0)}}{\mathcal{L}({\hat\theta})}\right] \\ &= -2\left[\log\mathcal{L}{(\theta_0)} - \log\mathcal{L}{(\hat\theta)}\right] \\ &= -2\left[\mathcal{l}{(\theta_0)} - \mathcal{l}{(\hat\theta)}\right]\end{aligned}$
+    - **Distribution**  
+      - **Concept**
+        - Under the null hypothesis, the Wilk's statistic has an asymptotic chi-squared distribution with 1 degree of freedom 
+      - **Mathematics**
+        - $\displaystyle -2\log \Lambda \sim \chi^2(1)$
+          - ***Notes***
+            - Or it can be expressed as $\displaystyle -2\log \Lambda \xrightarrow{D} \chi^2(1)$
+            - The df is the difference in the dimensions of the parameter spaces under $H_0 \cup H_1$ and $h_0$ (not sure what it means, but it's from Agresti)
+ 
+- **Wald test (Wald, 1943)**
+  - **Concept**
+    - The Wald test or Wald statistic is somewhat like the idea of a z test or t test
+  - **The Wald statistic**
+    - **Mathematics**
+      - $\displaystyle W = \frac{(\hat\theta - \theta_0)^2}{\sigma^2_{\theta}}$
+        - ***Where***
+          - $\hat\theta $ - The sample estimate 
+          - $\theta_0$ - The value of the parameter under the null hypothesis 
+          - $\sigma^2_{\theta}$ - The variance of the sample estimate under the alternative hypothesis - Under the theory of MLE, $\sigma_{\hat\theta}^2 = \frac{1}{nI(\hat\theta)}$
+    - **Distribution**
+      - **Concept**
+        - The Wald statistic has an asymptotic/approximate central chi-squared distribution with 1 degree of freedom
+      - **Mathematics**
+        - $W \sim \chi^2(1)$
+  - **z-transformed Wald statistic**
+    - **Concept**
+      - The Wald statistic transformed such that it has an asymptotic z normal distribution
+    - **Mathematics**
+      - $W_z = \sqrt{W}$
+    - **Distribution**
+      - **Concept**
+        - The z Wald statistic has an asymptotic/approximate z normal distribution 
+      - **Mathematics**
+        - $W_z\sim \mathcal{N}$
+
+
+- **Score statistic (Lagrange multiplier test)**
+  - **The Score statistic**
+    - **Concept**
+      - The ratio of the square of the slope evaluated at the null hypothesised value of the parameter to the variance of the slope at the null hypothesised value of the parameter
+    - **Mathematics**
+      - $\displaystyle S =  \frac{\mathcal{l'}(\theta_0)^2}{nI(\theta_0)}$
+        - ***Where***
+          - $I(\theta_0)$ - The information at the null hypothesised value in the likelihood function - The variance of the slope of the likelihood function under the null hypothesis 
+    - **Distribution**
+      - **Concept**
+        - Under the null hypothesis, the score statistic has an asymptotic chi-squared distribution with 1 degree of freedom
+  - **The z-transformed Score statistic**
+    - **Concept**
+      - A transformed version of the Score statistic such that it has an asymptotic z normal distribution
+      - The ratio of the slope evaluated at the null hypothesised value of the parameter to the standard deviation of the slope (which is equivalent to the expected curvature) at the null hypothesised value of the parameter - Because the expected curvature tells how much information is at the null hypothesised value of the parameter
+    - **Mathematics**
+      - $\displaystyle S_z = \sqrt{S} = \frac{\mathcal{l'}(\theta_0)}{\sqrt{nI(\theta_0)}}$
+    - **Distribution**
+      - **Concept**
+        - Under the null hypothesis, the z-transformed Score statistic has an asymptotic z normal distribution
+
+- **Evaluating the three tests**
+  - The three tests are asymptotically equivalent (Cox and Hinkley, 1974, Sec. 9.3). For small to moderate sample sizes, the likelihood-ratio and score tests tend to be more reliable than the Wald test, that is that they have an actual error rate closer to the nominal level 
+      
+
+- **THINGS I WANT TO LEARN**
+  - Law of large numbers 
+  - Central Limit Theorem
+  
+  
+  
+  
+  
+  
+  
+  
       
 
 - **Variance of model parameters**
@@ -525,96 +661,7 @@
           
     
 
-- **NHST for MLE**
-  - Wald test 
-  - Likelihood ratio 
-  - Score statistic
-  
-- **Wald test (Wald, 1943)**
-  - **Concept**
-    - Inferential Test statistic based on the (log) likelihood function
-  - **The Wald statistic**
-    - **Mathematics**
-      - $\displaystyle W = \frac{(\hat\theta - \theta_0)^2}{\sigma^2_{\theta}}$
-        - ***Where***
-          - $\hat\theta $ - The MLE 
-          - $\theta_0$ - The value of the parameter under the null hypothesis 
-          - $\sigma^2_{\theta}$ 
-            - The sampling variance of the population parameter under the alternative hypothesis
-    - **Distribution of the Wald statistic**
-      - **Concept**
-        - The Wald statistic has an approximate central Chi-squared distribution with df of 1
-      - **Mathematics**
-        - $W \sim \chi^2(1)$
-  - **z-transformed Wald statistic**
-    - **Concept**
-      - The Wald statistic transformed into a z normal statistic
-    - **Mathematics**
-      - $z_W = \sqrt{W}$
-    - **Distribution of the z Wald statistic**
-      - **Concept**
-        - The z Wald statistic has an approximate z normal distribution 
-      - **Mathematics**
-        - $z_W \sim \mathcal{N}(df)$
 
-- **Likelihood ratio test (Wilks test)**
-  - **The likelihood ratio test statistic**
-    - **Concept**
-      - The ratio of the likelihood under the alternative hypothesis and the likelihood under the null hypothesis 
-      - The squared vertical deviation between the maximised likelihood under the alternative hypothesis and the likelihood of the null hypothesized value of the parameter under the alternative hypothesis
-    - **Mathematics**
-      - $\displaystyle -2\log \Lambda = -2 \log\left[ \frac{\mathcal{L}{(\theta_0)}}{\mathcal{L}({\theta_1})}\right] = -2\left[\mathcal{L}{(\theta_0)} - \mathcal{L}{(\theta_1)}\right]$
-        - ***Where***
-          - $L$ -  Maximised log-likelihood function
-          - $\mathcal{L}{(\theta_1)}$ - The maximised likelihood of the value of the parameter given the data (under the alternative hypothesis) 
-          - $\mathcal{L}{(\theta_0)}$ - The likelihood of the null hypothesised value of the parameter in the likelihood function given the data (under the alternative hypothesis) 
-  - **Degrees of freedom of the likelihood ratio test statistic**
-    - **Concept**
-      - The df is the difference in the dimensions of the parameter spaces under $H_0 \cup H_1$ and $h_0$
-  - **The distribution of the likelihood ratio test statistic**
-    - **Concept**
-      - Under certain regularity conditions, the null distribution of the likelihood ratio statistic tends towards a chi-squared distribution with 1 degrees of freedom as sample size increases 
-    - **Mathematics**
-      - $\displaystyle -2\log \Lambda \sim \chi^2(1) \\ or \\ -2\log \Lambda \overset{D}{\to} \chi^2(1) $
-      
-      
-      
-- **Score statistic (Lagrange multiplier test)**
-  - **Concept**
-    - Based on the slope and expected curvature at the null hypothesised value of the parameter in the log-likelihood function 
-  - **The score statistic**
-    - **The z score statistic**
-      - **Concept**
-        - The normal z version of the score statistic
-        - It is the ratio of the slope of the likelihood function of the parameter at the null hypothesised value of the parameter to the standard error of the slope at the null hypothesised value of the parameter 
-      - **Mathematics**
-        - $\displaystyle \frac{\mathcal{l'}(\theta_0)}{\sqrt{I(\theta_0)}}$
-          - ***Where***
-            - $\mathcal{l'}(\theta_0)$ - The slope of the likelihood function of the parameter at the null hypothesised value of the parameter 
-            - $\sqrt{I(\theta_0)}$ - The standard error of the slope of the likelihood function of the parameter at the null hypothesised value of the parameter - The standard error depends on the curvature of the likelihood function of the parameter at the null hypothesised value of the parameter - The information evaluated at the null hypothesised value of the parameter 
-            
-    - **Mathematics**
-      - $\displaystyle \frac{\mathcal{l'}(\theta_0)^2}{I(\theta_0)}$
-        - ***Where***
-          - $\mathcal{l'}$ - The first derivative of the log likelihood function 
-          - $\mathcal{l'}(\theta_0)^2$ - The slope at the null hypothesised value of the parameter in the log likelihood function (sub in the null hypothesised value of the parameter into the first derivative of the log likelihood function and you will get this)
-          - $I$ - Information 
-          - $I(\theta_0)$ - - The information at the null hypothesised value in the likelihood function - The variance of the slope of the likelihood function under the null hypothesis (those that are close to and around the maximum (slope of 0))
-        - ***Notes***
-          - Some textbooks (e.g. Hogg and McKean) say it's like this $\displaystyle \frac{\mathcal{L'}(\theta_0)^2}{nI(\theta_0)}$
-    - **Central Distribution of the score statistic**
-      - **Concept**
-        - The score statistic under the null hypothesis has a central Chi-square distribution 
-  - **z transformed score statistic**
-    - **Concept**
-      - The score statistic can be transformed into a z normal statistic under the null hypothesis that has an approximate central normal distribution 
-    - **Mathematics**
-      - $\displaystyle \sqrt{\frac{S(\theta_0)^2}{I(\theta_0)}}$
-
-
-- **Evaluating the three tests**
-  - As $n$ increases towards infinity, the three tests have asymptotic equivalences (Cox and Hinkley, 1974, Sec. 9.3). For small to moderate sample sizes, the likelihood-ratio and score tests tend to be more reliable than the Wald test, that is that they vaeh an actual error rate closer to the nominal level 
-      
       
       
       
@@ -737,16 +784,12 @@
 - **Cramér-Rao Lower Bound**
   - **Concept**
     - The CRLB states that the variance of an estimator cannot be lower than the CRLB
-    - That is, the CRLB is the smallest possible variance of an estimator 
+    - That is, the CRLB is the minimum variance of an estimator 
   - **For unbiased or biased estimators**
     - **Mathematics**
       - This is for the case when $\hat\theta$ can be an unbiased or biased estimator of $\theta$, that is when the expectation of $\hat\theta$ is not $\theta$ but some kind of function of this (e.g. $k(\theta)$)
       - Let $x_1, x_2, x_3, \cdots, x_n$ be idd with a pdf $f(x; \theta)$. Let $S = u(x_1, x_2, x_3, \cdots, x_n)$ be a sample statistic with a mean $E(S) = E[u(x_1, x_2, x_3, \cdots, x_n)] = k(\theta)$. Under the first 4 regularity conditions: 
         - $\displaystyle \text{Var}(\theta) ≥ \frac{\left[k'(\theta)\right]^2}{n I(\theta)}$
-  - **For unbiased estimators**  
-    - **Mathematics**
-      - If $S = u(x_1, x_2, x_3, \cdots, x_n)$ is an unbiased estimator of $\theta$, so that $k(\theta) = \theta$, then the Cramér-Rao inequality becomes: 
-      - $\displaystyle \text{Var}(\hat\theta) ≥ \frac{1}{I(\theta)}$
     - **Proof**
       - **Scenario**
         - Let $\hat\theta = u(X) = u(x_1, x_2, \cdots , x_n)$ be a sample statistic and an estimator of the true value of the parameter $\theta$. 
@@ -772,23 +815,48 @@
       - **And as proofed, $\text{Cov(X, Y)} = g'(\theta)$**
       - **Therefore** 
         - $\begin{aligned} \displaystyle \sqrt{\text{Var}(S) \text{Var}(\hat\theta)} &≥ |g'(\theta)| \\  \text{Var}(S)\text{Var}(\hat\theta) &≥ \left[g'(\theta)\right]^2 \\ \text{Var}(\hat\theta) &≥ \frac{\left[g'(\theta)\right]^2 }{\text{Var}(S)} \\ \text{Var}(\hat\theta) &≥ \frac{\left[g'(\theta)\right]^2 }{nI(\theta)}\end{aligned}$
-
-- **Efficient Estimator**
-  - **Concept** 
-    - A sample statistic is an efficient estimator of the population parameter $\theta$ only if the variance of the sample statistic is equal to the Cramér-Rao lower bound 
-  - **Efficiency**
-    - **Concept**
-      - The efficiency of an estimator is quantified as the ratio of the Cramér-Rao lower bound to the actual variance of an unbiased estimator 
+  - **For unbiased estimators**  
     - **Mathematics**
-      - $\displaystyle \text{Efficiency} = \frac{\textit{CRLB}}{\text{Var}(\theta)} \\ \displaystyle e(\hat\theta_{1n}) = \frac{\frac{1}{I(\theta_0)}}{\sigma^2_{\hat\theta_{1n}}}$
-    - **Interpretation**
-      - According to the CRLB, the variance cannot be lower than the CRLB
-      - Hence, efficiency ranges from asymptotic 0 to 1
-      - An efficiency of 1 means that the estimator is asymptotically efficient 
-      - An efficiency smaller than 1 means that the estimator is inefficient 
-      - The smaller the efficiency below 1 and towards 0, the less efficient is the estimator
-  - **MLE and efficiency**
-    - It can be shown that under regularity conditions, mles achieve an efficiency of 1 asymptotically. In other words, the variances of mles achieve their Cramér-Rao lower bounds asymptotically 
+      - If $S = u(x_1, x_2, x_3, \cdots, x_n)$ is an unbiased estimator of $\theta$, so that $k(\theta) = \theta$, then the Cramér-Rao inequality becomes: 
+      - $\displaystyle \text{Var}(\hat\theta) ≥ \frac{1}{I(\theta)}$
+    
+
+- **Efficiency**
+  - **Concept**
+    - The efficiency of an estimator describes quality of an unbiased estimator through the variability of unbiased estimates around the true population parameter (this indicates the deviance between the estimator and the true population parameter)
+  - **Efficient Estimator**
+    - **Concept**
+      - A sample statistic is an efficient estimator of the population parameter $\theta$ only if the variance of the sample statistic is equal to the Cramér-Rao lower bound (hence it has the minimum variance)
+- **Efficiency**
+    - The efficiency of an estimator is quantified as the ratio of the Cramér-Rao lower bound to the actual variance of any unbiased estimator 
+  - **Mathematics**
+    - $\displaystyle \text{Efficiency} = \frac{\textit{CRLB}}{\text{Var}(\theta)} \\ \displaystyle e(\hat\theta_{1n}) = \frac{\frac{1}{I(\theta_0)}}{\sigma^2_{\hat\theta_{1n}}}$
+  - **Interpretation**
+    - According to the CRLB, the variance cannot be lower than the CRLB
+    - Hence, efficiency ranges from asymptotic 0 to 1
+    - An efficiency of 1 means that the estimator is asymptotically efficient 
+    - An efficiency smaller than 1 means that the estimator is inefficient 
+    - The smaller the efficiency below 1 and towards 0, the less efficient is the estimator
+- **MLE and normality and efficiency**
+  - **Concept**
+    - It can be shown that under regularity conditions, mles are asymptotically normal and efficient. In other words, as sample size increases towards infinity, the distribution of any mles approaches normal and the efficiency approaches 1 (the variances of mles approaches the CRLB) 
+  - **Proof**
+    - Proof not shown
+    - Proof is available in Maximum Likelihood Methods in Introduction to Mathematical Statistics (Hogg and McKean)
+  
+  
+
+  
+- **Asymptotic Relative Efficiency (ARE)**
+  - **Concept**
+    - The asymptotic relative efficiency between two unbiased and asymptotically normal estimators
+    - Compares the efficiency between two unbiased and asymptotically normal estimators
+  - **Mathematics**
+    - The asymptotic relative efficiency of an asymptotically normal and unbiased estimator $\hat\theta_{1n}$ to another another asymptotically normal and unbiased estimator $\hat\theta_{2n}$ is the reciprocal of the ratio of their respective asymptotic variances  
+    - $\displaystyle e\left(\hat\theta_{1n}, \hat\theta_{2n} \right) = \frac{\sigma^2_{\hat\theta_{2n}}}{\sigma^2_{\hat\theta_{1n}}}$
+  - **Interpretation**
+    - If two estimators are asymptotially normal with the same asymptotic mea, then the estimator with the smaller asymptotic variance should be selected over the other as a better estimator 
+  - 
 
 - **Regularity conditions of MLEs (DON'T FUCKING KNOW! Not developed)**
   1. The variables are independent and identically distributed with density $f(y; \theta)$
