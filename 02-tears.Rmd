@@ -445,6 +445,7 @@ ggplot() +
     - $\begin{aligned} \displaystyle \displaystyle Y &= a + \sum_{i = 1}^{2}{b_i X_i} = a + b_1X_1 + b_2X_2 \\ \displaystyle \text{E}(Y) &= \int_{}^{}{\int_{}^{}{~a + b_1x_1 + b_2x_2 } }~f(x_1, x_2)~dx_1dx_2 \\ \displaystyle &= a \int_{}^{}{\int_{}^{}{~f(x_1, x_2)~dx_1dx_2} } + b_1\int_{}^{}{\int_{}^{}{~x_1f(x_1, x_2)~dx_1dx_2} } + b_2 \int_{}^{}{\int_{}^{}{~x_2f(x_1, x_2)~dx_1dx_2} } \end{aligned}$
     
       
+      
 - **Hessian matrix**
   - **Concept**
     - A square matrix in which each element is a second-order partial derivative of the function of interest with respect to each of the variables/pair of variables
