@@ -564,9 +564,9 @@
       - The smaller the $\Lambda$ relative to 1, the further away the likelihood graph is from the null hypothesised value of the parameter on the parameter space 
   - **Wilk's statistic**
     - **Concept**
-      - The Wilk's statistic is a log-transformed likelihood ratio statistic
+      - The Wilk's statistic is a transformed likelihood ratio statistic
       - The Likelihood ratio statistic is transformed to this Wilk's statistic so that, under certain regularity conditions, the Wilk's statistic has an asymptotic chi-squared distribution
-      - It is often referred to 2ll because of how it looks in the mathematical expression
+      - It is often referred to 2ll because of how the mathematical expression looks
     - **Mathematics**
       - $\begin{aligned}\displaystyle -2\log \Lambda &= -2 \log\left[ \frac{\mathcal{L}{(\theta_0)}}{\mathcal{L}({\hat\theta})}\right] \\ &= -2\left[\log\mathcal{L}{(\theta_0)} - \log\mathcal{L}{(\hat\theta)}\right] \\ &= -2\left[\mathcal{l}{(\theta_0)} - \mathcal{l}{(\hat\theta)}\right]\end{aligned}$
     - **Distribution**  
@@ -659,9 +659,44 @@
           
 
           
-          
-    
+<!-- STOPPED HERE ON 5 MARCH 2023 FOR A-L MATHS -->  
 
+
+- **The EM Algorithm**
+  - **General Concept**
+    - An iterative algorithm that produces MLEs 
+    - The algorithm is initialized by a proposed MLE and then alternates between the Expectation (E) and Maximisation (M) step
+    - The EM algorithm is used when the (log) likelihood function is difficult or impossible to integrate which can be due to missing data 
+  - **Procedure**
+    - **Initialisation**
+      - **Concept**
+        - Begin with an estimate $\hat\theta_0$
+    - **Expectation Step**
+      - **Concept**   
+        - Find the expected likelihood function given the observed data and the current estimate $\hat\theta_m$
+      **Mathematics**
+        - $Q(\theta | \hat\theta_m, \mathbf{x}) = \mathbf{E}\left[ \mathcal{l}(\theta | \mathbf{x} , \mathbf{Z}) | \hat\theta_m, \mathbf{x} \right]$
+          - ***Where***
+            - $\mathcal{l}(\theta | \mathbf{x} , \mathbf{Z}) $ - The complete log likelihood function - The log likelihood function given the complete sample space (having both observed and unobserved values) 
+    - **Maximisation step**   
+      - **Concept** 
+        - Find the estimate ($\hat\theta_{m+1}$) with the maximum likelihood given the observed data and the current estimate $\hat\theta_{m}$
+        - This is found by setting the log likelihood function found in the E step to 0 and solving for $\hat\theta$
+      - **Mathematics**
+        - $\hat\theta_{m+1} = \textit{Argmax} ~ Q(\theta | \hat\theta_m, \mathbf{x}) $
+    - **Iterate the E and M step until convergence**
+      - The estimate ($\hat\theta_{m+1}$) produced in the M-step becomes the new estimate that is better (closer to the MLE) than the one ($\hat\theta_{m}$) used to find the likelihood function in the E-step. This estimate can in turn be input into the E-step where it is used to find a new and better likelihood function and input into the the M-step for estimating a new and better estimate than this. This process (E and M steps) is iterated until convergence. 
+    - **Properties of the EM algorithm**
+      - **The EM algorithm produces the MLE through iterations**
+        - **Concept**
+          - Under certain assumptions, it can be shown that $\hat\theta_{m}$ converges in probability to the MLE as $m \rightarrow \infty$
+      - **$\hat\theta_{m+1}$ always increases the likelihood over $\hat\theta_{m}$**
+        - **Concept**
+          - It can be shown that the new estimate $\hat\theta_{m+1}$ always increases the likelihood over the previous estimate $\hat\theta_{m}$
+        - **Mathematics**
+          - $\mathcal{L}(\hat\theta_{m+1} | \mathbf{x}) ≥ \mathcal{L}(\hat\theta_{m})$
+          
+        
 
       
       
